@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapiri — A Writing System for Kokborok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Yapiri';
+    src: url('https://raw.githubusercontent.com/yapiriscript/yapiri-font/main/Yapiri.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --ink: #1a1209;
+    --parchment: #f5edd8;
+    --warm-white: #faf6ee;
+    --terracotta: #b85c38;
+    --terra-light: #d4784f;
+    --forest: #2d5016;
+    --moss: #4a7c2f;
+    --gold: #c9922a;
+    --gold-light: #e8b84b;
+    --stone: #8b7355;
+    --stone-light: #c4b49a;
+    --charcoal: #2c2416;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(26, 18, 9, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 146, 42, 0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stone-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(5rem, 9vw, 9rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--parchment);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+
+  .hero-title span {
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: 1.35rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--stone-light);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 420px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .hero-meaning {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--stone);
+    letter-spacing: 0.1em;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.85s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--warm-white);
+    padding: 0.85rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--terra-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--parchment);
+    padding: 0.85rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(196, 180, 154, 0.4);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-glyph-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    opacity: 0.15;
+    position: absolute;
+    inset: 0;
+  }
+
+  .glyph-cell {
+    border: 1px solid rgba(201, 146, 42, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-family: 'Yapiri', serif;
+    color: var(--gold-light);
+    animation: glyphPulse var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+  }
+
+  @keyframes glyphPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .hero-center-piece {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 1.2s forwards;
+  }
+
+  .hero-big-glyph {
+    font-size: clamp(8rem, 15vw, 14rem);
+    font-family: 'Yapiri', serif;
+    color: var(--gold-light);
+    line-height: 1;
+    text-shadow: 0 0 80px rgba(201, 146, 42, 0.3);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-glyph-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  .hero-divider {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201, 146, 42, 0.3), transparent);
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--charcoal);
+    padding: 7rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #about::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .about-heading {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--parchment);
+    margin-bottom: 2rem;
+  }
+
+  .about-heading em {
+    color: var(--gold-light);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .about-body p {
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--stone-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-body p strong {
+    color: var(--parchment);
+    font-weight: 400;
+  }
+
+  .about-stats {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .stat-item {
+    border-left: 2px solid var(--terracotta);
+    padding-left: 1.2rem;
+  }
+
+  .stat-number {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-top: 0.3rem;
+  }
+
+  /* SCRIPT SHOWCASE */
+  #showcase {
+    background: var(--ink);
+    padding: 7rem 5rem;
+    position: relative;
+  }
+
+  .showcase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    max-width: 1100px;
+  }
+
+  .showcase-title {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    color: var(--parchment);
+  }
+
+  .tab-group {
+    display: flex;
+    gap: 0;
+    border: 1px solid rgba(196, 180, 154, 0.2);
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--stone);
+    padding: 0.6rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-right: 1px solid rgba(196, 180, 154, 0.2);
+  }
+
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active { background: var(--terracotta); color: var(--warm-white); }
+  .tab-btn:hover:not(.active) { color: var(--parchment); background: rgba(196, 180, 154, 0.05); }
+
+  .glyph-chart {
+    max-width: 1100px;
+    display: none;
+  }
+
+  .glyph-chart.active { display: block; }
+
+  .chart-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(201, 146, 42, 0.2);
+  }
+
+  .chart-section-label:first-child { margin-top: 0; }
+
+  .glyph-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .glyph-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196, 180, 154, 0.1);
+    padding: 1rem 0.5rem 0.8rem;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glyph-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--terracotta);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .glyph-card:hover::before { opacity: 0.08; }
+  .glyph-card:hover { border-color: rgba(201, 146, 42, 0.4); transform: translateY(-2px); }
+
+  .glyph-symbol {
+    font-size: 2rem;
+    font-family: 'Yapiri', serif;
+    color: var(--parchment);
+    display: block;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .glyph-roman {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .glyph-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    color: rgba(196, 180, 154, 0.3);
+    display: block;
+    margin-top: 0.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* POEM SECTION */
+  #poem {
+    background: linear-gradient(135deg, #1f1508 0%, #0e0c06 100%);
+    padding: 7rem 5rem;
+    position: relative;
+  }
+
+  .poem-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .poem-title {
+    font-family: 'Teko', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+  }
+
+  .poem-subtitle {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--stone);
+    margin-bottom: 4rem;
+  }
+
+  .poem-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .poem-line {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .poem-yapiri {
+    font-size: 2.2rem;
+    font-family: 'Yapiri', serif;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .poem-roman {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--stone-light);
+  }
+
+  .poem-english {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  .poem-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--terracotta);
+    margin: 2rem auto;
+    opacity: 0.5;
+  }
+
+  /* KEYBOARD TOOL */
+  #keyboard {
+    background: var(--charcoal);
+    padding: 7rem 5rem;
+  }
+
+  .keyboard-container {
+    max-width: 900px;
+  }
+
+  .keyboard-intro {
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--stone-light);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .type-area {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(196, 180, 154, 0.15);
+    border-radius: 0;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    min-height: 120px;
+    position: relative;
+  }
+
+  #yapiri-output {
+    font-size: 2.5rem;
+    font-family: 'Yapiri', serif;
+    color: var(--parchment);
+    letter-spacing: 0.1em;
+    min-height: 60px;
+    line-height: 1.4;
+    word-break: break-all;
+  }
+
+  #roman-output {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--stone);
+    letter-spacing: 0.1em;
+    margin-top: 0.8rem;
+  }
+
+  .keyboard-controls {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .ctrl-btn {
+    background: transparent;
+    border: 1px solid rgba(196, 180, 154, 0.2);
+    color: var(--stone-light);
+    padding: 0.5rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .ctrl-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .ctrl-btn.danger:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
+  .keys-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .key-row {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .key {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196, 180, 154, 0.12);
+    color: var(--parchment);
+    padding: 0.6rem 0.5rem;
+    min-width: 52px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .key:hover {
+    background: rgba(184, 92, 56, 0.2);
+    border-color: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  .key:active { transform: translateY(0); }
+
+  .key-glyph { font-size: 1.3rem; font-family: 'Yapiri', serif; line-height: 1; }
+  .key-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  .key.space-key { min-width: 200px; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--stone); }
+  .key.special { min-width: 70px; background: rgba(201, 146, 42, 0.08); border-color: rgba(201, 146, 42, 0.2); }
+  .key.special .key-glyph { font-size: 0.8rem; color: var(--gold); }
+
+  /* DOWNLOAD */
+  #download {
+    background: var(--ink);
+    padding: 7rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .download-bg-text {
+    position: absolute;
+    font-family: 'Teko', sans-serif;
+    font-size: 20rem;
+    font-weight: 300;
+    color: rgba(201, 146, 42, 0.03);
+    right: -2rem;
+    bottom: -2rem;
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+  }
+
+  .download-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin-top: 3rem;
+  }
+
+  .download-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196, 180, 154, 0.1);
+    padding: 2.5rem 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .download-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--terracotta);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .download-card:hover { border-color: rgba(196, 180, 154, 0.25); transform: translateY(-4px); }
+  .download-card:hover::after { transform: scaleX(1); }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--stone-light);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .card-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .card-link:hover { color: var(--terra-light); }
+  .card-link::after { content: '→'; }
+
+  /* COMMUNITY */
+  #community {
+    background: linear-gradient(to bottom, var(--charcoal), #0d0b06);
+    padding: 7rem 5rem;
+  }
+
+  .community-split {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 6rem;
+    max-width: 1100px;
+    align-items: start;
+  }
+
+  .community-heading {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1.05;
+    margin-bottom: 2rem;
+  }
+
+  .community-text {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--stone-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .community-lang {
+    font-size: 1.6rem;
+    font-family: 'Yapiri', serif;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    display: block;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .community-lang-roman {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--stone);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  .form-input, .form-textarea {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(196, 180, 154, 0.15);
+    color: var(--parchment);
+    padding: 0.85rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-input:focus, .form-textarea:focus { border-color: rgba(201, 146, 42, 0.4); }
+  .form-textarea { min-height: 120px; resize: vertical; }
+
+  /* FOOTER */
+  footer {
+    background: #080704;
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(196, 180, 154, 0.08);
+  }
+
+  .footer-logo {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--stone);
+    letter-spacing: 0.15em;
+  }
+
+  .footer-script {
+    font-size: 1.8rem;
+    color: rgba(201, 146, 42, 0.3);
+    letter-spacing: 0.15em;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(196, 180, 154, 0.3);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* DECORATIVE LINE */
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 4rem; }
+    #about, #showcase, #poem, #keyboard, #download, #community, footer { padding: 5rem 2rem; }
+    .about-grid, .community-split { grid-template-columns: 1fr; gap: 3rem; }
+    .download-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .showcase-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-copy { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#showcase">Script</a></li>
+    <li><a href="#keyboard">Try It</a></li>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">A New Writing System for Kokborok</p>
+    <h1 class="hero-title">
+      YAPIRI
+      <span>SCRIPT</span>
+    </h1>
+    <p class="hero-subtitle">Footprints across time — a living alphabet born from the Borok people of Tripura</p>
+    <p class="hero-meaning">
+      <span style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--terracotta)">ya·pi·ri</span>
+      &nbsp;/jəˈpiri/&nbsp; — footprints, traces, the marks we leave behind
+    </p>
+    <div class="hero-cta">
+      <a href="#showcase" class="btn-primary">Explore the Script</a>
+      <a href="#download" class="btn-secondary">Download Font</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-glyph-grid" id="glyphGrid"></div>
+    <div class="hero-center-piece">
+      <!-- Placeholder glyph display using Unicode PUA characters -->
+      <span class="hero-big-glyph">&#xE01C;</span>
+      <span class="hero-glyph-label">ya · the first footprint</span>
+    </div>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <p class="section-label">The Story</p>
+      <div class="gold-line"></div>
+      <h2 class="about-heading">
+        Written in the<br>
+        shape of a<br>
+        <em>living tongue</em>
+      </h2>
+    </div>
+    <div class="about-body reveal">
+      <p>
+        <strong>Kokborok</strong> is one of the oldest languages of Northeast India, spoken by over a million Borok people across Tripura and beyond. It carries centuries of oral tradition, song, and story — yet has long lacked a writing system truly shaped by its own phonology.
+      </p>
+      <p>
+        Yapiri was created to change that. Designed from first principles around the sounds and rhythms of Kokborok, it is an <strong>abugida</strong> — a script where consonants carry an inherent vowel, and diacritics modify it. The inventory spans <strong>25 consonants</strong>, <strong>6 vowels</strong>, <strong>10 numerals</strong>, and two combining diacritics: a <strong>high tone mark</strong> and a <strong>reduplication mark</strong> — both encoded at standard Unicode combining codepoints for maximum compatibility. Every glyph was drawn with both <strong>visual elegance</strong> and <strong>linguistic precision</strong> in mind.
+      </p>
+      <p>
+        The name <em>yapiri</em> — meaning "footprints" in Kokborok — reflects what all writing truly is: traces of a living voice, preserved across time.
+      </p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">48</div>
+          <div class="stat-label">Total Characters</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">25</div>
+          <div class="stat-label">Consonants</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Vowels</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Numerals</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Diacritics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="showcase-header reveal">
+    <div>
+      <p class="section-label">The Characters</p>
+      <h2 class="showcase-title">The Yapiri Alphabet</h2>
+    </div>
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="showTab('consonants')">Consonants</button>
+      <button class="tab-btn" onclick="showTab('vowels')">Vowels</button>
+      <button class="tab-btn" onclick="showTab('numerals')">Numerals</button>
+    </div>
+  </div>
+
+  <!-- CONSONANTS TAB -->
+  <div class="glyph-chart active" id="tab-consonants">
+    <div class="chart-section-label">Stops — Voiceless, Aspirated, Voiced</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE006;</span><span class="glyph-roman">p</span><span class="glyph-code">E006</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE007;</span><span class="glyph-roman">t</span><span class="glyph-code">E007</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE008;</span><span class="glyph-roman">k</span><span class="glyph-code">E008</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE009;</span><span class="glyph-roman">ph</span><span class="glyph-code">E009</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE00A;</span><span class="glyph-roman">th</span><span class="glyph-code">E00A</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE00B;</span><span class="glyph-roman">kh</span><span class="glyph-code">E00B</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE00C;</span><span class="glyph-roman">b</span><span class="glyph-code">E00C</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE00D;</span><span class="glyph-roman">d</span><span class="glyph-code">E00D</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE00E;</span><span class="glyph-roman">g</span><span class="glyph-code">E00E</span></div>
+    </div>
+    <div class="chart-section-label">Affricates</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE00F;</span><span class="glyph-roman">ch</span><span class="glyph-code">E00F</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE010;</span><span class="glyph-roman">j</span><span class="glyph-code">E010</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE011;</span><span class="glyph-roman">chh</span><span class="glyph-code">E011</span></div>
+    </div>
+    <div class="chart-section-label">Nasals</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE012;</span><span class="glyph-roman">m</span><span class="glyph-code">E012</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE013;</span><span class="glyph-roman">n</span><span class="glyph-code">E013</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE014;</span><span class="glyph-roman">n′</span><span class="glyph-code">E014</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE015;</span><span class="glyph-roman">ng</span><span class="glyph-code">E015</span></div>
+    </div>
+    <div class="chart-section-label">Fricatives & Approximants</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE016;</span><span class="glyph-roman">s</span><span class="glyph-code">E016</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE017;</span><span class="glyph-roman">r</span><span class="glyph-code">E017</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE018;</span><span class="glyph-roman">l</span><span class="glyph-code">E018</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE01C;</span><span class="glyph-roman">y</span><span class="glyph-code">E01C</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE01D;</span><span class="glyph-roman">w</span><span class="glyph-code">E01D</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE01E;</span><span class="glyph-roman">h</span><span class="glyph-code">E01E</span></div>
+    </div>
+    <div class="chart-section-label">Loanword Characters — v, f, z</div>
+    <div class="glyph-row">
+      <div class="glyph-card" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE019;</span><span class="glyph-roman">v</span><span class="glyph-code">E019</span></div>
+      <div class="glyph-card" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE01A;</span><span class="glyph-roman">f</span><span class="glyph-code">E01A</span></div>
+      <div class="glyph-card" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE01B;</span><span class="glyph-roman">z</span><span class="glyph-code">E01B</span></div>
+    </div>
+  </div>
+
+  <!-- VOWELS TAB -->
+  <div class="glyph-chart" id="tab-vowels">
+    <div class="chart-section-label">Independent Vowels</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE000;</span><span class="glyph-roman">a</span><span class="glyph-code">E000</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE001;</span><span class="glyph-roman">e</span><span class="glyph-code">E001</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE002;</span><span class="glyph-roman">i</span><span class="glyph-code">E002</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE003;</span><span class="glyph-roman">u</span><span class="glyph-code">E003</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE004;</span><span class="glyph-roman">o</span><span class="glyph-code">E004</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE005;</span><span class="glyph-roman">ə</span><span class="glyph-code">E005</span></div>
+    </div>
+    <div class="chart-section-label">Tone & Reduplication Diacritics</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">◌&#x0301;</span><span class="glyph-roman">high tone</span><span class="glyph-code">0301</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">◌&#x030B;</span><span class="glyph-roman">reduplication</span><span class="glyph-code">030B</span></div>
+    </div>
+  </div>
+
+  <!-- NUMERALS TAB -->
+  <div class="glyph-chart" id="tab-numerals">
+    <div class="chart-section-label">Digits 0–9</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE01F;</span><span class="glyph-roman">0</span><span class="glyph-code">E01F</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE020;</span><span class="glyph-roman">1</span><span class="glyph-code">E020</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE021;</span><span class="glyph-roman">2</span><span class="glyph-code">E021</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE022;</span><span class="glyph-roman">3</span><span class="glyph-code">E022</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE023;</span><span class="glyph-roman">4</span><span class="glyph-code">E023</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE024;</span><span class="glyph-roman">5</span><span class="glyph-code">E024</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE025;</span><span class="glyph-roman">6</span><span class="glyph-code">E025</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE026;</span><span class="glyph-roman">7</span><span class="glyph-code">E026</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE027;</span><span class="glyph-roman">8</span><span class="glyph-code">E027</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE028;</span><span class="glyph-roman">9</span><span class="glyph-code">E028</span></div>
+    </div>
+    <div class="chart-section-label">Punctuation</div>
+    <div class="glyph-row">
+      <div class="glyph-card"><span class="glyph-symbol">&#xE029;</span><span class="glyph-roman">, comma</span><span class="glyph-code">E029</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE02A;</span><span class="glyph-roman">. full stop</span><span class="glyph-code">E02A</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE02B;</span><span class="glyph-roman">! exclaim</span><span class="glyph-code">E02B</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE02C;</span><span class="glyph-roman">" quote</span><span class="glyph-code">E02C</span></div>
+      <div class="glyph-card"><span class="glyph-symbol">&#xE02D;</span><span class="glyph-roman">? question</span><span class="glyph-code">E02D</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- POEM -->
+<section id="poem">
+  <div class="poem-container reveal">
+    <p class="section-label" style="text-align:center">Script in Motion</p>
+    <h2 class="poem-title">A Poem in Yapiri</h2>
+    <p class="poem-subtitle">Written in the script, spoken in Kokborok</p>
+    <div class="poem-lines">
+      <div class="poem-line">
+        <span class="poem-yapiri">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</span>
+        <span class="poem-roman">yapiri</span>
+        <span class="poem-english">Footprints</span>
+      </div>
+      <div class="poem-divider"></div>
+      <div class="poem-line">
+        <span class="poem-yapiri">&#xE000;&#xE006;&#xE008;&#xE000;&#xE017;</span>
+        <span class="poem-roman">apkar</span>
+        <span class="poem-english">We walk</span>
+      </div>
+      <div class="poem-divider"></div>
+      <div class="poem-line">
+        <span class="poem-yapiri">&#xE006;&#xE002;&#xE017;&#xE002;&#xE015;&#xE000;</span>
+        <span class="poem-roman">piringa</span>
+        <span class="poem-english">Leaving traces</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEYBOARD / TYPING TOOL -->
+<section id="keyboard">
+  <div class="keyboard-container">
+    <p class="section-label reveal">Interactive Tool</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="showcase-title reveal" style="margin-bottom:1rem">Type in Yapiri</h2>
+    <p class="keyboard-intro reveal">
+      Click the keys below to compose text in the Yapiri script. Install the font first for full rendering.
+    </p>
+
+    <div class="type-area reveal">
+      <div id="yapiri-output">&#8203;</div>
+      <div id="roman-output">romanization will appear here</div>
+    </div>
+
+    <div class="keyboard-controls reveal">
+      <button class="ctrl-btn" onclick="insertZWNJ()">Insert ZWNJ</button>
+      <button class="ctrl-btn danger" onclick="backspace()">⌫ Delete</button>
+      <button class="ctrl-btn danger" onclick="clearAll()">Clear All</button>
+      <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
+    </div>
+
+    <div class="keys-grid reveal">
+      <p class="chart-section-label" style="margin-top:0">Vowels</p>
+      <div class="key-row">
+        <div class="key" onclick="typeChar('\uE000','a')"><span class="key-glyph">&#xE000;</span><span class="key-label">a</span></div>
+        <div class="key" onclick="typeChar('\uE001','e')"><span class="key-glyph">&#xE001;</span><span class="key-label">e</span></div>
+        <div class="key" onclick="typeChar('\uE002','i')"><span class="key-glyph">&#xE002;</span><span class="key-label">i</span></div>
+        <div class="key" onclick="typeChar('\uE003','u')"><span class="key-glyph">&#xE003;</span><span class="key-label">u</span></div>
+        <div class="key" onclick="typeChar('\uE004','o')"><span class="key-glyph">&#xE004;</span><span class="key-label">o</span></div>
+        <div class="key" onclick="typeChar('\uE005','ə')"><span class="key-glyph">&#xE005;</span><span class="key-label">ə</span></div>
+      </div>
+
+      <p class="chart-section-label">Stops</p>
+      <div class="key-row">
+        <div class="key" onclick="typeChar('\uE006','p')"><span class="key-glyph">&#xE006;</span><span class="key-label">p</span></div>
+        <div class="key" onclick="typeChar('\uE007','t')"><span class="key-glyph">&#xE007;</span><span class="key-label">t</span></div>
+        <div class="key" onclick="typeChar('\uE008','k')"><span class="key-glyph">&#xE008;</span><span class="key-label">k</span></div>
+        <div class="key" onclick="typeChar('\uE009','ph')"><span class="key-glyph">&#xE009;</span><span class="key-label">ph</span></div>
+        <div class="key" onclick="typeChar('\uE00A','th')"><span class="key-glyph">&#xE00A;</span><span class="key-label">th</span></div>
+        <div class="key" onclick="typeChar('\uE00B','kh')"><span class="key-glyph">&#xE00B;</span><span class="key-label">kh</span></div>
+        <div class="key" onclick="typeChar('\uE00C','b')"><span class="key-glyph">&#xE00C;</span><span class="key-label">b</span></div>
+        <div class="key" onclick="typeChar('\uE00D','d')"><span class="key-glyph">&#xE00D;</span><span class="key-label">d</span></div>
+        <div class="key" onclick="typeChar('\uE00E','g')"><span class="key-glyph">&#xE00E;</span><span class="key-label">g</span></div>
+      </div>
+
+      <p class="chart-section-label">Affricates & Nasals</p>
+      <div class="key-row">
+        <div class="key" onclick="typeChar('\uE00F','ch')"><span class="key-glyph">&#xE00F;</span><span class="key-label">ch</span></div>
+        <div class="key" onclick="typeChar('\uE010','j')"><span class="key-glyph">&#xE010;</span><span class="key-label">j</span></div>
+        <div class="key" onclick="typeChar('\uE011','chh')"><span class="key-glyph">&#xE011;</span><span class="key-label">chh</span></div>
+        <div class="key" onclick="typeChar('\uE012','m')"><span class="key-glyph">&#xE012;</span><span class="key-label">m</span></div>
+        <div class="key" onclick="typeChar('\uE013','n')"><span class="key-glyph">&#xE013;</span><span class="key-label">n</span></div>
+        <div class="key" onclick="typeChar('\uE014','n′')"><span class="key-glyph">&#xE014;</span><span class="key-label">n′</span></div>
+        <div class="key" onclick="typeChar('\uE015','ng')"><span class="key-glyph">&#xE015;</span><span class="key-label">ng</span></div>
+      </div>
+
+      <p class="chart-section-label">Fricatives & Approximants</p>
+      <div class="key-row">
+        <div class="key" onclick="typeChar('\uE016','s')"><span class="key-glyph">&#xE016;</span><span class="key-label">s</span></div>
+        <div class="key" onclick="typeChar('\uE017','r')"><span class="key-glyph">&#xE017;</span><span class="key-label">r</span></div>
+        <div class="key" onclick="typeChar('\uE018','l')"><span class="key-glyph">&#xE018;</span><span class="key-label">l</span></div>
+        <div class="key" onclick="typeChar('\uE01C','y')"><span class="key-glyph">&#xE01C;</span><span class="key-label">y</span></div>
+        <div class="key" onclick="typeChar('\uE01D','w')"><span class="key-glyph">&#xE01D;</span><span class="key-label">w</span></div>
+        <div class="key" onclick="typeChar('\uE01E','h')"><span class="key-glyph">&#xE01E;</span><span class="key-label">h</span></div>
+        <div class="key" style="border-color:rgba(200,124,42,0.4)" onclick="typeChar('\uE019','v')"><span class="key-glyph">&#xE019;</span><span class="key-label">v</span></div>
+        <div class="key" style="border-color:rgba(200,124,42,0.4)" onclick="typeChar('\uE01A','f')"><span class="key-glyph">&#xE01A;</span><span class="key-label">f</span></div>
+        <div class="key" style="border-color:rgba(200,124,42,0.4)" onclick="typeChar('\uE01B','z')"><span class="key-glyph">&#xE01B;</span><span class="key-label">z</span></div>
+      </div>
+
+      <p class="chart-section-label">Numerals</p>
+      <div class="key-row">
+        <div class="key" onclick="typeChar('\uE01F','0')"><span class="key-glyph">&#xE01F;</span><span class="key-label">0</span></div>
+        <div class="key" onclick="typeChar('\uE020','1')"><span class="key-glyph">&#xE020;</span><span class="key-label">1</span></div>
+        <div class="key" onclick="typeChar('\uE021','2')"><span class="key-glyph">&#xE021;</span><span class="key-label">2</span></div>
+        <div class="key" onclick="typeChar('\uE022','3')"><span class="key-glyph">&#xE022;</span><span class="key-label">3</span></div>
+        <div class="key" onclick="typeChar('\uE023','4')"><span class="key-glyph">&#xE023;</span><span class="key-label">4</span></div>
+        <div class="key" onclick="typeChar('\uE024','5')"><span class="key-glyph">&#xE024;</span><span class="key-label">5</span></div>
+        <div class="key" onclick="typeChar('\uE025','6')"><span class="key-glyph">&#xE025;</span><span class="key-label">6</span></div>
+        <div class="key" onclick="typeChar('\uE026','7')"><span class="key-glyph">&#xE026;</span><span class="key-label">7</span></div>
+        <div class="key" onclick="typeChar('\uE027','8')"><span class="key-glyph">&#xE027;</span><span class="key-label">8</span></div>
+        <div class="key" onclick="typeChar('\uE028','9')"><span class="key-glyph">&#xE028;</span><span class="key-label">9</span></div>
+      </div>
+
+      <p class="chart-section-label">Diacritics</p>
+      <div class="key-row">
+        <div class="key special" onclick="typeChar('\u0301','́')"><span class="key-glyph">◌&#x0301;</span><span class="key-label">high tone</span></div>
+        <div class="key special" onclick="typeChar('\u030B','̋')"><span class="key-glyph">◌&#x030B;</span><span class="key-label">redupl.</span></div>
+      </div>
+
+      <p class="chart-section-label">Punctuation</p>
+      <div class="key-row">
+        <div class="key" onclick="typeChar('\uE029',',')"><span class="key-glyph">&#xE029;</span><span class="key-label">,</span></div>
+        <div class="key" onclick="typeChar('\uE02A','.')"><span class="key-glyph">&#xE02A;</span><span class="key-label">.</span></div>
+        <div class="key" onclick="typeChar('\uE02B','!')"><span class="key-glyph">&#xE02B;</span><span class="key-label">!</span></div>
+        <div class="key" onclick="typeChar('\uE02C','&quot;')"><span class="key-glyph">&#xE02C;</span><span class="key-label">"</span></div>
+        <div class="key" onclick="typeChar('\uE02D','?')"><span class="key-glyph">&#xE02D;</span><span class="key-label">?</span></div>
+      </div>
+
+      <div class="key-row" style="margin-top:0.4rem">
+        <div class="key space-key" onclick="typeChar(' ',' ')"><span class="key-label">space</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="download-bg-text">YPR</div>
+  <p class="section-label reveal">Resources</p>
+  <div class="gold-line reveal"></div>
+  <h2 class="showcase-title reveal">Download & Use</h2>
+  <div class="download-grid">
+    <div class="download-card reveal">
+      <span class="card-icon">⬇</span>
+      <div class="card-title">The Font</div>
+      <p class="card-desc">Download the Yapiri OTF/TTF font file for use in word processors, design software, and web projects.</p>
+      <a href="#" class="card-link">Download Font</a>
+    </div>
+    <div class="download-card reveal">
+      <span class="card-icon">⌨</span>
+      <div class="card-title">Keyman Layout</div>
+      <p class="card-desc">Install the Keyman keyboard layout for typing Yapiri natively on Windows, macOS, iOS, and Android.</p>
+      <a href="#" class="card-link">Get Keyman Layout</a>
+    </div>
+    <div class="download-card reveal">
+      <span class="card-icon">📄</span>
+      <div class="card-title">Script Specification</div>
+      <p class="card-desc">Read the full technical specification: glyph inventory, Unicode PUA mapping, OpenType features, and design rationale.</p>
+      <a href="#" class="card-link">Read the Spec</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="community-split">
+    <div class="reveal">
+      <p class="section-label">For the Borok People</p>
+      <div class="gold-line"></div>
+      <h2 class="community-heading">
+        A Script<br>Born From<br>Within
+      </h2>
+      <p class="community-text">
+        Yapiri was not designed from outside. It was built by a member of the Borok community, for the Borok community — shaped by the rhythms of a language spoken across Tripura for generations.
+      </p>
+      <p class="community-text">
+        If you speak Kokborok, teach it, write it, or simply love it — this script belongs to you. We welcome teachers, students, writers, and anyone who wants to help Yapiri grow.
+      </p>
+      <span class="community-lang">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</span>
+      <span class="community-lang-roman">yapiri — footprints</span>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label">Get Involved</p>
+      <div class="gold-line"></div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Bishal Debbarma">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="I want to learn Yapiri / I teach Kokborok / I can help with..."></textarea>
+        </div>
+        <button class="btn-primary" style="align-self:flex-start">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-script" style="font-family:'Yapiri',serif">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</div>
+  <div class="footer-copy">
+    Created for the Kokborok language<br>
+    Borok people of Tripura, India<br>
+    yapiriscript.com
+  </div>
+</footer>
+
+<script>
+  // --- GLYPH GRID ANIMATION ---
+  const glyphGrid = document.getElementById('glyphGrid');
+  const sampleGlyphs = ['\uE000','\uE001','\uE002','\uE003','\uE004','\uE005','\uE006','\uE007','\uE008','\uE009','\uE00A','\uE00B','\uE00C','\uE00D','\uE00E','\uE00F','\uE010','\uE011','\uE012','\uE013','\uE014','\uE015','\uE016','\uE017','\uE01B','\uE01C','\uE01D','\uE01E','\uE01F','\uE026','\uE027','\uE028','\uE029','\uE02A','\uE02B','\uE02C','\uE02D','\uE02E','\uE02F'];
+  for (let i = 0; i < 48; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'glyph-cell';
+    cell.textContent = sampleGlyphs[i % sampleGlyphs.length];
+    cell.style.setProperty('--dur', (3 + Math.random() * 4) + 's');
+    cell.style.setProperty('--delay', (Math.random() * 4) + 's');
+    glyphGrid.appendChild(cell);
+  }
+
+  // --- TABS ---
+  function showTab(name) {
+    document.querySelectorAll('.glyph-chart').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // --- KEYBOARD TOOL ---
+  let yapiriText = '';
+  let romanText = '';
+
+  function typeChar(glyph, roman) {
+    yapiriText += glyph;
+    if (roman === ' ') {
+      romanText += ' ';
+    } else {
+      romanText += roman;
+    }
+    render();
+  }
+
+  function insertZWNJ() {
+    yapiriText += '\u200C';
+    romanText += '|';
+    render();
+  }
+
+  function backspace() {
+    if (yapiriText.length === 0) return;
+    yapiriText = [...yapiriText].slice(0, -1).join('');
+    const romanParts = romanText.split('');
+    romanParts.pop();
+    romanText = romanParts.join('');
+    render();
+  }
+
+  function clearAll() {
+    yapiriText = '';
+    romanText = '';
+    render();
+  }
+
+  function render() {
+    const out = document.getElementById('yapiri-output');
+    const rom = document.getElementById('roman-output');
+    out.textContent = yapiriText || '\u200B';
+    rom.textContent = romanText || 'romanization will appear here';
+  }
+
+  async function copyText() {
+    if (!yapiriText) return;
+    try {
+      await navigator.clipboard.writeText(yapiriText);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy Text', 1500);
+    } catch(e) {}
+  }
+
+  // --- SCROLL REVEAL ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
