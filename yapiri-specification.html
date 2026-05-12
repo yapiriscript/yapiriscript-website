@@ -720,7 +720,7 @@
       </div>
       <div class="spec-meta-item">
         <span class="spec-meta-label">Script Type</span>
-        <span class="spec-meta-value">Abugida</span>
+        <span class="spec-meta-value">Phonemic Alphabet</span>
       </div>
       <div class="spec-meta-item">
         <span class="spec-meta-label">Encoding</span>
@@ -732,7 +732,7 @@
       </div>
       <div class="spec-meta-item">
         <span class="spec-meta-label">Font Format</span>
-        <span class="spec-meta-value">OTF / TTF</span>
+        <span class="spec-meta-value">OTF / TTF / WOFF2</span>
       </div>
     </div>
   </header>
@@ -762,21 +762,25 @@
         <span class="stat-lbl">Total Characters</span>
       </div>
       <div class="stat-cell">
-        <span class="stat-num">27</span>
+        <span class="stat-num">25</span>
         <span class="stat-lbl">Consonants</span>
       </div>
       <div class="stat-cell">
         <span class="stat-num">6</span>
-        <span class="stat-lbl">Ind. Vowels</span>
-      </div>
-      <div class="stat-cell">
-        <span class="stat-num">5</span>
-        <span class="stat-lbl">Vowel Diacritics</span>
+        <span class="stat-lbl">Vowels</span>
       </div>
       <div class="stat-cell">
         <span class="stat-num">10</span>
         <span class="stat-lbl">Digits (0–9)</span>
       </div>
+      <div class="stat-cell">
+        <span class="stat-num">5</span>
+        <span class="stat-lbl">Punctuation</span>
+      </div>
+       <div class="stat-cell">
+        <span class="stat-num">2</span>
+        <span class="stat-lbl">Diacritics</span>
+      </div>    
       <div class="stat-cell">
         <span class="stat-num">48</span>
         <span class="stat-lbl">PUA Codepoints</span>
@@ -802,13 +806,13 @@
         <strong>Systematic visual grammar.</strong> Related phonemes share visual elements. Aspirated consonants are derived from their plain counterparts through a consistent modification. Voiced pairs of voiceless stops share structural DNA. This makes the script learnable as a system rather than a set of arbitrary symbols.
       </p>
       <p>
-        <strong>Abugida structure.</strong> Yapiri is an <em>abugida</em>: each consonant glyph carries an inherent vowel /a/. Other vowels are expressed by attaching combining diacritics to the consonant. Independent vowel forms exist for syllables that begin with a vowel.
+        <strong>Phonemic Alphabet structure.</strong> Yapiri is an <em>phonemic alphabet</em>: each character (grapheme) represents exactly one distinct sound (phoneme) of the Kokborok language. This feature makes it a straight-forward script with less complexity for learning.
       </p>
       <p>
         <strong>Visual elegance.</strong> Glyphs were drawn by hand in Inkscape using Bézier curves with rounded linecaps and linejoin, producing an aesthetic that is organic without being decorative. The script is designed to look natural at both display and text sizes.
       </p>
       <p>
-        <strong>Digital-first design.</strong> Yapiri was built for the digital age from the start. The font is distributed as OTF/TTF with full OpenType GPOS/GSUB support. PUA encoding ensures compatibility across all Unicode-compliant software. Keyboard input tools are provided alongside the font.
+        <strong>Digital-first design.</strong> Yapiri was built for the digital age from the start. The font is distributed as OTF/TTF/WOFF2 with full OpenType GPOS/GSUB support. PUA encoding ensures compatibility across all Unicode-compliant software. Keyboard input tools are provided alongside the font.
       </p>
     </div>
   </section>
@@ -822,18 +826,22 @@
 
     <div class="spec-body reveal">
       <p>
-        Yapiri is classified as an <strong>abugida</strong> (also called an alphasyllabary). In an abugida, each base letter represents a consonant with an inherent (default) vowel — in Yapiri's case, the vowel /a/. A consonant with its inherent vowel is written as the bare consonant glyph alone.
+        Yapiri is classified as a <strong>phonemic alphabet</strong>. Every sound in the Kokborok language, both consonants and vowels- is represented by its own independent, fullsized character. Yapiri letters are written sequentially in a linear string, where each glyph carries equal weight.
       </p>
       <p>
-        When a consonant is followed by a vowel other than /a/, a <strong>combining vowel diacritic</strong> is attached to the base consonant glyph. Five such diacritics exist (for i, u, e, o, and ɨ), placed above or around the consonant using OpenType GPOS mark-to-base anchors.
+        A consonant glyph represents only the consonant sound. For example, p is just /p/, not /pa/. In order to write /pa/, consonant /p/ must be written followed by vowel /a/.
       </p>
       <p>
-        When a consonant is not followed by any vowel (i.e., in a consonant cluster or word-final position), the vowel is suppressed by writing the consonant with a <strong>ZWNJ</strong> (Zero-Width Non-Joiner, U+200C) — a standard Unicode mechanism used in abugida scripts such as Devanagari to break inherent vowel formation.
+        Sounds that are traditionally written as digraphs in the Latin-based Kokborok script (such as ph, th, kh, ch, chh and ng) are represented by one single, unique glyph in Yapiri. They are called Atomic Phonemes or Monographic Ligatures and they carry the same structural weight as any other independent consonant or vowel characters.  
       </p>
     </div>
 
     <div class="callout gold reveal">
-      <strong>Reading rule:</strong> A bare consonant glyph = consonant + /a/ (e.g., &#xE00C; = /pa/). Consonant + diacritic = consonant + that vowel (e.g., &#xE00C;&#xE021; = /pi/). Consonant + ZWNJ = bare consonant, no vowel.
+      <strong>Reading rule:</strong> 
+      The script is read linearly from left to right. As a phonemic alphabet, every character represents a single, specific sound. Unlike abugidas, there are no "hidden" or inherent vowels. Every sound heard in a word must be represented by its own dedicated character.
+      Each consonant glyph represents only its base sound (for example, the symbol for /k/ represents only /k/, never /ka/.
+      The vowels are full-sized, independent letters. They are placed horizontally after a consonant to form a syllable.
+      When it comes to phonemic accuracy, there is a strict one-to-one mapping. Every glyph corresponds to one phoneme of the Kokborok language, ensuring that the spelling is a perfect reflection of the pronounciation.
     </div>
 
     <div class="spec-body reveal">
@@ -866,23 +874,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="td-roman">Velar stops</td><td class="td-roman">k, kh, g, gh, ng</td><td class="td-note">Plain, aspirated, voiced, breathy voiced, nasal</td></tr>
-          <tr><td class="td-roman">Palatal stops / affricates</td><td class="td-roman">c, ch, j</td><td class="td-note">Plain, aspirated, voiced affricate</td></tr>
-          <tr><td class="td-roman">Dental / alveolar stops</td><td class="td-roman">t, th, d, dh</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
-          <tr><td class="td-roman">Bilabial stops</td><td class="td-roman">p, ph, b, bh</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
+          <tr><td class="td-roman">Velar stops</td><td class="td-roman">k, kh, g, ng</td><td class="td-note">Plain, aspirated, voiced, breathy voiced, nasal</td></tr>
+          <tr><td class="td-roman">Palatal stops / affricates</td><td class="td-roman">ch, chh, j</td><td class="td-note">Plain, aspirated, voiced affricate</td></tr>
+          <tr><td class="td-roman">Dental / alveolar stops</td><td class="td-roman">t, th, d</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
+          <tr><td class="td-roman">Bilabial stops</td><td class="td-roman">p, ph, b</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
           <tr><td class="td-roman">Nasals</td><td class="td-roman">m, n</td><td class="td-note">Bilabial, alveolar</td></tr>
           <tr><td class="td-roman">Liquids</td><td class="td-roman">r, l</td><td class="td-note">Rhotic and lateral</td></tr>
           <tr><td class="td-roman">Glides</td><td class="td-roman">w, y</td><td class="td-note">Labio-velar, palatal</td></tr>
           <tr><td class="td-roman">Sibilant / fricatives (native)</td><td class="td-roman">s, h</td><td class="td-note">Alveolar fricative, glottal fricative</td></tr>
-          <tr><td class="td-roman">Fricatives (loanword)</td><td class="td-roman">f, v, z</td><td class="td-note">For words borrowed from Bengali, English, Hindi</td></tr>
-          <tr><td class="td-roman">Vowels</td><td class="td-roman">a, i, u, e, o, ɨ</td><td class="td-note">Six vowel phonemes; ɨ = high central unrounded</td></tr>
+          <tr><td class="td-roman">Fricatives (loanword)</td><td class="td-roman">f, v, z</td><td class="td-note">For words borrowed from other contact languages</td></tr>
+          <tr><td class="td-roman">Vowels</td><td class="td-roman">a, i, u, e, o, &#x0259;</td><td class="td-note">Six vowel phonemes; &#x0259; = high-central unrounded</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="spec-body reveal">
       <p>
-        The vowel <strong>ɨ</strong> (high central unrounded, as in some pronunciations of the Bengali <em>অ</em>) is a distinctive phoneme in Kokborok and receives both an independent form and a combining diacritic in Yapiri. It is romanized as <em>ɨ</em> in this specification.
+        The vowel <strong>&#x0259;</strong> (high central unrounded) is a distinctive phoneme in Kokborok. Unlike the Roman script which uses 'w', Yapiri provides a dedicated vowel letter for this sound, maintaining the script's one-to-one phonemic logic. It should not be confused with the consonant w of Yapiri. Both have very distinct uses in the script. In Yapiri, consonant 'w' is used only when a word starts with w, whereas the vowel &#x0259; is used after a consonant or sometimes a vowel in between a word, never in the beggining of any word even if the word starts with w. 
       </p>
     </div>
   </section>
@@ -896,7 +904,7 @@
 
     <div class="spec-body reveal">
       <p>
-        The Yapiri consonant inventory comprises <strong>27 characters</strong> (codepoints U+E000–U+E01A). They are organized into four phonological groups below.
+        The Yapiri consonant inventory comprises <strong>25 characters</strong> (codepoints U+E000–U+E01A). They are organized into four phonological groups below.
       </p>
     </div>
 
