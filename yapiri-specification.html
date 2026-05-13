@@ -28,6 +28,7 @@
 <meta property="twitter:title" content="Technical Specs: Yapiri Writing System">
 <meta property="twitter:description" content="View character codes, phonemic mappings, and structural rules for the Yapiri alphabet.">
 <meta property="twitter:image" content="https://yapiriscript.com">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -735,7 +736,7 @@
       </div>
       <div class="spec-meta-item">
         <span class="spec-meta-label">Script Type</span>
-        <span class="spec-meta-value">Abugida</span>
+        <span class="spec-meta-value">Phonemic Alphabet</span>
       </div>
       <div class="spec-meta-item">
         <span class="spec-meta-label">Encoding</span>
@@ -747,7 +748,7 @@
       </div>
       <div class="spec-meta-item">
         <span class="spec-meta-label">Font Format</span>
-        <span class="spec-meta-value">OTF / TTF</span>
+        <span class="spec-meta-value">OTF / TTF / WOFF2</span>
       </div>
     </div>
   </header>
@@ -823,7 +824,7 @@
         <strong>Visual elegance.</strong> Glyphs were drawn by hand in Inkscape using Bézier curves with rounded linecaps and linejoin, producing an aesthetic that is organic without being decorative. The script is designed to look natural at both display and text sizes.
       </p>
       <p>
-        <strong>Digital-first design.</strong> Yapiri was built for the digital age from the start. The font is distributed as OTF/TTF with full OpenType GPOS/GSUB support. PUA encoding ensures compatibility across all Unicode-compliant software. Keyboard input tools are provided alongside the font.
+        <strong>Digital-first design.</strong> Yapiri was built for the digital age from the start. The font is distributed as OTF/TTF/WOFF2 with full OpenType GPOS/GSUB support. PUA encoding ensures compatibility across all Unicode-compliant software. Keyboard input tools are provided alongside the font.
       </p>
     </div>
   </section>
@@ -881,23 +882,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="td-roman">Velar stops</td><td class="td-roman">k, kh, g, gh, ng</td><td class="td-note">Plain, aspirated, voiced, breathy voiced, nasal</td></tr>
-          <tr><td class="td-roman">Palatal stops / affricates</td><td class="td-roman">c, ch, j</td><td class="td-note">Plain, aspirated, voiced affricate</td></tr>
-          <tr><td class="td-roman">Dental / alveolar stops</td><td class="td-roman">t, th, d, dh</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
-          <tr><td class="td-roman">Bilabial stops</td><td class="td-roman">p, ph, b, bh</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
+          <tr><td class="td-roman">Velar stops</td><td class="td-roman">k, kh, g, &#7749;, ng</td><td class="td-note">Plain, aspirated, voiced, breathy voiced, nasal</td></tr>
+          <tr><td class="td-roman">Palatal stops / affricates</td><td class="td-roman">ch, chh, j</td><td class="td-note">Plain, aspirated, voiced affricate</td></tr>
+          <tr><td class="td-roman">Dental / alveolar stops</td><td class="td-roman">t, th, d</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
+          <tr><td class="td-roman">Bilabial stops</td><td class="td-roman">p, ph, b</td><td class="td-note">Plain, aspirated, voiced, breathy voiced</td></tr>
           <tr><td class="td-roman">Nasals</td><td class="td-roman">m, n</td><td class="td-note">Bilabial, alveolar</td></tr>
           <tr><td class="td-roman">Liquids</td><td class="td-roman">r, l</td><td class="td-note">Rhotic and lateral</td></tr>
           <tr><td class="td-roman">Glides</td><td class="td-roman">w, y</td><td class="td-note">Labio-velar, palatal</td></tr>
           <tr><td class="td-roman">Sibilant / fricatives (native)</td><td class="td-roman">s, h</td><td class="td-note">Alveolar fricative, glottal fricative</td></tr>
           <tr><td class="td-roman">Fricatives (loanword)</td><td class="td-roman">f, v, z</td><td class="td-note">For words borrowed from Bengali, English, Hindi</td></tr>
-          <tr><td class="td-roman">Vowels</td><td class="td-roman">a, i, u, e, o, ɨ</td><td class="td-note">Six vowel phonemes; ɨ = high central unrounded</td></tr>
+          <tr><td class="td-roman">Vowels</td><td class="td-roman">a, i, u, e, o, &#x0259;</td><td class="td-note">Six vowel phonemes; &#x0259; (&#xE005;) = high central/mid central unrounded</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="spec-body reveal">
       <p>
-        The vowel <strong>ɨ</strong> (high central unrounded, as in some pronunciations of the Bengali <em>অ</em>) is a distinctive phoneme in Kokborok and receives both an independent form and a combining diacritic in Yapiri. It is romanized as <em>ɨ</em> in this specification.
+        The vowel <strong>&#x0259; (&#xE005;)</strong> is a distinctive phoneme in Kokborok and receives an independent glyph form in Yapiri. 
       </p>
     </div>
   </section>
@@ -911,47 +912,51 @@
 
     <div class="spec-body reveal">
       <p>
-        The Yapiri consonant inventory comprises <strong>27 characters</strong> (codepoints U+E000–U+E01A). They are organized into four phonological groups below.
+        The Yapiri consonant inventory comprises <strong>25 characters</strong> (codepoints U+E006–U+E01E). They are organized into four phonological groups below.
       </p>
     </div>
 
-    <!-- Stops & Affricates block -->
+    <!-- Stops block -->
     <div class="glyph-block reveal">
-      <div class="block-label">Stops &amp; Affricates (U+E000–U+E00F)</div>
+      <div class="block-label">Stops (U+E006–U+E010)</div>
       <div class="glyph-mini-row">
-        <div class="glyph-pill"><span class="glyph-char">&#xE000;</span><span class="glyph-rom">k</span><span class="glyph-pua">E000</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE001;</span><span class="glyph-rom">kh</span><span class="glyph-pua">E001</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE002;</span><span class="glyph-rom">g</span><span class="glyph-pua">E002</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE003;</span><span class="glyph-rom">gh</span><span class="glyph-pua">E003</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE004;</span><span class="glyph-rom">ng</span><span class="glyph-pua">E004</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE005;</span><span class="glyph-rom">c</span><span class="glyph-pua">E005</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE006;</span><span class="glyph-rom">ch</span><span class="glyph-pua">E006</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE007;</span><span class="glyph-rom">j</span><span class="glyph-pua">E007</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE008;</span><span class="glyph-rom">t</span><span class="glyph-pua">E008</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE009;</span><span class="glyph-rom">th</span><span class="glyph-pua">E009</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE00A;</span><span class="glyph-rom">d</span><span class="glyph-pua">E00A</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE00B;</span><span class="glyph-rom">dh</span><span class="glyph-pua">E00B</span></div>
         <div class="glyph-pill"><span class="glyph-char">&#xE00C;</span><span class="glyph-rom">p</span><span class="glyph-pua">E00C</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE000;</span><span class="glyph-rom">k</span><span class="glyph-pua">E000</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE008;</span><span class="glyph-rom">t</span><span class="glyph-pua">E008</span></div>
         <div class="glyph-pill"><span class="glyph-char">&#xE00D;</span><span class="glyph-rom">ph</span><span class="glyph-pua">E00D</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE001;</span><span class="glyph-rom">kh</span><span class="glyph-pua">E001</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE009;</span><span class="glyph-rom">th</span><span class="glyph-pua">E009</span></div>
         <div class="glyph-pill"><span class="glyph-char">&#xE00E;</span><span class="glyph-rom">b</span><span class="glyph-pua">E00E</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE00F;</span><span class="glyph-rom">bh</span><span class="glyph-pua">E00F</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE00A;</span><span class="glyph-rom">d</span><span class="glyph-pua">E00A</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE002;</span><span class="glyph-rom">g</span><span class="glyph-pua">E002</span></div> 
+        <div class="glyph-pill"><span class="glyph-char">&#xE005;</span><span class="glyph-rom">ch</span><span class="glyph-pua">E005</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE006;</span><span class="glyph-rom">chh</span><span class="glyph-pua">E006</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE007;</span><span class="glyph-rom">j</span><span class="glyph-pua">E007</span></div>     
+      </div>
+    </div>
+    
+     <!-- Affricates block -->
+    <div class="glyph-block reveal">
+      <div class="block-label">Affricates (U+E006–U+E010)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE005;</span><span class="glyph-rom">ch</span><span class="glyph-pua">E005</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE006;</span><span class="glyph-rom">chh</span><span class="glyph-pua">E006</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE007;</span><span class="glyph-rom">j</span><span class="glyph-pua">E007</span></div>     
       </div>
     </div>
 
-    <!-- Nasals, Liquids, Glides -->
+    <!-- Nasals -->
     <div class="glyph-block reveal">
-      <div class="block-label">Nasals, Liquids &amp; Glides (U+E010–U+E015)</div>
+      <div class="block-label">Nasals (U+E011–U+E015)</div>
       <div class="glyph-mini-row">
         <div class="glyph-pill"><span class="glyph-char">&#xE010;</span><span class="glyph-rom">m</span><span class="glyph-pua">E010</span></div>
         <div class="glyph-pill"><span class="glyph-char">&#xE011;</span><span class="glyph-rom">n</span><span class="glyph-pua">E011</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE012;</span><span class="glyph-rom">r</span><span class="glyph-pua">E012</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE013;</span><span class="glyph-rom">l</span><span class="glyph-pua">E013</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE014;</span><span class="glyph-rom">w</span><span class="glyph-pua">E014</span></div>
-        <div class="glyph-pill"><span class="glyph-char">&#xE015;</span><span class="glyph-rom">y</span><span class="glyph-pua">E015</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE011;</span><span class="glyph-rom">&#7749;</span><span class="glyph-pua">E011</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE004;</span><span class="glyph-rom">ng</span><span class="glyph-pua">E004</span></div>        
       </div>
     </div>
 
-    <!-- Fricatives -->
+    <!-- Fricatives & Approximants-->
     <div class="glyph-block reveal">
       <div class="block-label">Fricatives &amp; Sibilants (U+E016–U+E01A)</div>
       <div class="glyph-mini-row">
@@ -960,6 +965,10 @@
         <div class="glyph-pill"><span class="glyph-char">&#xE018;</span><span class="glyph-rom">f</span><span class="glyph-pua">E018</span></div>
         <div class="glyph-pill"><span class="glyph-char">&#xE019;</span><span class="glyph-rom">v</span><span class="glyph-pua">E019</span></div>
         <div class="glyph-pill"><span class="glyph-char">&#xE01A;</span><span class="glyph-rom">z</span><span class="glyph-pua">E01A</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE012;</span><span class="glyph-rom">r</span><span class="glyph-pua">E012</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE013;</span><span class="glyph-rom">l</span><span class="glyph-pua">E013</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE014;</span><span class="glyph-rom">w</span><span class="glyph-pua">E014</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE015;</span><span class="glyph-rom">y</span><span class="glyph-pua">E015</span></div>
       </div>
     </div>
 
@@ -985,22 +994,19 @@
           <tr><td class="td-code">U+E000</td><td class="td-roman">k</td><td class="td-roman">/k/</td><td class="td-cat">Stop, voiceless</td><td class="td-note">Velar, unaspirated</td></tr>
           <tr><td class="td-code">U+E001</td><td class="td-roman">kh</td><td class="td-roman">/kʰ/</td><td class="td-cat">Stop, aspirated</td><td class="td-note">Velar, aspirated</td></tr>
           <tr><td class="td-code">U+E002</td><td class="td-roman">g</td><td class="td-roman">/g/</td><td class="td-cat">Stop, voiced</td><td class="td-note">Velar</td></tr>
-          <tr><td class="td-code">U+E003</td><td class="td-roman">gh</td><td class="td-roman">/gʱ/</td><td class="td-cat">Stop, breathy voiced</td><td class="td-note">Velar, murmured</td></tr>
           <tr><td class="td-code">U+E004</td><td class="td-roman">ng</td><td class="td-roman">/ŋ/</td><td class="td-cat">Nasal</td><td class="td-note">Velar nasal</td></tr>
           <tr class="row-group-head"><td colspan="5">Palatals</td></tr>
-          <tr><td class="td-code">U+E005</td><td class="td-roman">c</td><td class="td-roman">/tɕ/</td><td class="td-cat">Affricate, voiceless</td><td class="td-note"></td></tr>
-          <tr><td class="td-code">U+E006</td><td class="td-roman">ch</td><td class="td-roman">/tɕʰ/</td><td class="td-cat">Affricate, aspirated</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E005</td><td class="td-roman">ch</td><td class="td-roman">/tɕʰ/</td><td class="td-cat">Affricate, voiceless</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E006</td><td class="td-roman">chh</td><td class="td-roman">/tɕʰ/</td><td class="td-cat">Affricate, aspirated</td><td class="td-note"></td></tr>
           <tr><td class="td-code">U+E007</td><td class="td-roman">j</td><td class="td-roman">/dʑ/</td><td class="td-cat">Affricate, voiced</td><td class="td-note"></td></tr>
           <tr class="row-group-head"><td colspan="5">Dentals / Alveolars</td></tr>
           <tr><td class="td-code">U+E008</td><td class="td-roman">t</td><td class="td-roman">/t/</td><td class="td-cat">Stop, voiceless</td><td class="td-note"></td></tr>
           <tr><td class="td-code">U+E009</td><td class="td-roman">th</td><td class="td-roman">/tʰ/</td><td class="td-cat">Stop, aspirated</td><td class="td-note"></td></tr>
           <tr><td class="td-code">U+E00A</td><td class="td-roman">d</td><td class="td-roman">/d/</td><td class="td-cat">Stop, voiced</td><td class="td-note"></td></tr>
-          <tr><td class="td-code">U+E00B</td><td class="td-roman">dh</td><td class="td-roman">/dʱ/</td><td class="td-cat">Stop, breathy voiced</td><td class="td-note"></td></tr>
           <tr class="row-group-head"><td colspan="5">Bilabials</td></tr>
           <tr><td class="td-code">U+E00C</td><td class="td-roman">p</td><td class="td-roman">/p/</td><td class="td-cat">Stop, voiceless</td><td class="td-note"></td></tr>
           <tr><td class="td-code">U+E00D</td><td class="td-roman">ph</td><td class="td-roman">/pʰ/</td><td class="td-cat">Stop, aspirated</td><td class="td-note"></td></tr>
           <tr><td class="td-code">U+E00E</td><td class="td-roman">b</td><td class="td-roman">/b/</td><td class="td-cat">Stop, voiced</td><td class="td-note"></td></tr>
-          <tr><td class="td-code">U+E00F</td><td class="td-roman">bh</td><td class="td-roman">/bʱ/</td><td class="td-cat">Stop, breathy voiced</td><td class="td-note"></td></tr>
           <tr class="row-group-head"><td colspan="5">Nasals, Liquids, Glides</td></tr>
           <tr><td class="td-code">U+E010</td><td class="td-roman">m</td><td class="td-roman">/m/</td><td class="td-cat">Nasal</td><td class="td-note">Bilabial</td></tr>
           <tr><td class="td-code">U+E011</td><td class="td-roman">n</td><td class="td-roman">/n/</td><td class="td-cat">Nasal</td><td class="td-note">Alveolar</td></tr>
@@ -1208,20 +1214,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="td-code">mark</td><td class="td-cat">GPOS</td><td class="td-note">Mark-to-base positioning for vowel diacritics on consonant bases</td></tr>
-          <tr><td class="td-code">mkmk</td><td class="td-cat">GPOS</td><td class="td-note">Mark-to-mark positioning for stacked diacritics</td></tr>
-          <tr><td class="td-code">kern</td><td class="td-cat">GPOS</td><td class="td-note">Kerning pairs across six glyph classes</td></tr>
-          <tr><td class="td-code">liga</td><td class="td-cat">GSUB</td><td class="td-note">Reserved for future ligature substitutions</td></tr>
+          <tr><td class="td-code">mark</td><td class="td-cat">GPOS</td><td class="td-note">Mark-to-base positioning for diacritics on consonant bases</td></tr>
+          <tr><td class="td-code">kern</td><td class="td-cat">GPOS</td><td class="td-note">Kerning pairs, covering almost all the possible pairs in Kokborok phonology</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="spec-body reveal">
       <p>
-        <strong>GPOS mark-to-base anchors</strong> are defined on all consonant glyphs (U+E000–U+E01A) as base marks, and on all combining vowel diacritics (U+E021–U+E025) as combining marks. Each base glyph carries a named anchor point (<code>top_anchor</code>) and each diacritic carries a corresponding attachment point (<code>top_attach</code>), allowing the OpenType shaping engine to position diacritics correctly regardless of the base glyph's advance width.
+        <strong>GPOS mark-to-base anchors</strong> are defined on all consonant glyphs (U+E000–U+E01A) as base marks, and on the diacritics (U+E021–U+E025) as combining marks. Each base glyph carries a named anchor point (<code>top_anchor</code>) and each diacritic carries a corresponding attachment point (<code>top_attach</code>), allowing the OpenType shaping engine to position diacritics correctly regardless of the base glyph's advance width.
       </p>
       <p>
-        <strong>Kerning</strong> is implemented via GPOS pair-adjustment lookups organized into six glyph classes: Class 1 (narrow uprights: i, l, r, n), Class 2 (round forms: o, c, e, g, s), Class 3 (wide glyphs: m, w, y), Class 4 (diagonal glyphs), Class 5 (aspirated pairs with a tick modifier), Class 6 (numerals). A 24-pair kerning table governs spacing at class boundaries, with values in font units (typically 40–120 units per adjusted pair).
+        <strong>Kerning</strong> is implemented via GPOS pair-adjustment lookups.
       </p>
       <p>
         <strong>Note on application compatibility.</strong> Full GPOS support requires an OpenType-aware application (InDesign, modern Word, LibreOffice, web browsers). Some older applications may not apply GPOS kerning or mark positioning. In such cases, diacritics may not be positioned correctly relative to their base glyphs. This is an application limitation, not a font defect.
