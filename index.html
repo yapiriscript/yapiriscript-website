@@ -1616,13 +1616,23 @@
 <script>
   // --- GLYPH GRID ANIMATION ---
   const glyphGrid = document.getElementById('glyphGrid');
-  const sampleGlyphs = ['\uE000','\uE001','\uE002','\uE003','\uE004','\uE005','\uE006','\uE007','\uE008','\uE009','\uE00A','\uE00B','\uE00C','\uE00D','\uE00E','\uE00F','\uE010','\uE011','\uE012','\uE013','\uE014','\uE015','\uE016','\uE017','\uE01B','\uE01C','\uE01D','\uE01E','\uE01F','\uE026','\uE027','\uE028','\uE029','\uE02A','\uE02B','\uE02C','\uE02D','\uE02E','\uE02F'];
+  const sampleGlyphs = 
+    [
+  '\uE000','\uE001','\uE002','\uE003','\uE004','\uE005',   // vowels
+  '\uE006','\uE007','\uE008','\uE009','\uE00A','\uE00B',   // stops
+  '\uE00C','\uE00D','\uE00E','\uE00F','\uE010','\uE011',   // more consonants
+  '\uE012','\uE013','\uE014','\uE015','\uE016','\uE017',   // nasals & fricatives
+  '\uE018','\uE019','\uE01A','\uE01B','\uE01C','\uE01D',   // l, v, f, z, y, w
+  '\uE01E','\uE01F','\uE020','\uE021','\uE022','\uE023',   // h, numbers
+  '\uE024','\uE025','\uE026','\uE027','\uE028','\uE029',   // more numbers + punctuation
+  '\uE02A','\uE02B','\uE02C','\uE02D'                      // more punctuation
+  ];
   for (let i = 0; i < 48; i++) {
     const cell = document.createElement('div');
     cell.className = 'glyph-cell';
     cell.textContent = sampleGlyphs[i % sampleGlyphs.length];
-    cell.style.setProperty('--dur', (3 + Math.random() * 4) + 's');
-    cell.style.setProperty('--delay', (Math.random() * 4) + 's');
+    cell.style.setProperty('--dur', (3 + Math.random() * 5) + 's');
+    cell.style.setProperty('--delay', (Math.random() * 6) + 's');
     glyphGrid.appendChild(cell);
   }
 
