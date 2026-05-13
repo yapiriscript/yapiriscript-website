@@ -835,41 +835,49 @@
     color: var(--stone);
   }
 
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+  /* SOCIAL GRID */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+.social-tile {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(196, 180, 154, 0.15);
+  padding: 1.1rem 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--parchment);
+  transition: all 0.3s;
+}
 
-  .form-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-  }
+.social-tile:hover {
+  background: rgba(184, 92, 56, 0.15);
+  border-color: var(--terracotta);
+  transform: translateY(-3px);
+}
 
-  .form-input, .form-textarea {
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(196, 180, 154, 0.15);
-    color: var(--parchment);
-    padding: 0.85rem 1rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    font-weight: 300;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-  }
+.social-icon {
+  font-size: 2.2rem;
+  width: 50px;
+  flex-shrink: 0;
+}
 
-  .form-input:focus, .form-textarea:focus { border-color: rgba(201, 146, 42, 0.4); }
-  .form-textarea { min-height: 120px; resize: vertical; }
+.social-tile strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--gold-light);
+}
+
+.social-tile small {
+  color: var(--stone);
+  font-family: 'DM Mono', monospace;
+}
 
   /* FOOTER */
   footer {
@@ -1090,6 +1098,14 @@
     min-height: 120px;
   }
 }
+  @media (max-width: 900px) {
+  .community-split {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+  .social-grid {
+    grid-template-columns: repeat(2, 1fr);
 </style>
 </head>
 <body>
@@ -1501,9 +1517,9 @@
 </section>
 
 <!-- COMMUNITY -->
-<!-- COMMUNITY -->
 <section id="community">
   <div class="community-split">
+    <!-- Left Side -->
     <div class="reveal">
       <p class="section-label">For the Borok People</p>
       <div class="gold-line"></div>
@@ -1520,48 +1536,50 @@
       <span class="community-lang-roman">yapiri — footprints</span>
     </div>
 
-    <!-- NEW SOCIAL MEDIA SECTION -->
+    <!-- Right Side - Compact Social Grid -->
     <div class="reveal">
       <p class="section-label">Connect With Us</p>
       <div class="gold-line"></div>
-      <h3 style="font-family:'Teko',sans-serif; font-size:2.2rem; font-weight:300; color:var(--parchment); margin:1.5rem 0 1.8rem;">
-        Follow &amp; Support Yapiri
-      </h3>   
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1.8rem;">  
-        <a href="https://instagram.com/yapiriscript" target="_blank" style="text-decoration:none; color:inherit;">
-          <div class="download-card" style="height:100%;">
-            <span class="card-icon" style="font-size:2.8rem;">📸</span>
-            <div class="card-title">Instagram</div>
-            <p class="card-desc">@yapiriscript<br>Daily glyphs, stories &amp; community posts</p>
-            <span class="card-link">Follow on Instagram →</span>
+      
+      <h3 style="font-family:'Teko',sans-serif; font-size:1.9rem; font-weight:300; color:var(--parchment); margin-bottom:1.8rem;">
+        Follow Yapiri
+      </h3>
+
+      <div class="social-grid">
+        <a href="https://instagram.com/yapiriscript" target="_blank" class="social-tile">
+          <span class="social-icon">📸</span>
+          <div>
+            <strong>Instagram</strong><br>
+            <small>@yapiriscript</small>
           </div>
         </a>
-        <a href="https://x.com/yapiriscript" target="_blank" style="text-decoration:none; color:inherit;">
-          <div class="download-card" style="height:100%;">
-            <span class="card-icon" style="font-size:2.8rem;">𝕏</span>
-            <div class="card-title">X / Twitter</div>
-            <p class="card-desc">@yapiriscript<br>Updates and conversations</p>
-            <span class="card-link">Follow on X →</span>
+
+        <a href="https://x.com/yapiriscript" target="_blank" class="social-tile">
+          <span class="social-icon">𝕏</span>
+          <div>
+            <strong>X / Twitter</strong><br>
+            <small>@yapiriscript</small>
           </div>
         </a>
-        <a href="https://youtube.com/@yapiriscript" target="_blank" style="text-decoration:none; color:inherit;">
-          <div class="download-card" style="height:100%;">
-            <span class="card-icon" style="font-size:2.8rem;">▶️</span>
-            <div class="card-title">YouTube</div>
-            <p class="card-desc">@yapiriscript<br>Tutorials, readings &amp; font demos</p>
-            <span class="card-link">Subscribe →</span>
+
+        <a href="https://youtube.com/@yapiriscript" target="_blank" class="social-tile">
+          <span class="social-icon">▶️</span>
+          <div>
+            <strong>YouTube</strong><br>
+            <small>@yapiriscript</small>
           </div>
         </a>
-        <a href="https://whatsapp.com/channel/yapiriscript" target="_blank" style="text-decoration:none; color:inherit;">
-          <div class="download-card" style="height:100%;">
-            <span class="card-icon" style="font-size:2.8rem;">💬</span>
-            <div class="card-title">WhatsApp Channel</div>
-            <p class="card-desc">Join for direct updates &amp; community</p>
-            <span class="card-link">Join Channel →</span>
+
+        <a href="https://whatsapp.com/channel/yapiriscript" target="_blank" class="social-tile">
+          <span class="social-icon">💬</span>
+          <div>
+            <strong>WhatsApp</strong><br>
+            <small>Channel</small>
           </div>
         </a>
       </div>
-      <p style="margin-top:2.5rem; font-size:0.95rem; color:var(--stone-light); text-align:center;">
+
+      <p style="margin-top:2rem; text-align:center; color:var(--stone-light); font-size:0.95rem;">
         Or email us at <strong style="color:var(--gold-light);">yapiriscript@gmail.com</strong>
       </p>
     </div>
