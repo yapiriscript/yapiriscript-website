@@ -158,6 +158,9 @@
     .glyph-roman{font-size:0.55rem;}
     .glyph-code{font-size:0.45rem;}
   }
+  @media(max-width:500px){
+  #tab-diacritics .chart-section-label + div { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -295,6 +298,17 @@
     <div class="glyph-row">
       <div class="glyph-card" aria-label="high tone, U+0301"><span class="glyph-symbol">&#x25CC;&#x0301;</span><span class="glyph-roman">high tone</span><span class="glyph-code">U+0301</span></div>
       <div class="glyph-card" aria-label="reduplication, U+030B"><span class="glyph-symbol">&#x25CC;&#x030B;</span><span class="glyph-roman">reduplication</span><span class="glyph-code">U+030B</span></div>
+    </div>
+    <div class="chart-section-label" style="margin-top:2rem;">Reduplication Usage Rule</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:700px;">
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--terracotta);padding:1.2rem 1.2rem 1rem;">
+        <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.6rem;">Two syllables within a word</p>
+        <p style="font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.7;">Use the reduplication mark (&#x25CC;&#x030B;) over the repeated syllable only. <strong style="color:var(--parchment);font-weight:400;">No hyphen.</strong></p>
+      </div>
+      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--gold);padding:1.2rem 1.2rem 1rem;">
+        <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Two identical words consecutively</p>
+        <p style="font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.7;">Place the reduplication mark over the <strong style="color:var(--parchment);font-weight:400;">last letter of the word</strong>, then follow with a <strong style="color:var(--parchment);font-weight:400;">hyphen</strong> to signal word-level reduplication.</p>
+      </div>
     </div>
   </div>
 </section>
