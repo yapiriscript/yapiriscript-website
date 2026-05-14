@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapiri Technical Specifications v1.0 — Unicode & Design Rules</title>
+<meta name="title" content="Yapiri Technical Specifications — Unicode & Design Rules">
+<meta name="description" content="The official technical documentation for the Yapiri script. Explore character mappings, glyph design logic, and the phonemic rules of the Kokborok writing system.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yapiriscript.com/yapiri-specification.html">
+<meta property="og:title" content="Yapiri Script: Technical Documentation">
+<meta property="og:description" content="A deep dive into the architecture of Yapiri. Essential for developers and linguists working with the Kokborok language.">
+<meta property="og:image" content="https://yapiriscript.com/og-image.png">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yapiriscript.com/yapiri-specification.html">
+<meta property="twitter:title" content="Technical Specs: Yapiri Writing System">
+<meta property="twitter:description" content="View character codes, phonemic mappings, and structural rules for the Yapiri alphabet.">
+<meta property="twitter:image" content="https://yapiriscript.com/twitter-image.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Yapiri';
+    src: url('Yapiri.woff2') format('woff2'), url('Yapiri.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --ink: #1a1209; --parchment: #f5edd8; --warm-white: #faf6ee;
+    --terracotta: #b85c38; --terra-light: #d4784f;
+    --gold: #c9922a; --gold-light: #e8b84b;
+    --stone: #8b7355; --stone-light: #c4b49a; --charcoal: #2c2416;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--ink); color:var(--parchment); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; line-height:1.7; }
+
+  /* ─── NAV ─── */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.2rem 3rem; background:rgba(26,18,9,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,146,42,0.2); }
+  .nav-logo { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:400; letter-spacing:0.15em; color:var(--gold-light); text-decoration:none; }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+  .nav-links a { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone-light); text-decoration:none; transition:color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--gold-light); }
+  .nav-badge { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; background:rgba(184,92,56,0.2); border:1px solid var(--terracotta); color:var(--terracotta); padding:0.3rem 0.75rem; white-space:nowrap; }
+
+  /* HAMBURGER */
+  .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; z-index:200; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--stone-light); transition:all 0.3s; transform-origin:center; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--gold-light); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold-light); }
+
+  /* MOBILE MENU */
+  .mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(26,18,9,0.98); z-index:150; flex-direction:column; align-items:center; justify-content:center; backdrop-filter:blur(20px); }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu-close { position:absolute; top:1.4rem; right:1.5rem; background:none; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); width:42px; height:42px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color 0.2s,color 0.2s; font-size:1.4rem; line-height:1; }
+  .mobile-menu-close:hover { border-color:var(--gold-light); color:var(--gold-light); }
+  .mobile-menu a { font-family:'Teko',sans-serif; font-size:clamp(2.5rem,8vw,4rem); font-weight:300; letter-spacing:0.08em; color:var(--stone-light); text-decoration:none; padding:0.6rem 2rem; transition:color 0.2s; border-bottom:1px solid rgba(196,180,154,0.06); width:100%; text-align:center; }
+  .mobile-menu a:hover { color:var(--gold-light); }
+
+  /* ─── SIDEBAR TOC ─── */
+  .toc-sidebar { position:fixed; left:0; top:70px; bottom:0; width:240px; background:var(--charcoal); border-right:1px solid rgba(201,146,42,0.12); padding:2.5rem 1.5rem; overflow-y:auto; z-index:50; scrollbar-width:thin; scrollbar-color:var(--stone) transparent; }
+  .toc-title { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(201,146,42,0.15); }
+  .toc-list { list-style:none; display:flex; flex-direction:column; gap:0; }
+  .toc-section { margin-top:1.2rem; margin-bottom:0.3rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); }
+  .toc-section:first-child { margin-top:0; }
+  .toc-list a { display:block; font-family:'Cormorant Garamond',serif; font-size:0.9rem; font-weight:300; color:var(--stone-light); text-decoration:none; padding:0.3rem 0 0.3rem 0.8rem; border-left:2px solid transparent; transition:all 0.2s; line-height:1.4; }
+  .toc-list a:hover, .toc-list a.active { color:var(--gold-light); border-left-color:var(--terracotta); }
+  .toc-version { margin-top:2.5rem; padding-top:1.2rem; border-top:1px solid rgba(201,146,42,0.1); font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--stone); line-height:1.8; }
+
+  /* ─── MAIN CONTENT ─── */
+  .main-content { margin-left:240px; padding-top:70px; }
+
+  /* ─── HERO ─── */
+  .spec-hero { background:linear-gradient(160deg,var(--charcoal) 0%,var(--ink) 60%); border-bottom:1px solid rgba(201,146,42,0.2); padding:6rem 5rem 5rem; position:relative; overflow:hidden; }
+  .spec-hero::before { content:'SPEC'; position:absolute; right:-1rem; bottom:-2rem; font-family:'Teko',sans-serif; font-size:18rem; font-weight:300; color:rgba(201,146,42,0.03); line-height:1; pointer-events:none; letter-spacing:-0.03em; }
+  .spec-eyebrow { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.2rem; }
+  .spec-title { font-family:'Teko',sans-serif; font-size:clamp(3.5rem,6vw,6.5rem); font-weight:300; line-height:0.95; color:var(--parchment); margin-bottom:1rem; letter-spacing:0.02em; }
+  .spec-title span { color:var(--gold-light); }
+  .spec-subtitle { font-size:1.25rem; font-weight:300; font-style:italic; color:var(--stone-light); max-width:620px; margin-bottom:3rem; line-height:1.65; }
+  .spec-meta-row { display:flex; gap:3rem; flex-wrap:wrap; }
+  .spec-meta-item { display:flex; flex-direction:column; gap:0.25rem; }
+  .spec-meta-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--stone); }
+  .spec-meta-value { font-family:'DM Mono',monospace; font-size:0.8rem; color:var(--parchment); letter-spacing:0.05em; }
+
+  /* ─── SECTIONS ─── */
+  .spec-section { padding:5rem 5rem; border-bottom:1px solid rgba(196,180,154,0.08); max-width:860px; }
+  .spec-section:nth-child(even) { background:rgba(44,36,22,0.3); }
+  .section-number { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.4rem; }
+  .gold-line { width:40px; height:1px; background:var(--gold); margin-bottom:1.5rem; opacity:0.6; }
+  .section-heading { font-family:'Teko',sans-serif; font-size:clamp(2rem,3.5vw,3.2rem); font-weight:300; line-height:1.05; color:var(--parchment); margin-bottom:2rem; }
+  .section-heading em { color:var(--gold-light); font-style:italic; font-family:'Cormorant Garamond',serif; }
+  .spec-body { font-size:1.1rem; font-weight:300; line-height:1.9; color:var(--stone-light); }
+  .spec-body p { margin-bottom:1.4rem; }
+  .spec-body p:last-child { margin-bottom:0; }
+  .spec-body strong { color:var(--parchment); font-weight:400; }
+  .spec-body em { color:var(--gold-light); font-style:italic; }
+  .spec-body a { color:var(--terracotta); text-decoration:none; border-bottom:1px solid rgba(184,92,56,0.4); transition:border-color 0.2s,color 0.2s; }
+  .spec-body a:hover { color:var(--terra-light); border-bottom-color:var(--terra-light); }
+
+  /* ─── TABLES ─── */
+  .spec-table-wrap { overflow-x:auto; margin:2rem 0; border:1px solid rgba(196,180,154,0.1); }
+  table { width:100%; border-collapse:collapse; font-family:'DM Mono',monospace; font-size:0.75rem; }
+  thead th { background:rgba(184,92,56,0.12); color:var(--gold-light); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; padding:0.8rem 1rem; text-align:left; border-bottom:1px solid rgba(201,146,42,0.2); white-space:nowrap; }
+  tbody tr { border-bottom:1px solid rgba(196,180,154,0.06); transition:background 0.15s; }
+  tbody tr:hover { background:rgba(255,255,255,0.02); }
+  tbody td { padding:0.65rem 1rem; color:var(--stone-light); vertical-align:middle; }
+  tbody td:first-child { color:var(--parchment); }
+  .td-code { color:var(--terracotta) !important; letter-spacing:0.08em; }
+  .td-roman { font-family:'Cormorant Garamond',serif; font-size:0.95rem; font-style:italic; color:var(--parchment) !important; }
+  .td-cat { font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone) !important; }
+  .td-note { font-size:0.7rem; color:var(--stone) !important; font-style:italic; }
+  .row-group-head td { background:rgba(201,146,42,0.06); color:var(--gold) !important; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; padding:0.5rem 1rem; font-family:'DM Mono',monospace; }
+
+  /* ─── CALLOUTS ─── */
+  .callout { border-left:3px solid var(--terracotta); padding:1.2rem 1.5rem; background:rgba(184,92,56,0.06); margin:2rem 0; font-size:1rem; color:var(--stone-light); line-height:1.75; }
+  .callout strong { color:var(--parchment); }
+  .callout.gold { border-left-color:var(--gold); background:rgba(201,146,42,0.05); }
+
+  /* ─── CODE BLOCKS ─── */
+  .code-block { background:rgba(0,0,0,0.5); border:1px solid rgba(196,180,154,0.1); padding:1.5rem; margin:1.5rem 0; font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--stone-light); line-height:1.9; overflow-x:auto; }
+  .code-block .kw { color:var(--terracotta); }
+  .code-block .val { color:var(--gold-light); }
+  .code-block .cmt { color:var(--stone); font-style:italic; }
+  .code-block .str { color:#4a7c2f; }
+
+  /* ─── STAT GRID ─── */
+  .stat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:1px; border:1px solid rgba(196,180,154,0.1); margin:2rem 0; background:rgba(196,180,154,0.1); }
+  .stat-cell { background:rgba(26,18,9,0.8); padding:1.5rem 1.2rem; text-align:center; }
+  .stat-num { font-family:'Teko',sans-serif; font-size:2.8rem; font-weight:400; color:var(--gold-light); line-height:1; display:block; }
+  .stat-lbl { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--stone); display:block; margin-top:0.4rem; }
+
+  /* ─── TIMELINE ─── */
+  .timeline { display:flex; flex-direction:column; gap:0; margin:2rem 0; border:1px solid rgba(196,180,154,0.1); }
+  .timeline-item { display:grid; grid-template-columns:48px 1fr; border-bottom:1px solid rgba(196,180,154,0.06); transition:background 0.2s; }
+  .timeline-item:last-child { border-bottom:none; }
+  .timeline-item:hover { background:rgba(255,255,255,0.02); }
+  .tl-num { background:rgba(184,92,56,0.1); border-right:1px solid rgba(196,180,154,0.08); display:flex; align-items:center; justify-content:center; font-family:'Teko',sans-serif; font-size:1.4rem; color:var(--terracotta); font-weight:300; padding:1.2rem 0; }
+  .tl-body { padding:1.2rem 1.5rem; }
+  .tl-phase { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.3rem; }
+  .tl-title { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:400; color:var(--parchment); margin-bottom:0.4rem; }
+  .tl-desc { font-size:0.95rem; color:var(--stone-light); line-height:1.6; font-weight:300; }
+
+  /* ─── GLYPH BLOCKS — FIXED font-family (removed !importantt typo) ─── */
+  .glyph-block { margin:2rem 0; }
+  .block-label { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(201,146,42,0.18); }
+  .glyph-mini-row { display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .glyph-pill { background:rgba(255,255,255,0.03); border:1px solid rgba(196,180,154,0.1); padding:0.5rem 0.7rem; text-align:center; min-width:56px; transition:all 0.2s; }
+  .glyph-pill:hover { border-color:rgba(201,146,42,0.4); background:rgba(184,92,56,0.08); }
+  /* FIX: removed invalid !importantt, font-family now works correctly */
+  .glyph-char { font-family:'Yapiri',serif; font-size:1.6rem; color:var(--parchment); display:block; line-height:1.2; margin-bottom:0.2rem; }
+  .glyph-rom { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.08em; color:var(--stone); display:block; }
+  .glyph-pua { font-family:'DM Mono',monospace; font-size:0.48rem; color:rgba(196,180,154,0.25); display:block; margin-top:0.1rem; }
+
+  /* ─── FOOTER ─── */
+  .spec-footer { background:var(--charcoal); border-top:1px solid rgba(201,146,42,0.15); padding:3rem 5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+  .footer-logo { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:300; letter-spacing:0.15em; color:var(--gold-light); }
+  .footer-copy { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; color:var(--stone); line-height:1.8; text-align:right; }
+
+  /* ─── SOCIAL ─── */
+  .social-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid rgba(196,180,154,0.1); color:var(--stone-light); text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden; }
+  .social-link::before { content:''; position:absolute; inset:0; background:rgba(201,146,42,0.15); opacity:0; transition:opacity 0.25s; }
+  .social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+  .social-link:hover::before { opacity:1; }
+  .social-link svg { width:15px; height:15px; position:relative; z-index:1; fill:currentColor; }
+  .footer-social { display:flex; gap:0.8rem; align-items:center; }
+
+  /* ─── REVEAL ─── */
+  .reveal { opacity:0; transform:translateY(16px); transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width:5px; }
+  ::-webkit-scrollbar-track { background:var(--ink); }
+  ::-webkit-scrollbar-thumb { background:var(--stone); border-radius:0; }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:900px) {
+    .toc-sidebar { display:none; }
+    .main-content { margin-left:0; }
+    .spec-hero,.spec-section,.spec-footer { padding-left:1.8rem; padding-right:1.8rem; }
+    nav { padding:1rem 1.5rem; }
+    .nav-badge { display:none; }
+    .spec-footer { flex-direction:column; text-align:center; }
+    .footer-copy { text-align:center; }
+    .footer-social { justify-content:center; }
+  }
+  @media(max-width:700px) {
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV — full site nav matching all other pages -->
+<nav>
+  <a href="index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="script.html">Script</a></li>
+    <li><a href="try.html">Try It</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="yapiri-specification.html" class="active">Specification</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="script.html" onclick="closeMenu()">Script</a>
+  <a href="try.html" onclick="closeMenu()">Try It</a>
+  <a href="download.html" onclick="closeMenu()">Download</a>
+  <a href="community.html" onclick="closeMenu()">Community</a>
+  <a href="yapiri-specification.html" onclick="closeMenu()">Specification</a>
+</div>
+
+<!-- SIDEBAR TOC -->
+<aside class="toc-sidebar">
+  <div class="toc-title">Contents</div>
+  <ul class="toc-list">
+    <li class="toc-section">Overview</li>
+    <li><a href="#overview">1. Introduction</a></li>
+    <li><a href="#design-principles">2. Design Principles</a></li>
+    <li class="toc-section">Script Structure</li>
+    <li><a href="#script-type">3. Script Type</a></li>
+    <li><a href="#phonology">4. Phonological Scope</a></li>
+    <li class="toc-section">Inventory</li>
+    <li><a href="#consonants">5. Consonant Inventory</a></li>
+    <li><a href="#vowels">6. Vowel System</a></li>
+    <li><a href="#numerals">7. Numerals</a></li>
+    <li class="toc-section">Technical</li>
+    <li><a href="#unicode">8. Unicode / PUA Mapping</a></li>
+    <li><a href="#opentype">9. OpenType Features</a></li>
+    <li><a href="#encoding">10. Encoding Rules</a></li>
+    <li class="toc-section">Use</li>
+    <li><a href="#keyboard">11. Input Methods</a></li>
+    <li><a href="#romanization">12. Romanization</a></li>
+    <li><a href="#roadmap">13. Unicode Roadmap</a></li>
+  </ul>
+  <div class="toc-version">
+    Yapiri Script Spec<br>
+    Version 1.0 · May 2026<br>
+    Borok Language Project<br>
+    Tripura, India
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-content">
+
+  <!-- HERO -->
+  <header class="spec-hero" id="overview">
+    <p class="spec-eyebrow">Technical Specification</p>
+    <h1 class="spec-title">Yapiri <span>Script</span></h1>
+    <p class="spec-subtitle">A complete formal description of the Yapiri writing system for Kokborok — covering glyph inventory, phonological mapping, PUA encoding, OpenType layout, and design rationale.</p>
+    <div class="spec-meta-row">
+      <div class="spec-meta-item"><span class="spec-meta-label">Version</span><span class="spec-meta-value">1.0 — May 2026</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Language</span><span class="spec-meta-value">Kokborok (Borok)</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Script Type</span><span class="spec-meta-value">Phonemic Alphabet</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Encoding</span><span class="spec-meta-value">Unicode PUA · U+E000–U+E02F</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Total Characters</span><span class="spec-meta-value">48</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Font Format</span><span class="spec-meta-value">OTF / TTF / WOFF2</span></div>
+    </div>
+  </header>
+
+  <!-- §1 INTRODUCTION -->
+  <section class="spec-section">
+    <p class="section-number reveal">§ 1</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Introduction</h2>
+    <div class="spec-body reveal">
+      <p>Yapiri (<em>yapiri</em>) is an original writing system created for the <strong>Kokborok language</strong>, the mother tongue of the Borok people of Tripura, Northeast India. The name <em>yapiri</em> means "footprints" in Kokborok, reflecting the essential nature of all writing: traces of a living voice, preserved across time.</p>
+      <p>Kokborok is a Tibeto-Burman language spoken by approximately one million people. It has historically been written in the <strong>Bengali script</strong>, and more recently in the <strong>Roman script</strong> — neither of which maps cleanly to Kokborok phonology. Several dedicated scripts have been proposed over the decades (including Aima and Kókmari), but none has achieved broad adoption. Yapiri represents a new effort: a script designed from first principles, shaped entirely by the phonological requirements of the language.</p>
+      <p>This document constitutes the authoritative technical specification for the Yapiri script, version 1.0. It is intended for linguists, font engineers, software developers, keyboard layout designers, educators, and community members who wish to understand, implement, or extend the system.</p>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat-cell"><span class="stat-num">48</span><span class="stat-lbl">Total Characters</span></div>
+      <div class="stat-cell"><span class="stat-num">25</span><span class="stat-lbl">Consonants</span></div>
+      <div class="stat-cell"><span class="stat-num">6</span><span class="stat-lbl">Vowels</span></div>
+      <div class="stat-cell"><span class="stat-num">10</span><span class="stat-lbl">Digits (0–9)</span></div>
+      <div class="stat-cell"><span class="stat-num">5</span><span class="stat-lbl">Punctuation</span></div>
+      <div class="stat-cell"><span class="stat-num">2</span><span class="stat-lbl">Diacritics</span></div>
+    </div>
+  </section>
+
+  <!-- §2 DESIGN PRINCIPLES -->
+  <section class="spec-section" id="design-principles">
+    <p class="section-number reveal">§ 2</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Design <em>Principles</em></h2>
+    <div class="spec-body reveal">
+      <p><strong>Phonological primacy.</strong> Every character in the Yapiri inventory corresponds to a phoneme (or phoneme cluster) that is functional in Kokborok. No characters are included for historical, aesthetic, or borrowing reasons alone. Loanword phonemes (f, v, z) are included but marked as secondary.</p>
+      <p><strong>Systematic visual grammar.</strong> Related phonemes share visual elements. Aspirated consonants are derived from their plain counterparts through a consistent modification. Voiced pairs of voiceless stops share structural DNA. This makes the script learnable as a system rather than a set of arbitrary symbols.</p>
+      <p><strong>Phonemic alphabet structure.</strong> Yapiri is a <em>phonemic alphabet</em>: every character — whether consonant or vowel — is a full, independent letter representing exactly one phoneme. There are no inherent vowels, no combining diacritics for vowels, and no hidden sounds. Every sound heard in a word must be written explicitly.</p>
+      <p><strong>Visual elegance.</strong> Glyphs were drawn by hand in Inkscape using Bézier curves with rounded linecaps and linejoin, producing an aesthetic that is organic without being decorative. The script is designed to look natural at both display and text sizes.</p>
+      <p><strong>Digital-first design.</strong> Yapiri was built for the digital age from the start. The font is distributed as OTF/TTF/WOFF2 with full OpenType GPOS/GSUB support. PUA encoding ensures compatibility across all Unicode-compliant software. Keyboard input tools are provided alongside the font.</p>
+    </div>
+  </section>
+
+  <!-- §3 SCRIPT TYPE -->
+  <section class="spec-section" id="script-type">
+    <p class="section-number reveal">§ 3</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Script <em>Type</em></h2>
+    <div class="spec-body reveal">
+      <p>Yapiri is classified as a <strong>phonemic alphabet</strong>. Every sound in the Kokborok language — both consonants and vowels — is represented by its own independent, full-sized character. Consonant glyphs represent only the consonant sound. Vowel glyphs represent only the vowel sound. Letters are written sequentially in a linear string, where each glyph carries equal weight.</p>
+      <p>For example, the consonant glyph for /p/ represents only /p/ — never /pa/. To write the syllable /pa/, the consonant /p/ must be followed by the vowel /a/. This strict one-to-one mapping between sound and symbol is the defining feature of Yapiri.</p>
+      <p>Sounds that are traditionally written as digraphs in the Latin-based Kokborok script (such as ph, th, kh, ch, chh, ng) are represented by single, unique glyphs in Yapiri. These are called <strong>atomic phonemes</strong> — they carry the same structural weight as any other independent character and are not decomposed in writing.</p>
+    </div>
+    <div class="callout gold reveal"><strong>Reading rule:</strong> The script is read left-to-right. Every character represents exactly one phoneme. Unlike abugidas, there are no inherent or hidden vowels — every sound heard in a word must be written with its own dedicated character.</div>
+    <div class="spec-body reveal"><p>Yapiri is written <strong>left-to-right</strong>, in the same direction as the Latin and Bengali scripts used alongside it. There is no distinction between uppercase and lowercase. Words are separated by a space character.</p></div>
+  </section>
+
+  <!-- §4 PHONOLOGY -->
+  <section class="spec-section" id="phonology">
+    <p class="section-number reveal">§ 4</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Phonological <em>Scope</em></h2>
+    <div class="spec-body reveal"><p>Kokborok has a rich consonantal inventory including plain stops, aspirated stops, voiced stops, nasals, liquids, glides, and fricatives. Yapiri covers this full inventory natively. The following phonological categories are represented:</p></div>
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>Category</th><th>Phonemes</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="td-roman">Velar stops</td><td class="td-roman">k, kh, g, ng</td><td class="td-note">Plain, aspirated, voiced, nasal</td></tr>
+          <tr><td class="td-roman">Palatal stops / affricates</td><td class="td-roman">ch, chh, j</td><td class="td-note">Plain, aspirated, voiced affricate</td></tr>
+          <tr><td class="td-roman">Dental / alveolar stops</td><td class="td-roman">t, th, d</td><td class="td-note">Plain, aspirated, voiced</td></tr>
+          <tr><td class="td-roman">Bilabial stops</td><td class="td-roman">p, ph, b</td><td class="td-note">Plain, aspirated, voiced</td></tr>
+          <tr><td class="td-roman">Nasals</td><td class="td-roman">m, n</td><td class="td-note">Bilabial, alveolar</td></tr>
+          <tr><td class="td-roman">Liquids</td><td class="td-roman">r, l</td><td class="td-note">Rhotic and lateral</td></tr>
+          <tr><td class="td-roman">Glides</td><td class="td-roman">w, y</td><td class="td-note">Labio-velar, palatal</td></tr>
+          <tr><td class="td-roman">Fricatives (native)</td><td class="td-roman">s, h</td><td class="td-note">Alveolar fricative, glottal fricative</td></tr>
+          <tr><td class="td-roman">Fricatives (loanword)</td><td class="td-roman">f, v, z</td><td class="td-note">For words borrowed from Bengali, English, Hindi</td></tr>
+          <tr><td class="td-roman">Vowels</td><td class="td-roman">a, i, u, e, o, ə</td><td class="td-note">Six vowel phonemes; ə = high central/mid central unrounded</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="spec-body reveal"><p>The vowel <strong>ə (U+E005)</strong> is a distinctive phoneme in Kokborok and receives an independent glyph form in Yapiri.</p></div>
+  </section>
+
+  <!-- §5 CONSONANTS -->
+  <section class="spec-section" id="consonants">
+    <p class="section-number reveal">§ 5</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Consonant <em>Inventory</em></h2>
+    <div class="spec-body reveal"><p>The Yapiri consonant inventory comprises <strong>25 characters</strong> at codepoints U+E006–U+E01E. They are organized into phonological groups below.</p></div>
+
+    <!-- Stops -->
+    <div class="glyph-block reveal">
+      <div class="block-label">Stops — Voiceless, Aspirated, Voiced (U+E006–U+E00E)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE006;</span><span class="glyph-rom">p</span><span class="glyph-pua">E006</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE007;</span><span class="glyph-rom">t</span><span class="glyph-pua">E007</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE008;</span><span class="glyph-rom">k</span><span class="glyph-pua">E008</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE009;</span><span class="glyph-rom">ph</span><span class="glyph-pua">E009</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE00A;</span><span class="glyph-rom">th</span><span class="glyph-pua">E00A</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE00B;</span><span class="glyph-rom">kh</span><span class="glyph-pua">E00B</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE00C;</span><span class="glyph-rom">b</span><span class="glyph-pua">E00C</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE00D;</span><span class="glyph-rom">d</span><span class="glyph-pua">E00D</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE00E;</span><span class="glyph-rom">g</span><span class="glyph-pua">E00E</span></div>
+      </div>
+    </div>
+
+    <!-- Affricates -->
+    <div class="glyph-block reveal">
+      <div class="block-label">Affricates (U+E00F–U+E011)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE00F;</span><span class="glyph-rom">ch</span><span class="glyph-pua">E00F</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE010;</span><span class="glyph-rom">j</span><span class="glyph-pua">E010</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE011;</span><span class="glyph-rom">chh</span><span class="glyph-pua">E011</span></div>
+      </div>
+    </div>
+
+    <!-- Nasals -->
+    <div class="glyph-block reveal">
+      <div class="block-label">Nasals (U+E012–U+E015)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE012;</span><span class="glyph-rom">m</span><span class="glyph-pua">E012</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE013;</span><span class="glyph-rom">n</span><span class="glyph-pua">E013</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE014;</span><span class="glyph-rom">n′</span><span class="glyph-pua">E014</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE015;</span><span class="glyph-rom">ng</span><span class="glyph-pua">E015</span></div>
+      </div>
+    </div>
+
+    <!-- Fricatives & Approximants -->
+    <div class="glyph-block reveal">
+      <div class="block-label">Fricatives, Liquids &amp; Glides (U+E016–U+E01E)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE016;</span><span class="glyph-rom">s</span><span class="glyph-pua">E016</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE017;</span><span class="glyph-rom">r</span><span class="glyph-pua">E017</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE018;</span><span class="glyph-rom">l</span><span class="glyph-pua">E018</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE019;</span><span class="glyph-rom">v</span><span class="glyph-pua">E019</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE01A;</span><span class="glyph-rom">f</span><span class="glyph-pua">E01A</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE01B;</span><span class="glyph-rom">z</span><span class="glyph-pua">E01B</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE01C;</span><span class="glyph-rom">y</span><span class="glyph-pua">E01C</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE01D;</span><span class="glyph-rom">w</span><span class="glyph-pua">E01D</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE01E;</span><span class="glyph-rom">h</span><span class="glyph-pua">E01E</span></div>
+      </div>
+    </div>
+
+    <div class="spec-body reveal"><p><strong>Note on loanword consonants.</strong> The three fricatives f (U+E01A), v (U+E019), and z (U+E01B) are not native to Kokborok phonology. They were added to support loanwords from Bengali, Hindi, and English. Their glyphs follow the same visual design grammar as the rest of the consonant set, but are distinguished in educational materials as secondary characters.</p></div>
+
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>Codepoint</th><th>Romanization</th><th>IPA</th><th>Category</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr class="row-group-head"><td colspan="5">Velars</td></tr>
+          <tr><td class="td-code">U+E008</td><td class="td-roman">k</td><td class="td-roman">/k/</td><td class="td-cat">Stop, voiceless</td><td class="td-note">Velar, unaspirated</td></tr>
+          <tr><td class="td-code">U+E00B</td><td class="td-roman">kh</td><td class="td-roman">/kʰ/</td><td class="td-cat">Stop, aspirated</td><td class="td-note">Velar, aspirated</td></tr>
+          <tr><td class="td-code">U+E00E</td><td class="td-roman">g</td><td class="td-roman">/g/</td><td class="td-cat">Stop, voiced</td><td class="td-note">Velar</td></tr>
+          <tr><td class="td-code">U+E015</td><td class="td-roman">ng</td><td class="td-roman">/ŋ/</td><td class="td-cat">Nasal</td><td class="td-note">Velar nasal</td></tr>
+          <tr class="row-group-head"><td colspan="5">Palatals / Affricates</td></tr>
+          <tr><td class="td-code">U+E00F</td><td class="td-roman">ch</td><td class="td-roman">/tɕ/</td><td class="td-cat">Affricate, voiceless</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E011</td><td class="td-roman">chh</td><td class="td-roman">/tɕʰ/</td><td class="td-cat">Affricate, aspirated</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E010</td><td class="td-roman">j</td><td class="td-roman">/dʑ/</td><td class="td-cat">Affricate, voiced</td><td class="td-note"></td></tr>
+          <tr class="row-group-head"><td colspan="5">Dentals / Alveolars</td></tr>
+          <tr><td class="td-code">U+E007</td><td class="td-roman">t</td><td class="td-roman">/t/</td><td class="td-cat">Stop, voiceless</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E00A</td><td class="td-roman">th</td><td class="td-roman">/tʰ/</td><td class="td-cat">Stop, aspirated</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E00D</td><td class="td-roman">d</td><td class="td-roman">/d/</td><td class="td-cat">Stop, voiced</td><td class="td-note"></td></tr>
+          <tr class="row-group-head"><td colspan="5">Bilabials</td></tr>
+          <tr><td class="td-code">U+E006</td><td class="td-roman">p</td><td class="td-roman">/p/</td><td class="td-cat">Stop, voiceless</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E009</td><td class="td-roman">ph</td><td class="td-roman">/pʰ/</td><td class="td-cat">Stop, aspirated</td><td class="td-note"></td></tr>
+          <tr><td class="td-code">U+E00C</td><td class="td-roman">b</td><td class="td-roman">/b/</td><td class="td-cat">Stop, voiced</td><td class="td-note"></td></tr>
+          <tr class="row-group-head"><td colspan="5">Nasals, Liquids, Glides</td></tr>
+          <tr><td class="td-code">U+E012</td><td class="td-roman">m</td><td class="td-roman">/m/</td><td class="td-cat">Nasal</td><td class="td-note">Bilabial</td></tr>
+          <tr><td class="td-code">U+E013</td><td class="td-roman">n</td><td class="td-roman">/n/</td><td class="td-cat">Nasal</td><td class="td-note">Alveolar</td></tr>
+          <tr><td class="td-code">U+E017</td><td class="td-roman">r</td><td class="td-roman">/r/</td><td class="td-cat">Liquid</td><td class="td-note">Rhotic</td></tr>
+          <tr><td class="td-code">U+E018</td><td class="td-roman">l</td><td class="td-roman">/l/</td><td class="td-cat">Liquid</td><td class="td-note">Lateral</td></tr>
+          <tr><td class="td-code">U+E01D</td><td class="td-roman">w</td><td class="td-roman">/w/</td><td class="td-cat">Glide</td><td class="td-note">Labio-velar; word-initial only</td></tr>
+          <tr><td class="td-code">U+E01C</td><td class="td-roman">y</td><td class="td-roman">/j/</td><td class="td-cat">Glide</td><td class="td-note">Palatal</td></tr>
+          <tr class="row-group-head"><td colspan="5">Fricatives</td></tr>
+          <tr><td class="td-code">U+E016</td><td class="td-roman">s</td><td class="td-roman">/s/</td><td class="td-cat">Fricative</td><td class="td-note">Native</td></tr>
+          <tr><td class="td-code">U+E01E</td><td class="td-roman">h</td><td class="td-roman">/h/</td><td class="td-cat">Fricative</td><td class="td-note">Native, glottal</td></tr>
+          <tr><td class="td-code">U+E01A</td><td class="td-roman">f</td><td class="td-roman">/f/</td><td class="td-cat">Fricative</td><td class="td-note">Loanword</td></tr>
+          <tr><td class="td-code">U+E019</td><td class="td-roman">v</td><td class="td-roman">/v/</td><td class="td-cat">Fricative</td><td class="td-note">Loanword</td></tr>
+          <tr><td class="td-code">U+E01B</td><td class="td-roman">z</td><td class="td-roman">/z/</td><td class="td-cat">Fricative</td><td class="td-note">Loanword</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- §6 VOWELS -->
+  <section class="spec-section" id="vowels">
+    <p class="section-number reveal">§ 6</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Vowel <em>System</em></h2>
+    <div class="spec-body reveal">
+      <p>Yapiri has <strong>six independent vowel letters</strong>, each representing a distinct vowel phoneme of Kokborok. As a phonemic alphabet, every vowel is written explicitly as a full, standalone character — there are no inherent vowels, no diacritics for vowels, and no hidden sounds.</p>
+      <p>Vowels are placed after consonants horizontally in a linear sequence to form syllables. For example, the syllable /pa/ is written as the consonant /p/ (U+E006) followed by the vowel /a/ (U+E000). All six vowels carry equal character weight to consonants in the script.</p>
+    </div>
+
+    <div class="glyph-block reveal">
+      <div class="block-label">Vowel Letters (U+E000–U+E005) — Full Independent Characters</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE000;</span><span class="glyph-rom">a</span><span class="glyph-pua">E000</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE001;</span><span class="glyph-rom">e</span><span class="glyph-pua">E001</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE002;</span><span class="glyph-rom">i</span><span class="glyph-pua">E002</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE003;</span><span class="glyph-rom">u</span><span class="glyph-pua">E003</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE004;</span><span class="glyph-rom">o</span><span class="glyph-pua">E004</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE005;</span><span class="glyph-rom">ə</span><span class="glyph-pua">E005</span></div>
+      </div>
+    </div>
+
+    <div class="glyph-block reveal">
+      <div class="block-label">Combining Diacritics — Tone &amp; Reduplication Only (not vowel modifiers)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#x25CC;&#x0301;</span><span class="glyph-rom">high tone</span><span class="glyph-pua">U+0301</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#x25CC;&#x030B;</span><span class="glyph-rom">reduplication</span><span class="glyph-pua">U+030B</span></div>
+      </div>
+    </div>
+
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>Codepoint</th><th>Letter</th><th>Phoneme</th><th>IPA</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr class="row-group-head"><td colspan="5">Vowel Letters — All Independent Full Characters</td></tr>
+          <tr><td class="td-code">U+E000</td><td class="td-roman">a</td><td class="td-roman">/a/</td><td class="td-roman">[a]</td><td class="td-note">Open central unrounded</td></tr>
+          <tr><td class="td-code">U+E001</td><td class="td-roman">e</td><td class="td-roman">/e/</td><td class="td-roman">[e]</td><td class="td-note">Close-mid front unrounded</td></tr>
+          <tr><td class="td-code">U+E002</td><td class="td-roman">i</td><td class="td-roman">/i/</td><td class="td-roman">[i]</td><td class="td-note">Close front unrounded</td></tr>
+          <tr><td class="td-code">U+E003</td><td class="td-roman">u</td><td class="td-roman">/u/</td><td class="td-roman">[u]</td><td class="td-note">Close back rounded</td></tr>
+          <tr><td class="td-code">U+E004</td><td class="td-roman">o</td><td class="td-roman">/o/</td><td class="td-roman">[o]</td><td class="td-note">Close-mid back rounded</td></tr>
+          <tr><td class="td-code">U+E005</td><td class="td-roman">ə</td><td class="td-roman">/ə/</td><td class="td-roman">[ə]</td><td class="td-note">Mid central unrounded; mid-word only, never word-initial</td></tr>
+          <tr class="row-group-head"><td colspan="5">Combining Diacritics — Tone &amp; Reduplication Only</td></tr>
+          <tr><td class="td-code">U+0301</td><td class="td-roman">◌́</td><td class="td-roman">—</td><td class="td-roman">—</td><td class="td-note">High tone mark; placed above the vowel of the syllable</td></tr>
+          <tr><td class="td-code">U+030B</td><td class="td-roman">◌̋</td><td class="td-roman">—</td><td class="td-roman">—</td><td class="td-note">Reduplication shorthand; marks a repeated morpheme. For word-level reduplication, follow with a hyphen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout gold reveal"><strong>Yapiri has no vowel diacritics.</strong> All six vowels are full independent letters written sequentially after consonants. The only combining marks in Yapiri are the high tone diacritic (U+0301) and the reduplication mark (U+030B) — neither modifies a vowel letter's identity.</div>
+  </section>
+
+  <!-- §7 NUMERALS -->
+  <section class="spec-section" id="numerals">
+    <p class="section-number reveal">§ 7</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Numeral <em>System</em></h2>
+    <div class="spec-body reveal">
+      <p>Yapiri includes a complete set of <strong>10 digit glyphs</strong> (0–9) at codepoints U+E01F–U+E028. The Yapiri numeral system uses a <em>staff-and-crossbar</em> design grammar: each digit is built from a vertical staff with a distinctive crossbar pattern, giving the set a systematic, learnable visual family.</p>
+      <p>Numerals combine with standard decimal positional notation. The digit 0 at U+E01F is visually distinct from the alphabetic characters and functions as a true zero. Larger numbers are formed by stringing digits left-to-right in the normal positional manner.</p>
+    </div>
+    <div class="glyph-block reveal">
+      <div class="block-label">Digits 0–9 (U+E01F–U+E028)</div>
+      <div class="glyph-mini-row">
+        <div class="glyph-pill"><span class="glyph-char">&#xE01F;</span><span class="glyph-rom">0</span><span class="glyph-pua">E01F</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE020;</span><span class="glyph-rom">1</span><span class="glyph-pua">E020</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE021;</span><span class="glyph-rom">2</span><span class="glyph-pua">E021</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE022;</span><span class="glyph-rom">3</span><span class="glyph-pua">E022</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE023;</span><span class="glyph-rom">4</span><span class="glyph-pua">E023</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE024;</span><span class="glyph-rom">5</span><span class="glyph-pua">E024</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE025;</span><span class="glyph-rom">6</span><span class="glyph-pua">E025</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE026;</span><span class="glyph-rom">7</span><span class="glyph-pua">E026</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE027;</span><span class="glyph-rom">8</span><span class="glyph-pua">E027</span></div>
+        <div class="glyph-pill"><span class="glyph-char">&#xE028;</span><span class="glyph-rom">9</span><span class="glyph-pua">E028</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §8 UNICODE / PUA -->
+  <section class="spec-section" id="unicode">
+    <p class="section-number reveal">§ 8</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Unicode &amp; <em>PUA Mapping</em></h2>
+    <div class="spec-body reveal">
+      <p>Yapiri is currently encoded in the <strong>Unicode Private Use Area (PUA)</strong>, occupying a contiguous block of 48 codepoints from <strong>U+E000 to U+E02F</strong>. The PUA is a permanent part of the Unicode standard reserved for scripts and characters that have not yet received official Unicode allocations.</p>
+      <p>The block is organized in sequential order: vowels first (U+E000–U+E005), consonants (U+E006–U+E01E), numerals (U+E01F–U+E028), and punctuation (U+E029–U+E02D). Diacritics use standard Unicode combining codepoints (U+0301, U+030B).</p>
+    </div>
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>Range</th><th>Count</th><th>Category</th></tr></thead>
+        <tbody>
+          <tr><td class="td-code">U+E000–U+E005</td><td>6</td><td class="td-cat">Vowel Letters (independent)</td></tr>
+          <tr><td class="td-code">U+E006–U+E01E</td><td>25</td><td class="td-cat">Consonants</td></tr>
+          <tr><td class="td-code">U+E01F–U+E028</td><td>10</td><td class="td-cat">Numerals (0–9)</td></tr>
+          <tr><td class="td-code">U+E029–U+E02D</td><td>5</td><td class="td-cat">Punctuation</td></tr>
+          <tr><td class="td-code">U+0301, U+030B</td><td>2</td><td class="td-cat">Combining Diacritics (tone &amp; reduplication)</td></tr>
+          <tr style="border-top:1px solid rgba(201,146,42,0.2)"><td class="td-code" style="color:var(--gold-light)!important">Total</td><td style="color:var(--gold-light)">48</td><td class="td-cat">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout gold reveal"><strong>PUA stability notice:</strong> These codepoint assignments are stable for version 1.0 and will not be changed without a major version revision. Any future official Unicode encoding will be issued as a separate encoding with a migration path documented in this specification.</div>
+    <div class="spec-body reveal">
+      <p>To render Yapiri text, the <strong>Yapiri OTF/TTF font</strong> must be installed. Without it, PUA codepoints render as boxes or missing glyph indicators in all applications. This is normal behavior for PUA-encoded scripts and is not a font error.</p>
+    </div>
+    <div class="code-block reveal">
+<span class="cmt">/* CSS usage */</span>
+<span class="kw">@font-face</span> {
+  <span class="kw">font-family</span>: <span class="str">'Yapiri'</span>;
+  <span class="kw">src</span>: <span class="val">url</span>(<span class="str">'Yapiri.woff2'</span>) <span class="val">format</span>(<span class="str">'woff2'</span>),
+       <span class="val">url</span>(<span class="str">'Yapiri.ttf'</span>) <span class="val">format</span>(<span class="str">'truetype'</span>);
+  <span class="kw">font-display</span>: <span class="val">swap</span>;
+}
+
+<span class="kw">.yapiri-text</span> {
+  <span class="kw">font-family</span>: <span class="str">'Yapiri'</span>, serif;
+  <span class="cmt">/* PUA characters U+E000–U+E02D */</span>
+}</div>
+  </section>
+
+  <!-- §9 OPENTYPE -->
+  <section class="spec-section" id="opentype">
+    <p class="section-number reveal">§ 9</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">OpenType <em>Features</em></h2>
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>Feature Tag</th><th>Table</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-code">mark</td><td class="td-cat">GPOS</td><td class="td-note">Mark-to-base positioning for diacritics on consonant bases</td></tr>
+          <tr><td class="td-code">kern</td><td class="td-cat">GPOS</td><td class="td-note">Kerning pairs covering most common Kokborok phoneme sequences</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="spec-body reveal">
+      <p><strong>GPOS mark-to-base anchors</strong> are defined on all consonant glyphs (U+E006–U+E01E) as base marks, and on the diacritics (U+0301, U+030B) as combining marks. Each base glyph carries a named anchor point (<code>top_anchor</code>) and each diacritic carries a corresponding attachment point (<code>top_attach</code>), allowing the OpenType shaping engine to position diacritics correctly regardless of the base glyph's advance width.</p>
+      <p><strong>Note on application compatibility.</strong> Full GPOS support requires an OpenType-aware application (InDesign, modern Word, LibreOffice, web browsers). Some older applications may not apply GPOS kerning or mark positioning correctly. This is an application limitation, not a font defect.</p>
+    </div>
+  </section>
+
+  <!-- §10 ENCODING RULES -->
+  <section class="spec-section" id="encoding">
+    <p class="section-number reveal">§ 10</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Encoding <em>Rules</em></h2>
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>#</th><th>Rule</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td class="td-code">R1</td><td>Every sound must be written — consonants and vowels are both full independent letters</td><td class="td-note">U+E006 = /p/ only; to write /pa/ use U+E006 + U+E000</td></tr>
+          <tr><td class="td-code">R2</td><td>Consonant + vowel = consonant codepoint followed immediately by vowel codepoint</td><td class="td-note">U+E006 + U+E002 = /pi/</td></tr>
+          <tr><td class="td-code">R3</td><td>A word or syllable beginning with a vowel = vowel codepoint with no preceding consonant</td><td class="td-note">U+E000 alone = /a/</td></tr>
+          <tr><td class="td-code">R4</td><td>Consonant clusters are written by placing consonant codepoints sequentially with no vowel between</td><td class="td-note">U+E006 + U+E017 = /pr/</td></tr>
+          <tr><td class="td-code">R5</td><td>High tone is marked by U+0301 placed after the vowel codepoint of the syllable</td><td class="td-note">U+E000 + U+0301 = /á/</td></tr>
+          <tr><td class="td-code">R6</td><td>Syllable reduplication: U+030B on the repeated morpheme, no hyphen. Word reduplication: U+030B on last letter of the word, followed by a hyphen</td><td class="td-note">Marks abbreviated repeated forms</td></tr>
+          <tr><td class="td-code">R7</td><td>Schwa (U+E005) appears only mid-word, never word-initial. Consonant w (U+E01D) appears only word-initially, never mid-word</td><td class="td-note">Positional constraint</td></tr>
+          <tr><td class="td-code">R8</td><td>Spaces separate words; no special word-joiner is required</td><td class="td-note">U+0020 space as normal</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- §11 INPUT METHODS -->
+  <section class="spec-section" id="keyboard">
+    <p class="section-number reveal">§ 11</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Input <em>Methods</em></h2>
+    <div class="spec-body reveal">
+      <p><strong>1. Web keyboard tool.</strong> The Yapiri website includes an interactive on-screen keyboard that outputs PUA codepoints directly. No installation required. Accessible at <a href="try.html">yapiriscript.com/try.html</a>.</p>
+      <p><strong>2. Keyman keyboard layout.</strong> A Keyman keyboard layout is provided for native system-level input on Windows, macOS, iOS, and Android. Keyman is an open-source input method platform maintained by SIL International. The Yapiri layout uses a phoneme-based QWERTY mapping.</p>
+      <p><strong>3. Direct Unicode input.</strong> Any application that supports Unicode PUA entry (via Alt+code on Windows, or the Unicode hex input method on macOS) can be used to enter Yapiri codepoints directly.</p>
+    </div>
+    <div class="callout reveal"><strong>The Yapiri font must be installed and selected</strong> in the target application for any input method to render correctly. PUA codepoints typed without the font active will appear as boxes.</div>
+  </section>
+
+  <!-- §12 ROMANIZATION -->
+  <section class="spec-section" id="romanization">
+    <p class="section-number reveal">§ 12</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Romanization <em>System</em></h2>
+    <div class="spec-body reveal"><p>The Yapiri romanization is a practical orthographic transcription system used alongside the script — for learner materials, technical documentation, and transliteration. It is not intended as a replacement for the script.</p></div>
+    <div class="spec-table-wrap reveal">
+      <table>
+        <thead><tr><th>Romanization</th><th>Phoneme</th><th>IPA</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="td-roman">k, g, t, d, p, b</td><td class="td-roman">/k/, /g/, /t/, /d/, /p/, /b/</td><td class="td-roman">as IPA</td><td class="td-note">Plain stops</td></tr>
+          <tr><td class="td-roman">kh, th, ph</td><td class="td-roman">/kʰ/, /tʰ/, /pʰ/</td><td class="td-roman">as IPA</td><td class="td-note">Aspirated stops</td></tr>
+          <tr><td class="td-roman">ng</td><td class="td-roman">/ŋ/</td><td class="td-roman">[ŋ]</td><td class="td-note">Velar nasal</td></tr>
+          <tr><td class="td-roman">ch, chh, j</td><td class="td-roman">/tɕ/, /tɕʰ/, /dʑ/</td><td class="td-roman">[tɕ], [tɕʰ], [dʑ]</td><td class="td-note">Palatal affricates</td></tr>
+          <tr><td class="td-roman">m, n, r, l, w, y</td><td class="td-roman">/m/, /n/, /r/, /l/, /w/, /j/</td><td class="td-roman">as IPA</td><td class="td-note">Sonorants and glides</td></tr>
+          <tr><td class="td-roman">s, h, f, v, z</td><td class="td-roman">/s/, /h/, /f/, /v/, /z/</td><td class="td-roman">as IPA</td><td class="td-note">f, v, z = loanword</td></tr>
+          <tr><td class="td-roman">a, i, u, e, o</td><td class="td-roman">/a/, /i/, /u/, /e/, /o/</td><td class="td-roman">as IPA</td><td class="td-note">Core vowels</td></tr>
+          <tr><td class="td-roman">ə</td><td class="td-roman">/ə/</td><td class="td-roman">[ə]</td><td class="td-note">Mid-central unrounded; mid-word only</td></tr>
+          <tr><td class="td-roman">| (pipe)</td><td>—</td><td>—</td><td class="td-note">Romanization marker for ZWNJ (cluster break)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- §13 UNICODE ROADMAP -->
+  <section class="spec-section" id="roadmap">
+    <p class="section-number reveal">§ 13</p>
+    <div class="gold-line reveal"></div>
+    <h2 class="section-heading reveal">Unicode <em>Submission Roadmap</em></h2>
+    <div class="spec-body reveal">
+      <p>The long-term goal for Yapiri is formal inclusion in the Unicode Standard, which would give the script permanent, globally recognized codepoints outside the PUA. This is a multi-phase process governed by the Unicode Technical Committee (UTC) and coordinated by the <strong>Script Encoding Initiative (SEI)</strong> at the University of California, Berkeley.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item"><div class="tl-num">1</div><div class="tl-body"><div class="tl-phase">Phase 1 · Complete</div><div class="tl-title">Font &amp; PUA Release</div><div class="tl-desc">Public release of the Yapiri OTF/TTF font, web keyboard tool, and this specification. Establishes the script in the public record.</div></div></div>
+      <div class="timeline-item"><div class="tl-num">2</div><div class="tl-body"><div class="tl-phase">Phase 2 · In Progress</div><div class="tl-title">Community &amp; Institutional Adoption</div><div class="tl-desc">Outreach to Kokborok educators, publishers, and government bodies in Tripura. Building a user base is a prerequisite for Unicode acceptance — the UTC requires demonstrated real-world use.</div></div></div>
+      <div class="timeline-item"><div class="tl-num">3</div><div class="tl-body"><div class="tl-phase">Phase 3</div><div class="tl-title">Omniglot &amp; ScriptSource Listing</div><div class="tl-desc">Submission to Omniglot.com and SIL's ScriptSource database, the standard reference directories for the world's writing systems.</div></div></div>
+      <div class="timeline-item"><div class="tl-num">4</div><div class="tl-body"><div class="tl-phase">Phase 4</div><div class="tl-title">Unicode Proposal Drafting</div><div class="tl-desc">Preparation of a formal Unicode proposal document following UTC guidelines, including character repertoire, properties, and collation order. Engagement with SEI at UC Berkeley for expert support.</div></div></div>
+      <div class="timeline-item"><div class="tl-num">5</div><div class="tl-body"><div class="tl-phase">Phase 5</div><div class="tl-title">UTC Review &amp; Encoding</div><div class="tl-desc">Formal review by the Unicode Technical Committee. Upon approval, Yapiri receives permanent Unicode codepoints. Migration documentation from PUA to official encoding will be published with this specification.</div></div></div>
+    </div>
+    <div class="spec-body reveal"><p>If you are a linguist, Unicode specialist, or institutional representative interested in supporting the Yapiri Unicode submission, please reach out via the <a href="community.html">community page</a>.</p></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="spec-footer">
+    <a href="index.html" class="footer-logo">YAPIRI SCRIPT</a>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61589838830572" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="https://www.youtube.com/@yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+      <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+    </div>
+    <div class="footer-copy">
+      Created for the Kokborok language<br>
+      Borok people of Tripura, India<br>
+      © 2026 Animesh Debbarma · yapiriscript.com
+    </div>
+  </footer>
+
+</div><!-- /main-content -->
+
+<script>
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 60); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Active TOC link
+  const sections = document.querySelectorAll('.spec-section[id], header[id]');
+  const links = document.querySelectorAll('.toc-list a');
+  const tocObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin:'-20% 0px -70% 0px' });
+  sections.forEach(s => tocObs.observe(s));
+
+  // Mobile menu
+  function toggleMenu(){ const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
+  function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+</script>
+</body>
+</html>
