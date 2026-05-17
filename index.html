@@ -1883,38 +1883,31 @@
 
   // --- KEYBOARD TOOL ---
   let yapiriText = '';
-  let romanText = '';
+  let romanTokens = [];
 
   function typeChar(glyph, roman) {
     yapiriText += glyph;
-    romanText += (roman === ' ') ? ' ' : roman;
+    romanTokens.push(roman === ' ' ? ' ' : roman);
     render();
   }
 
-  function insertZWNJ() {
-    yapiriText += '\u200C';
-    romanText += '|';
-    render();
-  }
 
   function backspace() {
     if (yapiriText.length === 0) return;
     yapiriText = [...yapiriText].slice(0, -1).join('');
-    const romanArr = [...romanText];
-    romanArr.pop();
-    romanText = romanArr.join('');
+    romanTokens.pop();
     render();
   }
 
   function clearAll() {
     yapiriText = '';
-    romanText = '';
+    romanTokens = [];
     render();
   }
 
   function render() {
     document.getElementById('yapiri-output').textContent = yapiriText || '\u200B';
-    document.getElementById('roman-output').textContent = romanText || 'romanization will appear here';
+    document.getElementById('roman-output').textContent = romanTokens.join('') || 'romanization will appear here';
   }
 
   async function copyText() {
@@ -1967,7 +1960,7 @@
 
   function mathOp(op) {
     yapiriText += op;
-    romanText  += op;
+    romanTokens.push(op);
     render();
   }
 
@@ -2009,7 +2002,7 @@
     const yapiriResult = numberToYapiri(result);
     const romanResult  = String(result);
     yapiriText += '=' + yapiriResult;
-    romanText  += '=' + romanResult;
+    romanTokens.push('=' + romanResult);
     render();
   }
 
