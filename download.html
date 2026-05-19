@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @font-face { font-family:'Yapiri'; src:url('Yapiri.woff2') format('woff2'),url('assets/fonts/Yapiri.ttf') format('truetype'); font-weight:normal; font-style:normal; font-display:swap; }
+  @font-face { font-family:'Yapiri'; src:url('assets/fonts/Yapiri.woff2') format('woff2'),url('assets/fonts/Yapiri.ttf') format('truetype'); font-weight:normal; font-style:normal; font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
@@ -215,7 +215,7 @@
           <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
           Download TTF
         </a>
-        <a href="Yapiri.woff2" download class="dl-btn outline">
+        <a href="assets/fonts/Yapiri.woff2" download class="dl-btn outline">
           <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
           Download WOFF2
         </a>
@@ -310,8 +310,8 @@
 
   <div class="install-panel" id="install-web">
     <div class="install-steps">
-      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Upload font files to your server</div><p class="step-desc">Place <code>Yapiri.woff2</code> and <code>assets/fonts/Yapiri.ttf</code> in your project's fonts or assets folder.</p></div></div>
-      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Add @font-face to your CSS</div><p class="step-desc"><code>@font-face { font-family: 'Yapiri'; src: url('Yapiri.woff2') format('woff2'), url('assets/fonts/Yapiri.ttf') format('truetype'); font-display: swap; }</code></p></div></div>
+      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Upload font files to your server</div><p class="step-desc">Place <code>assets/fonts/Yapiri.woff2</code> and <code>assets/fonts/Yapiri.ttf</code> in your project's fonts or assets folder.</p></div></div>
+      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Add @font-face to your CSS</div><p class="step-desc"><code>@font-face { font-family: 'Yapiri'; src: url('assets/fonts/Yapiri.woff2') format('woff2'), url('assets/fonts/Yapiri.ttf') format('truetype'); font-display: swap; }</code></p></div></div>
       <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Apply the font</div><p class="step-desc">Use <code>font-family: 'Yapiri', serif;</code> on any element containing PUA characters U+E000–U+E02F.</p></div></div>
       <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Use WOFF2 for web</div><p class="step-desc">WOFF2 is smaller and faster than TTF for web use. Always list it first in the <code>src</code> declaration so modern browsers pick it up.</p></div></div>
     </div>
