@@ -56,6 +56,27 @@
   .gold-line { width:60px; height:2px; background:var(--gold); margin:1.5rem 0 2rem; }
   .hero-glyph { position:absolute; right:5rem; top:50%; transform:translateY(-50%); font-family:'Yapiri',serif; font-size:clamp(6rem,12vw,10rem); color:rgba(201,146,42,0.07); line-height:1; pointer-events:none; }
 
+  .back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+  text-decoration: none;
+  border: 1px solid rgba(196,180,154,0.2);
+  padding: 0.45rem 0.9rem;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  transition: color 0.2s, border-color 0.2s;
+  }
+  .back-btn:hover {
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+
   /* PROGRESS NAV */
   .progress-nav { background:var(--charcoal); border-bottom:1px solid rgba(201,146,42,0.1); padding:1rem 5rem; display:flex; gap:1.5rem; overflow-x:auto; scrollbar-width:none; position:sticky; top:70px; z-index:50; }
   .progress-nav::-webkit-scrollbar { display:none; }
@@ -235,6 +256,7 @@
 
 <!-- HERO -->
 <div class="page-hero">
+  <a href="community.html" class="back-btn">← Community</a>
   <p class="page-eyebrow">Beginner's Guide</p>
   <h1 class="page-title">The Yapiri <em>Primer</em></h1>
   <div class="gold-line"></div>
