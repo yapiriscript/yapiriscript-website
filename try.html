@@ -454,12 +454,18 @@
     updateInspector();
   }
 
-  function updateInspector() {
+ function updateInspector() {
     const el = document.getElementById('inspector-output');
     if (!yapiriText) { el.textContent = 'Type something above to inspect codepoints…'; return; }
     const parts = [...yapiriText].map(ch => {
       const cp = ch.codePointAt(0).toString(16).toUpperCase().padStart(4,'0');
-      const label = ch === '\u200C' ? 'ZWNJ' : ch === ' ' ? 'SPACE' : ch;
+      const codePoint = ch.codePointAt(0);
+      const isPUA = codePoint >= 0xE000 && codePoint <= 0xF8FF;
+      let label;
+      if (ch === '\u200C') label = 'ZWNJ';
+      else if (ch === ' ') label = 'SPACE';
+      else if (isPUA) label = `<span style="font-family:'Yapiri',serif;">${ch}</span>`;
+      else label = ch;
       return `<span>U+${cp}</span> (${label})`;
     });
     el.innerHTML = parts.join('&nbsp;&nbsp;·&nbsp;&nbsp;');
