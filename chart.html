@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapiri Script Reference Chart — Full Character Inventory</title>
+<meta name="description" content="Complete visual reference chart for the Yapiri script — all 48 characters with codepoints, romanization, and pronunciation. Printable.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yapiriscript.com/chart.html">
+<meta property="og:title" content="Yapiri Script Reference Chart">
+<meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Yapiri'; src:url('assets/fonts/Yapiri.woff2') format('woff2'),url('assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--ink); color:var(--parchment); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.2rem 3rem; background:rgba(26,18,9,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,146,42,0.2); }
+  .nav-logo { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:400; letter-spacing:0.15em; color:var(--gold-light); text-decoration:none; }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+  .nav-links a { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone-light); text-decoration:none; transition:color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--gold-light); }
+  .nav-badge { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; background:rgba(184,92,56,0.2); border:1px solid var(--terracotta); color:var(--terracotta); padding:0.3rem 0.75rem; white-space:nowrap; }
+  .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; z-index:200; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--stone-light); transition:all 0.3s; transform-origin:center; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--gold-light); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold-light); }
+  .mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(26,18,9,0.98); z-index:150; flex-direction:column; align-items:center; justify-content:center; backdrop-filter:blur(20px); }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu-close { position:absolute; top:1.4rem; right:1.5rem; background:none; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); width:42px; height:42px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; }
+  .mobile-menu a { font-family:'Teko',sans-serif; font-size:clamp(2.5rem,8vw,4rem); font-weight:300; letter-spacing:0.08em; color:var(--stone-light); text-decoration:none; padding:0.6rem 2rem; transition:color 0.2s; border-bottom:1px solid rgba(196,180,154,0.06); width:100%; text-align:center; }
+  .mobile-menu a:hover { color:var(--gold-light); }
+
+  /* HERO */
+  .page-hero { padding:10rem 5rem 4rem; background:linear-gradient(to bottom,#0e0c06,var(--ink)); border-bottom:1px solid rgba(201,146,42,0.15); position:relative; overflow:hidden; }
+  .page-hero::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); }
+  .page-eyebrow { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1rem; }
+  .page-title { font-family:'Teko',sans-serif; font-size:clamp(3rem,7vw,6rem); font-weight:300; line-height:1; color:var(--parchment); margin-bottom:1.5rem; }
+  .page-title em { color:var(--gold-light); font-style:italic; font-family:'Cormorant Garamond',serif; }
+  .page-subtitle { font-size:1.2rem; font-weight:300; font-style:italic; color:var(--stone-light); max-width:600px; line-height:1.7; }
+  .gold-line { width:60px; height:2px; background:var(--gold); margin:1.5rem 0 2rem; }
+  .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+  .btn-primary { display:inline-flex; align-items:center; gap:0.6rem; background:rgba(184,92,56,0.15); border:1px solid var(--terracotta); color:var(--terracotta); font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; padding:0.8rem 1.8rem; cursor:pointer; transition:all 0.2s; text-decoration:none; }
+  .btn-primary:hover { background:rgba(184,92,56,0.3); }
+  .btn-secondary { display:inline-flex; align-items:center; gap:0.6rem; background:transparent; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; padding:0.8rem 1.8rem; cursor:pointer; transition:all 0.2s; text-decoration:none; }
+  .btn-secondary:hover { border-color:var(--gold); color:var(--gold); }
+  .btn-primary svg, .btn-secondary svg { width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.5; }
+
+  /* CHART AREA */
+  .chart-area { padding:4rem 5rem; max-width:1100px; margin:0 auto; }
+
+  /* GROUP */
+  .char-group { margin-bottom:3.5rem; }
+  .group-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:1.2rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(201,146,42,0.18); }
+  .group-title { font-family:'Teko',sans-serif; font-size:1.4rem; font-weight:300; color:var(--parchment); letter-spacing:0.05em; }
+  .group-count { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; color:var(--stone); }
+  .group-range { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--terracotta); margin-left:auto; }
+
+  /* CHAR CARDS */
+  .char-grid { display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .char-card { background:rgba(255,255,255,0.03); border:1px solid rgba(196,180,154,0.1); padding:1rem 0.7rem 0.8rem; text-align:center; min-width:88px; transition:all 0.2s; position:relative; cursor:default; }
+  .char-card:hover { background:rgba(184,92,56,0.08); border-color:rgba(201,146,42,0.35); transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.3); }
+  .char-card:hover .char-tooltip { opacity:1; pointer-events:auto; }
+  .char-glyph { font-family:'Yapiri',serif; font-size:2.4rem; color:var(--parchment); display:block; line-height:1.2; margin-bottom:0.5rem; }
+  .char-roman { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; color:var(--gold); display:block; margin-bottom:0.2rem; }
+  .char-code { font-family:'DM Mono',monospace; font-size:0.5rem; color:rgba(196,180,154,0.3); display:block; }
+
+  /* TOOLTIP */
+  .char-tooltip { position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%); background:var(--charcoal); border:1px solid rgba(201,146,42,0.2); padding:0.5rem 0.8rem; font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; color:var(--stone-light); white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.2s; z-index:10; }
+  .char-tooltip::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:rgba(201,146,42,0.2); }
+
+  /* LOANWORD */
+  .char-card.loanword { border-color:rgba(200,124,42,0.2); background:rgba(200,124,42,0.03); }
+  .char-card.loanword:hover { border-color:var(--gold); background:rgba(200,124,42,0.1); }
+
+  /* DIACRITIC */
+  .char-card.diacritic .char-glyph { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--gold-light); }
+
+  /* DIVIDER */
+  .sub-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin:1.2rem 0 0.6rem; }
+
+  /* STATS ROW */
+  .stats-row { display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:rgba(196,180,154,0.08); border:1px solid rgba(196,180,154,0.08); margin-bottom:4rem; }
+  .stat-cell { background:var(--ink); padding:1.2rem; text-align:center; }
+  .stat-num { font-family:'Teko',sans-serif; font-size:2.2rem; color:var(--gold-light); line-height:1; display:block; }
+  .stat-lbl { font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); display:block; margin-top:0.3rem; }
+
+  /* LEGEND */
+  .legend { display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:3rem; padding:1rem 1.5rem; border:1px solid rgba(196,180,154,0.08); background:rgba(255,255,255,0.01); }
+  .legend-item { display:flex; align-items:center; gap:0.6rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; color:var(--stone-light); }
+  .legend-swatch { width:16px; height:16px; border:1px solid; }
+  .legend-swatch.native { border-color:rgba(196,180,154,0.2); background:rgba(255,255,255,0.03); }
+  .legend-swatch.loanword { border-color:rgba(200,124,42,0.3); background:rgba(200,124,42,0.06); }
+  .legend-swatch.diacritic { border-color:rgba(196,180,154,0.2); background:rgba(201,146,42,0.05); }
+
+  /* FOOTER */
+  footer { background:#080704; padding:3rem 5rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(196,180,154,0.08); flex-wrap:wrap; gap:1.5rem; margin-top:3rem; }
+  .footer-logo { font-family:'Teko',sans-serif; font-size:1.4rem; font-weight:300; color:var(--stone); letter-spacing:0.15em; }
+  .footer-copy { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; color:rgba(196,180,154,0.3); text-align:right; line-height:1.8; }
+  .social-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid rgba(196,180,154,0.1); color:var(--stone-light); text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden; }
+  .social-link::before { content:''; position:absolute; inset:0; background:rgba(201,146,42,0.15); opacity:0; transition:opacity 0.25s; }
+  .social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+  .social-link:hover::before { opacity:1; }
+  .social-link svg { width:15px; height:15px; position:relative; z-index:1; fill:currentColor; }
+  .footer-social { display:flex; gap:0.8rem; align-items:center; }
+
+  .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* ─── PRINT STYLES ─────────────────────────────────────────── */
+  @media print {
+    @page { size:A4; margin:1.5cm; }
+    nav, .mobile-menu, .hero-actions, footer, .char-tooltip, .btn-primary, .btn-secondary { display:none !important; }
+    body { background:#fff !important; color:#111 !important; font-family:'Cormorant Garamond',serif; }
+    .page-hero { background:#fff !important; padding:2rem 0 1.5rem; border-bottom:2px solid #111; }
+    .page-eyebrow { color:#666 !important; }
+    .page-title { color:#111 !important; font-size:2.5rem; }
+    .page-title em { color:#8b4513 !important; }
+    .page-subtitle { color:#444 !important; }
+    .gold-line { background:#8b4513 !important; }
+    .chart-area { padding:1rem 0; max-width:100%; }
+    .stats-row { background:#ddd !important; border-color:#ddd !important; margin-bottom:1.5rem; }
+    .stat-cell { background:#fff !important; padding:0.6rem; }
+    .stat-num { color:#8b4513 !important; font-size:1.6rem; }
+    .stat-lbl { color:#666 !important; }
+    .legend { border-color:#ddd !important; background:#f9f9f9 !important; margin-bottom:1.5rem; }
+    .legend-item { color:#444 !important; }
+    .group-header { border-bottom-color:#ddd !important; }
+    .group-title { color:#111 !important; }
+    .group-count, .sub-label { color:#666 !important; }
+    .group-range { color:#8b4513 !important; }
+    .char-card { border-color:#ddd !important; background:#fafafa !important; break-inside:avoid; min-width:72px; padding:0.6rem 0.4rem; }
+    .char-card.loanword { background:#fff8f0 !important; border-color:#d4884a !important; }
+    .char-card.diacritic { background:#fffdf0 !important; }
+    .char-glyph { color:#111 !important; font-size:2rem; }
+    .char-card.diacritic .char-glyph { color:#8b4513 !important; }
+    .char-roman { color:#8b4513 !important; }
+    .char-code { color:#aaa !important; }
+    .char-group { break-inside:avoid; margin-bottom:1.5rem; }
+    .char-grid { gap:0.3rem; }
+    .reveal { opacity:1 !important; transform:none !important; }
+    .print-footer { display:block !important; text-align:center; margin-top:1.5rem; font-family:'DM Mono',monospace; font-size:0.6rem; color:#888; border-top:1px solid #ddd; padding-top:0.8rem; }
+  }
+  .print-footer { display:none; }
+
+  /* ─── RESPONSIVE ───────────────────────────────────────────── */
+  @media(max-width:900px) {
+    .page-hero, .chart-area { padding-left:2rem; padding-right:2rem; }
+    .stats-row { grid-template-columns:repeat(3,1fr); }
+    footer { flex-direction:column; text-align:center; padding:2.5rem 2rem; }
+    .footer-copy { text-align:center; }
+    nav { padding:1rem 1.5rem; }
+  }
+  @media(max-width:700px) {
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .stats-row { grid-template-columns:repeat(2,1fr); }
+    .char-card { min-width:72px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="script.html">Script</a></li>
+    <li><a href="yapiri-specification.html">Spec</a></li>
+    <li><a href="try.html">Try</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="community.html" class="active">Community</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="script.html" onclick="closeMenu()">Script</a>
+  <a href="yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="try.html" onclick="closeMenu()">Try</a>
+  <a href="download.html" onclick="closeMenu()">Download</a>
+  <a href="community.html" onclick="closeMenu()">Community</a>
+  <a href="blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <p class="page-eyebrow">Quick Reference</p>
+  <h1 class="page-title">Yapiri <em>Reference Chart</em></h1>
+  <div class="gold-line"></div>
+  <p class="page-subtitle">The complete Yapiri character inventory at a glance — all 48 characters with romanization, Unicode codepoints, and pronunciation hints. Hover any character for details.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="window.print()">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print Chart
+    </button>
+    <a href="primer.html" class="btn-secondary">
+      <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Learn with the Primer
+    </a>
+  </div>
+</div>
+
+<!-- CHART -->
+<div class="chart-area">
+
+  <!-- STATS -->
+  <div class="stats-row reveal">
+    <div class="stat-cell"><span class="stat-num">48</span><span class="stat-lbl">Total</span></div>
+    <div class="stat-cell"><span class="stat-num">6</span><span class="stat-lbl">Vowels</span></div>
+    <div class="stat-cell"><span class="stat-num">22</span><span class="stat-lbl">Native Consonants</span></div>
+    <div class="stat-cell"><span class="stat-num">3</span><span class="stat-lbl">Loanword</span></div>
+    <div class="stat-cell"><span class="stat-num">10</span><span class="stat-lbl">Numerals</span></div>
+    <div class="stat-cell"><span class="stat-num">7</span><span class="stat-lbl">Punct. & Diacritics</span></div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend reveal">
+    <div class="legend-item"><div class="legend-swatch native"></div>Native character</div>
+    <div class="legend-item"><div class="legend-swatch loanword"></div>Loanword character (v, f, z, chh)</div>
+    <div class="legend-item"><div class="legend-swatch diacritic"></div>Diacritic / combining mark</div>
+  </div>
+
+  <!-- VOWELS -->
+  <div class="char-group reveal">
+    <div class="group-header">
+      <span class="group-title">Vowels</span>
+      <span class="group-count">6 characters</span>
+      <span class="group-range">U+E000 – U+E005</span>
+    </div>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE000;</span><span class="char-roman">a</span><span class="char-code">U+E000</span><div class="char-tooltip">as in "father"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE001;</span><span class="char-roman">e</span><span class="char-code">U+E001</span><div class="char-tooltip">as in "bed"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE002;</span><span class="char-roman">i</span><span class="char-code">U+E002</span><div class="char-tooltip">as in "feet"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE003;</span><span class="char-roman">u</span><span class="char-code">U+E003</span><div class="char-tooltip">as in "moon"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE004;</span><span class="char-roman">o</span><span class="char-code">U+E004</span><div class="char-tooltip">as in "go"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE005;</span><span class="char-roman">ə</span><span class="char-code">U+E005</span><div class="char-tooltip">mid-word only · "uh"</div></div>
+    </div>
+  </div>
+
+  <!-- CONSONANTS -->
+  <div class="char-group reveal">
+    <div class="group-header">
+      <span class="group-title">Consonants</span>
+      <span class="group-count">25 characters</span>
+      <span class="group-range">U+E006 – U+E01E</span>
+    </div>
+
+    <p class="sub-label">Stops — Voiceless</p>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE006;</span><span class="char-roman">p</span><span class="char-code">U+E006</span><div class="char-tooltip">as in "pen"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE007;</span><span class="char-roman">t</span><span class="char-code">U+E007</span><div class="char-tooltip">as in "top"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE008;</span><span class="char-roman">k</span><span class="char-code">U+E008</span><div class="char-tooltip">as in "key"</div></div>
+    </div>
+
+    <p class="sub-label">Stops — Aspirated</p>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE009;</span><span class="char-roman">ph</span><span class="char-code">U+E009</span><div class="char-tooltip">breathy "p"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE00A;</span><span class="char-roman">th</span><span class="char-code">U+E00A</span><div class="char-tooltip">breathy "t"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE00B;</span><span class="char-roman">kh</span><span class="char-code">U+E00B</span><div class="char-tooltip">breathy "k"</div></div>
+    </div>
+
+    <p class="sub-label">Stops — Voiced</p>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE00C;</span><span class="char-roman">b</span><span class="char-code">U+E00C</span><div class="char-tooltip">as in "bird"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE00D;</span><span class="char-roman">d</span><span class="char-code">U+E00D</span><div class="char-tooltip">as in "dog"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE00E;</span><span class="char-roman">g</span><span class="char-code">U+E00E</span><div class="char-tooltip">as in "go"</div></div>
+    </div>
+
+    <p class="sub-label">Affricates</p>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE00F;</span><span class="char-roman">ch</span><span class="char-code">U+E00F</span><div class="char-tooltip">as in "chair"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE010;</span><span class="char-roman">j</span><span class="char-code">U+E010</span><div class="char-tooltip">as in "jump"</div></div>
+      <div class="char-card loanword"><span class="char-glyph">&#xE011;</span><span class="char-roman">chh</span><span class="char-code">U+E011</span><div class="char-tooltip">breathy "ch" · loanword</div></div>
+    </div>
+
+    <p class="sub-label">Nasals</p>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE012;</span><span class="char-roman">m</span><span class="char-code">U+E012</span><div class="char-tooltip">as in "moon"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE013;</span><span class="char-roman">n</span><span class="char-code">U+E013</span><div class="char-tooltip">as in "name"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE014;</span><span class="char-roman">n′</span><span class="char-code">U+E014</span><div class="char-tooltip">palatal nasal</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE015;</span><span class="char-roman">ng</span><span class="char-code">U+E015</span><div class="char-tooltip">as in "sing"</div></div>
+    </div>
+
+    <p class="sub-label">Fricatives & Approximants</p>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE016;</span><span class="char-roman">s</span><span class="char-code">U+E016</span><div class="char-tooltip">as in "sun"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE017;</span><span class="char-roman">r</span><span class="char-code">U+E017</span><div class="char-tooltip">as in "run"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE018;</span><span class="char-roman">l</span><span class="char-code">U+E018</span><div class="char-tooltip">as in "leaf"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE01C;</span><span class="char-roman">y</span><span class="char-code">U+E01C</span><div class="char-tooltip">as in "yes"</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE01D;</span><span class="char-roman">w</span><span class="char-code">U+E01D</span><div class="char-tooltip">word-initial only</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE01E;</span><span class="char-roman">h</span><span class="char-code">U+E01E</span><div class="char-tooltip">as in "hat"</div></div>
+    </div>
+
+    <p class="sub-label">Loanword Characters</p>
+    <div class="char-grid">
+      <div class="char-card loanword"><span class="char-glyph">&#xE019;</span><span class="char-roman">v</span><span class="char-code">U+E019</span><div class="char-tooltip">loanword only</div></div>
+      <div class="char-card loanword"><span class="char-glyph">&#xE01A;</span><span class="char-roman">f</span><span class="char-code">U+E01A</span><div class="char-tooltip">loanword only</div></div>
+      <div class="char-card loanword"><span class="char-glyph">&#xE01B;</span><span class="char-roman">z</span><span class="char-code">U+E01B</span><div class="char-tooltip">loanword only</div></div>
+    </div>
+  </div>
+
+  <!-- NUMERALS -->
+  <div class="char-group reveal">
+    <div class="group-header">
+      <span class="group-title">Numerals</span>
+      <span class="group-count">10 characters</span>
+      <span class="group-range">U+E01F – U+E028</span>
+    </div>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE01F;</span><span class="char-roman">0</span><span class="char-code">U+E01F</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE020;</span><span class="char-roman">1</span><span class="char-code">U+E020</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE021;</span><span class="char-roman">2</span><span class="char-code">U+E021</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE022;</span><span class="char-roman">3</span><span class="char-code">U+E022</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE023;</span><span class="char-roman">4</span><span class="char-code">U+E023</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE024;</span><span class="char-roman">5</span><span class="char-code">U+E024</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE025;</span><span class="char-roman">6</span><span class="char-code">U+E025</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE026;</span><span class="char-roman">7</span><span class="char-code">U+E026</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE027;</span><span class="char-roman">8</span><span class="char-code">U+E027</span></div>
+      <div class="char-card"><span class="char-glyph">&#xE028;</span><span class="char-roman">9</span><span class="char-code">U+E028</span></div>
+    </div>
+  </div>
+
+  <!-- PUNCTUATION -->
+  <div class="char-group reveal">
+    <div class="group-header">
+      <span class="group-title">Punctuation</span>
+      <span class="group-count">5 characters</span>
+      <span class="group-range">U+E029 – U+E02D</span>
+    </div>
+    <div class="char-grid">
+      <div class="char-card"><span class="char-glyph">&#xE029;</span><span class="char-roman">,</span><span class="char-code">U+E029</span><div class="char-tooltip">Comma</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE02A;</span><span class="char-roman">.</span><span class="char-code">U+E02A</span><div class="char-tooltip">Full stop</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE02B;</span><span class="char-roman">!</span><span class="char-code">U+E02B</span><div class="char-tooltip">Exclamation</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE02C;</span><span class="char-roman">"</span><span class="char-code">U+E02C</span><div class="char-tooltip">Quotation</div></div>
+      <div class="char-card"><span class="char-glyph">&#xE02D;</span><span class="char-roman">?</span><span class="char-code">U+E02D</span><div class="char-tooltip">Question mark</div></div>
+    </div>
+  </div>
+
+  <!-- DIACRITICS -->
+  <div class="char-group reveal">
+    <div class="group-header">
+      <span class="group-title">Diacritics & Combining Marks</span>
+      <span class="group-count">3 marks</span>
+      <span class="group-range">Standard Unicode</span>
+    </div>
+    <div class="char-grid">
+      <div class="char-card diacritic">
+        <span class="char-glyph">&#xE000;&#x0301;</span>
+        <span class="char-roman">◌́ high tone</span>
+        <span class="char-code">U+0301</span>
+        <div class="char-tooltip">Placed over the vowel of a high-tone syllable</div>
+      </div>
+      <div class="char-card diacritic">
+        <span class="char-glyph">&#xE000;&#x030B;</span>
+        <span class="char-roman">◌̋ reduplication</span>
+        <span class="char-code">U+030B</span>
+        <div class="char-tooltip">Marks a repeated syllable within a word</div>
+      </div>
+      <div class="char-card diacritic">
+        <span class="char-glyph" style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;">—</span>
+        <span class="char-roman">- hyphen</span>
+        <span class="char-code">U+002D</span>
+        <div class="char-tooltip">Word-level reduplication · follows reduplication mark</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINT FOOTER -->
+  <div class="print-footer">
+    Yapiri Script v1.0 · Official Reference Chart · yapiriscript.com · © 2026 Animesh Debbarma
+  </div>
+
+</div><!-- /chart-area -->
+
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61589838830572" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+  </div>
+  <div class="footer-copy">Created for the Kokborok language<br>Borok people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
+</footer>
+
+<script>
+  function toggleMenu() { const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => { if(entry.isIntersecting) { setTimeout(()=>entry.target.classList.add('visible'), i*80); observer.unobserve(entry.target); } });
+  }, { threshold:0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
