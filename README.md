@@ -4,7 +4,7 @@
 [![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-222?logo=github)](https://yapiriscript.com)
 [![Status](https://img.shields.io/badge/Status-Active-terracotta)](https://yapiriscript.com)
 
-> **Yapiri** (ᯌᯩᯇᯤᯔᯤ) means *footprints* in Kokborok — this is the digital home of the Yapiri script, an original phonemic alphabet designed for the Kokborok language of the Borok people of Tripura, India.
+> **Yapiri** means *footprints* in Kokborok — this is the digital home of the Yapiri script, an original phonemic alphabet designed for the Kokborok language of the Borok people of Tripura, India.
 
 🌐 **Live site:** [yapiriscript.com](https://yapiriscript.com)
 
