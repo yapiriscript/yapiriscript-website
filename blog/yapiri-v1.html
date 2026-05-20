@@ -485,9 +485,8 @@
     btn.disabled = false; btn.textContent = 'Post Comment';
   };
 
-  // ─── INIT ALL ─────────────────────────────────────────────────
-  trackView();
-  loadPostData();
+    // ─── INIT ALL ─────────────────────────────────────────────────
+  trackView().then(() => loadPostData());
   loadComments();
 </script>
 
