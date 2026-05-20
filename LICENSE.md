@@ -113,3 +113,4 @@ For commercial licensing, collaboration, academic use, or permissions beyond the
 
 - Website: yapiriscript.com
 - Instagram: @yapiri_script
+- Email: yapiriscript@gmail.com
