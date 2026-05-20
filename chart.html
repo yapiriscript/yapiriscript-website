@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapiri Script Chart — Full Character Reference</title>
+<meta name="description" content="Complete character reference chart for the Yapiri script — all 48 characters including vowels, consonants, numerals, diacritics, and punctuation.">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Yapiri';
+  src: url('assets/fonts/Yapiri.woff2') format('woff2'), url('assets/fonts/Yapiri.ttf') format('truetype');
+  font-display: swap;
+}
+:root {
+  --ink: #1a1209; --parchment: #f5edd8; --warm-white: #faf6ee;
+  --terracotta: #b85c38; --terra-light: #d4784f;
+  --gold: #c9922a; --gold-light: #e8b84b;
+  --stone: #8b7355; --stone-light: #c4b49a; --charcoal: #2c2416;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--ink); color:var(--parchment); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; line-height:1.7; }
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.2rem 3rem; background:rgba(26,18,9,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,146,42,0.2); }
+.nav-logo { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:400; letter-spacing:0.15em; color:var(--gold-light); text-decoration:none; }
+.nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+.nav-links a { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone-light); text-decoration:none; transition:color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color:var(--gold-light); }
+.nav-badge { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; background:rgba(184,92,56,0.2); border:1px solid var(--terracotta); color:var(--terracotta); padding:0.3rem 0.75rem; white-space:nowrap; }
+
+/* HAMBURGER */
+.hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; z-index:200; }
+.hamburger span { display:block; width:24px; height:2px; background:var(--stone-light); transition:all 0.3s; transform-origin:center; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--gold-light); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold-light); }
+
+/* MOBILE MENU */
+.mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(26,18,9,0.98); z-index:150; flex-direction:column; align-items:center; justify-content:center; backdrop-filter:blur(20px); }
+.mobile-menu.open { display:flex; }
+.mobile-menu-close { position:absolute; top:1.4rem; right:1.5rem; background:none; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); width:42px; height:42px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; line-height:1; }
+.mobile-menu-close:hover { border-color:var(--gold-light); color:var(--gold-light); }
+.mobile-menu a { font-family:'Teko',sans-serif; font-size:clamp(2.5rem,8vw,4rem); font-weight:300; letter-spacing:0.08em; color:var(--stone-light); text-decoration:none; padding:0.6rem 2rem; transition:color 0.2s; border-bottom:1px solid rgba(196,180,154,0.06); width:100%; text-align:center; }
+.mobile-menu a:hover { color:var(--gold-light); }
+
+/* PAGE HERO */
+.page-hero { padding:8rem 5rem 4rem; background:linear-gradient(160deg, var(--charcoal) 0%, var(--ink) 70%); border-bottom:1px solid rgba(201,146,42,0.15); }
+.back-btn { display:inline-flex; align-items:center; gap:0.5rem; font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone-light); text-decoration:none; border:1px solid rgba(196,180,154,0.2); padding:0.45rem 0.9rem; margin-bottom:2rem; transition:color 0.2s, border-color 0.2s; }
+.back-btn:hover { color:var(--gold-light); border-color:var(--gold); }
+.page-eyebrow { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1rem; }
+.page-title { font-family:'Teko',sans-serif; font-size:clamp(3rem,6vw,5.5rem); font-weight:300; line-height:1; color:var(--parchment); margin-bottom:1rem; }
+.page-title em { color:var(--gold-light); font-style:italic; font-family:'Cormorant Garamond',serif; }
+.page-subtitle { font-size:1.1rem; font-weight:300; font-style:italic; color:var(--stone-light); max-width:560px; }
+
+/* CHART WRAPPER */
+.chart-wrapper { padding:3rem 2rem 5rem; overflow-x: auto; }
+
+/* THE A4 CHART CARD */
+.chart-card {
+  background: var(--warm-white);
+  color: var(--ink);
+  width: 100%;
+  max-width: 1000px;
+  min-width: 680px;
+  margin: 0 auto;
+  border: 1px solid rgba(201,146,42,0.3);
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  position: relative;
+}
+.chart-card::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, var(--terracotta), var(--gold), var(--terracotta));
+}
+
+/* CHART HEADER */
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5rem 2rem 1.2rem;
+  border-bottom: 1px solid rgba(26,18,9,0.1);
+  background: var(--parchment);
+}
+.chart-title-block {}
+.chart-main-title {
+  font-family: 'Teko', sans-serif;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.chart-main-title span {
+  font-family: 'Yapiri', serif;
+  color: var(--terracotta);
+  font-size: 2.6rem;
+  letter-spacing: 0.02em;
+}
+.chart-desc {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  margin-top: 0.5rem;
+  line-height: 1.7;
+}
+.chart-meta {
+  text-align: right;
+}
+.chart-meta-logo {
+  font-family: 'Teko', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+.chart-meta-url {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  display: block;
+  margin-top: 0.2rem;
+}
+.chart-meta-badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(184,92,56,0.1);
+  border: 1px solid var(--terracotta);
+  color: var(--terracotta);
+  padding: 0.2rem 0.6rem;
+}
+
+/* CHART BODY — two column layout */
+.chart-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 0;
+}
+.chart-left {
+  border-right: 1px solid rgba(26,18,9,0.08);
+  padding: 1.4rem 1.5rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-width: 0;
+}
+.chart-right {
+  padding: 1.4rem 1.2rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-width: 0;
+}
+
+/* SECTION LABEL */
+.section-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(184,92,56,0.2);
+}
+
+/* GLYPH CELL */
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.25rem 0.22rem;
+  border: 1px solid rgba(26,18,9,0.08);
+  background: #fff;
+  min-width: 0;
+  transition: background 0.15s;
+}
+.cell-glyph {
+  font-family: 'Yapiri', serif;
+  font-size: 1.3rem;
+  color: var(--ink);
+  line-height: 1.1;
+  display: block;
+}
+.cell-roman {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.45rem;
+  letter-spacing: 0.04em;
+  color: var(--stone);
+  display: block;
+  margin-top: 0.08rem;
+}
+/* Vowel highlight */
+.cell.vowel {
+  background: rgba(201,146,42,0.08);
+  border-color: rgba(201,146,42,0.3);
+}
+.cell.vowel .cell-glyph { color: var(--gold); }
+.cell.vowel .cell-roman { color: var(--stone); }
+/* Loanword style */
+.cell.loan {
+  background: rgba(184,92,56,0.06);
+  border-color: rgba(184,92,56,0.25);
+}
+.cell.loan .cell-glyph { color: var(--terracotta); }
+/* Numeral style */
+.cell.num {
+  background: rgba(44,36,22,0.04);
+  border-color: rgba(26,18,9,0.12);
+}
+/* Diacritic style */
+.cell.diac {
+  background: rgba(139,115,85,0.07);
+  border-color: rgba(139,115,85,0.25);
+}
+.cell.diac .cell-glyph { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; }
+
+/* VOWELS ROW */
+.vowels-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+/* CONSONANT GRID */
+.consonant-grid { overflow-x: auto; }
+.cg-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cg-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--stone);
+  padding: 0.25rem 0.4rem;
+  text-align: center;
+  background: rgba(26,18,9,0.04);
+  border: 1px solid rgba(26,18,9,0.07);
+  white-space: nowrap;
+}
+.cg-table th.row-header {
+  text-align: left;
+  font-size: 0.48rem;
+  color: var(--stone);
+  letter-spacing: 0.1em;
+  min-width: 68px;
+  background: rgba(26,18,9,0.03);
+}
+.cg-table td {
+  padding: 3px;
+  border: none;
+}
+.cg-table td .cell {
+  width: 100%;
+}
+
+/* NASAL + FRICATIVE rows */
+.char-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.row-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.row-group-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 0.15rem;
+}
+
+/* BOTTOM ROWS — nasals + fricatives side by side */
+.lower-consonants {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* NUMERALS grid */
+.numerals-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+/* PUNCT row */
+.punct-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+/* DIAC row */
+.diac-row {
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+}
+
+/* CHART FOOTER */
+.chart-footer {
+  background: var(--parchment);
+  border-top: 1px solid rgba(26,18,9,0.1);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chart-footer-note {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: var(--stone);
+  line-height: 1.7;
+}
+.chart-footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  color: var(--stone-light);
+  text-align: right;
+}
+
+/* PRINT BUTTON */
+.print-bar {
+  max-width: 1000px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.print-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone-light);
+  background: none;
+  border: 1px solid rgba(196,180,154,0.2);
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.print-btn:hover { color:var(--gold-light); border-color:var(--gold); }
+
+/* FOOTER */
+footer { background: var(--charcoal); border-top:1px solid rgba(201,146,42,0.15); padding:3rem 5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+.footer-logo { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:300; letter-spacing:0.15em; color:var(--gold-light); }
+.footer-copy { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; color:var(--stone); line-height:1.8; text-align:right; }
+
+/* SOCIAL */
+.social-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid rgba(196,180,154,0.1); color:var(--stone-light); text-decoration:none; transition:all 0.25s; }
+.social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+.social-link svg { width:15px; height:15px; fill:currentColor; }
+.footer-social { display:flex; gap:0.8rem; }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  nav { padding:1rem 1.5rem; }
+  .nav-badge { display:none; }
+  .page-hero, .chart-wrapper { padding-left:1.5rem; padding-right:1.5rem; }
+  .chart-body { grid-template-columns:1fr; }
+  .chart-left { border-right:none; border-bottom:1px solid rgba(26,18,9,0.08); }
+  footer { flex-direction:column; text-align:center; padding:2.5rem 1.5rem; }
+  .footer-copy { text-align:center; }
+  .footer-social { justify-content:center; }
+}
+@media(max-width:700px) {
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .vowels-row { grid-template-columns:repeat(3,1fr); }
+  .lower-consonants { grid-template-columns:1fr; }
+  .numerals-grid { grid-template-columns:repeat(5,1fr); }
+}
+
+/* PRINT STYLES */
+@media print {
+  body { background:#fff; }
+  nav, .page-hero, .print-bar, footer, .mobile-menu, .hamburger { display:none; }
+  .chart-wrapper { padding:0; }
+  .chart-card { box-shadow:none; border:none; max-width:100%; }
+  .chart-card::before { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="script.html">Script</a></li>
+    <li><a href="yapiri-specification.html">Spec</a></li>
+    <li><a href="try.html">Try</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="script.html" onclick="closeMenu()">Script</a>
+  <a href="yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="try.html" onclick="closeMenu()">Try</a>
+  <a href="download.html" onclick="closeMenu()">Download</a>
+  <a href="community.html" onclick="closeMenu()">Community</a>
+  <a href="blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<div class="page-hero">
+  <a href="community.html" class="back-btn">← Community</a>
+  <p class="page-eyebrow">Character Reference</p>
+  <h1 class="page-title">Yapiri <em>Script Chart</em></h1>
+  <p class="page-subtitle">All 48 characters — vowels, consonants, numerals, diacritics, and punctuation — at a glance. Printable A4.</p>
+</div>
+
+<div class="chart-wrapper">
+
+  <div class="print-bar">
+    <button class="print-btn" onclick="window.print()">⎙ Print / Save PDF</button>
+  </div>
+
+  <!-- THE CHART CARD -->
+  <div class="chart-card">
+
+    <!-- HEADER -->
+    <div class="chart-header">
+      <div class="chart-title-block">
+        <div class="chart-main-title">
+          YAPIRI &nbsp;<span>&#xE006;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</span>
+        </div>
+        <div class="chart-desc">
+          A phonemic alphabet for Kokborok · 48 characters · one symbol, one sound<br>
+          Borok people of Tripura, Northeast India
+        </div>
+      </div>
+      <div class="chart-meta">
+        <div class="chart-meta-logo">YAPIRI SCRIPT</div>
+        <span class="chart-meta-url">yapiriscript.com</span>
+        <span class="chart-meta-badge">v1.0 · May 2026</span>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="chart-body">
+
+      <!-- LEFT PANEL -->
+      <div class="chart-left">
+
+        <!-- VOWELS -->
+        <div>
+          <div class="section-lbl">Vowels — 6 independent letters</div>
+          <div class="vowels-row">
+            <div class="cell vowel"><span class="cell-glyph">&#xE000;</span><span class="cell-roman">a</span></div>
+            <div class="cell vowel"><span class="cell-glyph">&#xE001;</span><span class="cell-roman">e</span></div>
+            <div class="cell vowel"><span class="cell-glyph">&#xE002;</span><span class="cell-roman">i</span></div>
+            <div class="cell vowel"><span class="cell-glyph">&#xE003;</span><span class="cell-roman">u</span></div>
+            <div class="cell vowel"><span class="cell-glyph">&#xE004;</span><span class="cell-roman">o</span></div>
+            <div class="cell vowel"><span class="cell-glyph">&#xE005;</span><span class="cell-roman">ə</span></div>
+          </div>
+        </div>
+
+        <!-- CONSONANTS — stop grid -->
+        <div class="consonant-grid">
+          <div class="section-lbl">Consonants — 25 characters</div>
+          <table class="cg-table">
+            <thead>
+              <tr>
+                <th class="row-header"></th>
+                <th>Voiceless</th>
+                <th>Aspirated</th>
+                <th>Voiced</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="row-header">Bilabial</th>
+                <td><div class="cell"><span class="cell-glyph">&#xE006;</span><span class="cell-roman">p</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE009;</span><span class="cell-roman">ph</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE00C;</span><span class="cell-roman">b</span></div></td>
+              </tr>
+              <tr>
+                <th class="row-header">Dental / Alv.</th>
+                <td><div class="cell"><span class="cell-glyph">&#xE007;</span><span class="cell-roman">t</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE00A;</span><span class="cell-roman">th</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE00D;</span><span class="cell-roman">d</span></div></td>
+              </tr>
+              <tr>
+                <th class="row-header">Velar</th>
+                <td><div class="cell"><span class="cell-glyph">&#xE008;</span><span class="cell-roman">k</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE00B;</span><span class="cell-roman">kh</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE00E;</span><span class="cell-roman">g</span></div></td>
+              </tr>
+              <tr>
+                <th class="row-header">Palatal Aff.</th>
+                <td><div class="cell"><span class="cell-glyph">&#xE00F;</span><span class="cell-roman">ch</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE011;</span><span class="cell-roman">chh</span></div></td>
+                <td><div class="cell"><span class="cell-glyph">&#xE010;</span><span class="cell-roman">j</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- LOWER CONSONANTS -->
+        <div class="lower-consonants">
+          <div>
+            <div class="row-group-label">Nasals</div>
+            <div class="char-row">
+              <div class="cell"><span class="cell-glyph">&#xE012;</span><span class="cell-roman">m</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE013;</span><span class="cell-roman">n</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE014;</span><span class="cell-roman">n′</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE015;</span><span class="cell-roman">ng</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="row-group-label">Fricatives &amp; Approximants</div>
+            <div class="char-row">
+              <div class="cell"><span class="cell-glyph">&#xE016;</span><span class="cell-roman">s</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE01E;</span><span class="cell-roman">h</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE017;</span><span class="cell-roman">r</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE018;</span><span class="cell-roman">l</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE01C;</span><span class="cell-roman">y</span></div>
+              <div class="cell"><span class="cell-glyph">&#xE01D;</span><span class="cell-roman">w</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LOANWORD -->
+        <div>
+          <div class="row-group-label" style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);margin-bottom:0.3rem;">Loanword — for borrowed vocabulary (f, v, z)</div>
+          <div class="char-row">
+            <div class="cell loan"><span class="cell-glyph">&#xE019;</span><span class="cell-roman">v</span></div>
+            <div class="cell loan"><span class="cell-glyph">&#xE01A;</span><span class="cell-roman">f</span></div>
+            <div class="cell loan"><span class="cell-glyph">&#xE01B;</span><span class="cell-roman">z</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="chart-right">
+
+        <!-- NUMERALS -->
+        <div>
+          <div class="section-lbl">Numerals — 0 to 9</div>
+          <div class="numerals-grid">
+            <div class="cell num"><span class="cell-glyph">&#xE01F;</span><span class="cell-roman">0</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE020;</span><span class="cell-roman">1</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE021;</span><span class="cell-roman">2</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE022;</span><span class="cell-roman">3</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE023;</span><span class="cell-roman">4</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE024;</span><span class="cell-roman">5</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE025;</span><span class="cell-roman">6</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE026;</span><span class="cell-roman">7</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE027;</span><span class="cell-roman">8</span></div>
+            <div class="cell num"><span class="cell-glyph">&#xE028;</span><span class="cell-roman">9</span></div>
+          </div>
+        </div>
+
+        <!-- DIACRITICS -->
+        <div>
+          <div class="section-lbl">Diacritics</div>
+          <div class="diac-row">
+            <div class="cell diac" style="flex:1;min-width:0;">
+              <span class="cell-glyph">&#x25CC;&#x0301;</span>
+              <span class="cell-roman">high tone · U+0301</span>
+            </div>
+            <div class="cell diac" style="flex:1;min-width:0;">
+              <span class="cell-glyph">&#x25CC;&#x030B;</span>
+              <span class="cell-roman">reduplication · U+030B</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PUNCTUATION -->
+        <div>
+          <div class="section-lbl">Punctuation</div>
+          <div class="punct-row">
+            <div class="cell"><span class="cell-glyph">&#xE029;</span><span class="cell-roman">,</span></div>
+            <div class="cell"><span class="cell-glyph">&#xE02A;</span><span class="cell-roman">.</span></div>
+            <div class="cell"><span class="cell-glyph">&#xE02B;</span><span class="cell-roman">!</span></div>
+            <div class="cell"><span class="cell-glyph">&#xE02C;</span><span class="cell-roman">"</span></div>
+            <div class="cell"><span class="cell-glyph">&#xE02D;</span><span class="cell-roman">?</span></div>
+          </div>
+        </div>
+
+        <!-- ENCODING NOTE -->
+        <div style="margin-top:auto; padding-top:1rem; border-top:1px solid rgba(26,18,9,0.07);">
+          <div class="row-group-label" style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);margin-bottom:0.6rem;">Encoding</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.55rem;line-height:1.8;color:var(--stone);">
+            Unicode PUA<br>
+            U+E000 – U+E02D<br>
+            Diacritics: U+0301, U+030B<br>
+            Font: Yapiri OTF / TTF / WOFF2
+          </div>
+        </div>
+
+        <!-- READING RULE -->
+        <div style="background:rgba(201,146,42,0.08);border:1px solid rgba(201,146,42,0.25);padding:0.8rem;margin-top:0.5rem;">
+          <div class="row-group-label" style="font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Reading Rule</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.55rem;line-height:1.8;color:var(--stone);">
+            Left-to-right · no inherent vowels<br>
+            Every sound must be written<br>
+            One symbol = one phoneme
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CHART FOOTER -->
+    <div class="chart-footer">
+      <div class="chart-footer-note">
+        Requires Yapiri font installed · Download free at yapiriscript.com/download.html<br>
+        Glyphs shown as boxes without the font — this is normal for Unicode PUA scripts
+      </div>
+      <div class="chart-footer-copy">
+        © 2026 Animesh Debbarma<br>
+        yapiriscript.com · v1.0
+      </div>
+    </div>
+
+  </div><!-- /chart-card -->
+</div><!-- /chart-wrapper -->
+
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61589838830572" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+  </div>
+  <div class="footer-copy">
+    Created for the Kokborok language<br>
+    Borok people of Tripura, India<br>
+    © 2026 Animesh Debbarma · yapiriscript.com
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){ const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
+  function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+</script>
+</body>
+</html>
