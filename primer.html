@@ -156,6 +156,51 @@
     .words-grid { grid-template-columns:1fr; }
     .glyph-card { min-width:68px; }
   }
+
+  @media print {
+  @page { size:A4; margin:1.5cm; }
+  nav, .mobile-menu, .progress-nav, footer { display:none !important; }
+  body { background:#fff !important; color:#111 !important; }
+  .page-hero { background:#fff !important; padding:2rem 0 1.5rem; border-bottom:2px solid #111; }
+  .page-eyebrow { color:#666 !important; }
+  .page-title { color:#111 !important; font-size:2.5rem; }
+  .page-title em { color:#8b4513 !important; }
+  .page-subtitle { color:#444 !important; }
+  .gold-line { background:#8b4513 !important; }
+  .hero-glyph { display:none; }
+  .primer-section { padding:1.5rem 0; border-bottom:1px solid #ddd; max-width:100%; }
+  .section-eyebrow { color:#8b4513 !important; }
+  .section-title { color:#111 !important; }
+  .section-body { color:#444 !important; }
+  .callout { border-left-color:#8b4513 !important; background:#f9f4ee !important; color:#444 !important; }
+  .callout strong { color:#111 !important; }
+  .callout.terra { border-left-color:#b85c38 !important; }
+  .group-label { color:#8b4513 !important; border-bottom-color:#ddd !important; }
+  .glyph-card { border-color:#ddd !important; background:#fafafa !important; break-inside:avoid; }
+  .glyph-card.loanword { background:#fff8f0 !important; border-color:#d4884a !important; }
+  .glyph-char { color:#111 !important; }
+  .glyph-roman { color:#8b4513 !important; }
+  .glyph-hint { color:#888 !important; }
+  .diacritic-grid { grid-template-columns:1fr 1fr 1fr; }
+  .diacritic-card { border-color:#ddd !important; background:#fafafa !important; break-inside:avoid; }
+  .diacritic-display { color:#8b4513 !important; }
+  .diacritic-name { color:#111 !important; }
+  .diacritic-code { color:#b85c38 !important; }
+  .diacritic-body { color:#444 !important; }
+  .rules-list { max-width:100%; }
+  .rule-item { break-inside:avoid; border-color:#ddd !important; }
+  .rule-num { background:#f9f4ee !important; color:#b85c38 !important; }
+  .rule-title { color:#8b4513 !important; }
+  .rule-text { color:#444 !important; }
+  .rule-example { color:#888 !important; }
+  .words-grid { grid-template-columns:1fr 1fr 1fr; }
+  .word-card { border-color:#ddd !important; background:#fafafa !important; break-inside:avoid; }
+  .word-roman { color:#8b4513 !important; }
+  .word-meaning { color:#666 !important; }
+  .word-breakdown { color:#888 !important; border-top-color:#ddd !important; }
+  .download-section { display:none; }
+  .reveal { opacity:1 !important; transform:none !important; }
+}
 </style>
 </head>
 <body>
