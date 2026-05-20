@@ -175,6 +175,19 @@
     .roles-grid{grid-template-columns:1fr 1fr;}
     .social-grid{grid-template-columns:1fr;}
   }
+
+  /* LEARNING RESOURCES */
+  .resources-section { padding:6rem 5rem; border-top:1px solid rgba(196,180,154,0.08); }
+  .resources-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:1000px; margin-top:2.5rem; }
+  .resource-card { border:1px solid rgba(196,180,154,0.12); padding:2.5rem; background:rgba(44,36,22,0.3); transition:all 0.25s; text-decoration:none; display:flex; flex-direction:column; }
+  .resource-card:hover { border-color:rgba(201,146,42,0.35); background:rgba(44,36,22,0.5); transform:translateY(-3px); }
+  .resource-card-icon { font-family:'Yapiri',serif; font-size:2.5rem; color:rgba(201,146,42,0.4); margin-bottom:1.5rem; line-height:1; }
+  .resource-card-tag { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.8rem; }
+  .resource-card-title { font-family:'Teko',sans-serif; font-size:1.8rem; font-weight:300; color:var(--parchment); letter-spacing:0.03em; margin-bottom:0.8rem; }
+  .resource-card-desc { font-size:1rem; font-weight:300; color:var(--stone-light); line-height:1.75; margin-bottom:2rem; flex:1; }
+  .resource-card-link { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:0.4rem; margin-top:auto; }
+  .resource-card-link::after { content:'→'; }
+  @media(max-width:700px) { .resources-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -308,6 +321,33 @@
       </div>
       <p class="social-card-desc">The most direct channel for Borok community members — updates, resources, and support in Kokborok.</p>
       <span class="social-card-link">Join on WhatsApp</span>
+    </a>
+
+  </div>
+</section>
+
+  <!-- LEARNING RESOURCES -->
+<section class="resources-section">
+  <p class="section-label reveal">Learn Yapiri</p>
+  <h2 class="section-heading reveal">Learning Resources</h2>
+  <div class="gold-line reveal"></div>
+  <p class="body-text reveal">Whether you are just starting out or need a quick reference, these resources will help you read and write in Yapiri with confidence. Both are free and available online.</p>
+  <div class="resources-grid reveal">
+
+    <a href="primer.html" class="resource-card">
+      <div class="resource-card-icon">&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</div>
+      <div class="resource-card-tag">Beginner's Guide</div>
+      <div class="resource-card-title">Yapiri Primer</div>
+      <p class="resource-card-desc">A complete beginner's guide to reading and writing in Yapiri — covering all vowels, consonants, numerals, diacritics, writing rules, and your first words in Kokborok. No prior knowledge required.</p>
+      <span class="resource-card-link">Read the Primer</span>
+    </a>
+
+    <a href="chart.html" class="resource-card">
+      <div class="resource-card-icon">&#xE008;&#xE013;&#xE000;</div>
+      <div class="resource-card-tag">Quick Reference</div>
+      <div class="resource-card-title">Reference Chart</div>
+      <p class="resource-card-desc">The complete Yapiri character inventory at a glance — all 48 characters with romanization and Unicode codepoints. Hover any character for pronunciation hints. Printable for offline use.</p>
+      <span class="resource-card-link">View the Chart</span>
     </a>
 
   </div>
