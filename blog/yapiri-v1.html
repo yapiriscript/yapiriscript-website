@@ -46,7 +46,7 @@
   .mobile-menu a:hover { color:var(--gold-light); }
 
   /* POST HERO */
-  .post-hero { padding:9rem 5rem 4rem; background:linear-gradient(to bottom,#0e0c06,var(--ink)); border-bottom:1px solid rgba(201,146,42,0.12); position:relative; overflow:hidden; max-width:860px; }
+  .post-hero { padding:9rem 5rem 4rem; background:linear-gradient(to bottom,#0e0c06,var(--ink)); border-bottom:1px solid rgba(201,146,42,0.12); position:relative; overflow:hidden; max-width:860px; margin:0 auto;}
   .post-hero::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); }
   .back-link { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); text-decoration:none; border-bottom:1px solid rgba(196,180,154,0.2); padding-bottom:0.1rem; transition:color 0.2s; display:inline-block; margin-bottom:2.5rem; }
   .back-link:hover { color:var(--gold-light); }
@@ -59,7 +59,7 @@
   .meta-item svg { width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.5; }
 
   /* STATS BAR */
-  .stats-bar { display:flex; gap:0; border:1px solid rgba(196,180,154,0.1); border-top:none; max-width:860px; }
+  .stats-bar { display:flex; gap:0; border:1px solid rgba(196,180,154,0.1); border-top:none; max-width:860px; margin:0 auto; }
   .stat-item { flex:1; padding:1rem 1.5rem; display:flex; align-items:center; gap:0.75rem; border-right:1px solid rgba(196,180,154,0.1); }
   .stat-item:last-child { border-right:none; }
   .stat-icon { width:16px; height:16px; fill:none; stroke:var(--stone); stroke-width:1.5; flex-shrink:0; }
@@ -67,7 +67,7 @@
   .stat-lbl { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); }
 
   /* POST CONTENT */
-  .post-content { max-width:720px; padding:4rem 5rem; margin:0; }
+  .post-content { max-width:720px; padding:4rem 5rem; margin:0 auto; }
   .post-body { font-size:1.15rem; font-weight:300; line-height:2; color:var(--stone-light); }
   .post-body p { margin-bottom:1.8rem; }
   .post-body p:last-child { margin-bottom:0; }
@@ -79,7 +79,7 @@
   .post-glyph-display { font-family:'Yapiri',serif; font-size:3rem; color:var(--gold-light); letter-spacing:0.2em; margin:1rem 0; display:block; }
 
   /* LIKE SECTION */
-  .like-section { max-width:720px; padding:0 5rem 3rem; }
+  .like-section { max-width:720px; padding:0 5rem 3rem; margin:0 auto;}
   .like-divider { border:none; border-top:1px solid rgba(196,180,154,0.1); margin-bottom:2.5rem; }
   .like-area { display:flex; align-items:center; gap:1.5rem; }
   .like-btn { background:rgba(255,255,255,0.03); border:1px solid rgba(196,180,154,0.15); color:var(--stone-light); padding:0.8rem 1.5rem; font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; transition:all 0.25s; display:flex; align-items:center; gap:0.6rem; }
@@ -91,7 +91,7 @@
   .like-label { font-size:1rem; font-weight:300; font-style:italic; color:var(--stone); }
 
   /* COMMENTS SECTION */
-  .comments-section { background:var(--charcoal); padding:4rem 5rem; border-top:1px solid rgba(201,146,42,0.12); }
+  .comments-section { background:var(--charcoal); border-top:1px solid rgba(201,146,42,0.12); max-width:100%; padding:4rem calc((100% - 860px)/2); }
   .comments-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:2.5rem; }
   .comments-title { font-family:'Teko',sans-serif; font-size:2rem; font-weight:300; color:var(--parchment); letter-spacing:0.03em; }
   .comments-count { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--stone); }
