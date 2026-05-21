@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapiri Primer — Learn to Read & Write Yapiri Script</title>
+<meta name="description" content="A beginner's guide to the Yapiri script — learn the alphabet, vowels, consonants, numerals, and your first words in Kokborok.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yapiriscript.com/primer.html">
+<meta property="og:title" content="Yapiri Primer — Learn to Read & Write Yapiri Script">
+<meta property="og:description" content="A beginner's guide to reading and writing in the Yapiri script for Kokborok.">
+<meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<meta property="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Yapiri'; src:url('assets/fonts/Yapiri.woff2') format('woff2'),url('assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--ink); color:var(--parchment); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; line-height:1.7; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.2rem 3rem; background:rgba(26,18,9,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,146,42,0.2); }
+  .nav-logo { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:400; letter-spacing:0.15em; color:var(--gold-light); text-decoration:none; }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; align-items:center; }
+  .nav-links a { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone-light); text-decoration:none; transition:color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--gold-light); }
+  .nav-badge { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; background:rgba(184,92,56,0.2); border:1px solid var(--terracotta); color:var(--terracotta); padding:0.3rem 0.75rem; white-space:nowrap; }
+  .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; z-index:200; }
+  .hamburger span { display:block; width:24px; height:2px; background:var(--stone-light); transition:all 0.3s; transform-origin:center; }
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); background:var(--gold-light); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); background:var(--gold-light); }
+  .mobile-menu { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(26,18,9,0.98); z-index:150; flex-direction:column; align-items:center; justify-content:center; backdrop-filter:blur(20px); }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu-close { position:absolute; top:1.4rem; right:1.5rem; background:none; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); width:42px; height:42px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.4rem; }
+  .mobile-menu a { font-family:'Teko',sans-serif; font-size:clamp(2.5rem,8vw,4rem); font-weight:300; letter-spacing:0.08em; color:var(--stone-light); text-decoration:none; padding:0.6rem 2rem; transition:color 0.2s; border-bottom:1px solid rgba(196,180,154,0.06); width:100%; text-align:center; }
+  .mobile-menu a:hover { color:var(--gold-light); }
+
+  /* HERO */
+  .page-hero { padding:10rem 5rem 5rem; background:linear-gradient(to bottom,#0e0c06,var(--ink)); border-bottom:1px solid rgba(201,146,42,0.15); position:relative; overflow:hidden; }
+  .page-hero::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); }
+  .page-eyebrow { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1rem; }
+  .page-title { font-family:'Teko',sans-serif; font-size:clamp(3rem,7vw,6rem); font-weight:300; line-height:1; color:var(--parchment); margin-bottom:1.5rem; }
+  .page-title em { color:var(--gold-light); font-style:italic; font-family:'Cormorant Garamond',serif; }
+  .page-subtitle { font-size:1.2rem; font-weight:300; font-style:italic; color:var(--stone-light); max-width:600px; line-height:1.7; margin-bottom:1rem; }
+  .gold-line { width:60px; height:2px; background:var(--gold); margin:1.5rem 0 2rem; }
+  .hero-glyph { position:absolute; right:5rem; top:50%; transform:translateY(-50%); font-family:'Yapiri',serif; font-size:clamp(6rem,12vw,10rem); color:rgba(201,146,42,0.07); line-height:1; pointer-events:none; }
+  .back-btn { display:inline-flex; align-items:center; gap:0.5rem; font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone-light); text-decoration:none; border:1px solid rgba(196,180,154,0.2); padding:0.45rem 0.9rem; margin-bottom:2rem; transition:color 0.2s,border-color 0.2s; }
+  .back-btn:hover { color:var(--gold-light); border-color:var(--gold); }
+
+  /* PROGRESS NAV */
+  .progress-nav { background:var(--charcoal); border-bottom:1px solid rgba(201,146,42,0.1); padding:1rem 5rem; display:flex; gap:1.5rem; overflow-x:auto; scrollbar-width:none; position:sticky; top:70px; z-index:50; }
+  .progress-nav::-webkit-scrollbar { display:none; }
+  .prog-link { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--stone); text-decoration:none; white-space:nowrap; transition:color 0.2s; }
+  .prog-link:hover { color:var(--gold-light); }
+
+  /* SECTIONS */
+  .primer-section { padding:5rem; border-bottom:1px solid rgba(196,180,154,0.08); max-width:960px; margin:0 auto; }
+  .section-eyebrow { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.8rem; }
+  .section-title { font-family:'Teko',sans-serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:300; color:var(--parchment); margin-bottom:0.5rem; letter-spacing:0.02em; }
+  .section-title em { color:var(--gold-light); font-style:italic; font-family:'Cormorant Garamond',serif; }
+  .section-body { font-size:1.1rem; font-weight:300; color:var(--stone-light); line-height:1.85; max-width:680px; margin-bottom:2rem; }
+  .section-body strong { color:var(--parchment); font-weight:400; }
+
+  /* CALLOUT */
+  .callout { border-left:3px solid var(--gold); padding:1.2rem 1.5rem; background:rgba(201,146,42,0.05); margin:2rem 0; font-size:1rem; color:var(--stone-light); line-height:1.75; max-width:680px; }
+  .callout strong { color:var(--parchment); }
+  .callout.terra { border-left-color:var(--terracotta); background:rgba(184,92,56,0.05); }
+
+  /* GLYPH GRID */
+  .glyph-grid { display:flex; flex-wrap:wrap; gap:0.5rem; margin:2rem 0; }
+  .glyph-card { background:rgba(255,255,255,0.03); border:1px solid rgba(196,180,154,0.1); padding:1rem 0.8rem; text-align:center; min-width:80px; transition:all 0.2s; }
+  .glyph-card:hover { border-color:rgba(201,146,42,0.3); background:rgba(184,92,56,0.06); }
+  .glyph-char { font-family:'Yapiri',serif; font-size:2.2rem; color:var(--parchment); display:block; line-height:1.2; margin-bottom:0.4rem; }
+  .glyph-roman { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; color:var(--gold); display:block; margin-bottom:0.2rem; }
+  .glyph-hint { font-family:'Cormorant Garamond',serif; font-size:0.82rem; font-style:italic; color:var(--stone); display:block; }
+
+  /* GROUP LABEL */
+  .group-label { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin:2.5rem 0 0.8rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(201,146,42,0.15); }
+
+  /* LOANWORD CARDS */
+  .glyph-card.loanword { border-color:rgba(200,124,42,0.25); background:rgba(200,124,42,0.03); }
+  .glyph-card.loanword:hover { border-color:var(--gold); }
+
+  /* DIACRITIC CARDS */
+  .diacritic-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; margin:2rem 0; }
+  .diacritic-card { border:1px solid rgba(196,180,154,0.1); padding:1.8rem; background:rgba(255,255,255,0.02); }
+  .diacritic-display { font-family:'Yapiri',serif; font-size:2.4rem; color:var(--gold-light); margin-bottom:0.5rem; line-height:1.4; }
+  .diacritic-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; color:var(--stone); margin-bottom:1rem; }
+  .diacritic-name { font-family:'Teko',sans-serif; font-size:1.3rem; font-weight:300; color:var(--parchment); letter-spacing:0.05em; margin-bottom:0.4rem; }
+  .diacritic-code { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; color:var(--terracotta); margin-bottom:0.8rem; }
+  .diacritic-body { font-size:0.95rem; font-weight:300; color:var(--stone-light); line-height:1.7; }
+
+  /* RULES */
+  .rules-list { display:flex; flex-direction:column; gap:1rem; margin:2rem 0; max-width:720px; }
+  .rule-item { display:grid; grid-template-columns:48px 1fr; border:1px solid rgba(196,180,154,0.08); background:rgba(255,255,255,0.02); }
+  .rule-num { background:rgba(184,92,56,0.1); display:flex; align-items:center; justify-content:center; font-family:'Teko',sans-serif; font-size:1.3rem; color:var(--terracotta); font-weight:300; }
+  .rule-body { padding:1rem 1.2rem; }
+  .rule-title { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem; }
+  .rule-text { font-size:0.98rem; font-weight:300; color:var(--stone-light); line-height:1.65; }
+  .rule-example { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--stone); margin-top:0.4rem; }
+  .rule-yapiri { font-family:'Yapiri',serif; font-size:1.1rem; color:var(--parchment); }
+
+  /* WORDS SECTION */
+  .words-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; margin:2rem 0; }
+  .word-card { border:1px solid rgba(196,180,154,0.12); background:rgba(44,36,22,0.3); padding:2rem; transition:all 0.25s; }
+  .word-card:hover { border-color:rgba(201,146,42,0.3); background:rgba(44,36,22,0.5); }
+  .word-yapiri { font-family:'Yapiri',serif; font-size:2.5rem; color:var(--parchment); display:block; margin-bottom:0.8rem; line-height:1.3; }
+  .word-roman { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:300; color:var(--gold-light); letter-spacing:0.05em; display:block; margin-bottom:0.3rem; }
+  .word-meaning { font-family:'Cormorant Garamond',serif; font-size:1rem; font-style:italic; color:var(--stone-light); display:block; margin-bottom:0.8rem; }
+  .word-breakdown { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.1em; color:var(--stone); line-height:1.8; border-top:1px solid rgba(196,180,154,0.08); padding-top:0.8rem; margin-top:0.5rem; }
+  .word-breakdown span { color:var(--terracotta); }
+
+  /* SAVE/PRINT SECTION */
+  .download-section { background:var(--charcoal); padding:5rem; text-align:center; border-top:1px solid rgba(201,146,42,0.12); }
+  .download-title { font-family:'Teko',sans-serif; font-size:2.5rem; font-weight:300; color:var(--parchment); margin-bottom:1rem; }
+  .download-body { font-size:1.1rem; font-weight:300; font-style:italic; color:var(--stone-light); margin-bottom:2.5rem; max-width:500px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .print-steps { list-style:none; display:inline-flex; flex-direction:column; gap:0.6rem; text-align:left; margin:0 auto 2.5rem; border:1px solid rgba(201,146,42,0.2); background:rgba(201,146,42,0.04); padding:1.4rem 1.8rem; max-width:480px; width:100%; }
+  .print-steps li { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.06em; color:var(--stone-light); display:flex; align-items:baseline; gap:0.6em; }
+  .print-steps li::before { content:'→'; color:var(--gold); flex-shrink:0; }
+  .print-steps li strong { color:var(--parchment); font-weight:400; }
+  .print-steps li em { color:var(--gold-light); font-style:normal; }
+  .download-btn { display:inline-flex; align-items:center; gap:0.75rem; background:rgba(184,92,56,0.15); border:1px solid var(--terracotta); color:var(--terracotta); font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; padding:1rem 2.5rem; text-decoration:none; transition:all 0.25s; cursor:pointer; }
+  .download-btn:hover { background:rgba(184,92,56,0.3); color:var(--terra-light); }
+
+  /* FOOTER */
+  footer { background:#080704; padding:3rem 5rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(196,180,154,0.08); flex-wrap:wrap; gap:1.5rem; }
+  .footer-logo { font-family:'Teko',sans-serif; font-size:1.4rem; font-weight:300; color:var(--stone); letter-spacing:0.15em; }
+  .footer-copy { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; color:rgba(196,180,154,0.3); text-align:right; line-height:1.8; }
+  .social-link { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border:1px solid rgba(196,180,154,0.1); color:var(--stone-light); text-decoration:none; transition:all 0.25s; position:relative; overflow:hidden; }
+  .social-link::before { content:''; position:absolute; inset:0; background:rgba(201,146,42,0.15); opacity:0; transition:opacity 0.25s; }
+  .social-link:hover { border-color:var(--gold); color:var(--gold-light); }
+  .social-link:hover::before { opacity:1; }
+  .social-link svg { width:15px; height:15px; position:relative; z-index:1; fill:currentColor; }
+  .footer-social { display:flex; gap:0.8rem; align-items:center; }
+
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.8s ease,transform 0.8s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  @media(max-width:900px) {
+    .page-hero, .primer-section { padding-left:2rem; padding-right:2rem; }
+    .progress-nav { padding:1rem 2rem; }
+    .hero-glyph { display:none; }
+    .diacritic-grid { grid-template-columns:1fr; }
+    .download-section { padding:4rem 2rem; }
+    footer { flex-direction:column; text-align:center; padding:2.5rem 2rem; }
+    .footer-copy { text-align:center; }
+    nav { padding:1rem 1.5rem; }
+    .nav-badge { display:none; }
+  }
+  @media(max-width:700px) {
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .words-grid { grid-template-columns:1fr; }
+    .glyph-card { min-width:68px; }
+  }
+
+  @media print {
+    @page { size:A4; margin:1.5cm; }
+    nav, .mobile-menu, .progress-nav, footer { display:none !important; }
+    body { color:#111 !important; background:#fff !important; }
+    .page-hero { background:#fff !important; padding:2rem 0 1.5rem; border-bottom:2px solid #111; }
+    .page-eyebrow { color:#666 !important; }
+    .page-title { color:#111 !important; font-size:2.5rem; }
+    .page-title em { color:#8b4513 !important; }
+    .page-subtitle { color:#444 !important; }
+    .gold-line { background:#8b4513 !important; }
+    .hero-glyph { display:none; }
+    .primer-section { padding:1.5rem 0; border-bottom:1px solid #ddd; max-width:100%; }
+    .section-eyebrow { color:#8b4513 !important; }
+    .section-title { color:#111 !important; }
+    .primer-section .section-body { color:#333333 !important; }
+    .primer-section .section-body strong { color:#111111 !important; }
+    .callout { border-left-color:#8b4513 !important; background:#f9f4ee !important; color:#444 !important; }
+    .callout strong { color:#111 !important; }
+    .callout.terra { border-left-color:#b85c38 !important; }
+    .group-label { color:#8b4513 !important; border-bottom-color:#ddd !important; }
+    .glyph-card { border-color:#ddd !important; background:#fafafa !important; break-inside:avoid; }
+    .glyph-card.loanword { background:#fff8f0 !important; border-color:#d4884a !important; }
+    .glyph-char { color:#111 !important; }
+    .glyph-roman { color:#8b4513 !important; }
+    .glyph-hint { color:#888 !important; }
+    .diacritic-grid { grid-template-columns:1fr 1fr 1fr; }
+    .diacritic-card { border-color:#ddd !important; background:#fafafa !important; break-inside:avoid; }
+    .diacritic-display { color:#8b4513 !important; }
+    .diacritic-label { color:#888 !important; }
+    .diacritic-name { color:#111 !important; }
+    .diacritic-code { color:#b85c38 !important; }
+    .diacritic-body { color:#444 !important; }
+    .rules-list { max-width:100%; }
+    .rule-item { break-inside:avoid; border-color:#ddd !important; }
+    .rule-num { background:#f9f4ee !important; color:#b85c38 !important; }
+    .rule-title { color:#8b4513 !important; }
+    .rule-text { color:#444 !important; }
+    .rule-example { color:#888 !important; }
+    .words-grid .word-card { background:#fff !important; border:1px solid #ddd !important; break-inside:avoid; }
+    .words-grid .word-card .word-yapiri { color:#000000 !important; font-family:'Yapiri',serif !important; }
+    .words-grid .word-card .word-roman { color:#333333 !important; }
+    .words-grid .word-card .word-meaning { color:#444444 !important; }
+    .words-grid .word-card .word-breakdown { color:#555555 !important; border-top-color:#ddd !important; }
+    .download-section { display:none; }
+    .reveal { opacity:1 !important; transform:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="script.html">Script</a></li>
+    <li><a href="yapiri-specification.html">Spec</a></li>
+    <li><a href="try.html">Try</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="community.html" class="active">Community</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="script.html" onclick="closeMenu()">Script</a>
+  <a href="yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="try.html" onclick="closeMenu()">Try</a>
+  <a href="download.html" onclick="closeMenu()">Download</a>
+  <a href="community.html" onclick="closeMenu()">Community</a>
+  <a href="blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <a href="community.html" class="back-btn">← Community</a>
+  <p class="page-eyebrow">Beginner's Guide</p>
+  <h1 class="page-title">The Yapiri <em>Primer</em></h1>
+  <div class="gold-line"></div>
+  <p class="page-subtitle">Everything you need to start reading and writing in Yapiri — no prior knowledge required. Work through each section at your own pace.</p>
+  <div class="hero-glyph">&#xE000;&#xE006;</div>
+</div>
+
+<!-- PROGRESS NAV -->
+<nav class="progress-nav" aria-label="Section navigation">
+  <a href="#intro" class="prog-link">1. Introduction</a>
+  <a href="#vowels" class="prog-link">2. Vowels</a>
+  <a href="#consonants" class="prog-link">3. Consonants</a>
+  <a href="#loanwords" class="prog-link">4. Loanwords</a>
+  <a href="#numerals" class="prog-link">5. Numerals</a>
+  <a href="#diacritics" class="prog-link">6. Diacritics</a>
+  <a href="#rules" class="prog-link">7. Writing Rules</a>
+  <a href="#words" class="prog-link">8. First Words</a>
+  <a href="#download" class="prog-link">9. Save</a>
+</nav>
+
+<!-- § 1 INTRODUCTION -->
+<section class="primer-section reveal" id="intro">
+  <p class="section-eyebrow">Section 1</p>
+  <h2 class="section-title">What is <em>Yapiri?</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    <strong>Yapiri</strong> is a writing system created specifically for the Kokborok language — the mother tongue of the Borok people of Tripura, Northeast India. The name <em>yapiri</em> means "footprints" in Kokborok: traces of a living voice, preserved across time.
+  </p>
+  <p class="section-body">
+    Unlike Bengali or Roman script, Yapiri was designed from scratch around the actual sounds of Kokborok. Every symbol represents exactly one sound. Nothing is hidden, nothing is assumed. <strong>What you hear is what you write.</strong>
+  </p>
+  <div class="callout">
+    <strong>Good news for beginners:</strong> Yapiri is a phonemic alphabet — one symbol, one sound, every time. Once you learn the symbols, you can read anything written in Yapiri out loud, even words you've never seen before.
+  </div>
+  <p class="section-body">
+    This Primer walks you through the full alphabet, step by step — vowels, consonants, numerals, and the small but important marks that complete the system. By the end, you'll be able to read and write your first words in Yapiri.
+  </p>
+</section>
+
+<!-- § 2 VOWELS -->
+<section class="primer-section reveal" id="vowels">
+  <p class="section-eyebrow">Section 2</p>
+  <h2 class="section-title">The <em>Vowels</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    Yapiri has <strong>6 vowels</strong>. Every vowel is a full, independent letter — just like consonants. Vowels are always written after the consonant they follow. There are no hidden vowels in Yapiri.
+  </p>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE000;</span><span class="glyph-roman">a</span><span class="glyph-hint">as in "father"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE001;</span><span class="glyph-roman">e</span><span class="glyph-hint">as in "bed"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE002;</span><span class="glyph-roman">i</span><span class="glyph-hint">as in "feet"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE003;</span><span class="glyph-roman">u</span><span class="glyph-hint">as in "moon"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE004;</span><span class="glyph-roman">o</span><span class="glyph-hint">as in "go"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE005;</span><span class="glyph-roman">ə</span><span class="glyph-hint">as in "about"</span></div>
+  </div>
+  <div class="callout terra">
+    <strong>Note on ə (schwa):</strong> The schwa is the neutral mid-central vowel — the "uh" sound in unstressed syllables. In Yapiri, it <strong>never starts a word</strong>. It only appears in the middle of a word.
+  </div>
+</section>
+
+<!-- § 3 CONSONANTS -->
+<section class="primer-section reveal" id="consonants">
+  <p class="section-eyebrow">Section 3</p>
+  <h2 class="section-title">The <em>Consonants</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    Yapiri has <strong>22 native consonants</strong>, organised into phonological families. Related sounds share visual features — so once you learn one, you'll recognise its relatives. Aspirated consonants (ph, th, kh, chh) are derived from their plain counterparts through a consistent visual modification.
+  </p>
+
+  <div class="group-label reveal">Stops — Voiceless (p, t, k)</div>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE006;</span><span class="glyph-roman">p</span><span class="glyph-hint">as in "pen"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE007;</span><span class="glyph-roman">t</span><span class="glyph-hint">as in "top"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE008;</span><span class="glyph-roman">k</span><span class="glyph-hint">as in "key"</span></div>
+  </div>
+
+  <div class="group-label reveal">Stops — Aspirated (ph, th, kh)</div>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE009;</span><span class="glyph-roman">ph</span><span class="glyph-hint">breathy "p"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE00A;</span><span class="glyph-roman">th</span><span class="glyph-hint">breathy "t"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE00B;</span><span class="glyph-roman">kh</span><span class="glyph-hint">breathy "k"</span></div>
+  </div>
+
+  <div class="group-label reveal">Stops — Voiced (b, d, g)</div>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE00C;</span><span class="glyph-roman">b</span><span class="glyph-hint">as in "bird"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE00D;</span><span class="glyph-roman">d</span><span class="glyph-hint">as in "dog"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE00E;</span><span class="glyph-roman">g</span><span class="glyph-hint">as in "go"</span></div>
+  </div>
+
+  <div class="group-label reveal">Affricates (ch, j, chh)</div>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE00F;</span><span class="glyph-roman">ch</span><span class="glyph-hint">as in "chair"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE010;</span><span class="glyph-roman">j</span><span class="glyph-hint">as in "jump"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE011;</span><span class="glyph-roman">chh</span><span class="glyph-hint">breathy "ch"</span></div>
+  </div>
+
+  <div class="group-label reveal">Nasals (m, n, n′, ng)</div>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE012;</span><span class="glyph-roman">m</span><span class="glyph-hint">as in "moon"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE013;</span><span class="glyph-roman">n</span><span class="glyph-hint">as in "name"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE014;</span><span class="glyph-roman">n′</span><span class="glyph-hint">palatal n</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE015;</span><span class="glyph-roman">ng</span><span class="glyph-hint">as in "sing"</span></div>
+  </div>
+
+  <div class="group-label reveal">Fricatives & Approximants (s, h, r, l, y, w)</div>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE016;</span><span class="glyph-roman">s</span><span class="glyph-hint">as in "sun"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE01E;</span><span class="glyph-roman">h</span><span class="glyph-hint">as in "hat"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE017;</span><span class="glyph-roman">r</span><span class="glyph-hint">as in "run"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE018;</span><span class="glyph-roman">l</span><span class="glyph-hint">as in "leaf"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE01C;</span><span class="glyph-roman">y</span><span class="glyph-hint">as in "yes"</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE01D;</span><span class="glyph-roman">w</span><span class="glyph-hint">word-start only</span></div>
+  </div>
+
+  <div class="callout terra reveal">
+    <strong>Note on W:</strong> The consonant W only ever appears at the <strong>start of a word</strong>. It will never be found in the middle of a Kokborok word in the Yapiri script.
+  </div>
+</section>
+
+<!-- § 4 LOANWORDS -->
+<section class="primer-section reveal" id="loanwords">
+  <p class="section-eyebrow">Section 4</p>
+  <h2 class="section-title">Loanword <em>Characters</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    Three extra characters exist for sounds that are not native to Kokborok but appear in borrowed words from other contact languages. You'll only need these when writing loanwords.
+  </p>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card loanword"><span class="glyph-char">&#xE019;</span><span class="glyph-roman">v</span><span class="glyph-hint">loanword</span></div>
+    <div class="glyph-card loanword"><span class="glyph-char">&#xE01A;</span><span class="glyph-roman">f</span><span class="glyph-hint">loanword</span></div>
+    <div class="glyph-card loanword"><span class="glyph-char">&#xE01B;</span><span class="glyph-roman">z</span><span class="glyph-hint">loanword</span></div>
+  </div>
+  <div class="callout reveal">
+    These characters follow the same visual design grammar as the rest of the script, but are used only for foreign vocabulary. For native Kokborok words, you will never need v, f, or z.
+  </div>
+</section>
+
+<!-- § 5 NUMERALS -->
+<section class="primer-section reveal" id="numerals">
+  <p class="section-eyebrow">Section 5</p>
+  <h2 class="section-title">The <em>Numerals</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    Yapiri has its own set of <strong>10 digit glyphs</strong> for writing numbers. They follow the same decimal positional system as regular numerals — just string them left to right to form larger numbers. Each digit also carries its Kokborok name.
+  </p>
+  <div class="glyph-grid reveal">
+    <div class="glyph-card"><span class="glyph-char">&#xE01F;</span><span class="glyph-roman">0</span><span class="glyph-hint">bukcha</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE020;</span><span class="glyph-roman">1</span><span class="glyph-hint">sa</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE021;</span><span class="glyph-roman">2</span><span class="glyph-hint">nwi</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE022;</span><span class="glyph-roman">3</span><span class="glyph-hint">tham</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE023;</span><span class="glyph-roman">4</span><span class="glyph-hint">brwi</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE024;</span><span class="glyph-roman">5</span><span class="glyph-hint">ba</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE025;</span><span class="glyph-roman">6</span><span class="glyph-hint">dok</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE026;</span><span class="glyph-roman">7</span><span class="glyph-hint">sni</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE027;</span><span class="glyph-roman">8</span><span class="glyph-hint">char</span></div>
+    <div class="glyph-card"><span class="glyph-char">&#xE028;</span><span class="glyph-roman">9</span><span class="glyph-hint">chuku</span></div>
+  </div>
+</section>
+
+<!-- § 6 DIACRITICS -->
+<section class="primer-section reveal" id="diacritics">
+  <p class="section-eyebrow">Section 6</p>
+  <h2 class="section-title">The <em>Diacritics</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    Yapiri uses three special marks that work alongside the main alphabet. These are not separate letters — they modify or connect the letters around them.
+  </p>
+  <div class="diacritic-grid reveal">
+
+    <!-- HIGH TONE -->
+    <div class="diacritic-card">
+      <div class="diacritic-display">&#xE00C;&#xE004;&#x0301;&#xE017;&#xE004;&#xE008;</div>
+      <div class="diacritic-label">bohrok · "they" — high tone on first o</div>
+      <div class="diacritic-name">High Tone Mark</div>
+      <div class="diacritic-code">Unicode U+0301</div>
+      <p class="diacritic-body">Placed directly above a vowel to indicate a high or rising tone on that syllable. Kokborok is a tonal language — this mark is how Yapiri captures that distinction in writing. In Latin romanization of Kokborok, the letter <em>h</em> after a vowel conventionally signals high tone. In Yapiri, the high tone mark replaces that convention entirely — the <em>h</em> is omitted and the mark sits over the vowel instead.</p>
+    </div>
+
+    <!-- REDUPLICATION WITHIN WORD -->
+    <div class="diacritic-card">
+      <div class="diacritic-display">&#xE013;&#xE002;&#x030B;</div>
+      <div class="diacritic-label">nini · "yours" — written as ni + mark</div>
+      <div class="diacritic-name">Reduplication Mark</div>
+      <div class="diacritic-code">Unicode U+030B</div>
+      <p class="diacritic-body">Used to mark a repeated syllable within a single word. The word <em>nini</em> (yours) contains the repeated syllable <em>ni</em>. Instead of writing <em>ni</em> twice, write it once and place the reduplication mark over the final letter of the syllable. The mark signals that the syllable is spoken twice. No hyphen is needed for within-word reduplication.</p>
+    </div>
+
+    <!-- HYPHEN + FULL WORD REDUPLICATION -->
+    <div class="diacritic-card">
+      <div class="diacritic-display" style="font-family:'Yapiri',serif;">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;-</div>
+      <div class="diacritic-label">serek serek · "silently" — mark + hyphen</div>
+      <div class="diacritic-name">Hyphen</div>
+      <div class="diacritic-code">Unicode U+002D</div>
+      <p class="diacritic-body">The hyphen is an integral part of the Yapiri writing system — borrowed from global punctuation, but given a specific structural role in the script. When an entire word is repeated consecutively, write the word once, place the reduplication mark over its final letter, then add a hyphen. The hyphen signals that a full repeated word follows — it is never decorative or optional. In the example above, <em>serek</em> (silently) is written once with the mark over <em>k</em> and the hyphen closes the construction.</p>
+    </div>
+
+  </div>
+  <div class="callout reveal">
+    <strong>Reduplication in short:</strong> Syllable repeated within a word → reduplication mark over the last letter of the syllable, no hyphen. Full word repeated consecutively → reduplication mark over the last letter of the first word + hyphen.
+  </div>
+</section>
+
+<!-- § 7 WRITING RULES -->
+<section class="primer-section reveal" id="rules">
+  <p class="section-eyebrow">Section 7</p>
+  <h2 class="section-title">Writing <em>Rules</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    Yapiri follows a small set of clear, consistent rules. Learn these and you can write anything in Kokborok correctly.
+  </p>
+  <div class="rules-list reveal">
+
+    <div class="rule-item">
+      <div class="rule-num">1</div>
+      <div class="rule-body">
+        <div class="rule-title">Write every sound</div>
+        <p class="rule-text">Both consonants and vowels must always be written. There are no silent letters and no assumed sounds. If you hear it, write it.</p>
+        <p class="rule-example">To write /pa/: write <span class="rule-yapiri">&#xE006;</span> (p) followed by <span class="rule-yapiri">&#xE000;</span> (a)</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">2</div>
+      <div class="rule-body">
+        <div class="rule-title">Write left to right</div>
+        <p class="rule-text">Yapiri is written horizontally, left to right — the same direction as English and Bengali. There is no uppercase or lowercase.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">3</div>
+      <div class="rule-body">
+        <div class="rule-title">Separate words with a space</div>
+        <p class="rule-text">Words are separated by a single space, just as in English. No special word-joiner or separator symbol is needed.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">4</div>
+      <div class="rule-body">
+        <div class="rule-title">Schwa (ə) never starts a word</div>
+        <p class="rule-text">The schwa vowel only appears inside words, never at the beginning. Other vowels can start a word.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">5</div>
+      <div class="rule-body">
+        <div class="rule-title">W only starts words</div>
+        <p class="rule-text">The consonant W only ever appears at the very beginning of a word. It will never be found in the middle of a Kokborok word in the Yapiri script.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">6</div>
+      <div class="rule-body">
+        <div class="rule-title">High tone mark goes over the vowel</div>
+        <p class="rule-text">To mark a high tone syllable, place the high tone mark (◌́) directly over the vowel of that syllable. The Latin convention of using <em>h</em> after a vowel to indicate tone does not apply in Yapiri — the mark replaces it entirely.</p>
+        <p class="rule-example">High tone on /o/ in bohrok: <span class="rule-yapiri">&#xE00C;&#xE004;&#x0301;&#xE017;&#xE004;&#xE008;</span></p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">7</div>
+      <div class="rule-body">
+        <div class="rule-title">Reduplication within a word: mark only</div>
+        <p class="rule-text">When a syllable repeats within a word, place the reduplication mark (◌̋) over the last letter of that syllable. Write the syllable only once. No hyphen needed.</p>
+        <p class="rule-example">nini (yours): <span class="rule-yapiri">&#xE013;&#xE002;&#x030B;</span></p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-num">8</div>
+      <div class="rule-body">
+        <div class="rule-title">Repeated whole words: mark + hyphen</div>
+        <p class="rule-text">When an entire word is repeated consecutively, place the reduplication mark over the last letter of the first word, then add a hyphen. The hyphen is integral to the script — it signals that the full word that preceded it is repeated.</p>
+        <p class="rule-example">serek serek (silently): <span class="rule-yapiri">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;</span>-</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- § 8 FIRST WORDS -->
+<section class="primer-section reveal" id="words">
+  <p class="section-eyebrow">Section 8</p>
+  <h2 class="section-title">Your First <em>Words</em></h2>
+  <div class="gold-line"></div>
+  <p class="section-body">
+    You now know the full Yapiri alphabet. Here are your first real Kokborok words — greetings you can use every day, written in Yapiri script.
+  </p>
+  <div class="words-grid reveal">
+
+    <div class="word-card">
+      <span class="word-yapiri">&#xE00B;&#xE003;&#xE018;&#xE003;&#xE012;&#xE00B;&#xE000;</span>
+      <span class="word-roman">Khulumkha</span>
+      <span class="word-meaning">Hello / Namaste — the universal Borok greeting</span>
+      <div class="word-breakdown"><span>kh</span>·u·<span>l</span>·u·<span>m</span>·<span>kh</span>·a</div>
+    </div>
+
+    <div class="word-card">
+      <span class="word-yapiri">&#xE01E;&#xE000;&#xE012;&#xE00C;&#xE000;&#xE002;</span>
+      <span class="word-roman">Hambai</span>
+      <span class="word-meaning">Thank you</span>
+      <div class="word-breakdown"><span>h</span>·a·<span>m</span>·<span>b</span>·a·i</div>
+    </div>
+
+    <div class="word-card">
+      <span class="word-yapiri">&#xE009;&#xE003;&#xE015; &#xE008;&#xE000;&#xE01E;&#xE000;&#xE012;</span>
+      <span class="word-roman">Phung Kaham</span>
+      <span class="word-meaning">Good morning</span>
+      <div class="word-breakdown"><span>ph</span>·u·<span>ng</span> &nbsp; <span>k</span>·a·<span>h</span>·a·<span>m</span></div>
+    </div>
+
+    <div class="word-card">
+      <span class="word-yapiri">&#xE00D;&#xE002;&#xE00C;&#xE004;&#xE017; &#xE008;&#xE000;&#xE01E;&#xE000;&#xE012;</span>
+      <span class="word-roman">Dibor Kaham</span>
+      <span class="word-meaning">Good afternoon</span>
+      <div class="word-breakdown"><span>d</span>·i·<span>b</span>·o·<span>r</span> &nbsp; <span>k</span>·a·<span>h</span>·a·<span>m</span></div>
+    </div>
+
+    <div class="word-card">
+      <span class="word-yapiri">&#xE016;&#xE000;&#xE017;&#xE002;&#xE008; &#xE008;&#xE000;&#xE01E;&#xE000;&#xE012;</span>
+      <span class="word-roman">Sarik Kaham</span>
+      <span class="word-meaning">Good evening</span>
+      <div class="word-breakdown"><span>s</span>·a·<span>r</span>·i·<span>k</span> &nbsp; <span>k</span>·a·<span>h</span>·a·<span>m</span></div>
+    </div>
+
+    <div class="word-card">
+      <span class="word-yapiri">&#xE01E;&#xE004;&#xE017; &#xE008;&#xE000;&#xE01E;&#xE000;&#xE012;</span>
+      <span class="word-roman">Hor Kaham</span>
+      <span class="word-meaning">Good night</span>
+      <div class="word-breakdown"><span>h</span>·o·<span>r</span> &nbsp; <span>k</span>·a·<span>h</span>·a·<span>m</span></div>
+    </div>
+
+  </div>
+  <div class="callout reveal">
+    <strong>Notice something?</strong> The word <em>Kaham</em> appears in four of the six greetings — it means "good" in Kokborok. In Yapiri that's always: <span style="font-family:'Yapiri',serif;font-size:1.2rem;color:var(--parchment);">&#xE008;&#xE000;&#xE01E;&#xE000;&#xE012;</span>. Recognising repeating patterns like this makes learning faster.
+  </div>
+</section>
+
+<!-- § 9 SAVE -->
+<div class="download-section reveal" id="download">
+  <h2 class="download-title">Save This Primer</h2>
+  <p class="download-body">No separate PDF needed — save this page directly from your browser in a few steps.</p>
+  <ul class="print-steps">
+    <li><strong>Open print</strong> — Press <em>Ctrl+P</em> (Windows/Linux) or <em>⌘+P</em> (Mac), or use your browser menu</li>
+    <li><strong>Destination</strong> — Select <em>Save as PDF</em> or <em>Print to PDF</em></li>
+    <li><strong>Margins</strong> — Set to <em>Minimum</em> or <em>None</em></li>
+    <li><strong>Headers &amp; footers</strong> — <em>Uncheck</em> to remove browser-added text</li>
+    <li><strong>Background graphics</strong> — <em>Check</em> to preserve colors and styling</li>
+  </ul>
+  <button class="download-btn" onclick="window.print()">⎙ Print / Save as PDF</button>
+</div>
+
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61589838830572" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+  </div>
+  <div class="footer-copy">Created for the Kokborok language<br>Borok people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
+</footer>
+
+<script>
+  function toggleMenu() { const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
+  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => { if(entry.isIntersecting) { setTimeout(()=>entry.target.classList.add('visible'), i*60); observer.unobserve(entry.target); } });
+  }, { threshold:0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
