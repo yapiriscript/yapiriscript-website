@@ -80,7 +80,7 @@
 
   /* KEYBOARD SECTION */
   .keyboard-section { padding:5rem 5rem 6rem; }
-  .keyboard-container { max-width:960px; }
+  .keyboard-container { max-width:960px; margin: 0 auto;}
   .keyboard-intro { font-size:1.1rem; font-weight:300; font-style:italic; color:var(--stone-light); margin-bottom:2.5rem; max-width:680px; line-height:1.75; }
 
   /* OUTPUT */
@@ -132,13 +132,13 @@
   /* UNICODE INSPECTOR */
   .inspector-section { background:var(--charcoal); padding:5rem; position:relative; }
   .inspector-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,rgba(201,146,42,0.3),transparent); }
-  .inspector-box { background:rgba(0,0,0,0.3); border:1px solid rgba(196,180,154,0.1); padding:1.5rem; margin-top:2rem; max-width:700px; }
+  .inspector-box { background:rgba(0,0,0,0.3); border:1px solid rgba(196,180,154,0.1); padding:1.5rem; margin:2rem auto 0; max-width:700px; }
   .inspector-output { font-family:'DM Mono',monospace; font-size:0.75rem; color:var(--stone-light); line-height:2; min-height:3rem; overflow-wrap:break-word; word-break:break-word; }
   .inspector-output span { color:var(--gold); }
 
   /* TIPS */
   .tips-section { padding:5rem; }
-  .tips-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; max-width:960px; margin-top:2rem; }
+  .tips-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; max-width:960px; margin:2rem auto 0; }
   .tip-card { border:1px solid rgba(196,180,154,0.1); padding:1.8rem; background:rgba(255,255,255,0.02); }
   .tip-num { font-family:'Teko',sans-serif; font-size:2.5rem; color:var(--terracotta); font-weight:300; line-height:1; margin-bottom:0.8rem; }
   .tip-title { font-family:'Teko',sans-serif; font-size:1.3rem; color:var(--parchment); letter-spacing:0.05em; margin-bottom:0.5rem; }
@@ -364,48 +364,52 @@
 
 <!-- UNICODE INSPECTOR -->
 <section class="inspector-section reveal">
-  <p class="section-label">Unicode Inspector</p>
-  <h2 class="section-heading">Codepoint Breakdown</h2>
-  <div class="gold-line"></div>
-  <p style="font-size:1rem;font-weight:300;color:var(--stone-light);max-width:600px;line-height:1.75;">Type something above and the Unicode codepoints of each character will appear here — useful for developers and font engineers.</p>
-  <div class="inspector-box">
-    <div class="inspector-output" id="inspector-output">Type something above to inspect codepoints…</div>
+  <div style="max-width:700px;margin:0 auto;">
+    <p class="section-label">Unicode Inspector</p>
+    <h2 class="section-heading">Codepoint Breakdown</h2>
+    <div class="gold-line"></div>
+    <p style="font-size:1rem;font-weight:300;color:var(--stone-light);max-width:600px;line-height:1.75;">Type something above and the Unicode codepoints of each character will appear here — useful for developers and font engineers.</p>
+    <div class="inspector-box">
+      <div class="inspector-output" id="inspector-output">Type something above to inspect codepoints…</div>
+    </div>
   </div>
 </section>
 
 <!-- TIPS -->
 <section class="tips-section reveal">
-  <p class="section-label">How to Use</p>
-  <h2 class="section-heading">Tips &amp; Notes</h2>
-  <div class="gold-line"></div>
-  <div class="tips-grid">
-
-    <div class="tip-card">
-      <div class="tip-num">01</div>
-      <div class="tip-title">Schwa vs. Consonant W</div>
-      <p class="tip-body">
-        These two characters serve distinct positional roles.<br><br>
-        The <strong>schwa (ə)</strong> appears only <strong>within a word</strong> — it represents a mid-central vowel sound in the middle of a syllable and can <strong>never start a word</strong>.<br><br>
-        The <strong>consonant W</strong> is always a <strong>word-starter</strong> — used for any word whose pronunciation begins with a /w/ sound. It will never appear in the middle of a word.
-      </p>
+  <div style="max-width:960px;margin:0 auto;">
+    <p class="section-label">How to Use</p>
+    <h2 class="section-heading">Tips &amp; Notes</h2>
+    <div class="gold-line"></div>
+    <div class="tips-grid">
+  
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <div class="tip-title">Schwa vs. Consonant W</div>
+        <p class="tip-body">
+          These two characters serve distinct positional roles.<br><br>
+          The <strong>schwa (ə)</strong> appears only <strong>within a word</strong> — it represents a mid-central vowel sound in the middle of a syllable and can <strong>never start a word</strong>.<br><br>
+          The <strong>consonant W</strong> is always a <strong>word-starter</strong> — used for any word whose pronunciation begins with a /w/ sound. It will never appear in the middle of a word.
+        </p>
+      </div>
+  
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <div class="tip-title">Diacritic Usage</div>
+        <p class="tip-body">
+          Yapiri has two combining diacritics, each with a specific rule.<br><br>
+          The <strong>high tone mark (◌́)</strong> is placed over a vowel to indicate a rising or high tone on that syllable.<br><br>
+          The <strong>reduplication mark (◌̋)</strong> marks repeated syllables within a single word — no hyphen needed. For two identical consecutive words, place the mark over the last letter of the first word and follow it with a <strong>hyphen</strong>.
+        </p>
+      </div>
+  
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <div class="tip-title">Loanword Keys</div>
+        <p class="tip-body">The gold-bordered keys <code>v</code>, <code>f</code>, <code>z</code> are for borrowed vocabulary from Bengali, Hindi, and English. Use them only for loanwords — these sounds are not native to Kokborok phonology.</p>
+      </div>
+  
     </div>
-
-    <div class="tip-card">
-      <div class="tip-num">02</div>
-      <div class="tip-title">Diacritic Usage</div>
-      <p class="tip-body">
-        Yapiri has two combining diacritics, each with a specific rule.<br><br>
-        The <strong>high tone mark (◌́)</strong> is placed over a vowel to indicate a rising or high tone on that syllable.<br><br>
-        The <strong>reduplication mark (◌̋)</strong> marks repeated syllables within a single word — no hyphen needed. For two identical consecutive words, place the mark over the last letter of the first word and follow it with a <strong>hyphen</strong>.
-      </p>
-    </div>
-
-    <div class="tip-card">
-      <div class="tip-num">03</div>
-      <div class="tip-title">Loanword Keys</div>
-      <p class="tip-body">The gold-bordered keys <code>v</code>, <code>f</code>, <code>z</code> are for borrowed vocabulary from Bengali, Hindi, and English. Use them only for loanwords — these sounds are not native to Kokborok phonology.</p>
-    </div>
-
   </div>
 </section>
 
