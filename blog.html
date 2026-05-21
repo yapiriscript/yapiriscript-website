@@ -71,7 +71,7 @@
   /* FEATURED POST */
   .featured-post { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(196,180,154,0.12); margin-bottom:3rem; background:rgba(44,36,22,0.3); transition:border-color 0.3s; }
   .featured-post:hover { border-color:rgba(201,146,42,0.3); }
-  .featured-visual { background:linear-gradient(135deg,var(--charcoal) 0%,rgba(26,18,9,0.8) 100%); display:flex; align-items:center; justify-content:center; min-height:320px; position:relative; overflow:hidden; border-right:1px solid rgba(196,180,154,0.08); }
+  .featured-visual { background-image:linear-gradient(to right, rgba(26,18,9,0.2), rgba(26,18,9,0.55)), url('assets/images/tripura-hills-hero.jpg'); background-size:cover; background-position:center 40%; display:flex; align-items:center; justify-content:center; min-height:320px; position:relative; overflow:hidden; border-right:1px solid rgba(196,180,154,0.08); }
   .featured-visual::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%,rgba(201,146,42,0.08) 0%,transparent 70%); }
   .featured-glyph { font-family:'Yapiri',serif; font-size:8rem; color:rgba(201,146,42,0.15); line-height:1; position:relative; z-index:1; }
   .featured-body { padding:3rem; display:flex; flex-direction:column; justify-content:space-between; }
