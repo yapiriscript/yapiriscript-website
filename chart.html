@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  html { overflow-x: clip; }
 @font-face {
   font-family: 'Yapiri';
   src: url('assets/fonts/Yapiri.woff2') format('woff2'), url('assets/fonts/Yapiri.ttf') format('truetype');
@@ -51,10 +52,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .page-title em{color:var(--gold-light);font-style:italic;font-family:'Cormorant Garamond',serif;}
 .page-subtitle{font-size:1.1rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;}
 
-/* CHART WRAPPER
-   No overflow-x needed — the chart card is zoom-scaled to fit the viewport
-   by JS, so it never exceeds the wrapper width. */
+/* CHART WRAPPER */
 .chart-wrapper{padding:2.5rem 2rem 5rem;}
+overflow-x: hidden; /* add this — clips the zoomed card's pre-zoom footprint */
 
 /* PRINT BAR */
 .print-bar{max-width:1060px;margin:0 auto 0.8rem;display:flex;justify-content:flex-end;}
@@ -258,7 +258,15 @@ footer{background:var(--charcoal);border-top:1px solid rgba(201,146,42,0.15);pad
   nav,.page-hero,.print-bar,.print-instructions,footer,.mobile-menu,.hamburger{display:none;}
   .chart-wrapper{padding:0;}
   /* Reset zoom for print — the browser handles page scaling */
-  .chart-card{box-shadow:none;border:none;max-width:100%;min-width:0;width:100%;zoom:1 !important;}
+  .chart-card {
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+  transform: none !important;
+  margin-bottom: 0 !important;
+}
 }
 </style>
 </head>
@@ -524,35 +532,34 @@ footer{background:var(--charcoal);border-top:1px solid rgba(201,146,42,0.15);pad
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 
   /* ── CHART ZOOM SCALING ──
-     On screens narrower than the chart's min-width (700px), we proportionally
-     zoom the entire chart card using the CSS `zoom` property. Unlike
-     `transform: scale()`, zoom affects layout flow, so the wrapper height
-     adjusts naturally and nothing overflows or scrolls unexpectedly.
-     On print, the `zoom: 1 !important` rule in the print media query resets
-     this so the browser handles its own page scaling to fit A4. */
-  function scaleChart() {
-    const card    = document.getElementById('chartCard');
-    const wrapper = document.getElementById('chartWrapper');
-    if (!card || !wrapper) return;
+   Uses transform: scale() for consistent cross-browser support.
+   overflow-x: hidden on the wrapper clips the card's original 700px
+   layout footprint, and a negative marginBottom collapses the vertical
+   space left behind by the scale transform. */
+function scaleChart() {
+  const card    = document.getElementById('chartCard');
+  const wrapper = document.getElementById('chartWrapper');
+  if (!card || !wrapper) return;
 
-    const CARD_MIN_WIDTH = 700;
-    // Account for wrapper horizontal padding (0.75rem each side on small screens = 24px total at 16px base,
-    // but use actual computed value for accuracy)
-    const wrapperStyle  = getComputedStyle(wrapper);
-    const hPad = parseFloat(wrapperStyle.paddingLeft) + parseFloat(wrapperStyle.paddingRight);
-    const available     = wrapper.clientWidth - hPad;
+  const CARD_MIN = 700;
+  const wStyle   = getComputedStyle(wrapper);
+  const hPad     = parseFloat(wStyle.paddingLeft) + parseFloat(wStyle.paddingRight);
+  const available = wrapper.clientWidth - hPad;
 
-    if (available < CARD_MIN_WIDTH) {
-      const scale = available / CARD_MIN_WIDTH;
-      card.style.zoom = scale;
-    } else {
-      card.style.zoom = '';
-    }
+  if (available < CARD_MIN) {
+    const scale = available / CARD_MIN;
+    card.style.transformOrigin = 'top left';
+    card.style.transform       = `scale(${scale})`;
+    card.style.marginBottom    = `-${card.offsetHeight * (1 - scale)}px`;
+  } else {
+    card.style.transform       = '';
+    card.style.transformOrigin = '';
+    card.style.marginBottom    = '';
   }
+}
 
-  // Run on load and on every resize
-  scaleChart();
-  window.addEventListener('resize', scaleChart);
+scaleChart();
+window.addEventListener('resize', scaleChart);
 </script>
 </body>
 </html>
