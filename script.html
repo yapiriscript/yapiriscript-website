@@ -108,7 +108,7 @@
   .glyph-code{font-family:'DM Mono',monospace;font-size:0.52rem;color:rgba(196,180,154,0.3);display:block;margin-top:0.2rem;position:relative;z-index:1;}
 
   /* DESIGN PRINCIPLES */
-  .design-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1100px;align-items:start;}
+  .design-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1100px;align-items:start;margin: 0 auto;}
   .principle-list{display:flex;flex-direction:column;gap:2rem;margin-top:1rem;}
   .principle-item{display:grid;grid-template-columns:40px 1fr;gap:1rem;align-items:start;}
   .principle-num{font-family:'Teko',sans-serif;font-size:2rem;font-weight:300;color:var(--terracotta);line-height:1;}
@@ -205,114 +205,116 @@
 
 <!-- FULL ALPHABET -->
 <section class="alphabet-section reveal">
-  <p class="section-label">The Characters</p>
-  <h2 class="section-heading">Full Glyph Inventory</h2>
-  <div class="gold-line"></div>
-  <div class="tab-group" role="tablist" aria-label="Script character categories">
-    <button class="tab-btn active" role="tab" aria-selected="true"  onclick="showTab('consonants',this)">Consonants</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('vowels',this)">Vowels</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('numerals',this)">Numerals</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('punctuation',this)">Punctuation</button>
-    <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('diacritics',this)">Diacritics</button>
-  </div>
-
-  <div class="glyph-chart active" id="tab-consonants" role="tabpanel">
-    <div class="chart-section-label">Stops — Voiceless, Aspirated, Voiced</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="p, U+E006"><span class="glyph-symbol">&#xE006;</span><span class="glyph-roman">p</span><span class="glyph-code">U+E006</span></div>
-      <div class="glyph-card" aria-label="t, U+E007"><span class="glyph-symbol">&#xE007;</span><span class="glyph-roman">t</span><span class="glyph-code">U+E007</span></div>
-      <div class="glyph-card" aria-label="k, U+E008"><span class="glyph-symbol">&#xE008;</span><span class="glyph-roman">k</span><span class="glyph-code">U+E008</span></div>
-      <div class="glyph-card" aria-label="ph, U+E009"><span class="glyph-symbol">&#xE009;</span><span class="glyph-roman">ph</span><span class="glyph-code">U+E009</span></div>
-      <div class="glyph-card" aria-label="th, U+E00A"><span class="glyph-symbol">&#xE00A;</span><span class="glyph-roman">th</span><span class="glyph-code">U+E00A</span></div>
-      <div class="glyph-card" aria-label="kh, U+E00B"><span class="glyph-symbol">&#xE00B;</span><span class="glyph-roman">kh</span><span class="glyph-code">U+E00B</span></div>
-      <div class="glyph-card" aria-label="b, U+E00C"><span class="glyph-symbol">&#xE00C;</span><span class="glyph-roman">b</span><span class="glyph-code">U+E00C</span></div>
-      <div class="glyph-card" aria-label="d, U+E00D"><span class="glyph-symbol">&#xE00D;</span><span class="glyph-roman">d</span><span class="glyph-code">U+E00D</span></div>
-      <div class="glyph-card" aria-label="g, U+E00E"><span class="glyph-symbol">&#xE00E;</span><span class="glyph-roman">g</span><span class="glyph-code">U+E00E</span></div>
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">The Characters</p>
+    <h2 class="section-heading">Full Glyph Inventory</h2>
+    <div class="gold-line"></div>
+    <div class="tab-group" role="tablist" aria-label="Script character categories">
+      <button class="tab-btn active" role="tab" aria-selected="true"  onclick="showTab('consonants',this)">Consonants</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('vowels',this)">Vowels</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('numerals',this)">Numerals</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('punctuation',this)">Punctuation</button>
+      <button class="tab-btn"        role="tab" aria-selected="false" onclick="showTab('diacritics',this)">Diacritics</button>
     </div>
-    <div class="chart-section-label">Affricates</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="ch, U+E00F"><span class="glyph-symbol">&#xE00F;</span><span class="glyph-roman">ch</span><span class="glyph-code">U+E00F</span></div>
-      <div class="glyph-card" aria-label="j, U+E010"><span class="glyph-symbol">&#xE010;</span><span class="glyph-roman">j</span><span class="glyph-code">U+E010</span></div>
-      <div class="glyph-card" aria-label="chh, U+E011"><span class="glyph-symbol">&#xE011;</span><span class="glyph-roman">chh</span><span class="glyph-code">U+E011</span></div>
-    </div>
-    <div class="chart-section-label">Nasals</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="m, U+E012"><span class="glyph-symbol">&#xE012;</span><span class="glyph-roman">m</span><span class="glyph-code">U+E012</span></div>
-      <div class="glyph-card" aria-label="n, U+E013"><span class="glyph-symbol">&#xE013;</span><span class="glyph-roman">n</span><span class="glyph-code">U+E013</span></div>
-      <div class="glyph-card" aria-label="palatal n, U+E014"><span class="glyph-symbol">&#xE014;</span><span class="glyph-roman">n′</span><span class="glyph-code">U+E014</span></div>
-      <div class="glyph-card" aria-label="ng, U+E015"><span class="glyph-symbol">&#xE015;</span><span class="glyph-roman">ng</span><span class="glyph-code">U+E015</span></div>
-    </div>
-    <div class="chart-section-label">Fricatives &amp; Approximants</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="s, U+E016"><span class="glyph-symbol">&#xE016;</span><span class="glyph-roman">s</span><span class="glyph-code">U+E016</span></div>
-      <div class="glyph-card" aria-label="r, U+E017"><span class="glyph-symbol">&#xE017;</span><span class="glyph-roman">r</span><span class="glyph-code">U+E017</span></div>
-      <div class="glyph-card" aria-label="l, U+E018"><span class="glyph-symbol">&#xE018;</span><span class="glyph-roman">l</span><span class="glyph-code">U+E018</span></div>
-      <div class="glyph-card" aria-label="y, U+E01C"><span class="glyph-symbol">&#xE01C;</span><span class="glyph-roman">y</span><span class="glyph-code">U+E01C</span></div>
-      <div class="glyph-card" aria-label="w, U+E01D"><span class="glyph-symbol">&#xE01D;</span><span class="glyph-roman">w</span><span class="glyph-code">U+E01D</span></div>
-      <div class="glyph-card" aria-label="h, U+E01E"><span class="glyph-symbol">&#xE01E;</span><span class="glyph-roman">h</span><span class="glyph-code">U+E01E</span></div>
-    </div>
-    <div class="chart-section-label">Loanword Characters — for modern &amp; borrowed vocabulary</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="v, U+E019" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE019;</span><span class="glyph-roman">v</span><span class="glyph-code">U+E019</span></div>
-      <div class="glyph-card" aria-label="f, U+E01A" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE01A;</span><span class="glyph-roman">f</span><span class="glyph-code">U+E01A</span></div>
-      <div class="glyph-card" aria-label="z, U+E01B" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE01B;</span><span class="glyph-roman">z</span><span class="glyph-code">U+E01B</span></div>
-    </div>
-  </div>
-
-  <div class="glyph-chart" id="tab-vowels" role="tabpanel">
-    <div class="chart-section-label">Independent Vowels</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="a, U+E000"><span class="glyph-symbol">&#xE000;</span><span class="glyph-roman">a</span><span class="glyph-code">U+E000</span></div>
-      <div class="glyph-card" aria-label="e, U+E001"><span class="glyph-symbol">&#xE001;</span><span class="glyph-roman">e</span><span class="glyph-code">U+E001</span></div>
-      <div class="glyph-card" aria-label="i, U+E002"><span class="glyph-symbol">&#xE002;</span><span class="glyph-roman">i</span><span class="glyph-code">U+E002</span></div>
-      <div class="glyph-card" aria-label="u, U+E003"><span class="glyph-symbol">&#xE003;</span><span class="glyph-roman">u</span><span class="glyph-code">U+E003</span></div>
-      <div class="glyph-card" aria-label="o, U+E004"><span class="glyph-symbol">&#xE004;</span><span class="glyph-roman">o</span><span class="glyph-code">U+E004</span></div>
-      <div class="glyph-card" aria-label="schwa, U+E005"><span class="glyph-symbol">&#xE005;</span><span class="glyph-roman">ə</span><span class="glyph-code">U+E005</span></div>
-    </div>
-  </div>
-
-  <div class="glyph-chart" id="tab-numerals" role="tabpanel">
-    <div class="chart-section-label">Digits 0–9</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="0, U+E01F"><span class="glyph-symbol">&#xE01F;</span><span class="glyph-roman">0</span><span class="glyph-code">U+E01F</span></div>
-      <div class="glyph-card" aria-label="1, U+E020"><span class="glyph-symbol">&#xE020;</span><span class="glyph-roman">1</span><span class="glyph-code">U+E020</span></div>
-      <div class="glyph-card" aria-label="2, U+E021"><span class="glyph-symbol">&#xE021;</span><span class="glyph-roman">2</span><span class="glyph-code">U+E021</span></div>
-      <div class="glyph-card" aria-label="3, U+E022"><span class="glyph-symbol">&#xE022;</span><span class="glyph-roman">3</span><span class="glyph-code">U+E022</span></div>
-      <div class="glyph-card" aria-label="4, U+E023"><span class="glyph-symbol">&#xE023;</span><span class="glyph-roman">4</span><span class="glyph-code">U+E023</span></div>
-      <div class="glyph-card" aria-label="5, U+E024"><span class="glyph-symbol">&#xE024;</span><span class="glyph-roman">5</span><span class="glyph-code">U+E024</span></div>
-      <div class="glyph-card" aria-label="6, U+E025"><span class="glyph-symbol">&#xE025;</span><span class="glyph-roman">6</span><span class="glyph-code">U+E025</span></div>
-      <div class="glyph-card" aria-label="7, U+E026"><span class="glyph-symbol">&#xE026;</span><span class="glyph-roman">7</span><span class="glyph-code">U+E026</span></div>
-      <div class="glyph-card" aria-label="8, U+E027"><span class="glyph-symbol">&#xE027;</span><span class="glyph-roman">8</span><span class="glyph-code">U+E027</span></div>
-      <div class="glyph-card" aria-label="9, U+E028"><span class="glyph-symbol">&#xE028;</span><span class="glyph-roman">9</span><span class="glyph-code">U+E028</span></div>
-    </div>
-  </div>
-
-  <div class="glyph-chart" id="tab-punctuation" role="tabpanel">
-    <div class="chart-section-label">Punctuation</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="comma, U+E029"><span class="glyph-symbol">&#xE029;</span><span class="glyph-roman">comma</span><span class="glyph-code">U+E029</span></div>
-      <div class="glyph-card" aria-label="full stop, U+E02A"><span class="glyph-symbol">&#xE02A;</span><span class="glyph-roman">full stop</span><span class="glyph-code">U+E02A</span></div>
-      <div class="glyph-card" aria-label="exclamation, U+E02B"><span class="glyph-symbol">&#xE02B;</span><span class="glyph-roman">exclamation</span><span class="glyph-code">U+E02B</span></div>
-      <div class="glyph-card" aria-label="quotation, U+E02C"><span class="glyph-symbol">&#xE02C;</span><span class="glyph-roman">quotation</span><span class="glyph-code">U+E02C</span></div>
-      <div class="glyph-card" aria-label="question, U+E02D"><span class="glyph-symbol">&#xE02D;</span><span class="glyph-roman">question</span><span class="glyph-code">U+E02D</span></div>
-    </div>
-  </div>
-
-  <div class="glyph-chart" id="tab-diacritics" role="tabpanel">
-    <div class="chart-section-label">Diacritics</div>
-    <div class="glyph-row">
-      <div class="glyph-card" aria-label="high tone, U+0301"><span class="glyph-symbol">&#x25CC;&#x0301;</span><span class="glyph-roman">high tone</span><span class="glyph-code">U+0301</span></div>
-      <div class="glyph-card" aria-label="reduplication, U+030B"><span class="glyph-symbol">&#x25CC;&#x030B;</span><span class="glyph-roman">reduplication</span><span class="glyph-code">U+030B</span></div>
-    </div>
-    <div class="chart-section-label" style="margin-top:2rem;">Reduplication Usage Rule</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:700px;">
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--terracotta);padding:1.2rem 1.2rem 1rem;">
-        <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.6rem;">Two syllables within a word</p>
-        <p style="font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.7;">Use the reduplication mark (&#x25CC;&#x030B;) over the last letter of the repeated syllable only. <strong style="color:var(--parchment);font-weight:400;">No hyphen.</strong></p>
+  
+    <div class="glyph-chart active" id="tab-consonants" role="tabpanel">
+      <div class="chart-section-label">Stops — Voiceless, Aspirated, Voiced</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="p, U+E006"><span class="glyph-symbol">&#xE006;</span><span class="glyph-roman">p</span><span class="glyph-code">U+E006</span></div>
+        <div class="glyph-card" aria-label="t, U+E007"><span class="glyph-symbol">&#xE007;</span><span class="glyph-roman">t</span><span class="glyph-code">U+E007</span></div>
+        <div class="glyph-card" aria-label="k, U+E008"><span class="glyph-symbol">&#xE008;</span><span class="glyph-roman">k</span><span class="glyph-code">U+E008</span></div>
+        <div class="glyph-card" aria-label="ph, U+E009"><span class="glyph-symbol">&#xE009;</span><span class="glyph-roman">ph</span><span class="glyph-code">U+E009</span></div>
+        <div class="glyph-card" aria-label="th, U+E00A"><span class="glyph-symbol">&#xE00A;</span><span class="glyph-roman">th</span><span class="glyph-code">U+E00A</span></div>
+        <div class="glyph-card" aria-label="kh, U+E00B"><span class="glyph-symbol">&#xE00B;</span><span class="glyph-roman">kh</span><span class="glyph-code">U+E00B</span></div>
+        <div class="glyph-card" aria-label="b, U+E00C"><span class="glyph-symbol">&#xE00C;</span><span class="glyph-roman">b</span><span class="glyph-code">U+E00C</span></div>
+        <div class="glyph-card" aria-label="d, U+E00D"><span class="glyph-symbol">&#xE00D;</span><span class="glyph-roman">d</span><span class="glyph-code">U+E00D</span></div>
+        <div class="glyph-card" aria-label="g, U+E00E"><span class="glyph-symbol">&#xE00E;</span><span class="glyph-roman">g</span><span class="glyph-code">U+E00E</span></div>
       </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--gold);padding:1.2rem 1.2rem 1rem;">
-        <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Two identical words consecutively</p>
-        <p style="font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.7;">Place the reduplication mark over the <strong style="color:var(--parchment);font-weight:400;">last letter of the word</strong>, then follow with a <strong style="color:var(--parchment);font-weight:400;">hyphen</strong> to signal word-level reduplication.</p>
+      <div class="chart-section-label">Affricates</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="ch, U+E00F"><span class="glyph-symbol">&#xE00F;</span><span class="glyph-roman">ch</span><span class="glyph-code">U+E00F</span></div>
+        <div class="glyph-card" aria-label="j, U+E010"><span class="glyph-symbol">&#xE010;</span><span class="glyph-roman">j</span><span class="glyph-code">U+E010</span></div>
+        <div class="glyph-card" aria-label="chh, U+E011"><span class="glyph-symbol">&#xE011;</span><span class="glyph-roman">chh</span><span class="glyph-code">U+E011</span></div>
+      </div>
+      <div class="chart-section-label">Nasals</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="m, U+E012"><span class="glyph-symbol">&#xE012;</span><span class="glyph-roman">m</span><span class="glyph-code">U+E012</span></div>
+        <div class="glyph-card" aria-label="n, U+E013"><span class="glyph-symbol">&#xE013;</span><span class="glyph-roman">n</span><span class="glyph-code">U+E013</span></div>
+        <div class="glyph-card" aria-label="palatal n, U+E014"><span class="glyph-symbol">&#xE014;</span><span class="glyph-roman">n′</span><span class="glyph-code">U+E014</span></div>
+        <div class="glyph-card" aria-label="ng, U+E015"><span class="glyph-symbol">&#xE015;</span><span class="glyph-roman">ng</span><span class="glyph-code">U+E015</span></div>
+      </div>
+      <div class="chart-section-label">Fricatives &amp; Approximants</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="s, U+E016"><span class="glyph-symbol">&#xE016;</span><span class="glyph-roman">s</span><span class="glyph-code">U+E016</span></div>
+        <div class="glyph-card" aria-label="r, U+E017"><span class="glyph-symbol">&#xE017;</span><span class="glyph-roman">r</span><span class="glyph-code">U+E017</span></div>
+        <div class="glyph-card" aria-label="l, U+E018"><span class="glyph-symbol">&#xE018;</span><span class="glyph-roman">l</span><span class="glyph-code">U+E018</span></div>
+        <div class="glyph-card" aria-label="y, U+E01C"><span class="glyph-symbol">&#xE01C;</span><span class="glyph-roman">y</span><span class="glyph-code">U+E01C</span></div>
+        <div class="glyph-card" aria-label="w, U+E01D"><span class="glyph-symbol">&#xE01D;</span><span class="glyph-roman">w</span><span class="glyph-code">U+E01D</span></div>
+        <div class="glyph-card" aria-label="h, U+E01E"><span class="glyph-symbol">&#xE01E;</span><span class="glyph-roman">h</span><span class="glyph-code">U+E01E</span></div>
+      </div>
+      <div class="chart-section-label">Loanword Characters — for modern &amp; borrowed vocabulary</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="v, U+E019" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE019;</span><span class="glyph-roman">v</span><span class="glyph-code">U+E019</span></div>
+        <div class="glyph-card" aria-label="f, U+E01A" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE01A;</span><span class="glyph-roman">f</span><span class="glyph-code">U+E01A</span></div>
+        <div class="glyph-card" aria-label="z, U+E01B" style="border-color:rgba(200,124,42,0.4);background:rgba(200,124,42,0.05)"><span class="glyph-symbol">&#xE01B;</span><span class="glyph-roman">z</span><span class="glyph-code">U+E01B</span></div>
+      </div>
+    </div>
+  
+    <div class="glyph-chart" id="tab-vowels" role="tabpanel">
+      <div class="chart-section-label">Independent Vowels</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="a, U+E000"><span class="glyph-symbol">&#xE000;</span><span class="glyph-roman">a</span><span class="glyph-code">U+E000</span></div>
+        <div class="glyph-card" aria-label="e, U+E001"><span class="glyph-symbol">&#xE001;</span><span class="glyph-roman">e</span><span class="glyph-code">U+E001</span></div>
+        <div class="glyph-card" aria-label="i, U+E002"><span class="glyph-symbol">&#xE002;</span><span class="glyph-roman">i</span><span class="glyph-code">U+E002</span></div>
+        <div class="glyph-card" aria-label="u, U+E003"><span class="glyph-symbol">&#xE003;</span><span class="glyph-roman">u</span><span class="glyph-code">U+E003</span></div>
+        <div class="glyph-card" aria-label="o, U+E004"><span class="glyph-symbol">&#xE004;</span><span class="glyph-roman">o</span><span class="glyph-code">U+E004</span></div>
+        <div class="glyph-card" aria-label="schwa, U+E005"><span class="glyph-symbol">&#xE005;</span><span class="glyph-roman">ə</span><span class="glyph-code">U+E005</span></div>
+      </div>
+    </div>
+  
+    <div class="glyph-chart" id="tab-numerals" role="tabpanel">
+      <div class="chart-section-label">Digits 0–9</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="0, U+E01F"><span class="glyph-symbol">&#xE01F;</span><span class="glyph-roman">0</span><span class="glyph-code">U+E01F</span></div>
+        <div class="glyph-card" aria-label="1, U+E020"><span class="glyph-symbol">&#xE020;</span><span class="glyph-roman">1</span><span class="glyph-code">U+E020</span></div>
+        <div class="glyph-card" aria-label="2, U+E021"><span class="glyph-symbol">&#xE021;</span><span class="glyph-roman">2</span><span class="glyph-code">U+E021</span></div>
+        <div class="glyph-card" aria-label="3, U+E022"><span class="glyph-symbol">&#xE022;</span><span class="glyph-roman">3</span><span class="glyph-code">U+E022</span></div>
+        <div class="glyph-card" aria-label="4, U+E023"><span class="glyph-symbol">&#xE023;</span><span class="glyph-roman">4</span><span class="glyph-code">U+E023</span></div>
+        <div class="glyph-card" aria-label="5, U+E024"><span class="glyph-symbol">&#xE024;</span><span class="glyph-roman">5</span><span class="glyph-code">U+E024</span></div>
+        <div class="glyph-card" aria-label="6, U+E025"><span class="glyph-symbol">&#xE025;</span><span class="glyph-roman">6</span><span class="glyph-code">U+E025</span></div>
+        <div class="glyph-card" aria-label="7, U+E026"><span class="glyph-symbol">&#xE026;</span><span class="glyph-roman">7</span><span class="glyph-code">U+E026</span></div>
+        <div class="glyph-card" aria-label="8, U+E027"><span class="glyph-symbol">&#xE027;</span><span class="glyph-roman">8</span><span class="glyph-code">U+E027</span></div>
+        <div class="glyph-card" aria-label="9, U+E028"><span class="glyph-symbol">&#xE028;</span><span class="glyph-roman">9</span><span class="glyph-code">U+E028</span></div>
+      </div>
+    </div>
+  
+    <div class="glyph-chart" id="tab-punctuation" role="tabpanel">
+      <div class="chart-section-label">Punctuation</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="comma, U+E029"><span class="glyph-symbol">&#xE029;</span><span class="glyph-roman">comma</span><span class="glyph-code">U+E029</span></div>
+        <div class="glyph-card" aria-label="full stop, U+E02A"><span class="glyph-symbol">&#xE02A;</span><span class="glyph-roman">full stop</span><span class="glyph-code">U+E02A</span></div>
+        <div class="glyph-card" aria-label="exclamation, U+E02B"><span class="glyph-symbol">&#xE02B;</span><span class="glyph-roman">exclamation</span><span class="glyph-code">U+E02B</span></div>
+        <div class="glyph-card" aria-label="quotation, U+E02C"><span class="glyph-symbol">&#xE02C;</span><span class="glyph-roman">quotation</span><span class="glyph-code">U+E02C</span></div>
+        <div class="glyph-card" aria-label="question, U+E02D"><span class="glyph-symbol">&#xE02D;</span><span class="glyph-roman">question</span><span class="glyph-code">U+E02D</span></div>
+      </div>
+    </div>
+  
+    <div class="glyph-chart" id="tab-diacritics" role="tabpanel">
+      <div class="chart-section-label">Diacritics</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="high tone, U+0301"><span class="glyph-symbol">&#x25CC;&#x0301;</span><span class="glyph-roman">high tone</span><span class="glyph-code">U+0301</span></div>
+        <div class="glyph-card" aria-label="reduplication, U+030B"><span class="glyph-symbol">&#x25CC;&#x030B;</span><span class="glyph-roman">reduplication</span><span class="glyph-code">U+030B</span></div>
+      </div>
+      <div class="chart-section-label" style="margin-top:2rem;">Reduplication Usage Rule</div>
+       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:700px;margin:0 auto;">
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--terracotta);padding:1.2rem 1.2rem 1rem;">
+          <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.6rem;">Two syllables within a word</p>
+          <p style="font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.7;">Use the reduplication mark (&#x25CC;&#x030B;) over the last letter of the repeated syllable only. <strong style="color:var(--parchment);font-weight:400;">No hyphen.</strong></p>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--gold);padding:1.2rem 1.2rem 1rem;">
+          <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;">Two identical words consecutively</p>
+          <p style="font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.7;">Place the reduplication mark over the <strong style="color:var(--parchment);font-weight:400;">last letter of the word</strong>, then follow with a <strong style="color:var(--parchment);font-weight:400;">hyphen</strong> to signal word-level reduplication.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -362,29 +364,31 @@
 
 <!-- COMPARISON -->
 <section class="alphabet-section reveal">
-  <p class="section-label">Context</p>
-  <h2 class="section-heading">Yapiri vs Other Kokborok Scripts</h2>
-  <div class="gold-line"></div>
-  <div class="table-scroll">
-    <table class="comparison-table">
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Yapiri</th>
-          <th>Bengali Script</th>
-          <th>Roman Script</th>
-          <th>Aima</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Designed for Kokborok phonology</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td></tr>
-        <tr><td>Aspirate consonants</td><td class="check">✓ Dedicated glyphs</td><td>Approximate</td><td>Digraphs</td><td class="check">✓ Yes</td></tr>
-        <tr><td>Tonal diacritics</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td>Partial</td></tr>
-        <tr><td>Custom numerals</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td></tr>
-        <tr><td>Unicode roadmap</td><td class="check">✓ In progress</td><td class="check">✓ Encoded</td><td class="check">✓ Encoded</td><td class="cross">✗ No</td></tr>
-        <tr><td>Downloadable font</td><td class="check">✓ Free</td><td class="check">✓ Available</td><td class="check">✓ Available</td><td class="cross">✗ Limited</td></tr>
-      </tbody>
-    </table>
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">Context</p>
+    <h2 class="section-heading">Yapiri vs Other Kokborok Scripts</h2>
+    <div class="gold-line"></div>
+    <div class="table-scroll">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Yapiri</th>
+            <th>Bengali Script</th>
+            <th>Roman Script</th>
+            <th>Aima</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Designed for Kokborok phonology</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td></tr>
+          <tr><td>Aspirate consonants</td><td class="check">✓ Dedicated glyphs</td><td>Approximate</td><td>Digraphs</td><td class="check">✓ Yes</td></tr>
+          <tr><td>Tonal diacritics</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td>Partial</td></tr>
+          <tr><td>Custom numerals</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td></tr>
+          <tr><td>Unicode roadmap</td><td class="check">✓ In progress</td><td class="check">✓ Encoded</td><td class="check">✓ Encoded</td><td class="cross">✗ No</td></tr>
+          <tr><td>Downloadable font</td><td class="check">✓ Free</td><td class="check">✓ Available</td><td class="check">✓ Available</td><td class="cross">✗ Limited</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
