@@ -83,7 +83,7 @@
 
   /* DOWNLOAD CARDS */
   .downloads-section{padding:6rem 5rem;}
-  .downloads-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1000px;margin-top:3rem;}
+  .downloads-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; max-width:1000px; margin:3rem auto 0; }
   .dl-card{border:1px solid rgba(196,180,154,0.12);padding:3rem 2.5rem;background:rgba(255,255,255,0.02);position:relative;overflow:hidden;transition:all 0.3s;}
   .dl-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--terracotta);transform:scaleX(0);transition:transform 0.3s;}
   .dl-card:hover{border-color:rgba(196,180,154,0.25);transform:translateY(-4px);}
@@ -127,7 +127,7 @@
 
   /* LICENSE */
   .license-section{padding:6rem 5rem;}
-  .license-box{border:1px solid rgba(196,180,154,0.1);padding:2.5rem;max-width:700px;background:rgba(255,255,255,0.02);margin-top:2rem;}
+  .license-box { border:1px solid rgba(196,180,154,0.1); padding:2.5rem; max-width:700px; background:rgba(255,255,255,0.02); margin:2rem auto 0; }
   .license-title{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;color:var(--parchment);letter-spacing:0.05em;margin-bottom:1rem;}
   .license-body{font-size:1rem;font-weight:300;line-height:1.8;color:var(--stone-light);}
   .license-body strong{color:var(--parchment);font-weight:400;}
@@ -198,171 +198,177 @@
 
 <!-- DOWNLOADS -->
 <section class="downloads-section">
-  <p class="section-label reveal">Available Downloads</p>
-  <h2 class="section-heading reveal">Get the Files</h2>
-  <div class="gold-line reveal"></div>
-
-  <div class="downloads-grid">
-
-    <div class="dl-card featured reveal">
-      <span class="dl-badge gold">Recommended First</span>
-      <span class="dl-icon">🔤</span>
-      <div class="dl-title">Yapiri Font</div>
-      <div class="dl-version">Version 1.0 · TTF + WOFF2</div>
-      <p class="dl-desc">The Yapiri typeface — the core file needed to read and write in the script. Works in word processors, design software, and on the web.</p>
-      <div class="dl-meta">
-        <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">TTF · WOFF2</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · Linux</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">License</span><span class="dl-meta-value">Free for personal &amp; educational use</span></div>
-      </div>
-      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-        <a href="assets/fonts/Yapiri.ttf" download class="dl-btn">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Download TTF
-        </a>
-        <a href="assets/fonts/Yapiri.woff2" download class="dl-btn outline">
-          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-          Download WOFF2
-        </a>
-      </div>
-    </div>
-
-    <div class="dl-card reveal" id="keyman">
-      <span class="dl-badge">Coming Soon</span>
-      <span class="dl-icon">⌨</span>
-      <div class="dl-title">Keyman Layout</div>
-      <div class="dl-version">In Development</div>
-      <p class="dl-desc">A native keyboard layout for typing Yapiri on any device — Windows, macOS, iOS, and Android. Uses a phoneme-based QWERTY mapping for intuitive input.</p>
-      <div class="dl-meta">
-        <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · iOS · Android</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Engine</span><span class="dl-meta-value">Keyman by SIL International</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Status</span><span class="dl-meta-value">Under development</span></div>
-      </div>
-      <a href="community.html" class="dl-btn outline">Get Notified When Ready</a>
-    </div>
-
-    <div class="dl-card reveal">
-      <span class="dl-badge">Documentation</span>
-      <span class="dl-icon">📄</span>
-      <div class="dl-title">Script Specification</div>
-      <div class="dl-version">Version 1.0 · May 2026</div>
-      <p class="dl-desc">The full technical specification — glyph inventory, Unicode PUA mapping, OpenType features, encoding rules, and the Unicode submission roadmap.</p>
-      <div class="dl-meta">
-        <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">HTML (web)</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Sections</span><span class="dl-meta-value">13 sections · 48 characters</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Audience</span><span class="dl-meta-value">Linguists · Developers · Educators</span></div>
-      </div>
-      <a href="yapiri-specification.html" class="dl-btn">Read the Spec</a>
-    </div>
-
-    <div class="dl-card reveal">
-      <span class="dl-badge">No Install Needed</span>
-      <span class="dl-icon">🌐</span>
-      <div class="dl-title">Web Keyboard</div>
-      <div class="dl-version">Always Up to Date</div>
-      <p class="dl-desc">No download required. Use the interactive on-screen keyboard directly in your browser to compose and copy Yapiri text into any application.</p>
-      <div class="dl-meta">
-        <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Any modern browser</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Features</span><span class="dl-meta-value">Unicode inspector · Copy text</span></div>
-        <div class="dl-meta-row"><span class="dl-meta-label">Requires</span><span class="dl-meta-value">Font installed for offline use</span></div>
-      </div>
-      <a href="try.html" class="dl-btn">Open Keyboard Tool</a>
-    </div>
-
-     <div class="dl-card reveal">
-          <span class="dl-badge">Beginner's Guide</span>
-          <span class="dl-icon">📖</span>
-          <div class="dl-title">Yapiri Primer</div>
-          <div class="dl-version">Version 1.0 · Web + Printable PDF</div>
-          <p class="dl-desc">A complete beginner's guide to reading and writing Yapiri — vowels, consonants, numerals, diacritics, writing rules, and your first Kokborok words.</p>
-          <div class="dl-meta">
-            <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">Web page · Save as PDF</span></div>
-            <div class="dl-meta-row"><span class="dl-meta-label">Sections</span><span class="dl-meta-value">8 sections · Full alphabet</span></div>
-            <div class="dl-meta-row"><span class="dl-meta-label">Audience</span><span class="dl-meta-value">Beginners · Students · Teachers</span></div>
-          </div>
-          <a href="primer.html" class="dl-btn">Open Primer</a>
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-label reveal">Available Downloads</p>
+    <h2 class="section-heading reveal">Get the Files</h2>
+    <div class="gold-line reveal"></div>
+  
+    <div class="downloads-grid">
+  
+      <div class="dl-card featured reveal">
+        <span class="dl-badge gold">Recommended First</span>
+        <span class="dl-icon">🔤</span>
+        <div class="dl-title">Yapiri Font</div>
+        <div class="dl-version">Version 1.0 · TTF + WOFF2</div>
+        <p class="dl-desc">The Yapiri typeface — the core file needed to read and write in the script. Works in word processors, design software, and on the web.</p>
+        <div class="dl-meta">
+          <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">TTF · WOFF2</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · Linux</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">License</span><span class="dl-meta-value">Free for personal &amp; educational use</span></div>
         </div>
-    
-        <div class="dl-card reveal">
-          <span class="dl-badge">Reference</span>
-          <span class="dl-icon">📊</span>
-          <div class="dl-title">Alphabet Chart</div>
-          <div class="dl-version">Version 1.0 · Web + Printable PDF</div>
-          <p class="dl-desc">A quick-reference chart of the full Yapiri alphabet — all 48 characters with their romanization, IPA values, and PUA codepoints at a glance.</p>
-          <div class="dl-meta">
-            <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">Web page · Save as PDF</span></div>
-            <div class="dl-meta-row"><span class="dl-meta-label">Characters</span><span class="dl-meta-value">48 total · Vowels · Consonants · Numerals</span></div>
-            <div class="dl-meta-row"><span class="dl-meta-label">Audience</span><span class="dl-meta-value">All levels · Quick reference</span></div>
-          </div>
-          <a href="chart.html" class="dl-btn">View Chart</a>
+        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+          <a href="assets/fonts/Yapiri.ttf" download class="dl-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download TTF
+          </a>
+          <a href="assets/fonts/Yapiri.woff2" download class="dl-btn outline">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download WOFF2
+          </a>
         </div>
-
+      </div>
+  
+      <div class="dl-card reveal" id="keyman">
+        <span class="dl-badge">Coming Soon</span>
+        <span class="dl-icon">⌨</span>
+        <div class="dl-title">Keyman Layout</div>
+        <div class="dl-version">In Development</div>
+        <p class="dl-desc">A native keyboard layout for typing Yapiri on any device — Windows, macOS, iOS, and Android. Uses a phoneme-based QWERTY mapping for intuitive input.</p>
+        <div class="dl-meta">
+          <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · iOS · Android</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Engine</span><span class="dl-meta-value">Keyman by SIL International</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Status</span><span class="dl-meta-value">Under development</span></div>
+        </div>
+        <a href="community.html" class="dl-btn outline">Get Notified When Ready</a>
+      </div>
+  
+      <div class="dl-card reveal">
+        <span class="dl-badge">Documentation</span>
+        <span class="dl-icon">📄</span>
+        <div class="dl-title">Script Specification</div>
+        <div class="dl-version">Version 1.0 · May 2026</div>
+        <p class="dl-desc">The full technical specification — glyph inventory, Unicode PUA mapping, OpenType features, encoding rules, and the Unicode submission roadmap.</p>
+        <div class="dl-meta">
+          <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">HTML (web)</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Sections</span><span class="dl-meta-value">13 sections · 48 characters</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Audience</span><span class="dl-meta-value">Linguists · Developers · Educators</span></div>
+        </div>
+        <a href="yapiri-specification.html" class="dl-btn">Read the Spec</a>
+      </div>
+  
+      <div class="dl-card reveal">
+        <span class="dl-badge">No Install Needed</span>
+        <span class="dl-icon">🌐</span>
+        <div class="dl-title">Web Keyboard</div>
+        <div class="dl-version">Always Up to Date</div>
+        <p class="dl-desc">No download required. Use the interactive on-screen keyboard directly in your browser to compose and copy Yapiri text into any application.</p>
+        <div class="dl-meta">
+          <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Any modern browser</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Features</span><span class="dl-meta-value">Unicode inspector · Copy text</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Requires</span><span class="dl-meta-value">Font installed for offline use</span></div>
+        </div>
+        <a href="try.html" class="dl-btn">Open Keyboard Tool</a>
+      </div>
+  
+       <div class="dl-card reveal">
+            <span class="dl-badge">Beginner's Guide</span>
+            <span class="dl-icon">📖</span>
+            <div class="dl-title">Yapiri Primer</div>
+            <div class="dl-version">Version 1.0 · Web + Printable PDF</div>
+            <p class="dl-desc">A complete beginner's guide to reading and writing Yapiri — vowels, consonants, numerals, diacritics, writing rules, and your first Kokborok words.</p>
+            <div class="dl-meta">
+              <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">Web page · Save as PDF</span></div>
+              <div class="dl-meta-row"><span class="dl-meta-label">Sections</span><span class="dl-meta-value">8 sections · Full alphabet</span></div>
+              <div class="dl-meta-row"><span class="dl-meta-label">Audience</span><span class="dl-meta-value">Beginners · Students · Teachers</span></div>
+            </div>
+            <a href="primer.html" class="dl-btn">Open Primer</a>
+          </div>
+      
+          <div class="dl-card reveal">
+            <span class="dl-badge">Reference</span>
+            <span class="dl-icon">📊</span>
+            <div class="dl-title">Alphabet Chart</div>
+            <div class="dl-version">Version 1.0 · Web + Printable PDF</div>
+            <p class="dl-desc">A quick-reference chart of the full Yapiri alphabet — all 48 characters with their romanization, IPA values, and PUA codepoints at a glance.</p>
+            <div class="dl-meta">
+              <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">Web page · Save as PDF</span></div>
+              <div class="dl-meta-row"><span class="dl-meta-label">Characters</span><span class="dl-meta-value">48 total · Vowels · Consonants · Numerals</span></div>
+              <div class="dl-meta-row"><span class="dl-meta-label">Audience</span><span class="dl-meta-value">All levels · Quick reference</span></div>
+            </div>
+            <a href="chart.html" class="dl-btn">View Chart</a>
+          </div>
+  
+    </div>
   </div>
 </section>
 
 <!-- INSTALLATION GUIDE -->
 <section class="install-section reveal">
-  <p class="section-label">Installation Guide</p>
-  <h2 class="section-heading">How to Install the Font</h2>
-  <div class="gold-line"></div>
-  <p class="body-text">After downloading, install the font on your system so it's available in all applications.</p>
-
-  <div class="install-tabs">
-    <button class="install-tab active" onclick="showInstall('windows',this)">Windows</button>
-    <button class="install-tab" onclick="showInstall('mac',this)">macOS</button>
-    <button class="install-tab" onclick="showInstall('linux',this)">Linux</button>
-    <button class="install-tab" onclick="showInstall('web',this)">Web / CSS</button>
-  </div>
-
-  <div class="install-panel active" id="install-windows">
-    <div class="install-steps">
-      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Click "Download TTF" above and save <code>assets/fonts/Yapiri.ttf</code> to your Downloads folder.</p></div></div>
-      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Open the font file</div><p class="step-desc">Double-click <code>assets/fonts/Yapiri.ttf</code> to open the Windows Font Preview window.</p></div></div>
-      <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Click Install</div><p class="step-desc">Click the <strong>Install</strong> button at the top of the preview window. The font installs system-wide immediately.</p></div></div>
-      <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Word, Notepad, or any app. Select <strong class="yapiri-glyphs">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002; &#xE017;&#xE001;&#xE00E;&#xE003;&#xE018;&#xE000;&#xE017;</strong> (Yapiri Regular) from the font dropdown. PUA characters U+E000–U+E02F will now render correctly.</p></div></div>
+  <div style="max-width:700px;margin:0 auto;">
+    <p class="section-label">Installation Guide</p>
+    <h2 class="section-heading">How to Install the Font</h2>
+    <div class="gold-line"></div>
+    <p class="body-text">After downloading, install the font on your system so it's available in all applications.</p>
+  
+    <div class="install-tabs">
+      <button class="install-tab active" onclick="showInstall('windows',this)">Windows</button>
+      <button class="install-tab" onclick="showInstall('mac',this)">macOS</button>
+      <button class="install-tab" onclick="showInstall('linux',this)">Linux</button>
+      <button class="install-tab" onclick="showInstall('web',this)">Web / CSS</button>
     </div>
-  </div>
-
-  <div class="install-panel" id="install-mac">
-    <div class="install-steps">
-      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Click "Download TTF" above and save <code>assets/fonts/Yapiri.ttf</code> to your Downloads folder.</p></div></div>
-      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Open with Font Book</div><p class="step-desc">Double-click <code>assets/fonts/Yapiri.ttf</code>. macOS will open it in <strong>Font Book</strong> automatically.</p></div></div>
-      <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Click Install Font</div><p class="step-desc">Click <strong>Install Font</strong> in the Font Book preview. The font is now available system-wide.</p></div></div>
-      <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Pages, Keynote, Illustrator, or any app. Select <strong class="yapiri-glyphs">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002; &#xE017;&#xE001;&#xE00E;&#xE003;&#xE018;&#xE000;&#xE017;</strong> (Yapiri Regular) from the font menu. PUA characters U+E000–U+E02F will now render correctly.</p></div></div>
+  
+    <div class="install-panel active" id="install-windows">
+      <div class="install-steps">
+        <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Click "Download TTF" above and save <code>assets/fonts/Yapiri.ttf</code> to your Downloads folder.</p></div></div>
+        <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Open the font file</div><p class="step-desc">Double-click <code>assets/fonts/Yapiri.ttf</code> to open the Windows Font Preview window.</p></div></div>
+        <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Click Install</div><p class="step-desc">Click the <strong>Install</strong> button at the top of the preview window. The font installs system-wide immediately.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Word, Notepad, or any app. Select <strong class="yapiri-glyphs">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002; &#xE017;&#xE001;&#xE00E;&#xE003;&#xE018;&#xE000;&#xE017;</strong> (Yapiri Regular) from the font dropdown. PUA characters U+E000–U+E02F will now render correctly.</p></div></div>
+      </div>
     </div>
-  </div>
-
-  <div class="install-panel" id="install-linux">
-    <div class="install-steps">
-      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Download <code>assets/fonts/Yapiri.ttf</code> from the button above.</p></div></div>
-      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Copy to fonts directory</div><p class="step-desc">Run: <code>mkdir -p ~/.local/share/fonts && cp assets/fonts/Yapiri.ttf ~/.local/share/fonts/</code></p></div></div>
-      <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Refresh font cache</div><p class="step-desc">Run: <code>fc-cache -fv</code> to update the system font cache.</p></div></div>
-      <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Verify installation</div><p class="step-desc">Run: <code>fc-list | grep Yapiri</code> — if it returns a result, the font is installed correctly.</p></div></div>
+  
+    <div class="install-panel" id="install-mac">
+      <div class="install-steps">
+        <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Click "Download TTF" above and save <code>assets/fonts/Yapiri.ttf</code> to your Downloads folder.</p></div></div>
+        <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Open with Font Book</div><p class="step-desc">Double-click <code>assets/fonts/Yapiri.ttf</code>. macOS will open it in <strong>Font Book</strong> automatically.</p></div></div>
+        <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Click Install Font</div><p class="step-desc">Click <strong>Install Font</strong> in the Font Book preview. The font is now available system-wide.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Pages, Keynote, Illustrator, or any app. Select <strong class="yapiri-glyphs">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002; &#xE017;&#xE001;&#xE00E;&#xE003;&#xE018;&#xE000;&#xE017;</strong> (Yapiri Regular) from the font menu. PUA characters U+E000–U+E02F will now render correctly.</p></div></div>
+      </div>
     </div>
-  </div>
-
-  <div class="install-panel" id="install-web">
-    <div class="install-steps">
-      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Upload font files to your server</div><p class="step-desc">Place <code>assets/fonts/Yapiri.woff2</code> and <code>assets/fonts/Yapiri.ttf</code> in your project's fonts or assets folder.</p></div></div>
-      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Add @font-face to your CSS</div><p class="step-desc"><code>@font-face { font-family: 'Yapiri'; src: url('assets/fonts/Yapiri.woff2') format('woff2'), url('assets/fonts/Yapiri.ttf') format('truetype'); font-display: swap; }</code></p></div></div>
-      <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Apply the font</div><p class="step-desc">Use <code>font-family: 'Yapiri', serif;</code> on any element containing PUA characters U+E000–U+E02F.</p></div></div>
-      <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Use WOFF2 for web</div><p class="step-desc">WOFF2 is smaller and faster than TTF for web use. Always list it first in the <code>src</code> declaration so modern browsers pick it up.</p></div></div>
+  
+    <div class="install-panel" id="install-linux">
+      <div class="install-steps">
+        <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Download <code>assets/fonts/Yapiri.ttf</code> from the button above.</p></div></div>
+        <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Copy to fonts directory</div><p class="step-desc">Run: <code>mkdir -p ~/.local/share/fonts && cp assets/fonts/Yapiri.ttf ~/.local/share/fonts/</code></p></div></div>
+        <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Refresh font cache</div><p class="step-desc">Run: <code>fc-cache -fv</code> to update the system font cache.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Verify installation</div><p class="step-desc">Run: <code>fc-list | grep Yapiri</code> — if it returns a result, the font is installed correctly.</p></div></div>
+      </div>
+    </div>
+  
+    <div class="install-panel" id="install-web">
+      <div class="install-steps">
+        <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Upload font files to your server</div><p class="step-desc">Place <code>assets/fonts/Yapiri.woff2</code> and <code>assets/fonts/Yapiri.ttf</code> in your project's fonts or assets folder.</p></div></div>
+        <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Add @font-face to your CSS</div><p class="step-desc"><code>@font-face { font-family: 'Yapiri'; src: url('assets/fonts/Yapiri.woff2') format('woff2'), url('assets/fonts/Yapiri.ttf') format('truetype'); font-display: swap; }</code></p></div></div>
+        <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Apply the font</div><p class="step-desc">Use <code>font-family: 'Yapiri', serif;</code> on any element containing PUA characters U+E000–U+E02F.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Use WOFF2 for web</div><p class="step-desc">WOFF2 is smaller and faster than TTF for web use. Always list it first in the <code>src</code> declaration so modern browsers pick it up.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- LICENSE -->
 <section class="license-section reveal">
-  <p class="section-label">Terms of Use</p>
-  <h2 class="section-heading">License</h2>
-  <div class="gold-line"></div>
-  <div class="license-box">
-    <span class="license-tag">Free to Use</span>
-    <div class="license-title">Yapiri Font License</div>
-    <div class="license-body">
-      <p style="margin-bottom:1rem">The Yapiri font is free for <strong>personal, educational, and non-commercial use</strong>. You may use it in documents, presentations, websites, and educational materials without charge.</p>
-      <p style="margin-bottom:1rem">For <strong>commercial use</strong> — including use in commercial products, publications, or services — please contact us via the <a href="community.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">community page</a> to discuss terms.</p>
-      <p>Please do not redistribute the font files without attribution. Always credit <strong>Yapiri Script by Animesh Debbarma</strong> when sharing or embedding the font.</p>
+  <div style="max-width:700px;margin:0 auto;">
+    <p class="section-label">Terms of Use</p>
+    <h2 class="section-heading">License</h2>
+    <div class="gold-line"></div>
+    <div class="license-box">
+      <span class="license-tag">Free to Use</span>
+      <div class="license-title">Yapiri Font License</div>
+      <div class="license-body">
+        <p style="margin-bottom:1rem">The Yapiri font is free for <strong>personal, educational, and non-commercial use</strong>. You may use it in documents, presentations, websites, and educational materials without charge.</p>
+        <p style="margin-bottom:1rem">For <strong>commercial use</strong> — including use in commercial products, publications, or services — please contact us via the <a href="community.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">community page</a> to discuss terms.</p>
+        <p>Please do not redistribute the font files without attribution. Always credit <strong>Yapiri Script by Animesh Debbarma</strong> when sharing or embedding the font.</p>
+      </div>
     </div>
   </div>
 </section>
