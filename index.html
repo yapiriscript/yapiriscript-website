@@ -95,7 +95,7 @@
   #about { background: var(--charcoal); padding: 7rem 5rem; position: relative; overflow: hidden; }
   #about::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
   .section-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem; }
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; max-width: 1100px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; max-width: 1100px;  margin: 0 auto;}
   .about-heading { font-family: 'Teko', sans-serif; font-size: clamp(2.5rem,4vw,4.5rem); font-weight: 300; line-height: 1.05; color: var(--parchment); margin-bottom: 2rem; }
   .about-heading em { color: var(--gold-light); font-style: italic; font-family: 'Cormorant Garamond', serif; }
   .about-body p { font-size: 1.15rem; font-weight: 300; line-height: 1.85; color: var(--stone-light); margin-bottom: 1.5rem; }
@@ -136,7 +136,7 @@
   #download { background: var(--ink); padding: 7rem 5rem; position: relative; overflow: hidden; }
   .download-bg-text { position: absolute; font-family: 'Teko', sans-serif; font-size: 20rem; font-weight: 300; color: rgba(201,146,42,0.03); right: -2rem; bottom: -2rem; line-height: 1; pointer-events: none; letter-spacing: -0.02em; }
   .showcase-title { font-family: 'Teko', sans-serif; font-size: clamp(2.5rem,4vw,4rem); font-weight: 300; color: var(--parchment); }
-  .download-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin-top: 3rem; }
+  .download-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 3rem auto 0; }
   .download-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(196,180,154,0.1); padding: 2.5rem 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
   .download-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--terracotta); transform: scaleX(0); transition: transform 0.3s; }
   .download-card:hover { border-color: rgba(196,180,154,0.25); transform: translateY(-4px); }
@@ -150,7 +150,7 @@
 
   /* COMMUNITY */
   #community { background: linear-gradient(to bottom, var(--charcoal), #0d0b06); padding: 7rem 5rem; }
-  .community-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; max-width: 1100px; align-items: start; }
+  .community-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; max-width: 1100px; align-items: start; margin: 0 auto; }
   .community-heading { font-family: 'Teko', sans-serif; font-size: clamp(2.5rem,4vw,4.5rem); font-weight: 300; color: var(--parchment); line-height: 1.05; margin-bottom: 2rem; }
   .community-text { font-size: 1.1rem; font-weight: 300; line-height: 1.85; color: var(--stone-light); margin-bottom: 1.5rem; }
   .community-lang { font-size: 1.6rem; font-family: 'Yapiri', serif; color: var(--gold-light); letter-spacing: 0.12em; display: block; margin: 1.5rem 0 0.5rem; }
