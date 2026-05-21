@@ -618,10 +618,30 @@
       </table>
     </div>
 
-    <div class="callout gold reveal"><strong>Yapiri has no vowel diacritics.</strong> All six vowels are full independent letters written sequentially after consonants. The only combining marks in Yapiri are the high tone diacritic (U+0301) and the reduplication mark (U+030B) — neither modifies a vowel letter's identity.</div>
-    <div class="callout reveal">
-  <strong>Note on the vowel ə (U+E005):</strong> The vowel represented by this grapheme is classified as <strong>/ə/</strong> (mid-central unrounded). In Kokborok speech, this vowel occupies a phonetic space that native speakers may perceive as falling between "ee" and "uh" — overlapping with the territory of the high central unrounded vowel /ɨ/. The precise phonological classification of this vowel remains an open question in Kokborok linguistics, with some analyses favouring /ə/ (mid-central) and others pointing toward /ɨ/ (high central). The Yapiri script adopts /ə/ as its working classification, acknowledging this ongoing scholarly ambiguity. This classification may be revised as linguistic research on Kokborok phonology advances.
-</div>
+        <div class="callout gold reveal"><strong>Yapiri has no vowel diacritics.</strong> All six vowels are full independent letters written sequentially after consonants. The only combining marks in Yapiri are the high tone diacritic (U+0301) and the reduplication mark (U+030B) — neither modifies a vowel letter's identity.</div>
+        <div class="callout reveal">
+      <strong>Note on the vowel ə (U+E005):</strong> The vowel represented by this grapheme is classified as <strong>/ə/</strong> (mid-central unrounded). In Kokborok speech, this vowel occupies a phonetic space that native speakers may perceive as falling between "ee" and "uh" — overlapping with the territory of the high central unrounded vowel /ɨ/. The precise phonological classification of this vowel remains an open question in Kokborok linguistics, with some analyses favouring /ə/ (mid-central) and others pointing toward /ɨ/ (high central). The Yapiri script adopts /ə/ as its working classification, acknowledging this ongoing scholarly ambiguity. This classification may be revised as linguistic research on Kokborok phonology advances.
+    </div>
+    <div class="callout gold reveal">
+      <strong>High Tone Mark (U+0301)</strong> — placed directly over the vowel of the high-tone syllable. In Kokborok Latin romanization, a vowel followed by 'h' conventionally signals high tone (e.g. <em>oh</em>). In Yapiri, the 'h' is dropped and the mark sits over the vowel instead.<br><br>
+      Example — <em>bohrok</em> (they): &nbsp;
+      <span style="font-family:'Yapiri',serif;font-size:1.4rem;color:var(--parchment);vertical-align:middle;">&#xE00C;&#xE004;&#x0301;&#xE017;&#xE004;&#xE008;</span>
+      &nbsp; <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--stone);">b · ó · r · o · k — high tone mark over the first vowel o</span>
+    </div>
+    
+    <div class="callout gold reveal">
+      <strong>Reduplication Mark — Within a Word (U+030B, no hyphen)</strong> — when a syllable repeats within a single word, write the syllable once and place the mark over its last letter.<br><br>
+      Example — <em>nini</em> (yours): &nbsp;
+      <span style="font-family:'Yapiri',serif;font-size:1.4rem;color:var(--parchment);vertical-align:middle;">&#xE013;&#xE002;&#x030B;</span>
+      &nbsp; <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--stone);">n · i̋ — mark over i signals the syllable ni is spoken twice</span>
+    </div>
+    
+    <div class="callout gold reveal">
+      <strong>Reduplication Mark + Hyphen — Consecutive Words (U+030B + U+002D)</strong> — when a full word repeats consecutively, place the mark over the last letter of the first word, then add a hyphen. The hyphen signals the word before it is repeated.<br><br>
+      Example — <em>serek serek</em> (silently): &nbsp;
+      <span style="font-family:'Yapiri',serif;font-size:1.4rem;color:var(--parchment);vertical-align:middle;">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;-</span>
+      &nbsp; <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--stone);">s · e · r · e · k̋ · — mark over k then hyphen signals serek is repeated</span>
+    </div>
   </section>
 
   <!-- §7 NUMERALS -->
@@ -725,8 +745,8 @@
           <tr><td class="td-code">R3</td><td>A word or syllable beginning with a vowel = vowel codepoint with no preceding consonant</td><td class="td-note">U+E000 alone = /a/</td></tr>
           <tr><td class="td-code">R4</td><td>Consonant clusters are written by placing consonant codepoints sequentially with no vowel between</td><td class="td-note">U+E006 + U+E017 = /pr/</td></tr>
           <tr><td class="td-code">R5</td><td>High tone is marked by U+0301 placed after the vowel codepoint of the syllable</td><td class="td-note">U+E000 + U+0301 = /á/</td></tr>
-          <tr><td class="td-code">R6</td><td>Syllable reduplication: U+030B on the repeated morpheme, no hyphen. Word reduplication: U+030B on last letter of the word, followed by a hyphen</td><td class="td-note">Marks abbreviated repeated forms</td></tr>
-          <tr><td class="td-code">R7</td><td>Schwa (U+E005) appears only mid-word, never word-initial. Consonant w (U+E01D) appears only word-initially, never mid-word</td><td class="td-note">Positional constraint</td></tr>
+          <tr><td class="td-code">R6</td><td>Syllable reduplication: U+030B on the last letter of the repeated syllable, no hyphen. Word reduplication: U+030B on the last letter of the first word, then U+002D hyphen</td><td class="td-note"><span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE013;&#xE002;&#x030B;</span> nini (yours) &nbsp;·&nbsp; <span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;-</span> serek- (silently)</td></tr>
+          <tr><td class="td-code">R7</td><td>Schwa (U+E005) appears only mid-word, never word-initial. Consonant w (U+E01D) appears only word-initially, never mid-word. The 'w' in Kokborok romanization that appears mid-word is always written as schwa ə in Yapiri.</td><td class="td-note"><span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE01D;&#xE000;&#xE008;</span> wak (pig) — W at word start &nbsp;·&nbsp; <span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE008;&#xE005;&#xE007;&#xE005;&#xE002;</span> kwtwi (sweet) — ə mid-word</td></tr>
           <tr><td class="td-code">R8</td><td>Spaces separate words; no special word-joiner is required</td><td class="td-note">U+0020 space as normal</td></tr>
         </tbody>
       </table>
