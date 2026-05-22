@@ -420,12 +420,15 @@
   const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);observer.unobserve(entry.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-  if(window.location.hash === '#install-keyman') {
-  document.querySelector('[onclick="showInstall(\'keyman\',this)"]').click();
+ setTimeout(() => {
+  const hash = window.location.hash;
+  if (hash === '#install-keyman') {
+    document.querySelector('[onclick="showInstall(\'keyman\',this)"]').click();
+    document.getElementById('install').scrollIntoView({behavior:'smooth'});
+  } else if (hash === '#install-windows') {
+    document.getElementById('install').scrollIntoView({behavior:'smooth'});
   }
-  if(window.location.hash === '#install-windows') {
-    document.querySelector('[onclick="showInstall(\'windows\',this)"]').click();
-  }
+  }, 300);
 </script>
 </body>
 </html>
