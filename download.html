@@ -306,7 +306,7 @@
 </section>
 
 <!-- INSTALLATION GUIDE -->
-<section class="install-section reveal">
+<section class="install-section reveal" id="install">
   <div style="max-width:700px;margin:0 auto;">
     <p class="section-label">Installation Guide</p>
     <h2 class="section-heading">How to Install the Font</h2>
@@ -419,6 +419,13 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
   const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);observer.unobserve(entry.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  if(window.location.hash === '#install-keyman') {
+  document.querySelector('[onclick="showInstall(\'keyman\',this)"]').click();
+  }
+  if(window.location.hash === '#install-font') {
+    document.querySelector('[onclick="showInstall(\'windows\',this)"]').click();
+  }
 </script>
 </body>
 </html>
