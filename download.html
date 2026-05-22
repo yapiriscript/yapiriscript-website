@@ -228,20 +228,26 @@
         </div>
       </div>
   
-      <div class="dl-card reveal" id="keyman">
-        <span class="dl-badge">Coming Soon</span>
+     <div class="dl-card reveal" id="keyman">
+        <span class="dl-badge">New</span>
         <span class="dl-icon">⌨</span>
-        <div class="dl-title">Keyman Layout</div>
-        <div class="dl-version">In Development</div>
-        <p class="dl-desc">A native keyboard layout for typing Yapiri on any device — Windows, macOS, iOS, and Android. Uses a phoneme-based QWERTY mapping for intuitive input.</p>
+        <div class="dl-title">Keyman Keyboard</div>
+        <div class="dl-version">Version 1.0 · .kmp package</div>
+        <p class="dl-desc">Type Yapiri natively on any device. Consonants and vowels organised by phoneme group, with Yapiri glyphs on every key. Works on desktop and Android.</p>
         <div class="dl-meta">
-          <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · iOS · Android</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · Linux · Android</span></div>
           <div class="dl-meta-row"><span class="dl-meta-label">Engine</span><span class="dl-meta-value">Keyman by SIL International</span></div>
-          <div class="dl-meta-row"><span class="dl-meta-label">Status</span><span class="dl-meta-value">Under development</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Requires</span><span class="dl-meta-value">Keyman Desktop or Keyman for Android</span></div>
         </div>
-        <a href="community.html" class="dl-btn outline">Get Notified When Ready</a>
+        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+          <a href="assets/keyboard/yapiri.kmp" download class="dl-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download .kmp
+          </a>
+          <a href="https://keyman.com/download" target="_blank" rel="noopener" class="dl-btn outline">Get Keyman Free</a>
+        </div>
       </div>
-  
+      
       <div class="dl-card reveal">
         <span class="dl-badge">Documentation</span>
         <span class="dl-icon">📄</span>
@@ -315,6 +321,7 @@
       <button class="install-tab" onclick="showInstall('mac',this)">macOS</button>
       <button class="install-tab" onclick="showInstall('linux',this)">Linux</button>
       <button class="install-tab" onclick="showInstall('web',this)">Web / CSS</button>
+      <button class="install-tab" onclick="showInstall('keyman',this)">Keyman Keyboard</button>
     </div>
   
     <div class="install-panel active" id="install-windows">
@@ -351,6 +358,15 @@
         <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Apply the font</div><p class="step-desc">Use <code>font-family: 'Yapiri', serif;</code> on any element containing PUA characters U+E000–U+E02F.</p></div></div>
         <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Use WOFF2 for web</div><p class="step-desc">WOFF2 is smaller and faster than TTF for web use. Always list it first in the <code>src</code> declaration so modern browsers pick it up.</p></div></div>
       </div>
+    </div>
+  </div>
+
+  <div class="install-panel" id="install-keyman">
+    <div class="install-steps">
+      <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Install Keyman</div><p class="step-desc">Download and install <a href="https://keyman.com/download" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Keyman Desktop</a> (Windows/macOS/Linux) or <strong>Keyman for Android</strong> from the Play Store.</p></div></div>
+      <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Download the keyboard package</div><p class="step-desc">Click <strong>Download .kmp</strong> above and save <code>yapiri.kmp</code> to your device.</p></div></div>
+      <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Install the package</div><p class="step-desc"><strong>Desktop:</strong> double-click <code>yapiri.kmp</code> — Keyman will open and prompt you to install. Click Install.<br><strong>Android:</strong> tap the file in your file manager (with Keyman installed), or open Keyman → Settings → Install keyboard → from file.</p></div></div>
+      <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Start typing</div><p class="step-desc"><strong>Desktop:</strong> click the Keyman tray icon and select Yapiri Script.<br><strong>Android:</strong> enable Keyman as your input method in Android settings, then tap any text field and switch to Yapiri Script inside Keyman.</p></div></div>
     </div>
   </div>
 </section>
