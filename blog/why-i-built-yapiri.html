@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I Built a New Alphabet for Kokborok — Yapiri Script</title>
+<meta name="title" content="Why I Built a New Alphabet for Kokborok — Yapiri Script">
+<meta name="description" content="A personal account of why Yapiri was created — from researching Kokborok's script debate to building a new phonemic alphabet from scratch in under six weeks.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yapiriscript.com/blog/why-i-built-yapiri.html">
+<meta property="og:title" content="Why I Built a New Alphabet for Kokborok">
+<meta property="og:description" content="A personal account of why Yapiri was created — from researching Kokborok's script debate to building a new phonemic alphabet from scratch in under six weeks.">
+<meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yapiriscript.com/blog/why-i-built-yapiri.html">
+<meta property="twitter:title" content="Why I Built a New Alphabet for Kokborok">
+<meta property="twitter:description" content="A personal account of why Yapiri was created — from researching Kokborok's script debate to building a new phonemic alphabet from scratch in under six weeks.">
+<meta property="twitter:image" content="https://yapiriscript.com/assets/images/twitter-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-weight:normal; font-style:normal; font-display:swap; }
+  :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(26,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,0.2);}
+  .nav-logo{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;color:var(--gold-light);text-decoration:none;}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-light);text-decoration:none;transition:color 0.3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold-light);}
+  .nav-badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;background:rgba(184,92,56,0.2);border:1px solid var(--terracotta);color:var(--terracotta);padding:0.3rem 0.75rem;white-space:nowrap;}
+
+  /* HAMBURGER */
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--stone-light);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--gold-light);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--gold-light);}
+
+  /* MOBILE MENU */
+  .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,18,9,0.98);z-index:150;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(20px);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu-close{position:absolute;top:1.4rem;right:1.5rem;background:none;border:1px solid rgba(196,180,154,0.2);color:var(--stone-light);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.2s,color 0.2s;font-size:1.4rem;line-height:1;}
+  .mobile-menu-close:hover{border-color:var(--gold-light);color:var(--gold-light);}
+  .mobile-menu a{font-family:'Teko',sans-serif;font-size:clamp(2.5rem,8vw,4rem);font-weight:300;letter-spacing:0.08em;color:var(--stone-light);text-decoration:none;padding:0.6rem 2rem;transition:color 0.2s;border-bottom:1px solid rgba(196,180,154,0.06);width:100%;text-align:center;}
+  .mobile-menu a:hover{color:var(--gold-light);}
+
+  /* ARTICLE LAYOUT */
+  .article-wrap{max-width:720px;margin:0 auto;padding:8rem 2rem 6rem;}
+
+  /* BACK + CATEGORY */
+  .article-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:3rem;}
+  .back-link{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem;transition:color 0.2s;}
+  .back-link:hover{color:var(--gold-light);}
+  .back-link::before{content:'←';}
+  .article-category{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;background:rgba(184,92,56,0.15);border:1px solid var(--terracotta);color:var(--terracotta);padding:0.25rem 0.7rem;}
+
+  /* HEADER */
+  .article-header{margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(196,180,154,0.1);}
+  .article-title{font-family:'Teko',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.0;color:var(--parchment);letter-spacing:0.02em;margin-bottom:1.2rem;}
+  .article-excerpt{font-size:1.2rem;font-weight:300;font-style:italic;color:var(--stone-light);line-height:1.7;margin-bottom:2rem;max-width:600px;}
+  .article-meta{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;}
+  .meta-item{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--stone);display:flex;align-items:center;gap:0.4rem;}
+  .meta-dot{color:rgba(196,180,154,0.3);}
+
+  /* BODY */
+  .article-body{font-size:1.15rem;font-weight:300;line-height:1.9;color:var(--stone-light);}
+  .article-body p{margin-bottom:1.6rem;}
+  .article-body p strong{color:var(--parchment);font-weight:400;}
+  .article-body p em{color:var(--parchment);font-style:italic;}
+  .article-body h2{font-family:'Teko',sans-serif;font-size:2rem;font-weight:400;color:var(--parchment);letter-spacing:0.05em;margin:3rem 0 1.2rem;line-height:1.1;position:relative;padding-left:1.2rem;}
+  .article-body h2::before{content:'';position:absolute;left:0;top:0.15em;bottom:0.15em;width:3px;background:var(--terracotta);}
+  .article-body hr{border:none;border-top:1px solid rgba(196,180,154,0.1);margin:3rem 0;}
+
+  /* SIGN OFF */
+  .article-signoff{margin-top:3rem;padding:2rem;background:rgba(201,146,42,0.04);border:1px solid rgba(201,146,42,0.15);border-left:3px solid var(--gold);}
+  .article-signoff p{font-size:1rem;font-weight:300;font-style:italic;color:var(--stone-light);line-height:1.7;margin-bottom:0.3rem;}
+  .article-signoff p:last-child{margin-bottom:0;}
+
+  /* LIKE / COMMENT */
+  .article-footer{margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(196,180,154,0.1);}
+  .like-row{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;}
+  .like-btn{background:transparent;border:1px solid rgba(196,180,154,0.2);color:var(--stone-light);padding:0.6rem 1.4rem;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:0.5rem;transition:all 0.25s;}
+  .like-btn:hover,.like-btn.liked{border-color:var(--terracotta);color:var(--terracotta);}
+  .like-count{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--stone);}
+
+  .comment-section h3{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;color:var(--parchment);letter-spacing:0.05em;margin-bottom:1.5rem;}
+  .comment-form{display:flex;flex-direction:column;gap:0.8rem;margin-bottom:2.5rem;}
+  .comment-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+  .comment-input,.comment-textarea{background:rgba(0,0,0,0.3);border:1px solid rgba(196,180,154,0.15);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;font-size:1rem;padding:0.7rem 1rem;width:100%;outline:none;transition:border-color 0.2s;}
+  .comment-input::placeholder,.comment-textarea::placeholder{color:var(--stone);font-style:italic;opacity:0.6;}
+  .comment-input:focus,.comment-textarea:focus{border-color:rgba(201,146,42,0.4);}
+  .comment-textarea{min-height:110px;resize:vertical;}
+  .comment-submit{background:var(--terracotta);color:var(--warm-white);border:none;padding:0.8rem 2rem;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:background 0.25s;align-self:flex-start;}
+  .comment-submit:hover{background:var(--terra-light);}
+  .comments-list{display:flex;flex-direction:column;gap:1.5rem;}
+  .comment-empty{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--stone);letter-spacing:0.08em;}
+
+  /* SOCIAL */
+  .social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(196,180,154,0.15);color:var(--stone-light);text-decoration:none;transition:all 0.25s;position:relative;overflow:hidden;}
+  .social-link::before{content:'';position:absolute;inset:0;background:var(--terracotta);opacity:0;transition:opacity 0.25s;}
+  .social-link:hover{border-color:var(--terracotta);color:var(--warm-white);}
+  .social-link:hover::before{opacity:1;}
+  .social-link svg{width:15px;height:15px;position:relative;z-index:1;fill:currentColor;}
+  .footer-social{display:flex;gap:0.8rem;align-items:center;}
+  .footer-social .social-link{border-color:rgba(196,180,154,0.1);}
+  .footer-social .social-link:hover{border-color:var(--gold);color:var(--gold-light);}
+  .footer-social .social-link:hover::before{background:rgba(201,146,42,0.15);opacity:1;}
+
+  /* FOOTER */
+  footer{background:#080704;padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,180,154,0.08);flex-wrap:wrap;gap:1.5rem;}
+  .footer-logo{font-family:'Teko',sans-serif;font-size:1.4rem;font-weight:300;color:var(--stone);letter-spacing:0.15em;}
+  .footer-copy{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:rgba(196,180,154,0.3);text-align:right;line-height:1.8;}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-badge{display:none;}
+    footer{flex-direction:column;text-align:center;padding:2.5rem 2rem;}
+    .footer-copy{text-align:center;}
+    .footer-social{justify-content:center;}
+    .comment-row{grid-template-columns:1fr;}
+  }
+  @media(max-width:700px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .article-wrap{padding:7rem 1.5rem 4rem;}
+    .article-nav{flex-direction:column;align-items:flex-start;gap:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../script.html">Script</a></li>
+    <li><a href="../yapiri-specification.html">Spec</a></li>
+    <li><a href="../try.html">Try</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="../about.html" onclick="closeMenu()">About</a>
+  <a href="../script.html" onclick="closeMenu()">Script</a>
+  <a href="../yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="../try.html" onclick="closeMenu()">Try</a>
+  <a href="../download.html" onclick="closeMenu()">Download</a>
+  <a href="../community.html" onclick="closeMenu()">Community</a>
+  <a href="../blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<div class="article-wrap">
+
+  <div class="article-nav reveal">
+    <a href="../blog.html" class="back-link">Back to Blog</a>
+    <span class="article-category">Culture</span>
+  </div>
+
+  <header class="article-header reveal">
+    <h1 class="article-title">Why I Built a New Alphabet for Kokborok</h1>
+    <p class="article-excerpt">A personal account of why Yapiri was created — from researching Kokborok's long-running script debate to building a complete phonemic alphabet from scratch in under six weeks.</p>
+    <div class="article-meta">
+      <span class="meta-item">May 2026</span>
+      <span class="meta-dot">·</span>
+      <span class="meta-item">7 min read</span>
+      <span class="meta-dot">·</span>
+      <span class="meta-item">Animesh Debbarma</span>
+    </div>
+  </header>
+
+  <div class="article-body reveal">
+
+    <p>I have always wanted to contribute to my Tiprasa community in some meaningful way. I just never knew what form that contribution would take — until April 2026, when everything changed in the span of a few weeks.</p>
+
+    <h2>A Language at a Crossroads</h2>
+
+    <p>Kokborok is one of the oldest languages of Northeast India. Spoken by over a million Borok people across Tripura and beyond, it carries centuries of oral tradition, songs, stories, and a way of seeing the world that belongs entirely to our people. Yet for all its richness, the question of how to <em>write</em> Kokborok has remained unsettled — and increasingly urgent.</p>
+
+    <p>The debate is not new. For decades, the Kokborok script question has been one of the most discussed — and most divisive — topics in Tripura. On one side, there are those who advocate for the Roman script, arguing for practicality and wider accessibility. On the other, there is a deep desire among many in the community to write Kokborok in a script that feels truly our own.</p>
+
+    <p>As someone who cares deeply about the Borok community, I wanted to understand this debate properly. So I started digging.</p>
+
+    <h2>What I Found</h2>
+
+    <p>My research led me to the two existing indigenous scripts for Kokborok — Aima and Kokmari. I had encountered both before, but this time I looked closely. I wanted to understand why, despite their existence, the Roman script was still being considered as a serious alternative.</p>
+
+    <p>What I found was sobering.</p>
+
+    <p>Both scripts, while rooted in genuine effort and cultural pride, had seen little to no development or refinement in almost fifteen to twenty years. They were incomplete — missing characters for certain sounds, lacking standardisation, with no digital infrastructure to speak of. No fonts. No keyboards. No way for an ordinary person to type in these scripts on a phone or a computer.</p>
+
+    <p>It wasn't that the community had rejected these scripts. It was that the scripts had never been given the tools to grow.</p>
+
+    <p>I should mention that after I had already built and launched Yapiri, I came across a third indigenous script — Hachukma, created in 2025 by Anan Debbarma. It is a thoughtfully constructed script with a dedicated website and a virtual keyboard, and its digital presence is genuinely commendable. Hachukma takes an acrophonic approach, deriving its letter forms from Tripuri cultural objects and natural elements found in the region — a concept rich in symbolic meaning. Where Hachukma draws its forms from the visual world of Tripuri culture, Yapiri takes a different path, designing each glyph purely around the sound it represents, with no symbolic layer between the letter and its pronunciation. Two different philosophies, both born from the same love for Kokborok. That there are now multiple people independently working on this problem, at roughly the same time, tells you something important about how urgently the community feels this need.</p>
+
+    <p>And that's when the spark hit me.</p>
+
+    <h2>The Decision</h2>
+
+    <p>I am not a linguist. I am not a professional typographer. I am a member of the Borok community who looks at a problem and asks — <em>what can I do about this?</em></p>
+
+    <p>What I saw was a gap that nobody had stepped in to fill. Not because people didn't care, but perhaps because the task seemed too large, too technical, too uncertain. Creating a script from scratch — designing every glyph, mapping every sound, building a font, a keyboard, a website — is not a small undertaking.</p>
+
+    <p>But I decided to try.</p>
+
+    <p>I started in April 2026, almost on impulse. I began by studying the phonology of Kokborok — its vowels, consonants, aspirates, the sounds that make this language uniquely itself. I designed each glyph with both visual elegance and linguistic precision in mind, making sure every symbol had a clear, unambiguous relationship to the sound it represents.</p>
+
+    <p>I named the script <strong>Yapiri</strong> — from the Kokborok word for <em>footprints</em>. Because that is what writing is. Footprints. Traces of a living voice, left behind so others can follow.</p>
+
+    <h2>What Surprised Me</h2>
+
+    <p>I never expected it to come so naturally.</p>
+
+    <p>Within weeks, the script had taken shape — 25 consonants, 6 vowels, 10 numerals, 5 punctuation marks, and two combining diacritics for tone and reduplication. A complete phonemic alphabet, designed specifically around the sounds of Kokborok.</p>
+
+    <p>By the first week of May, I had a working font. By May 10th, the website was live.</p>
+
+    <p>I am not sharing this to boast. I am sharing it because I want the Borok community — and anyone who cares about indigenous languages — to know that this kind of work is possible. That one person, with enough care and determination, can build something meaningful in a very short time.</p>
+
+    <h2>What Yapiri Is — and What It Isn't</h2>
+
+    <p>Yapiri is not a finished product. It is a living project.</p>
+
+    <p>It is a phonemic alphabet — meaning each symbol represents exactly one sound of Kokborok, with no ambiguity. It has a working digital font, a Keyman keyboard for desktop and Android, a full technical specification, and a growing body of documentation. It is free for the community to use.</p>
+
+    <p>But it is also just the beginning. The next steps — community adoption, academic review, and eventually a formal Unicode submission — are long roads. They require collaboration, feedback, and the involvement of linguists, educators, and community members far beyond what one person can do alone.</p>
+
+    <p>That is precisely why I am writing this.</p>
+
+    <h2>An Invitation</h2>
+
+    <p>If you speak Kokborok, I want to hear from you. If you teach it, write it, or simply love it — Yapiri belongs to you as much as it belongs to me. Try the script. Use the keyboard. Tell me what works and what doesn't.</p>
+
+    <p>And if you are a linguist, a researcher, or someone working on indigenous language preservation — I would very much like to talk.</p>
+
+    <p>Yapiri began as one person's response to a gap that had been open for too long. What it becomes depends on all of us.</p>
+
+    <hr>
+
+    <div class="article-signoff">
+      <p>— Animesh Debbarma (Zitorin)</p>
+      <p>Creator, Yapiri Script</p>
+      <p><a href="https://yapiriscript.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">yapiriscript.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="article-footer reveal">
+    <div class="like-row">
+      <button class="like-btn" id="likeBtn" onclick="toggleLike()">♡ Like this post</button>
+      <span class="like-count" id="likeCount">Be the first to like this</span>
+    </div>
+
+    <div class="comment-section">
+      <h3>Community Thoughts</h3>
+      <div class="comment-form">
+        <div class="comment-row">
+          <input class="comment-input" type="text" id="commenterName" placeholder="Your Name">
+          <input class="comment-input" type="text" id="commenterLocation" placeholder="Location (optional)">
+        </div>
+        <textarea class="comment-textarea" id="commenterText" placeholder="Your Thoughts"></textarea>
+        <button class="comment-submit" onclick="postComment()">Post Comment</button>
+      </div>
+      <div class="comments-list" id="commentsList">
+        <p class="comment-empty">Loading comments</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61589838830572" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter">
+      <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+  </div>
+  <div class="footer-copy">Created for the Kokborok language<br>Borok people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
+</footer>
+
+<script>
+  function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+  function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+  const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);observer.unobserve(entry.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  let liked = false;
+  let likeCount = 0;
+  function toggleLike(){
+    liked = !liked;
+    likeCount = liked ? likeCount + 1 : likeCount - 1;
+    const btn = document.getElementById('likeBtn');
+    const count = document.getElementById('likeCount');
+    btn.classList.toggle('liked', liked);
+    btn.textContent = liked ? '♥ Liked' : '♡ Like this post';
+    count.textContent = likeCount === 0 ? 'Be the first to like this' : likeCount === 1 ? '1 person liked this' : likeCount + ' people liked this';
+  }
+
+  const comments = [];
+  function postComment(){
+    const name = document.getElementById('commenterName').value.trim();
+    const location = document.getElementById('commenterLocation').value.trim();
+    const text = document.getElementById('commenterText').value.trim();
+    if(!name || !text) return;
+    comments.unshift({name, location, text, date: new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})});
+    document.getElementById('commenterName').value = '';
+    document.getElementById('commenterLocation').value = '';
+    document.getElementById('commenterText').value = '';
+    renderComments();
+  }
+  function renderComments(){
+    const list = document.getElementById('commentsList');
+    if(comments.length === 0){list.innerHTML='<p class="comment-empty">No comments yet. Be the first.</p>';return;}
+    list.innerHTML = comments.map(c=>`
+      <div style="padding:1.2rem;border:1px solid rgba(196,180,154,0.08);border-left:2px solid var(--terracotta);">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.6rem;flex-wrap:wrap;gap:0.5rem;">
+          <span style="font-family:'Teko',sans-serif;font-size:1.1rem;color:var(--parchment);">${c.name}${c.location?' <span style="font-family:\'DM Mono\',monospace;font-size:0.6rem;color:var(--stone);font-weight:300;">· '+c.location+'</span>':''}</span>
+          <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);">${c.date}</span>
+        </div>
+        <p style="font-size:1rem;font-weight:300;color:var(--stone-light);line-height:1.7;">${c.text}</p>
+      </div>
+    `).join('');
+  }
+  renderComments();
+</script>
+</body>
+</html>
