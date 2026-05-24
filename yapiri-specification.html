@@ -13,11 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yapiri Technical Spec v1.0 — Unicode & Design Rules</title>
 <meta name="title" content="Yapiri Technical Specifications — Unicode & Design Rules">
-<meta name="description" content="The official technical documentation for the Yapiri script. Explore character mappings, glyph design logic, and the phonemic rules of the Kokborok  writing system.">
+<meta name="description" content="The official technical documentation for the Yapiri script. Explore character mappings, glyph design logic, and the phonemic rules of the Kokborok writing system.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yapiriscript.com/yapiri-specification.html">
 <meta property="og:title" content="Yapiri Script: Technical Documentation">
-<meta property="og:description" content="A deep dive into the architecture of Yapiri. Essential for developers and linguists working with the Kokborok  language.">
+<meta property="og:description" content="A deep dive into the architecture of Yapiri. Essential for developers and linguists working with the Kokborok language.">
 <meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://yapiriscript.com/yapiri-specification.html">
@@ -285,10 +285,10 @@
   <header class="spec-hero" id="overview">
     <p class="spec-eyebrow">Technical Specification</p>
     <h1 class="spec-title">Yapiri <span>Script</span></h1>
-    <p class="spec-subtitle">A complete formal description of the Yapiri writing system for Kokborok  — covering glyph inventory, phonological mapping, PUA encoding, OpenType layout, and design rationale.</p>
+    <p class="spec-subtitle">A complete formal description of the Yapiri writing system for Kokborok — covering glyph inventory, phonological mapping, PUA encoding, OpenType layout, and design rationale.</p>
     <div class="spec-meta-row">
       <div class="spec-meta-item"><span class="spec-meta-label">Version</span><span class="spec-meta-value">1.0 — May 2026</span></div>
-      <div class="spec-meta-item"><span class="spec-meta-label">Language</span><span class="spec-meta-value">Kokborok  (Tiprasa )</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Language</span><span class="spec-meta-value">Kokborok (Tiprasa )</span></div>
       <div class="spec-meta-item"><span class="spec-meta-label">Script Type</span><span class="spec-meta-value">Phonemic Alphabet</span></div>
       <div class="spec-meta-item"><span class="spec-meta-label">Encoding</span><span class="spec-meta-value">Unicode PUA · U+E000–U+E02F</span></div>
       <div class="spec-meta-item"><span class="spec-meta-label">Total Characters</span><span class="spec-meta-value">48+1</span></div>
@@ -302,8 +302,8 @@
     <div class="gold-line reveal"></div>
     <h2 class="section-heading reveal">Introduction</h2>
     <div class="spec-body reveal">
-      <p>Yapiri (<em>&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</em>) is an original writing system created for the <strong>Kokborok  language</strong>, the mother tongue of the Tiprasa  people of Tripura, Northeast India. The name <em>yapiri</em> means "<span class="tip" data-tip="lit. footsteps in Kokborok ">footprints</span>" in Kokborok , reflecting the essential nature of all writing: traces of a living voice, preserved across time.</p>
-      <p>Kokborok  is a Tibeto-Burman language spoken by approximately one million people. It has historically been written in the <strong>Bengali script</strong>, and more recently in the <strong>Roman script</strong> — neither of which maps cleanly to Kokborok  phonology. Several dedicated scripts have been proposed over the decades (including Aima and Kókmari), but none has achieved broad adoption. Yapiri represents a new effort: a script designed from first principles, shaped entirely by the phonological requirements of the language.</p>
+      <p>Yapiri (<em>&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</em>) is an original writing system created for the <strong>Kokborok language</strong>, the mother tongue of the Tiprasa  people of Tripura, Northeast India. The name <em>yapiri</em> means "<span class="tip" data-tip="lit. footsteps in Kokborok">footprints</span>" in Kokborok, reflecting the essential nature of all writing: traces of a living voice, preserved across time.</p>
+      <p>Kokborok is a Tibeto-Burman language spoken by approximately one million people. It has historically been written in the <strong>Bengali script</strong>, and more recently in the <strong>Roman script</strong> — neither of which maps cleanly to Kokborok phonology. Several dedicated scripts have been proposed over the decades (including Aima and Kókmari), but none has achieved broad adoption. Yapiri represents a new effort: a script designed from first principles, shaped entirely by the phonological requirements of the language.</p>
       <p>This document constitutes the authoritative technical specification for the Yapiri script, version 1.0. It is intended for linguists, font engineers, software developers, keyboard layout designers, educators, and community members who wish to understand, implement, or extend the system.</p>
     </div>
     <div class="stat-grid reveal">
@@ -314,7 +314,7 @@
       <div class="stat-cell"><span class="stat-num">5</span><span class="stat-lbl">Punctuation</span></div>
       <div class="stat-cell"><span class="stat-num">2</span><span class="stat-lbl">Diacritics</span></div>
     </div>
-    <p style="font-family:'DM Mono',monospace;font-size:0.63rem;letter-spacing:0.08em;color:var(--stone);margin-top:1rem;">+ 1 global symbol — the hyphen (‐) — included for typographic completeness alongside the 48 core Kokborok  characters.</p>
+    <p style="font-family:'DM Mono',monospace;font-size:0.63rem;letter-spacing:0.08em;color:var(--stone);margin-top:1rem;">+ 1 global symbol — the hyphen (‐) — included for typographic completeness alongside the 48 core Kokborok characters.</p>
   </section>
 
   <!-- §2 DESIGN PRINCIPLES -->
@@ -323,7 +323,7 @@
     <div class="gold-line reveal"></div>
     <h2 class="section-heading reveal">Design <em>Principles</em></h2>
     <div class="spec-body reveal">
-      <p><strong>Phonological primacy.</strong> Every character in the Yapiri inventory corresponds to a phoneme (or phoneme cluster) that is functional in Kokborok . No characters are included for historical, aesthetic, or borrowing reasons alone. Loanword phonemes (f, v, z) are included but marked as secondary.</p>
+      <p><strong>Phonological primacy.</strong> Every character in the Yapiri inventory corresponds to a phoneme (or phoneme cluster) that is functional in Kokborok. No characters are included for historical, aesthetic, or borrowing reasons alone. Loanword phonemes (f, v, z) are included but marked as secondary.</p>
       <p><strong>Systematic visual grammar.</strong> Related phonemes share visual elements. Aspirated consonants are derived from their plain counterparts through a consistent modification. Voiced pairs of voiceless stops share structural DNA. This makes the script learnable as a system rather than a set of arbitrary symbols.</p>
       <p><strong>Phonemic alphabet structure.</strong> Yapiri is a <em>phonemic alphabet</em>: every character — whether consonant or vowel — is a full, independent letter representing exactly one phoneme. There are no inherent vowels, no combining diacritics for vowels, and no hidden sounds. Every sound heard in a word must be written explicitly.</p>
       <p><strong>Visual elegance.</strong> Glyphs were drawn by hand in Inkscape using Bézier curves with rounded linecaps and linejoin, producing an aesthetic that is organic without being decorative. The script is designed to look natural at both display and text sizes.</p>
@@ -443,9 +443,9 @@
     <div class="gold-line reveal"></div>
     <h2 class="section-heading reveal">Script <em>Type</em></h2>
     <div class="spec-body reveal">
-      <p>Yapiri is classified as a <strong>phonemic alphabet</strong>. Every sound in the Kokborok  language — both consonants and vowels — is represented by its own independent, full-sized character. Consonant glyphs represent only the consonant sound. Vowel glyphs represent only the vowel sound. Letters are written sequentially in a linear string, where each glyph carries equal weight.</p>
+      <p>Yapiri is classified as a <strong>phonemic alphabet</strong>. Every sound in the Kokborok language — both consonants and vowels — is represented by its own independent, full-sized character. Consonant glyphs represent only the consonant sound. Vowel glyphs represent only the vowel sound. Letters are written sequentially in a linear string, where each glyph carries equal weight.</p>
       <p>For example, the consonant glyph for /p/ represents only /p/ — never /pa/. To write the syllable /pa/, the consonant /p/ must be followed by the vowel /a/. This strict one-to-one mapping between sound and symbol is the defining feature of Yapiri.</p>
-      <p>Sounds that are traditionally written as digraphs in the Latin-based Kokborok  script (such as ph, th, kh, ch, chh, ng) are represented by single, unique glyphs in Yapiri. These are called <strong>atomic phonemes</strong> — they carry the same structural weight as any other independent character and are not decomposed in writing.</p>
+      <p>Sounds that are traditionally written as digraphs in the Latin-based Kokborok script (such as ph, th, kh, ch, chh, ng) are represented by single, unique glyphs in Yapiri. These are called <strong>atomic phonemes</strong> — they carry the same structural weight as any other independent character and are not decomposed in writing.</p>
     </div>
     <div class="callout gold reveal"><strong>Reading rule:</strong> The script is read left-to-right. Every character represents exactly one phoneme. Unlike abugidas, there are no inherent or hidden vowels — every sound heard in a word must be written with its own dedicated character.</div>
     <div class="spec-body reveal"><p>Yapiri is written <strong>left-to-right</strong>, in the same direction as the Latin and Bengali scripts used alongside it. There is no distinction between uppercase and lowercase. Words are separated by a space character.</p></div>
@@ -456,7 +456,7 @@
     <p class="section-number reveal">§ 4</p>
     <div class="gold-line reveal"></div>
     <h2 class="section-heading reveal">Phonological <em>Scope</em></h2>
-    <div class="spec-body reveal"><p>Kokborok  has a rich consonantal inventory including plain stops, aspirated stops, voiced stops, nasals, liquids, glides, and fricatives. Yapiri covers this full inventory natively. The following phonological categories are represented:</p></div>
+    <div class="spec-body reveal"><p>Kokborok has a rich consonantal inventory including plain stops, aspirated stops, voiced stops, nasals, liquids, glides, and fricatives. Yapiri covers this full inventory natively. The following phonological categories are represented:</p></div>
     <div class="spec-table-wrap reveal">
       <table>
         <thead><tr><th>Category</th><th>Phonemes</th><th>Notes</th></tr></thead>
@@ -474,7 +474,7 @@
         </tbody>
       </table>
     </div>
-    <div class="spec-body reveal"><p>The vowel <strong>ə (U+E005)</strong> is a distinctive phoneme in Kokborok  and receives an independent glyph form in Yapiri.</p></div>
+    <div class="spec-body reveal"><p>The vowel <strong>ə (U+E005)</strong> is a distinctive phoneme in Kokborok and receives an independent glyph form in Yapiri.</p></div>
   </section>
 
   <!-- §5 CONSONANTS -->
@@ -537,7 +537,7 @@
       </div>
     </div>
 
-    <div class="spec-body reveal"><p><strong>Note on loanword consonants.</strong> The three fricatives f (U+E01A), v (U+E019), and z (U+E01B) are not native to Kokborok  phonology. They were added to support loanwords from Bengali, Hindi, and English. Their glyphs follow the same visual design grammar as the rest of the consonant set, but are distinguished in educational materials as secondary characters.</p></div>
+    <div class="spec-body reveal"><p><strong>Note on loanword consonants.</strong> The three fricatives f (U+E01A), v (U+E019), and z (U+E01B) are not native to Kokborok phonology. They were added to support loanwords from Bengali, Hindi, and English. Their glyphs follow the same visual design grammar as the rest of the consonant set, but are distinguished in educational materials as secondary characters.</p></div>
 
     <div class="spec-table-wrap reveal">
       <table>
@@ -584,7 +584,7 @@
     <div class="gold-line reveal"></div>
     <h2 class="section-heading reveal">Vowel <em>System</em></h2>
     <div class="spec-body reveal">
-      <p>Yapiri has <strong>six independent vowel letters</strong>, each representing a distinct vowel phoneme of Kokborok . As a phonemic alphabet, every vowel is written explicitly as a full, standalone character — there are no inherent vowels, no diacritics for vowels, and no hidden sounds.</p>
+      <p>Yapiri has <strong>six independent vowel letters</strong>, each representing a distinct vowel phoneme of Kokborok. As a phonemic alphabet, every vowel is written explicitly as a full, standalone character — there are no inherent vowels, no diacritics for vowels, and no hidden sounds.</p>
       <p>Vowels are placed after consonants horizontally in a linear sequence to form syllables. For example, the syllable /pa/ is written as the consonant /p/ (U+E006) followed by the vowel /a/ (U+E000). All six vowels carry equal character weight to consonants in the script.</p>
     </div>
 
@@ -628,10 +628,10 @@
 
         <div class="callout gold reveal"><strong>Yapiri has no vowel diacritics.</strong> All six vowels are full independent letters written sequentially after consonants. The only combining marks in Yapiri are the high tone diacritic (U+0301) and the reduplication mark (U+030B) — neither modifies a vowel letter's identity.</div>
         <div class="callout reveal">
-      <strong>Note on the vowel ə (U+E005):</strong> The vowel represented by this grapheme is classified as <strong>/ə/</strong> (mid-central unrounded). In Kokborok  speech, this vowel occupies a phonetic space that native speakers may perceive as falling between "ee" and "uh" — overlapping with the territory of the high central unrounded vowel /ɨ/. The precise phonological classification of this vowel remains an open question in Kokborok  linguistics, with some analyses favouring /ə/ (mid-central) and others pointing toward /ɨ/ (high central). The Yapiri script adopts /ə/ as its working classification, acknowledging this ongoing scholarly ambiguity. This classification may be revised as linguistic research on Kokborok  phonology advances.
+      <strong>Note on the vowel ə (U+E005):</strong> The vowel represented by this grapheme is classified as <strong>/ə/</strong> (mid-central unrounded). In Kokborok speech, this vowel occupies a phonetic space that native speakers may perceive as falling between "ee" and "uh" — overlapping with the territory of the high central unrounded vowel /ɨ/. The precise phonological classification of this vowel remains an open question in Kokborok linguistics, with some analyses favouring /ə/ (mid-central) and others pointing toward /ɨ/ (high central). The Yapiri script adopts /ə/ as its working classification, acknowledging this ongoing scholarly ambiguity. This classification may be revised as linguistic research on Kokborok phonology advances.
     </div>
     <div class="callout gold reveal">
-      <strong>High Tone Mark (U+0301)</strong> — placed directly over the vowel of the high-tone syllable. In Kokborok  Latin romanization, a vowel followed by 'h' conventionally signals high tone (e.g. <em>oh</em>). In Yapiri, the 'h' is dropped and the mark sits over the vowel instead.<br><br>
+      <strong>High Tone Mark (U+0301)</strong> — placed directly over the vowel of the high-tone syllable. In Kokborok Latin romanization, a vowel followed by 'h' conventionally signals high tone (e.g. <em>oh</em>). In Yapiri, the 'h' is dropped and the mark sits over the vowel instead.<br><br>
       Example — <em>bohrok</em> (they): &nbsp;
       <span style="font-family:'Yapiri',serif;font-size:1.4rem;color:var(--parchment);vertical-align:middle;">&#xE00C;&#xE004;&#x0301;&#xE017;&#xE004;&#xE008;</span>
       &nbsp; <span style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--stone);">b · ó · r · o · k — high tone mark over the first vowel o</span>
@@ -729,7 +729,7 @@
         <thead><tr><th>Feature Tag</th><th>Table</th><th>Description</th></tr></thead>
         <tbody>
           <tr><td class="td-code">mark</td><td class="td-cat">GPOS</td><td class="td-note">Mark-to-base positioning for diacritics on consonant bases</td></tr>
-          <tr><td class="td-code">kern</td><td class="td-cat">GPOS</td><td class="td-note">Kerning pairs covering most common Kokborok  phoneme sequences</td></tr>
+          <tr><td class="td-code">kern</td><td class="td-cat">GPOS</td><td class="td-note">Kerning pairs covering most common Kokborok phoneme sequences</td></tr>
         </tbody>
       </table>
     </div>
@@ -754,7 +754,7 @@
           <tr><td class="td-code">R4</td><td>Consonant clusters are written by placing consonant codepoints sequentially with no vowel between</td><td class="td-note">U+E006 + U+E017 = /pr/</td></tr>
           <tr><td class="td-code">R5</td><td>High tone is marked by U+0301 placed after the vowel codepoint of the syllable</td><td class="td-note">U+E000 + U+0301 = /á/</td></tr>
           <tr><td class="td-code">R6</td><td>Syllable reduplication: U+030B on the last letter of the repeated syllable, no hyphen. Word reduplication: U+030B on the last letter of the first word, then U+002D hyphen</td><td class="td-note"><span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE013;&#xE002;&#x030B;</span> nini (yours) &nbsp;·&nbsp; <span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;-</span> serek- (silently)</td></tr>
-          <tr><td class="td-code">R7</td><td>Schwa (U+E005) appears only mid-word, never word-initial. Consonant w (U+E01D) appears only word-initially, never mid-word. The 'w' in Kokborok  romanization that appears mid-word is always written as schwa ə in Yapiri.</td><td class="td-note"><span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE01D;&#xE000;&#xE008;</span> wak (pig) — W at word start &nbsp;·&nbsp; <span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE008;&#xE005;&#xE007;&#xE005;&#xE002;</span> kwtwi (sweet) — ə mid-word</td></tr>
+          <tr><td class="td-code">R7</td><td>Schwa (U+E005) appears only mid-word, never word-initial. Consonant w (U+E01D) appears only word-initially, never mid-word. The 'w' in Kokborok romanization that appears mid-word is always written as schwa ə in Yapiri.</td><td class="td-note"><span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE01D;&#xE000;&#xE008;</span> wak (pig) — W at word start &nbsp;·&nbsp; <span style="font-family:'Yapiri',serif;font-size:1rem;color:var(--parchment);">&#xE008;&#xE005;&#xE007;&#xE005;&#xE002;</span> kwtwi (sweet) — ə mid-word</td></tr>
           <tr><td class="td-code">R8</td><td>Spaces separate words; no special word-joiner is required</td><td class="td-note">U+0020 space as normal</td></tr>
         </tbody>
       </table>
@@ -807,7 +807,7 @@
     </div>
     <div class="timeline reveal">
       <div class="timeline-item"><div class="tl-num">1</div><div class="tl-body"><div class="tl-phase">Phase 1 · Complete</div><div class="tl-title">Font &amp; PUA Release</div><div class="tl-desc">Public release of the Yapiri OTF/TTF font, web keyboard tool, and this specification. Establishes the script in the public record.</div></div></div>
-      <div class="timeline-item"><div class="tl-num">2</div><div class="tl-body"><div class="tl-phase">Phase 2 · In Progress</div><div class="tl-title">Community &amp; Institutional Adoption</div><div class="tl-desc">Outreach to Kokborok  educators, publishers, and government bodies in Tripura. Building a user base is a prerequisite for Unicode acceptance — the UTC requires demonstrated real-world use.</div></div></div>
+      <div class="timeline-item"><div class="tl-num">2</div><div class="tl-body"><div class="tl-phase">Phase 2 · In Progress</div><div class="tl-title">Community &amp; Institutional Adoption</div><div class="tl-desc">Outreach to Kokborok educators, publishers, and government bodies in Tripura. Building a user base is a prerequisite for Unicode acceptance — the UTC requires demonstrated real-world use.</div></div></div>
       <div class="timeline-item"><div class="tl-num">3</div><div class="tl-body"><div class="tl-phase">Phase 3</div><div class="tl-title">Omniglot &amp; ScriptSource Listing</div><div class="tl-desc">Submission to Omniglot.com and SIL's ScriptSource database, the standard reference directories for the world's writing systems.</div></div></div>
       <div class="timeline-item"><div class="tl-num">4</div><div class="tl-body"><div class="tl-phase">Phase 4</div><div class="tl-title">Unicode Proposal Drafting</div><div class="tl-desc">Preparation of a formal Unicode proposal document following UTC guidelines, including character repertoire, properties, and collation order. Engagement with SEI at UC Berkeley for expert support.</div></div></div>
       <div class="timeline-item"><div class="tl-num">5</div><div class="tl-body"><div class="tl-phase">Phase 5</div><div class="tl-title">UTC Review &amp; Encoding</div><div class="tl-desc">Formal review by the Unicode Technical Committee. Upon approval, Yapiri receives permanent Unicode codepoints. Migration documentation from PUA to official encoding will be published with this specification.</div></div></div>
@@ -826,7 +826,7 @@
       <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
     </div>
     <div class="footer-copy">
-      Created for the Kokborok  language<br>
+      Created for the Kokborok language<br>
       Tiprasa  people of Tripura, India<br>
       © 2026 Animesh Debbarma · yapiriscript.com
     </div>
