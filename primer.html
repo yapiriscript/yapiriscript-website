@@ -24,6 +24,10 @@
 <style>
   @font-face { font-family:'Yapiri'; src:url('assets/fonts/Yapiri.woff2') format('woff2'),url('assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
+  /* TOOLTIP */
+    .tip { position:relative; cursor:help; border-bottom:1px dotted var(--stone); display:inline; }
+    .tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:var(--charcoal); color:var(--stone-light); font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; white-space:nowrap; padding:0.35rem 0.75rem; border:1px solid rgba(201,146,42,0.3); pointer-events:none; opacity:0; transition:opacity 0.2s ease; z-index:50; }
+    .tip:hover::after { opacity:1; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { background:var(--ink); color:var(--parchment); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; line-height:1.7; }
@@ -270,7 +274,7 @@
   <h2 class="section-title">What is <em>Yapiri?</em></h2>
   <div class="gold-line"></div>
   <p class="section-body">
-    <strong>Yapiri</strong> is a writing system created specifically for the Kokborok language — the mother tongue of the Tiprasa people of Tripura, Northeast India. The name <em>yapiri</em> means "footprints" in Kokborok: traces of a living voice, preserved across time.
+    <strong>Yapiri</strong> is a writing system created specifically for the Kokborok language — the mother tongue of the Tiprasa people of Tripura, Northeast India. The name <em>yapiri</em> means "<span class="tip" data-tip="lit. footsteps in Kokborok">footprints</span>" in Kokborok
   </p>
   <p class="section-body">
     Unlike Bengali or Roman script, Yapiri was designed from scratch around the actual sounds of Kokborok. Every symbol represents exactly one sound. Nothing is hidden, nothing is assumed. <strong>What you hear is what you write.</strong>
