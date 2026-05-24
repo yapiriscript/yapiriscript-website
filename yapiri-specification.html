@@ -41,6 +41,13 @@
     --gold: #c9922a; --gold-light: #e8b84b;
     --stone: #8b7355; --stone-light: #c4b49a; --charcoal: #2c2416;
   }
+
+  /* TOOLTIP */
+  .tip { position:relative; cursor:help; border-bottom:1px dotted var(--stone); display:inline; }
+  .tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:var(--charcoal); color:var(--stone-light); font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; white-space:nowrap; padding:0.35rem 0.75rem; border:1px solid rgba(201,146,42,0.3); pointer-events:none; opacity:0; transition:opacity 0.2s ease; z-index:50; }
+  .tip:hover::after { opacity:1; }
+
+  
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { background:var(--ink); color:var(--parchment); font-family:'Cormorant Garamond',Georgia,serif; overflow-x:hidden; line-height:1.7; }
@@ -284,7 +291,7 @@
       <div class="spec-meta-item"><span class="spec-meta-label">Language</span><span class="spec-meta-value">Kokborok (Borok)</span></div>
       <div class="spec-meta-item"><span class="spec-meta-label">Script Type</span><span class="spec-meta-value">Phonemic Alphabet</span></div>
       <div class="spec-meta-item"><span class="spec-meta-label">Encoding</span><span class="spec-meta-value">Unicode PUA · U+E000–U+E02F</span></div>
-      <div class="spec-meta-item"><span class="spec-meta-label">Total Characters</span><span class="spec-meta-value">48</span></div>
+      <div class="spec-meta-item"><span class="spec-meta-label">Total Characters</span><span class="spec-meta-value">48+1</span></div>
       <div class="spec-meta-item"><span class="spec-meta-label">Font Format</span><span class="spec-meta-value">OTF / TTF / WOFF2</span></div>
     </div>
   </header>
@@ -295,18 +302,19 @@
     <div class="gold-line reveal"></div>
     <h2 class="section-heading reveal">Introduction</h2>
     <div class="spec-body reveal">
-      <p>Yapiri (<em>yapiri</em>) is an original writing system created for the <strong>Kokborok language</strong>, the mother tongue of the Borok people of Tripura, Northeast India. The name <em>yapiri</em> means "footprints" in Kokborok, reflecting the essential nature of all writing: traces of a living voice, preserved across time.</p>
+      <p>Yapiri (<em>yapiri</em>) is an original writing system created for the <strong>Kokborok language</strong>, the mother tongue of the Borok people of Tripura, Northeast India. The name <em>yapiri</em> means "<span class="tip" data-tip="lit. footsteps in Kokborok">footprints</span>" in Kokborok in Kokborok, reflecting the essential nature of all writing: traces of a living voice, preserved across time.</p>
       <p>Kokborok is a Tibeto-Burman language spoken by approximately one million people. It has historically been written in the <strong>Bengali script</strong>, and more recently in the <strong>Roman script</strong> — neither of which maps cleanly to Kokborok phonology. Several dedicated scripts have been proposed over the decades (including Aima and Kókmari), but none has achieved broad adoption. Yapiri represents a new effort: a script designed from first principles, shaped entirely by the phonological requirements of the language.</p>
       <p>This document constitutes the authoritative technical specification for the Yapiri script, version 1.0. It is intended for linguists, font engineers, software developers, keyboard layout designers, educators, and community members who wish to understand, implement, or extend the system.</p>
     </div>
     <div class="stat-grid reveal">
-      <div class="stat-cell"><span class="stat-num">48</span><span class="stat-lbl">Total Characters</span></div>
+      <div class="stat-cell"><span class="stat-num">48<span style="font-size:1.2rem;color:var(--terracotta);font-family:'DM Mono',monospace;">+1</span></span><span class="stat-lbl">Total Characters</span></div>
       <div class="stat-cell"><span class="stat-num">25</span><span class="stat-lbl">Consonants</span></div>
       <div class="stat-cell"><span class="stat-num">6</span><span class="stat-lbl">Vowels</span></div>
       <div class="stat-cell"><span class="stat-num">10</span><span class="stat-lbl">Digits (0–9)</span></div>
       <div class="stat-cell"><span class="stat-num">5</span><span class="stat-lbl">Punctuation</span></div>
       <div class="stat-cell"><span class="stat-num">2</span><span class="stat-lbl">Diacritics</span></div>
     </div>
+    <p style="font-family:'DM Mono',monospace;font-size:0.63rem;letter-spacing:0.08em;color:var(--stone);margin-top:1rem;">+ 1 global symbol — the hyphen (‐) — included for typographic completeness alongside the 48 core Kokborok characters.</p>
   </section>
 
   <!-- §2 DESIGN PRINCIPLES -->
