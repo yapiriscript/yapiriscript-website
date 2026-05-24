@@ -30,6 +30,10 @@
 <style>
   @font-face{font-family:'Yapiri';src:url('assets/fonts/Yapiri.woff2') format('woff2'),url('assets/fonts/Yapiri.ttf') format('truetype');font-display:swap;}
   :root{--ink:#1a1209;--parchment:#f5edd8;--warm-white:#faf6ee;--terracotta:#b85c38;--terra-light:#d4784f;--gold:#c9922a;--gold-light:#e8b84b;--stone:#8b7355;--stone-light:#c4b49a;--charcoal:#2c2416;}
+  /* TOOLTIP */
+  .tip { position:relative; cursor:help; border-bottom:1px dotted var(--stone); display:inline; }
+  .tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:var(--charcoal); color:var(--stone-light); font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; white-space:nowrap; padding:0.35rem 0.75rem; border:1px solid rgba(201,146,42,0.3); pointer-events:none; opacity:0; transition:opacity 0.2s ease; z-index:50; }
+  .tip:hover::after { opacity:1; }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
@@ -199,7 +203,7 @@
   <p class="page-eyebrow">The Alphabet</p>
   <h1 class="page-title">The <em>Yapiri</em> Script</h1>
   <div class="gold-line"></div>
-  <p class="page-subtitle">48 characters — consonants, vowels, diacritics, numerals, and punctuation — designed from first principles for the sounds of Kokborok.</p>
+  <p class="page-subtitle">48+1 characters — consonants, vowels, diacritics, numerals, punctuation, and one global symbol — designed from first principles for the sounds of Kokborok.</p>
   <div class="page-hero-glyph">&#xE01C;&#xE016;&#xE000;</div>
 </div>
 
@@ -305,7 +309,12 @@
         <div class="glyph-card" aria-label="high tone, U+0301"><span class="glyph-symbol">&#x25CC;&#x0301;</span><span class="glyph-roman">high tone</span><span class="glyph-code">U+0301</span></div>
         <div class="glyph-card" aria-label="reduplication, U+030B"><span class="glyph-symbol">&#x25CC;&#x030B;</span><span class="glyph-roman">reduplication</span><span class="glyph-code">U+030B</span></div>
       </div>
-      <div class="chart-section-label" style="margin-top:2rem;">Reduplication Usage Rule</div>
+      <div class="chart-section-label" style="margin-top:2rem;">Global Symbol</div>
+      <div class="glyph-row">
+        <div class="glyph-card" aria-label="hyphen, U+002D" style="border-color:rgba(201,146,42,0.3);background:rgba(201,146,42,0.04)"><span class="glyph-symbol" style="font-family:inherit;">‐</span><span class="glyph-roman">hyphen</span><span class="glyph-code">U+002D</span></div>
+      </div>
+      <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--stone);margin:0.6rem 0 1.5rem;">Standard Unicode hyphen — used as word-level reduplication marker. Not a PUA character.</p>
+      <div class="chart-section-label">Reduplication Usage Rule</div>
        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:700px;margin:0 auto;">
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.1);border-left:3px solid var(--terracotta);padding:1.2rem 1.2rem 1rem;">
           <p style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.6rem;">Two syllables within a word</p>
@@ -377,15 +386,17 @@
             <th>Bengali Script</th>
             <th>Roman Script</th>
             <th>Aima</th>
+            <th>Kókmari</th>
+            <th>Hachukma</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Designed for Kokborok phonology</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td></tr>
-          <tr><td>Aspirate consonants</td><td class="check">✓ Dedicated glyphs</td><td>Approximate</td><td>Digraphs</td><td class="check">✓ Yes</td></tr>
-          <tr><td>Tonal diacritics</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td>Partial</td></tr>
-          <tr><td>Custom numerals</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td></tr>
-          <tr><td>Unicode roadmap</td><td class="check">✓ In progress</td><td class="check">✓ Encoded</td><td class="check">✓ Encoded</td><td class="cross">✗ No</td></tr>
-          <tr><td>Downloadable font</td><td class="check">✓ Free</td><td class="check">✓ Available</td><td class="check">✓ Available</td><td class="cross">✗ Limited</td></tr>
+          <tr><td>Designed for Kokborok phonology</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td><td class="check">✓ Yes</td><td class="check">✓ Yes</td></tr>
+          <tr><td>Aspirate consonants</td><td class="check">✓ Dedicated glyphs</td><td>Approximate</td><td>Digraphs</td><td class="check">✓ Yes</td><td class="check">✓ Yes</td><td>—</td></tr>
+          <tr><td>Tonal diacritics</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td>Partial</td><td>Partial</td><td>—</td></tr>
+          <tr><td>Custom numerals</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="check">✓ Yes</td><td class="cross">✗ No</td><td>—</td></tr>
+          <tr><td>Unicode roadmap</td><td class="check">✓ In progress</td><td class="check">✓ Encoded</td><td class="check">✓ Encoded</td><td class="cross">✗ No</td><td class="cross">✗ No</td><td class="cross">✗ No</td></tr>
+          <tr><td>Downloadable font</td><td class="check">✓ Free</td><td class="check">✓ Available</td><td class="check">✓ Available</td><td class="cross">✗ Limited</td><td class="cross">✗ Limited</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
