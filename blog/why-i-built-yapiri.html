@@ -25,6 +25,10 @@
   @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+   /* TOOLTIP */
+  .tip { position:relative; cursor:help; border-bottom:1px dotted var(--stone); display:inline; }
+  .tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:var(--charcoal); color:var(--stone-light); font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; white-space:nowrap; padding:0.35rem 0.75rem; border:1px solid rgba(201,146,42,0.3); pointer-events:none; opacity:0; transition:opacity 0.2s ease; z-index:50; }
+  .tip:hover::after { opacity:1; }
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(26,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,0.2);}
   .nav-logo{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;color:var(--gold-light);text-decoration:none;}
