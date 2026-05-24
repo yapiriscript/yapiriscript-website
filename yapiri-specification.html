@@ -696,9 +696,13 @@
           <tr><td class="td-code">U+E01F–U+E028</td><td>10</td><td class="td-cat">Numerals (0–9)</td></tr>
           <tr><td class="td-code">U+E029–U+E02D</td><td>5</td><td class="td-cat">Punctuation</td></tr>
           <tr><td class="td-code">U+0301, U+030B</td><td>2</td><td class="td-cat">Combining Diacritics (tone &amp; reduplication)</td></tr>
-          <tr style="border-top:1px solid rgba(201,146,42,0.2)"><td class="td-code" style="color:var(--gold-light)!important">Total</td><td style="color:var(--gold-light)">48</td><td class="td-cat">—</td></tr>
+          <tr><td class="td-code">U+002D</td><td>1</td><td class="td-cat">Global Symbol — Hyphen (word reduplication marker)</td></tr>
+          <tr style="border-top:1px solid rgba(201,146,42,0.2)"><td class="td-code" style="color:var(--gold-light)!important">Total</td><td style="color:var(--gold-light)">48+1</td><td class="td-cat">—</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="callout gold reveal">
+      <strong>Global Symbol — Hyphen (U+002D):</strong> The standard Unicode hyphen is used in Yapiri as a word-level reduplication marker, placed after the reduplication diacritic (U+030B) on the last letter of a repeated word. It is not a PUA character and requires no special font — it renders as a standard hyphen in all applications. Its inclusion brings the full Yapiri character set to <strong>48+1</strong>.
     </div>
     <div class="callout gold reveal"><strong>PUA stability notice:</strong> These codepoint assignments are stable for version 1.0 and will not be changed without a major version revision. Any future official Unicode encoding will be issued as a separate encoding with a migration path documented in this specification.</div>
     <div class="spec-body reveal">
