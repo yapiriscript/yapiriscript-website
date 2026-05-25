@@ -72,6 +72,10 @@
   .glyph-sample{background:rgba(255,255,255,0.02);border:1px solid rgba(196,180,154,0.1);padding:2rem;margin:2rem 0;text-align:center;}
   .glyph-sample-text{font-family:'Yapiri',serif;font-size:3rem;color:var(--gold-light);letter-spacing:0.1em;line-height:1.4;display:block;margin-bottom:0.8rem;}
   .glyph-sample-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);}
+  .pair-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1rem; }
+  .pair-box { border:1px solid rgba(196,180,154,0.15); background:rgba(255,255,255,0.02); padding:1.2rem 0.8rem; text-align:center; }
+  .pair-chars { font-family:'Yapiri',serif; font-size:2.2rem; color:var(--gold-light); display:block; letter-spacing:0.2em; margin-bottom:0.4rem; line-height:1.4; }
+  .pair-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.12em; color:var(--stone); display:block; }
   .like-section{max-width:720px;padding:0 5rem 3rem;margin:0 auto;}
   .like-divider{border:none;border-top:1px solid rgba(196,180,154,0.1);margin-bottom:2.5rem;}
   .like-area{display:flex;align-items:center;gap:1.5rem;}
@@ -195,7 +199,20 @@
     <p>The solution was a consistent visual modification: each aspirated consonant is derived from its plain counterpart through a systematic addition to the base form. A learner who knows the glyph for /k/ will immediately recognise the glyph for /kh/ — because the latter is the former, with a specific stroke added. The phonological relationship is encoded directly into the visual design.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xE006; &#xE009; &nbsp;&nbsp; &#xE007; &#xE00A; &nbsp;&nbsp; &#xE008; &#xE00B;</span>
+      <div class="pair-grid">
+        <div class="pair-box">
+          <span class="pair-chars">&#xE006; &#xE009;</span>
+          <span class="pair-label">p / ph</span>
+        </div>
+        <div class="pair-box">
+          <span class="pair-chars">&#xE007; &#xE00A;</span>
+          <span class="pair-label">t / th</span>
+        </div>
+        <div class="pair-box">
+          <span class="pair-chars">&#xE008; &#xE00B;</span>
+          <span class="pair-label">k / kh</span>
+        </div>
+      </div>
       <span class="glyph-sample-label">Plain and aspirated pairs — p/ph · t/th · k/kh</span>
     </div>
 
