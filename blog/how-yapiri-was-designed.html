@@ -11,11 +11,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How Yapiri Was Designed — Phonology, Glyphs, and the Making of a Script — Yapiri Script</title>
-<meta name="description" content="A technical look at how the Yapiri script was built — from analysing the sounds of KokTiprasa to designing every glyph and engineering the font.">
+<meta name="description" content="A technical look at how the Yapiri script was built — from analysing the sounds of Kokborok to designing every glyph and engineering the font.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://yapiriscript.com/blog/how-yapiri-was-designed.html">
 <meta property="og:title" content="How Yapiri Was Designed — Phonology, Glyphs, and the Making of a Script">
-<meta property="og:description" content="A technical look at how the Yapiri script was built — from analysing the sounds of KokTiprasa to designing every glyph and engineering the font.">
+<meta property="og:description" content="A technical look at how the Yapiri script was built — from analysing the sounds of Kokborok to designing every glyph and engineering the font.">
 <meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
 <meta property="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=3">
@@ -154,7 +154,7 @@
     <span class="post-tag">Script Development</span>
     <h1 class="post-title">How Yapiri Was Designed — Phonology, Glyphs, and the Making of a Script</h1>
     <div class="gold-line"></div>
-    <p class="post-excerpt">A technical look behind the scenes — how the sounds of KokTiprasa were mapped, how each glyph was drawn, and how the whole system was engineered into a working digital font.</p>
+    <p class="post-excerpt">A technical look behind the scenes — how the sounds of Kokborok were mapped, how each glyph was drawn, and how the whole system was engineered into a working digital font.</p>
     <div class="post-meta-bar">
       <span class="meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 2026</span>
       <span class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>8 min read</span>
@@ -172,14 +172,14 @@
 <article class="post-content">
   <div class="post-body">
     <p>Every writing system is, at its core, a solution to a problem: how do you take the sounds of a living language and give them a stable, visual form? The answer is never obvious. It requires decisions — about which sounds matter, how to represent them, and how to make the system learnable and consistent.</p>
-    <p>This post walks through how those decisions were made for Yapiri — from the first phonological analysis of KokTiprasa to the final exported font file.</p>
+    <p>This post walks through how those decisions were made for Yapiri — from the first phonological analysis of Kokborok to the final exported font file.</p>
 
     <h2>Step One — Listening to the Language</h2>
-    <p>Before drawing a single glyph, I had to understand what sounds KokTiprasa actually uses. This is called phonological analysis — the process of identifying every distinct sound in a language that can change the meaning of a word.</p>
-    <p>KokTiprasa is a Tibeto-Burman language. Like many languages in that family, it has a rich consonant inventory that includes plain stops, aspirated stops, and nasal consonants that do not exist in most European languages. It has six vowels, including a schwa — the neutral central vowel heard in the unstressed syllables of many KokTiprasa words. And it uses tone and reduplication in ways that required dedicated diacritic marks.</p>
+    <p>Before drawing a single glyph, I had to understand what sounds Kokborok actually uses. This is called phonological analysis — the process of identifying every distinct sound in a language that can change the meaning of a word.</p>
+    <p>Kokborok is a Tibeto-Burman language. Like many languages in that family, it has a rich consonant inventory that includes plain stops, aspirated stops, and nasal consonants that do not exist in most European languages. It has six vowels, including a schwa — the neutral central vowel heard in the unstressed syllables of many Kokborok words. And it uses tone and reduplication in ways that required dedicated diacritic marks.</p>
     <p>The inventory I settled on:</p>
     <blockquote><strong>25 consonants</strong> — including plain and aspirated pairs for p/ph, t/th, k/kh, ch/chh, and a palatal nasal variant n' · <strong>6 vowels</strong> — a, e, i, u, o, and schwa (ə) · <strong>10 numerals</strong> — a dedicated set of Yapiri digits · <strong>5 punctuation marks</strong> — comma, full stop, exclamation, question, and quotation · <strong>2 diacritics</strong> — a high tone mark and a reduplication mark, both combining characters that attach to base glyphs</blockquote>
-    <p>That is 48 characters in total. Every one of them earned its place by representing a sound or function that is genuinely present in KokTiprasa — no borrowing from other scripts, no approximations.</p>
+    <p>That is 48 characters in total. Every one of them earned its place by representing a sound or function that is genuinely present in Kokborok — no borrowing from other scripts, no approximations.</p>
 
     <h2>Step Two — Designing the Glyphs</h2>
     <p>With the phonological inventory mapped, the design work began. The central question was: what should Yapiri look like?</p>
@@ -191,7 +191,7 @@
       <span class="glyph-sample-label">The six vowels of Yapiri — a, e, i, u, o, ə</span>
     </div>
 
-    <p>One of the most important design decisions was how to handle <strong>aspirated consonants</strong>. In KokTiprasa, the difference between /p/ and /ph/ — or /t/ and /th/ — is phonemically significant. It changes meaning. So these pairs needed their own dedicated glyphs, but ideally ones where the relationship between plain and aspirated was visually obvious.</p>
+    <p>One of the most important design decisions was how to handle <strong>aspirated consonants</strong>. In Kokborok, the difference between /p/ and /ph/ — or /t/ and /th/ — is phonemically significant. It changes meaning. So these pairs needed their own dedicated glyphs, but ideally ones where the relationship between plain and aspirated was visually obvious.</p>
     <p>The solution was a consistent visual modification: each aspirated consonant is derived from its plain counterpart through a systematic addition to the base form. A learner who knows the glyph for /k/ will immediately recognise the glyph for /kh/ — because the latter is the former, with a specific stroke added. The phonological relationship is encoded directly into the visual design.</p>
 
     <div class="glyph-sample">
@@ -257,7 +257,7 @@
     <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
     <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
   </div>
-  <div class="footer-copy">Created for the KokTiprasa language<br>Tiprasa people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
+  <div class="footer-copy">Created for the Kokborok language<br>Tiprasa people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
 </footer>
 
 <script>
