@@ -441,25 +441,36 @@
 </footer>
 
 <script>
-  let yapiriText = '';
-  let romanText = '';
+  let history = []; // [{y: yapiriChar, r: romanString}]
 
-  function typeChar(glyph, roman) { yapiriText += glyph; romanText += roman; render(); }
-  function insertZWNJ() { yapiriText += '\u200C'; romanText += '|'; render(); }
-  function insertSpace() { yapiriText += ' '; romanText += ' '; render(); }
+  function getTexts() {
+    return {
+      y: history.map(h => h.y).join(''),
+      r: history.map(h => h.r).join('')
+    };
+  }
+
+  function typeChar(glyph, roman) { history.push({y: glyph, r: roman}); render(); }
+  function insertZWNJ()           { history.push({y: '\u200C', r: '|'}); render(); }
+  function insertSpace()          { history.push({y: ' ', r: ' '}); render(); }
+  function mathOp(op)             { history.push({y: op, r: op}); render(); }
+
   function backspace() {
-    if (!yapiriText.length) return;
-    yapiriText = [...yapiriText].slice(0,-1).join('');
-    romanText  = [...romanText].slice(0,-1).join('');
+    if (!history.length) return;
+    history.pop();
     render();
   }
-  function clearAll() { yapiriText = ''; romanText = ''; render(); }
+
+  function clearAll() { history = []; render(); }
+
   function render() {
+    const {y: yapiriText, r: romanText} = getTexts();
     document.getElementById('yapiri-output').textContent = yapiriText || '\u200B';
     document.getElementById('roman-output').textContent  = romanText  || 'romanization will appear here';
-    updateInspector();
+    updateInspector(yapiriText);
   }
-  function updateInspector() {
+
+  function updateInspector(yapiriText) {
     const el = document.getElementById('inspector-output');
     if (!yapiriText) { el.textContent = 'Type something above to inspect codepoints…'; return; }
     const parts = [...yapiriText].map(ch => {
@@ -478,7 +489,7 @@
 
   const yapiriDigitMap = {'\uE01F':0,'\uE020':1,'\uE021':2,'\uE022':3,'\uE023':4,'\uE024':5,'\uE025':6,'\uE026':7,'\uE027':8,'\uE028':9};
   const digitToYapiri = ['\uE01F','\uE020','\uE021','\uE022','\uE023','\uE024','\uE025','\uE026','\uE027','\uE028'];
-  function mathOp(op) { yapiriText += op; romanText += op; render(); }
+
   function numberToYapiri(n) {
     const isNeg = n < 0;
     const str = Number.isInteger(Math.abs(n)) ? String(Math.abs(n)) : Math.abs(n).toFixed(10).replace(/\.?0+$/,'');
@@ -486,7 +497,9 @@
     for (const ch of str) out += ch === '.' ? '.' : digitToYapiri[parseInt(ch)];
     return out;
   }
+
   function calcResult() {
+    const {y: yapiriText} = getTexts();
     if (!yapiriText) return;
     let expr = '';
     for (const ch of yapiriText) {
@@ -502,12 +515,12 @@
     try { result = Function('"use strict";return('+expr+')')(); } catch(e) { return; }
     if (!isFinite(result)) return;
     result = parseFloat(result.toPrecision(12));
-    yapiriText += '=' + numberToYapiri(result);
-    romanText  += '=' + String(result);
+    history.push({y: '=' + numberToYapiri(result), r: '=' + String(result)});
     render();
   }
 
   async function copyText() {
+    const {y: yapiriText} = getTexts();
     if (!yapiriText) return;
     try {
       await navigator.clipboard.writeText(yapiriText);
@@ -516,7 +529,9 @@
       setTimeout(() => { btn.textContent = 'Copy Text'; btn.classList.remove('success'); }, 1500);
     } catch(e) {}
   }
+
   async function copyRoman() {
+    const {r: romanText} = getTexts();
     if (!romanText) return;
     try {
       await navigator.clipboard.writeText(romanText);
