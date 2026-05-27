@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Installing the Yapiri Font on Windows, Mac, and Android — Yapiri Script</title>
+<meta name="description" content="A step-by-step guide to installing the Yapiri font on Windows, macOS, and Android — so you can read and write in the script on any device you own.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yapiriscript.com/blog/installing-yapiri-font.html">
+<meta property="og:title" content="Installing the Yapiri Font on Windows, Mac, and Android">
+<meta property="og:description" content="A step-by-step guide to installing the Yapiri font on Windows, macOS, and Android — so you can read and write in the script on any device you own.">
+<meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<meta property="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(26,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,0.2);}
+  .nav-logo{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;color:var(--gold-light);text-decoration:none;}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+  .nav-links a{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-light);text-decoration:none;transition:color 0.3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold-light);}
+  .nav-badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;background:rgba(184,92,56,0.2);border:1px solid var(--terracotta);color:var(--terracotta);padding:0.3rem 0.75rem;white-space:nowrap;}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--stone-light);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--gold-light);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--gold-light);}
+  .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,18,9,0.98);z-index:150;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(20px);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu-close{position:absolute;top:1.4rem;right:1.5rem;background:none;border:1px solid rgba(196,180,154,0.2);color:var(--stone-light);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;}
+  .mobile-menu a{font-family:'Teko',sans-serif;font-size:clamp(2.5rem,8vw,4rem);font-weight:300;letter-spacing:0.08em;color:var(--stone-light);text-decoration:none;padding:0.6rem 2rem;transition:color 0.2s;border-bottom:1px solid rgba(196,180,154,0.06);width:100%;text-align:center;}
+  .mobile-menu a:hover{color:var(--gold-light);}
+  .post-hero{padding:0;background:linear-gradient(160deg,#0d0b10 0%,#100d12 40%,#1a1209 100%);border-bottom:1px solid rgba(201,146,42,0.12);position:relative;overflow:hidden;}
+  .post-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+  .post-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,146,42,0.04) 0%,transparent 60%);pointer-events:none;}
+  .post-hero-glyph{position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'Yapiri',serif;font-size:clamp(8rem,15vw,14rem);color:rgba(201,146,42,0.05);line-height:1;pointer-events:none;z-index:0;}
+  .post-hero-inner{max-width:860px;margin:0 auto;padding:9rem 5rem 4rem;position:relative;z-index:1;}
+  .back-link{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-light);text-decoration:none;border-bottom:1px solid rgba(196,180,154,0.2);padding-bottom:0.1rem;transition:color 0.2s;display:inline-block;margin-bottom:2.5rem;}
+  .back-link:hover{color:var(--gold-light);}
+  .post-tag{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--terracotta);margin-bottom:1.2rem;display:block;}
+  .post-title{font-family:'Teko',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:300;line-height:1.05;color:var(--parchment);margin-bottom:1.5rem;letter-spacing:0.02em;}
+  .post-excerpt{font-size:1.2rem;font-weight:300;font-style:italic;color:var(--stone-light);line-height:1.75;margin-bottom:2rem;max-width:640px;}
+  .gold-line{width:40px;height:2px;background:var(--gold);margin-bottom:2rem;opacity:0.7;}
+  .post-meta-bar{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+  .meta-item{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;color:var(--stone-light);display:flex;align-items:center;gap:0.5rem;}
+  .meta-item svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.5;}
+  .stats-bar{display:flex;gap:0;border:1px solid rgba(196,180,154,0.1);border-top:none;max-width:860px;margin:0 auto;}
+  .stat-item{flex:1;padding:1rem 1.5rem;display:flex;align-items:center;gap:0.75rem;border-right:1px solid rgba(196,180,154,0.1);}
+  .stat-item:last-child{border-right:none;}
+  .stat-icon{width:16px;height:16px;fill:none;stroke:var(--stone);stroke-width:1.5;flex-shrink:0;}
+  .stat-num{font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--parchment);font-weight:400;}
+  .stat-lbl{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);}
+  .post-content{max-width:720px;padding:4rem 5rem;margin:0 auto;}
+  .post-body{font-size:1.15rem;font-weight:300;line-height:2;color:var(--stone-light);}
+  .post-body p{margin-bottom:1.8rem;}
+  .post-body strong{color:var(--parchment);font-weight:400;}
+  .post-body em{color:var(--gold-light);font-style:italic;}
+  .post-body h2{font-family:'Teko',sans-serif;font-size:2rem;font-weight:300;color:var(--parchment);margin:3rem 0 1rem;letter-spacing:0.03em;}
+  .post-body blockquote{border-left:3px solid var(--terracotta);padding:1rem 1.5rem;margin:2rem 0;background:rgba(184,92,56,0.05);font-style:italic;color:var(--stone-light);}
+  /* Platform badge */
+  .platform-badge{display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;border:1px solid rgba(201,146,42,0.3);color:var(--gold-light);padding:0.3rem 0.8rem;margin-bottom:1.2rem;}
+  /* Step list */
+  .step-list{list-style:none;margin:1.2rem 0 2rem;padding:0;display:flex;flex-direction:column;gap:0.6rem;}
+  .step-list li{display:flex;gap:1rem;align-items:flex-start;padding:0.9rem 1.2rem;background:rgba(255,255,255,0.02);border:1px solid rgba(196,180,154,0.08);}
+  .step-num{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--terracotta);letter-spacing:0.1em;min-width:24px;padding-top:0.1rem;flex-shrink:0;}
+  .step-text{font-size:1.05rem;font-weight:300;color:var(--stone-light);line-height:1.7;}
+  .step-text strong{color:var(--parchment);font-weight:400;}
+  /* Inline code */
+  .post-body code{font-family:'DM Mono',monospace;font-size:0.82rem;background:rgba(196,180,154,0.08);border:1px solid rgba(196,180,154,0.12);color:var(--gold-light);padding:0.1rem 0.45rem;letter-spacing:0.04em;}
+  /* Note box */
+  .note-box{background:rgba(201,146,42,0.05);border:1px solid rgba(201,146,42,0.2);padding:1.2rem 1.5rem;margin:1.8rem 0;display:flex;gap:1rem;align-items:flex-start;}
+  .note-icon{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);min-width:36px;padding-top:0.15rem;flex-shrink:0;}
+  .note-text{font-size:1rem;font-weight:300;color:var(--stone-light);line-height:1.7;}
+  .note-text strong{color:var(--parchment);}
+  /* Glyph sample */
+  .glyph-sample{background:rgba(255,255,255,0.02);border:1px solid rgba(196,180,154,0.1);padding:2rem;margin:2rem 0;text-align:center;}
+  .glyph-sample-text{font-family:'Yapiri',serif;font-size:2.5rem;color:var(--gold-light);letter-spacing:0.08em;line-height:1.5;display:block;margin-bottom:0.8rem;}
+  .glyph-sample-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);}
+  .glyph-sample-roman{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--stone-light);display:block;margin-top:0.4rem;}
+  /* Divider between platforms */
+  .platform-divider{border:none;border-top:1px solid rgba(196,180,154,0.08);margin:3rem 0;}
+  .like-section{max-width:720px;padding:0 5rem 3rem;margin:0 auto;}
+  .like-divider{border:none;border-top:1px solid rgba(196,180,154,0.1);margin-bottom:2.5rem;}
+  .like-area{display:flex;align-items:center;gap:1.5rem;}
+  .like-btn{background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.15);color:var(--stone-light);padding:0.8rem 1.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;gap:0.6rem;}
+  .like-btn:hover{border-color:var(--terracotta);color:var(--terracotta);background:rgba(184,92,56,0.08);}
+  .like-btn.liked{border-color:var(--terracotta);color:var(--terracotta);background:rgba(184,92,56,0.12);}
+  .like-btn svg{width:16px;height:16px;transition:fill 0.25s;}
+  .like-btn.liked svg{fill:var(--terracotta);}
+  .like-label{font-size:1rem;font-weight:300;font-style:italic;color:var(--stone);}
+  .comments-section{background:var(--charcoal);border-top:1px solid rgba(201,146,42,0.12);padding:4rem calc((100% - 860px)/2);}
+  .comments-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.5rem;}
+  .comments-title{font-family:'Teko',sans-serif;font-size:2rem;font-weight:300;color:var(--parchment);letter-spacing:0.03em;}
+  .comments-count{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--stone);}
+  .comment-form{border:1px solid rgba(196,180,154,0.12);padding:2rem;margin-bottom:3rem;background:rgba(0,0,0,0.2);}
+  .form-label{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta);display:block;margin-bottom:0.5rem;}
+  .form-input{width:100%;background:rgba(0,0,0,0.3);border:1px solid rgba(196,180,154,0.12);color:var(--parchment);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:0.75rem 1rem;margin-bottom:1.2rem;transition:border-color 0.2s;outline:none;}
+  .form-input:focus{border-color:rgba(201,146,42,0.4);}
+  .form-textarea{min-height:120px;resize:vertical;line-height:1.6;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .submit-btn{background:rgba(184,92,56,0.15);border:1px solid var(--terracotta);color:var(--terracotta);font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.8rem 2rem;cursor:pointer;transition:all 0.2s;}
+  .submit-btn:hover{background:rgba(184,92,56,0.3);}
+  .submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+  .form-msg{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;margin-top:0.8rem;min-height:1em;}
+  .form-msg.success{color:#6db36d;}
+  .form-msg.error{color:var(--terracotta);}
+  .comment-list{display:flex;flex-direction:column;gap:1.5rem;}
+  .comment-card{border:1px solid rgba(196,180,154,0.08);padding:1.5rem;background:rgba(0,0,0,0.15);}
+  .comment-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.8rem;flex-wrap:wrap;gap:0.5rem;}
+  .comment-name{font-family:'Teko',sans-serif;font-size:1.1rem;font-weight:400;color:var(--parchment);letter-spacing:0.05em;}
+  .comment-date{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;color:var(--stone);}
+  .comment-text{font-size:1rem;font-weight:300;color:var(--stone-light);line-height:1.75;}
+  .no-comments{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;color:var(--stone);text-align:center;padding:3rem;border:1px solid rgba(196,180,154,0.06);}
+  .loading-dot{display:inline-block;width:6px;height:6px;background:var(--stone);border-radius:50%;animation:pulse 1.2s infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}
+  footer{background:#080704;padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,180,154,0.08);flex-wrap:wrap;gap:1.5rem;}
+  .footer-logo{font-family:'Teko',sans-serif;font-size:1.4rem;font-weight:300;color:var(--stone);letter-spacing:0.15em;}
+  .footer-copy{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:rgba(196,180,154,0.3);text-align:right;line-height:1.8;}
+  .social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(196,180,154,0.1);color:var(--stone-light);text-decoration:none;transition:all 0.25s;position:relative;overflow:hidden;}
+  .social-link::before{content:'';position:absolute;inset:0;background:rgba(201,146,42,0.15);opacity:0;transition:opacity 0.25s;}
+  .social-link:hover{border-color:var(--gold);color:var(--gold-light);}
+  .social-link:hover::before{opacity:1;}
+  .social-link svg{width:15px;height:15px;position:relative;z-index:1;fill:currentColor;}
+  .footer-social{display:flex;gap:0.8rem;align-items:center;}
+  @media(max-width:900px){.post-hero-inner,.post-content,.like-section,.comments-section{padding-left:2rem;padding-right:2rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;text-align:center;padding:2.5rem 2rem;}.footer-copy{text-align:center;}nav{padding:1rem 1.5rem;}.nav-badge{display:none;}}
+  @media(max-width:700px){.nav-links{display:none;}.hamburger{display:flex;}.stats-bar{flex-direction:column;}.stat-item{border-right:none;border-bottom:1px solid rgba(196,180,154,0.1);}.stat-item:last-child{border-bottom:none;}.post-hero-glyph{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../script.html">Script</a></li>
+    <li><a href="../yapiri-specification.html">Spec</a></li>
+    <li><a href="../try.html">Try</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">✕</button>
+  <a href="../about.html" onclick="closeMenu()">About</a>
+  <a href="../script.html" onclick="closeMenu()">Script</a>
+  <a href="../yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="../try.html" onclick="closeMenu()">Try</a>
+  <a href="../download.html" onclick="closeMenu()">Download</a>
+  <a href="../community.html" onclick="closeMenu()">Community</a>
+  <a href="../blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<div class="post-hero">
+  <div class="post-hero-glyph">&#xE008;&#xE004;&#xE008;</div>
+  <div class="post-hero-inner">
+    <a href="../blog.html" class="back-link">← Back to Blog</a>
+    <span class="post-tag">Tutorials</span>
+    <h1 class="post-title">Installing the Yapiri Font on Windows, Mac, and Android</h1>
+    <div class="gold-line"></div>
+    <p class="post-excerpt">The Yapiri font is what makes the script visible on your screen. Without it, Yapiri characters appear as empty boxes. This guide walks you through installing it on every major device — in under two minutes.</p>
+    <div class="post-meta-bar">
+      <span class="meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 2026</span>
+      <span class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 min read</span>
+      <span class="meta-item">Animesh Debbarma</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><svg class="stat-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><div><div class="stat-num" id="view-count">—</div><div class="stat-lbl">Views</div></div></div>
+  <div class="stat-item"><svg class="stat-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div><div class="stat-num" id="like-count-stat">—</div><div class="stat-lbl">Likes</div></div></div>
+  <div class="stat-item"><svg class="stat-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><div class="stat-num" id="comment-count-stat">—</div><div class="stat-lbl">Comments</div></div></div>
+</div>
+
+<article class="post-content">
+  <div class="post-body">
+
+    <p>When someone sends you a message in Yapiri and all you see is a row of empty boxes, it means your device does not have the Yapiri font installed. The script is there — your device simply does not know how to draw it yet. Installing the font fixes this permanently, and it takes about a minute on any platform.</p>
+
+    <p>The Yapiri font is available as a <strong>TrueType font (.ttf)</strong> and as a compressed <strong>WebFont (.woff2)</strong>. For installation on your device, you want the <strong>.ttf file</strong>. The .woff2 is only needed for web development. Both are available free on the <a href="../download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Download page</a>.</p>
+
+    <blockquote><strong>Before you begin:</strong> go to <a href="../download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">yapiriscript.com/download</a> and download <strong>Yapiri.ttf</strong> to your device. The steps below assume you have the file ready.</blockquote>
+
+    <p>Once installed, the font works everywhere — in word processors, notes apps, messaging apps, design software, and any text field on your system. Any existing document that contains Yapiri characters will immediately render correctly too.</p>
+
+    <hr class="platform-divider">
+
+    <h2>Windows</h2>
+
+    <div class="platform-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+      Windows 10 &amp; 11
+    </div>
+
+    <p>Windows makes font installation straightforward. The operating system handles everything through the standard file explorer — no additional software needed.</p>
+
+    <ul class="step-list">
+      <li><span class="step-num">01</span><span class="step-text">Open the folder where you downloaded <strong>Yapiri.ttf</strong> — usually your <code>Downloads</code> folder.</span></li>
+      <li><span class="step-num">02</span><span class="step-text">Right-click on <strong>Yapiri.ttf</strong> to open the context menu.</span></li>
+      <li><span class="step-num">03</span><span class="step-text">Select <strong>Install</strong> to install for your user account only, or <strong>Install for all users</strong> if you want the font available to everyone who uses the computer. If prompted by User Account Control, click Yes.</span></li>
+      <li><span class="step-num">04</span><span class="step-text">Done. The font is now installed. Open any application — Word, Notepad, LibreOffice — and search for <em>Yapiri</em> in the font menu to confirm.</span></li>
+    </ul>
+
+    <div class="note-box">
+      <span class="note-icon">Note</span>
+      <span class="note-text">Applications that were already open when you installed the font may need to be restarted before the Yapiri font appears in their font lists. This is normal behaviour on Windows.</span>
+    </div>
+
+    <hr class="platform-divider">
+
+    <h2>macOS</h2>
+
+    <div class="platform-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.54 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+      macOS
+    </div>
+
+    <p>Mac uses <strong>Font Book</strong>, a built-in application specifically for managing fonts. The process is as simple as double-clicking a file.</p>
+
+    <ul class="step-list">
+      <li><span class="step-num">01</span><span class="step-text">Locate <strong>Yapiri.ttf</strong> in your <code>Downloads</code> folder using Finder.</span></li>
+      <li><span class="step-num">02</span><span class="step-text">Double-click <strong>Yapiri.ttf</strong>. Font Book will open automatically and display a preview of the font.</span></li>
+      <li><span class="step-num">03</span><span class="step-text">Click the <strong>Install Font</strong> button in the bottom-right of the preview window.</span></li>
+      <li><span class="step-num">04</span><span class="step-text">Font Book will confirm installation. The font is now available system-wide — in Pages, Keynote, TextEdit, and any other app that uses fonts.</span></li>
+    </ul>
+
+    <div class="note-box">
+      <span class="note-icon">Note</span>
+      <span class="note-text"><strong>Already have an older version of Yapiri installed?</strong> Font Book will ask whether to keep the existing version or replace it. Always choose <strong>Replace</strong> to ensure you have the latest glyph set with all corrections applied.</span>
+    </div>
+
+    <p>To verify, open TextEdit, create a new document, and select <em>Yapiri</em> from the font panel (<code>⌘ T</code>). Type a few characters using the key mappings from the <a href="../try.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">web keyboard tool</a> as a reference — they should render as Yapiri glyphs immediately.</p>
+
+    <hr class="platform-divider">
+
+    <h2>Android</h2>
+
+    <div class="platform-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4483-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993 0 .5511-.4483.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 10.1867.3432 13.6589 0 17.7881h24c-.3435-4.1292-2.6892-7.6014-6.1185-8.4467"/></svg>
+      Android
+    </div>
+
+    <p>Android does not allow custom fonts to be installed system-wide without root access. But this does not mean you cannot use Yapiri on Android — it simply means the approach is slightly different depending on what you want to do.</p>
+
+    <p>There are three practical options, arranged from easiest to most capable:</p>
+
+    <p><strong>Option 1 — Use the web keyboard (no installation needed)</strong></p>
+    <p>The simplest option for most users. Open <a href="../try.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">yapiriscript.com/try</a> in Chrome or any browser on your Android device. The web keyboard works fully in mobile browsers — tap the on-screen keys to type in Yapiri, then copy and paste the text wherever you need it. No font installation required because the website loads the font automatically.</p>
+
+    <p><strong>Option 2 — Install the font inside a supported app</strong></p>
+    <p>Several Android applications allow you to load custom fonts for use within that app specifically. <strong>WPS Office</strong> supports custom font installation from local storage — copy <strong>Yapiri.ttf</strong> to your device, open WPS Office, and add it through the app's font settings. This is ideal if you want to compose or view Yapiri documents on your phone.</p>
+
+    <ul class="step-list">
+      <li><span class="step-num">01</span><span class="step-text">Download <strong>Yapiri.ttf</strong> to your Android device. It will appear in your <code>Downloads</code> folder.</span></li>
+      <li><span class="step-num">02</span><span class="step-text">Open <strong>WPS Office</strong>. In a document, tap the <strong>Font</strong> option in the formatting toolbar.</span></li>
+      <li><span class="step-num">03</span><span class="step-text">Tap <strong>More Fonts</strong> or the import icon, then navigate to your Downloads folder and select <strong>Yapiri.ttf</strong>.</span></li>
+      <li><span class="step-num">04</span><span class="step-text">The font now appears in WPS Office's font list. Select it to start typing or rendering Yapiri text within your documents.</span></li>
+    </ul>
+
+    <p><strong>Option 3 — Use the Keyman keyboard app</strong></p>
+    <p>The <strong>Keyman for Android</strong> app is available free on the Google Play Store. It provides a full custom keyboard experience for your device — meaning you can type Yapiri in any app that accepts text input, including messaging apps, notes, and browsers. The Yapiri keyboard package for Keyman is available on the <a href="../download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Download page</a>. Note that whether the receiving app displays the characters correctly still depends on whether that app's font includes the Yapiri codepoints — which most will not, since Yapiri uses Private Use Area codepoints pending Unicode encoding. The web keyboard at <a href="../try.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">yapiriscript.com/try</a> always renders correctly regardless.</p>
+
+    <div class="note-box">
+      <span class="note-icon">Note</span>
+      <span class="note-text">The reason Yapiri characters appear as boxes in most Android apps is that those apps use the system font, which does not include Yapiri's Private Use Area codepoints. This is not a bug — it is simply a consequence of Yapiri not yet being encoded in Unicode. Once Yapiri is accepted into Unicode (a goal actively being worked toward), rendering will become universal.</span>
+    </div>
+
+    <hr class="platform-divider">
+
+    <h2>Verifying the Installation</h2>
+
+    <p>Once you have installed the font, the simplest way to verify it is working is to visit the <a href="../script.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Script page</a> on this website — it displays the full glyph chart using the web-loaded font, which is always correct. Then open a text editor on your device, select <em>Yapiri</em> as the font, and type a few keys. You should see glyphs like these:</p>
+
+    <div class="glyph-sample">
+      <span class="glyph-sample-text">&#xE01C;&#xE000;&#xE006;&#xE002;&#xE017;&#xE002;</span>
+      <span class="glyph-sample-label">yapiri — the name of this script</span>
+      <span class="glyph-sample-roman">Type: y a p i r i using the Yapiri keyboard mapping</span>
+    </div>
+
+    <p>If you see boxes or question marks instead of glyphs, the font is not yet active. On Windows, try restarting the application. On Mac, try restarting Font Book and reopening your text editor. On Android, confirm you are using a supported app or the web keyboard.</p>
+
+    <h2>What to Do After Installing</h2>
+
+    <p>With the font installed, the next step for most users is setting up <strong>Yapiri input</strong> — a way to type in the script, not just display it. The <a href="../try.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">web keyboard</a> is the quickest way to start. For a native typing experience on Windows or Mac, the <strong>Keyman keyboard package</strong> on the <a href="../download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Download page</a> installs Yapiri as a system input method — letting you type in the script in any application, the same way you would switch to any other keyboard language.</p>
+
+    <p>If you run into any trouble during installation, the <a href="../community.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Community page</a> is the right place to ask. Share your operating system version and what step the issue occurred at, and someone will help you through it.</p>
+
+  </div>
+</article>
+
+<div class="like-section">
+  <hr class="like-divider">
+  <div class="like-area">
+    <button class="like-btn" id="like-btn" onclick="handleLike()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span id="like-btn-text">Like this post</span>
+    </button>
+    <span class="like-label" id="like-label">Be the first to like this</span>
+  </div>
+</div>
+
+<section class="comments-section">
+  <div class="comments-header">
+    <h2 class="comments-title">Community Thoughts</h2>
+    <span class="comments-count" id="comments-count">Loading <span class="loading-dot"></span></span>
+  </div>
+  <div class="comment-form">
+    <div class="form-row">
+      <div><label class="form-label" for="comment-name">Your Name</label><input class="form-input" type="text" id="comment-name" placeholder="e.g. Riya Debbarma" maxlength="60"></div>
+      <div><label class="form-label" for="comment-location">Location (optional)</label><input class="form-input" type="text" id="comment-location" placeholder="e.g. Agartala, Tripura" maxlength="60"></div>
+    </div>
+    <label class="form-label" for="comment-text">Your Thoughts</label>
+    <textarea class="form-input form-textarea" id="comment-text" placeholder="Share your thoughts, questions, or installation tips..." maxlength="800"></textarea>
+    <button class="submit-btn" id="submit-btn" onclick="submitComment()">Post Comment</button>
+    <p class="form-msg" id="form-msg"></p>
+  </div>
+  <div class="comment-list" id="comment-list"><div class="no-comments">Loading comments <span class="loading-dot"></span></div></div>
+</section>
+
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61589838830572" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+  </div>
+  <div class="footer-copy">Created for the Kokborok language<br>Tiprasa people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
+</footer>
+
+<script>
+  function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+  function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+</script>
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js';
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+  const firebaseConfig={apiKey:"AIzaSyDdj5rM3BDDzpDop_UKZgEMMYjgjSbjluA",authDomain:"yapiriscript-df55b.firebaseapp.com",projectId:"yapiriscript-df55b",storageBucket:"yapiriscript-df55b.firebasestorage.app",messagingSenderId:"399359153590",appId:"1:399359153590:web:86c6a0a46556cf568a5d17"};
+  const POST_ID='installing-yapiri-font';
+  const app=initializeApp(firebaseConfig);const db=getFirestore(app);const postRef=doc(db,'posts',POST_ID);const commentsRef=collection(db,'posts',POST_ID,'comments');
+  function fmt(ts){if(!ts)return '';const d=ts.toDate?ts.toDate():new Date(ts);return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
+  async function trackView(){try{const k='viewed_'+POST_ID;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1');const s=await getDoc(postRef);if(s.exists()){await updateDoc(postRef,{views:increment(1)});}else{await setDoc(postRef,{views:1,likes:0});}}catch(e){}}
+  async function loadPostData(){try{const s=await getDoc(postRef);const d=s.exists()?s.data():{views:0,likes:0};document.getElementById('view-count').textContent=d.views??0;updateLikeUI(d.likes??0);}catch(e){}}
+  function updateLikeUI(count){const liked=localStorage.getItem('liked_'+POST_ID);document.getElementById('like-count-stat').textContent=count;const btn=document.getElementById('like-btn');const label=document.getElementById('like-label');const txt=document.getElementById('like-btn-text');if(liked){btn.classList.add('liked');txt.textContent='Liked';btn.disabled=true;}label.textContent=count===0?'Be the first to like this':count===1?'1 person liked this':count+' people liked this';}
+  window.handleLike=async function(){const k='liked_'+POST_ID;if(localStorage.getItem(k))return;try{localStorage.setItem(k,'1');const s=await getDoc(postRef);if(s.exists()){await updateDoc(postRef,{likes:increment(1)});}else{await setDoc(postRef,{views:0,likes:1});}const u=await getDoc(postRef);updateLikeUI(u.data().likes??0);}catch(e){localStorage.removeItem('liked_'+POST_ID);}};
+  async function loadComments(){try{const q=query(commentsRef,orderBy('timestamp','desc'));const s=await getDocs(q);const list=document.getElementById('comment-list');const countEl=document.getElementById('comments-count');const count=s.size;document.getElementById('comment-count-stat').textContent=count;countEl.textContent=count===0?'0 comments':count===1?'1 comment':count+' comments';if(count===0){list.innerHTML='<div class="no-comments">No comments yet — be the first to share your thoughts.</div>';return;}list.innerHTML='';s.forEach(d=>{const c=d.data();const card=document.createElement('div');card.className='comment-card';card.innerHTML='<div class="comment-header"><span class="comment-name">'+esc(c.name)+(c.location?' <span style="font-family:\'DM Mono\',monospace;font-size:0.7rem;color:var(--stone);font-weight:300;">· '+esc(c.location)+'</span>':'')+'</span><span class="comment-date">'+fmt(c.timestamp)+'</span></div><p class="comment-text">'+esc(c.text)+'</p>';list.appendChild(card);});}catch(e){document.getElementById('comment-list').innerHTML='<div class="no-comments">Could not load comments.</div>';}}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  window.submitComment=async function(){const name=document.getElementById('comment-name').value.trim();const location=document.getElementById('comment-location').value.trim();const text=document.getElementById('comment-text').value.trim();const msg=document.getElementById('form-msg');const btn=document.getElementById('submit-btn');if(!name){msg.textContent='Please enter your name.';msg.className='form-msg error';return;}if(!text||text.length<5){msg.textContent='Please write at least a few words.';msg.className='form-msg error';return;}const last=localStorage.getItem('lastComment_'+POST_ID);if(last&&Date.now()-parseInt(last)<60000){msg.textContent='Please wait a moment before commenting again.';msg.className='form-msg error';return;}btn.disabled=true;btn.textContent='Posting…';msg.textContent='';msg.className='form-msg';try{await addDoc(commentsRef,{name,location,text,timestamp:serverTimestamp()});localStorage.setItem('lastComment_'+POST_ID,Date.now().toString());document.getElementById('comment-name').value='';document.getElementById('comment-location').value='';document.getElementById('comment-text').value='';msg.textContent='Comment posted — thank you!';msg.className='form-msg success';await loadComments();}catch(e){msg.textContent='Something went wrong. Please try again.';msg.className='form-msg error';}btn.disabled=false;btn.textContent='Post Comment';};
+  trackView().then(()=>loadPostData());loadComments();
+</script>
+</body>
+</html>
