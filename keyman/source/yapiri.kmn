@@ -19,7 +19,7 @@ store(yapiri_base) U+E000 U+E001 U+E002 U+E003 U+E004 U+E005 U+E006 U+E007 U+E00
 
 store(yapiri_diacritic) U+0301 U+030B
 
-group(main) using keys
+group(main) using keys 
 
 c Backspace
 any(yapiri_base) U+0301 + [K_BKSP] > context(1)
