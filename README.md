@@ -4,7 +4,7 @@
 [![GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-222?logo=github)](https://yapiriscript.com)
 [![Status](https://img.shields.io/badge/Status-Active-terracotta)](https://yapiriscript.com)
 
-> **Yapiri** means *footprints* in Kokborok — this is the digital home of the Yapiri script, an original phonemic alphabet designed for the Kokborok language of the Borok people of Tripura, India.
+> **Yapiri** means *footprints* (lit. footsteps in Kokborok) — this is the digital home of the Yapiri script, an original phonemic alphabet designed for the Kokborok language of the Borok people of Tripura, India.
 
 🌐 **Live site:** [yapiriscript.com](https://yapiriscript.com)
 
@@ -29,6 +29,7 @@ This repository contains the full source code for the Yapiri Script website — 
 | `/download` | Download the Yapiri font and Keyman keyboard package |
 | `/community` | Community links and contribution channels |
 | `/yapiri-specification` | Full technical specification with PUA codepoints |
+| `/blog` | Read blogs on various topics related to the sript |
 
 ---
 
@@ -91,7 +92,6 @@ The Yapiri font file and Keyman keyboard package (`.kmp`) are available for down
 - n-prime (n′): `Q`
 - High tone mark: `'` → U+0301
 - Reduplication mark: `\` → U+030B
-- ZWNJ: `Shift+\` → U+200C
 
 ---
 
@@ -117,7 +117,7 @@ Contributions, feedback, and community resources are welcome. If you're a Kokbor
 ## License
 
 MIT — see [LICENSE](LICENSE) for details.  
-The Yapiri script design and font are the intellectual work of **Animesh Debbarma (Zitorin)**.
+The Yapiri script design and font are the intellectual work of **Animesh Debbarma**.
 
 ---
 
