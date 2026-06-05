@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- PRIMARY SEO -->
+<title>How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics — Yapiri Script</title>
+<meta name="title" content="How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics">
+<meta name="description" content="Yapiri treats vowels as full, independent letters — a radical departure from abugidas. But the script also has two diacritics: a high tone mark and a reduplication mark. Here is how all of them work, and why every design choice was made for Kokborok.">
+<meta name="keywords" content="Yapiri vowels, Kokborok vowel system, abugida vs alphabet, Yapiri diacritics, Kokborok tone mark, Kokborok reduplication, Yapiri script design, phonemic alphabet Kokborok, independent vowels script, Yapiri high tone">
+<meta name="author" content="Animesh Debbarma">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://yapiriscript.com/blog/vowels-in-yapiri.html">
+<!-- OPEN GRAPH -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Yapiri Script">
+<meta property="og:url" content="https://yapiriscript.com/blog/vowels-in-yapiri.html">
+<meta property="og:title" content="How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics">
+<meta property="og:description" content="Yapiri vowels are full letters, not diacritics. But the script does use two combining marks — for high tone and reduplication. Here is the complete picture of how Yapiri writes every sound and every grammatical feature of Kokborok.">
+<meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<meta property="og:image:alt" content="How vowels and marks work in the Yapiri script for Kokborok">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-26">
+<meta property="article:modified_time" content="2026-06-05">
+<meta property="article:author" content="Animesh Debbarma">
+<!-- TWITTER / X -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yapiriscript.com/blog/vowels-in-yapiri.html">
+<meta property="twitter:title" content="How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics">
+<meta property="twitter:description" content="Yapiri vowels are full letters. But the script also has a high tone mark and a reduplication mark. Here is how every sound and every mark works in Yapiri.">
+<meta property="twitter:image" content="https://yapiriscript.com/assets/images/twitter-image.png">
+<meta property="twitter:image:alt" content="How vowels and marks work in the Yapiri script for Kokborok">
+<!-- ICONS & FONTS -->
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.ico?v=5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://yapiriscript.com/blog/vowels-in-yapiri.html#post",
+      "headline": "How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics",
+      "description": "Yapiri treats vowels as full, independent letters — a radical departure from abugidas. But the script also has two diacritics: a high tone mark and a reduplication mark. Here is how all of them work, and why every design choice was made for Kokborok.",
+      "url": "https://yapiriscript.com/blog/vowels-in-yapiri.html",
+      "datePublished": "2026-05-26",
+      "dateModified": "2026-06-05",
+      "image": "https://yapiriscript.com/assets/images/og-image.png",
+      "inLanguage": "en",
+      "wordCount": 1800,
+      "author": { "@type": "Person", "name": "Animesh Debbarma" },
+      "publisher": { "@type": "Organization", "name": "Yapiri Script", "url": "https://yapiriscript.com/" },
+      "mainEntityOfPage": "https://yapiriscript.com/blog/vowels-in-yapiri.html",
+      "about": {
+        "@type": "Language",
+        "name": "Kokborok",
+        "alternateName": "Tiprakok",
+        "sameAs": "https://en.wikipedia.org/wiki/Kokborok"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yapiriscript.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://yapiriscript.com/blog.html" },
+        { "@type": "ListItem", "position": 3, "name": "How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics", "item": "https://yapiriscript.com/blog/vowels-in-yapiri.html" }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(26,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,0.2);}
+  .nav-logo{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;color:var(--gold-light);text-decoration:none;}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+  .nav-links a{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-light);text-decoration:none;transition:color 0.3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold-light);}
+  .nav-badge{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;background:rgba(184,92,56,0.2);border:1px solid var(--terracotta);color:var(--terracotta);padding:0.3rem 0.75rem;white-space:nowrap;}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--stone-light);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--gold-light);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--gold-light);}
+  .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,18,9,0.98);z-index:150;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(20px);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu-close{position:absolute;top:1.4rem;right:1.5rem;background:none;border:1px solid rgba(196,180,154,0.2);color:var(--stone-light);width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.4rem;}
+  .mobile-menu a{font-family:'Teko',sans-serif;font-size:clamp(2.5rem,8vw,4rem);font-weight:300;letter-spacing:0.08em;color:var(--stone-light);text-decoration:none;padding:0.6rem 2rem;transition:color 0.2s;border-bottom:1px solid rgba(196,180,154,0.06);width:100%;text-align:center;}
+  .mobile-menu a:hover{color:var(--gold-light);}
+  .post-hero{padding:0;background:linear-gradient(160deg,#0d0b10 0%,#100d12 40%,#1a1209 100%);border-bottom:1px solid rgba(201,146,42,0.12);position:relative;overflow:hidden;}
+  .post-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+  .post-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,146,42,0.04) 0%,transparent 60%);pointer-events:none;}
+  .post-hero-glyph{position:absolute;right:3rem;top:50%;transform:translateY(-50%);font-family:'Yapiri',serif;font-size:clamp(8rem,15vw,14rem);color:rgba(201,146,42,0.05);line-height:1;pointer-events:none;z-index:0;}
+  .post-hero-inner{max-width:860px;margin:0 auto;padding:9rem 5rem 4rem;position:relative;z-index:1;}
+  .back-link{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone-light);text-decoration:none;border-bottom:1px solid rgba(196,180,154,0.2);padding-bottom:0.1rem;transition:color 0.2s;display:inline-block;margin-bottom:2.5rem;}
+  .back-link:hover{color:var(--gold-light);}
+  .post-tag{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--terracotta);margin-bottom:1.2rem;display:block;}
+  .post-title{font-family:'Teko',sans-serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:300;line-height:1.05;color:var(--parchment);margin-bottom:1.5rem;letter-spacing:0.02em;}
+  .post-excerpt{font-size:1.2rem;font-weight:300;font-style:italic;color:var(--stone-light);line-height:1.75;margin-bottom:2rem;max-width:640px;}
+  .gold-line{width:40px;height:2px;background:var(--gold);margin-bottom:2rem;opacity:0.7;}
+  .post-meta-bar{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+  .meta-item{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;color:var(--stone-light);display:flex;align-items:center;gap:0.5rem;}
+  .meta-item svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.5;}
+  .stats-bar{display:flex;gap:0;border:1px solid rgba(196,180,154,0.1);border-top:none;max-width:860px;margin:0 auto;}
+  .stat-item{flex:1;padding:1rem 1.5rem;display:flex;align-items:center;gap:0.75rem;border-right:1px solid rgba(196,180,154,0.1);}
+  .stat-item:last-child{border-right:none;}
+  .stat-icon{width:16px;height:16px;fill:none;stroke:var(--stone);stroke-width:1.5;flex-shrink:0;}
+  .stat-num{font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--parchment);font-weight:400;}
+  .stat-lbl{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--stone);}
+  .post-content{max-width:720px;padding:4rem 5rem;margin:0 auto;}
+  .post-body{font-size:1.15rem;font-weight:300;line-height:2;color:var(--stone-light);}
+  .post-body p{margin-bottom:1.8rem;}
+  .post-body strong{color:var(--parchment);font-weight:400;}
+  .post-body em{color:var(--gold-light);font-style:italic;}
+  .post-body code{font-family:'DM Mono',monospace;font-size:0.85em;color:var(--gold-light);background:rgba(201,146,42,0.08);padding:0.1em 0.4em;}
+  .post-body h2{font-family:'Teko',sans-serif;font-size:2rem;font-weight:300;color:var(--parchment);margin:3rem 0 1rem;letter-spacing:0.03em;}
+  .post-body blockquote{border-left:3px solid var(--terracotta);padding:1rem 1.5rem;margin:2rem 0;background:rgba(184,92,56,0.05);font-style:italic;color:var(--stone-light);}
+  .post-body ul{margin:0 0 1.8rem 0;padding-left:0;list-style:none;}
+  .post-body ul li{position:relative;padding-left:1.6rem;margin-bottom:0.9rem;line-height:1.8;}
+  .post-body ul li::before{content:'';position:absolute;left:0;top:0.85rem;width:6px;height:6px;background:var(--gold);border-radius:50%;opacity:0.7;}
+  .section-divider{border:none;border-top:1px solid rgba(196,180,154,0.08);margin:3rem 0;}
+  .note-box{background:rgba(201,146,42,0.05);border:1px solid rgba(201,146,42,0.2);padding:1.2rem 1.5rem;margin:1.8rem 0;display:flex;gap:1rem;align-items:flex-start;}
+  .note-icon{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);min-width:48px;padding-top:0.15rem;flex-shrink:0;}
+  .note-text{font-size:1rem;font-weight:300;color:var(--stone-light);line-height:1.7;}
+  .note-text strong{color:var(--parchment);}
+  .pull-quote{margin:3rem 0;padding:2rem 2.5rem;border-top:2px solid rgba(201,146,42,0.3);border-bottom:2px solid rgba(201,146,42,0.3);text-align:center;}
+  .pull-quote p{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;font-style:italic;color:var(--parchment);line-height:1.55;}
+  .pull-quote cite{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);display:block;margin-top:1rem;font-style:normal;}
+  /* Vowel/character showcase row */
+  .char-row{display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(196,180,154,0.1);margin:2rem 0;background:rgba(0,0,0,0.2);}
+  .char-cell{flex:1;min-width:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.4rem 0.5rem;border-right:1px solid rgba(196,180,154,0.08);}
+  .char-cell:last-child{border-right:none;}
+  .char-glyph{font-family:'Yapiri',serif;font-size:2.4rem;color:var(--gold-light);line-height:1.3;margin-bottom:0.4rem;}
+  .char-ipa{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--parchment);letter-spacing:0.05em;}
+  .char-name{font-family:'DM Mono',monospace;font-size:0.5rem;color:var(--stone);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem;}
+  /* Comparison table */
+  .compare-block{border:1px solid rgba(196,180,154,0.1);margin:2rem 0;background:rgba(0,0,0,0.18);}
+  .compare-row{display:grid;grid-template-columns:130px 1fr 1fr;border-bottom:1px solid rgba(196,180,154,0.06);}
+  .compare-row:last-child{border-bottom:none;}
+  .compare-cell{padding:0.9rem 1.2rem;font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.6;display:flex;align-items:center;}
+  .compare-cell.label{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);font-weight:400;}
+  .compare-cell.abugida{border-left:1px solid rgba(196,180,154,0.06);color:var(--stone);}
+  .compare-cell.yapiri{border-left:1px solid rgba(196,180,154,0.06);color:var(--parchment);}
+  .col-head{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.6rem 1.2rem;border-bottom:2px solid rgba(201,146,42,0.2);}
+  .col-head.yapiri-h{color:var(--gold);}
+  .col-head.abugida-h{color:var(--stone);}
+  /* Mark demo block */
+  .mark-demo{border:1px solid rgba(196,180,154,0.1);margin:2rem 0;background:rgba(0,0,0,0.2);}
+  .mark-demo-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(196,180,154,0.06);}
+  .mark-demo-row:last-child{border-bottom:none;}
+  .mark-demo-cell{padding:1.4rem 1.6rem;display:flex;flex-direction:column;gap:0.5rem;border-right:1px solid rgba(196,180,154,0.06);}
+  .mark-demo-cell:last-child{border-right:none;}
+  .mark-demo-label{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--stone);}
+  .mark-demo-glyph{font-family:'Yapiri',serif;font-size:2.2rem;color:var(--gold-light);line-height:1.4;}
+  .mark-demo-roman{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--stone-light);}
+  .mark-demo-note{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);letter-spacing:0.06em;}
+  /* Glyph sample */
+  .glyph-sample{background:rgba(255,255,255,0.02);border:1px solid rgba(196,180,154,0.1);padding:2rem;margin:2rem 0;text-align:center;}
+  .glyph-sample-text{font-family:'Yapiri',serif;font-size:2.5rem;color:var(--gold-light);letter-spacing:0.08em;line-height:1.6;display:block;margin-bottom:0.8rem;}
+  .glyph-sample-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--stone);}
+  .glyph-sample-roman{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--stone-light);display:block;margin-top:0.4rem;}
+  /* Summary table */
+  .summary-table{width:100%;border-collapse:collapse;border:1px solid rgba(196,180,154,0.1);margin:2rem 0;background:rgba(0,0,0,0.18);}
+  .summary-table th{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;padding:0.7rem 1.2rem;text-align:left;border-bottom:2px solid rgba(201,146,42,0.2);color:var(--stone);}
+  .summary-table th.gold{color:var(--gold);}
+  .summary-table td{padding:0.85rem 1.2rem;font-size:0.95rem;font-weight:300;color:var(--stone-light);border-bottom:1px solid rgba(196,180,154,0.06);vertical-align:middle;line-height:1.6;}
+  .summary-table td strong{color:var(--parchment);font-weight:400;}
+  .summary-table td.glyph-td{font-family:'Yapiri',serif;font-size:1.6rem;color:var(--gold-light);line-height:1;}
+  .summary-table tr:last-child td{border-bottom:none;}
+  /* Like / comments */
+  .like-section{max-width:720px;padding:0 5rem 3rem;margin:0 auto;}
+  .like-divider{border:none;border-top:1px solid rgba(196,180,154,0.1);margin-bottom:2.5rem;}
+  .like-area{display:flex;align-items:center;gap:1.5rem;}
+  .like-btn{background:rgba(255,255,255,0.03);border:1px solid rgba(196,180,154,0.15);color:var(--stone-light);padding:0.8rem 1.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;gap:0.6rem;}
+  .like-btn:hover{border-color:var(--terracotta);color:var(--terracotta);background:rgba(184,92,56,0.08);}
+  .like-btn.liked{border-color:var(--terracotta);color:var(--terracotta);background:rgba(184,92,56,0.12);}
+  .like-btn svg{width:16px;height:16px;transition:fill 0.25s;}
+  .like-btn.liked svg{fill:var(--terracotta);}
+  .like-label{font-size:1rem;font-weight:300;font-style:italic;color:var(--stone);}
+  .comments-section{background:var(--charcoal);border-top:1px solid rgba(201,146,42,0.12);padding:4rem calc((100% - 860px)/2);}
+  .comments-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:2.5rem;}
+  .comments-title{font-family:'Teko',sans-serif;font-size:2rem;font-weight:300;color:var(--parchment);letter-spacing:0.03em;}
+  .comments-count{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--stone);}
+  .comment-form{border:1px solid rgba(196,180,154,0.12);padding:2rem;margin-bottom:3rem;background:rgba(0,0,0,0.2);}
+  .form-label{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta);display:block;margin-bottom:0.5rem;}
+  .form-input{width:100%;background:rgba(0,0,0,0.3);border:1px solid rgba(196,180,154,0.12);color:var(--parchment);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:0.75rem 1rem;margin-bottom:1.2rem;transition:border-color 0.2s;outline:none;}
+  .form-input:focus{border-color:rgba(201,146,42,0.4);}
+  .form-textarea{min-height:120px;resize:vertical;line-height:1.6;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .submit-btn{background:rgba(184,92,56,0.15);border:1px solid var(--terracotta);color:var(--terracotta);font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.8rem 2rem;cursor:pointer;transition:all 0.2s;}
+  .submit-btn:hover{background:rgba(184,92,56,0.3);}
+  .submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+  .form-msg{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;margin-top:0.8rem;min-height:1em;}
+  .form-msg.success{color:#6db36d;}
+  .form-msg.error{color:var(--terracotta);}
+  .comment-list{display:flex;flex-direction:column;gap:1.5rem;}
+  .comment-card{border:1px solid rgba(196,180,154,0.08);padding:1.5rem;background:rgba(0,0,0,0.15);}
+  .comment-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.8rem;flex-wrap:wrap;gap:0.5rem;}
+  .comment-name{font-family:'Teko',sans-serif;font-size:1.1rem;font-weight:400;color:var(--parchment);letter-spacing:0.05em;}
+  .comment-date{font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;color:var(--stone);}
+  .comment-text{font-size:1rem;font-weight:300;color:var(--stone-light);line-height:1.75;}
+  .no-comments{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;color:var(--stone);text-align:center;padding:3rem;border:1px solid rgba(196,180,154,0.06);}
+  .loading-dot{display:inline-block;width:6px;height:6px;background:var(--stone);border-radius:50%;animation:pulse 1.2s infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}
+  footer{background:#080704;padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,180,154,0.08);flex-wrap:wrap;gap:1.5rem;}
+  .footer-logo{font-family:'Teko',sans-serif;font-size:1.4rem;font-weight:300;color:var(--stone);letter-spacing:0.15em;}
+  .footer-copy{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:rgba(196,180,154,0.3);text-align:right;line-height:1.8;}
+  .social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(196,180,154,0.1);color:var(--stone-light);text-decoration:none;transition:all 0.25s;position:relative;overflow:hidden;}
+  .social-link::before{content:'';position:absolute;inset:0;background:rgba(201,146,42,0.15);opacity:0;transition:opacity 0.25s;}
+  .social-link:hover{border-color:var(--gold);color:var(--gold-light);}
+  .social-link:hover::before{opacity:1;}
+  .social-link svg{width:15px;height:15px;position:relative;z-index:1;fill:currentColor;}
+  .footer-social{display:flex;gap:0.8rem;align-items:center;}
+  @media(max-width:900px){.post-hero-inner,.post-content,.like-section,.comments-section{padding-left:2rem;padding-right:2rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;text-align:center;padding:2.5rem 2rem;}.footer-copy{text-align:center;}nav{padding:1rem 1.5rem;}.nav-badge{display:none;}.compare-row{grid-template-columns:100px 1fr 1fr;}.mark-demo-row{grid-template-columns:1fr;}.mark-demo-cell{border-right:none;border-bottom:1px solid rgba(196,180,154,0.06);}}
+  @media(max-width:700px){.nav-links{display:none;}.hamburger{display:flex;}.stats-bar{flex-direction:column;}.stat-item{border-right:none;border-bottom:1px solid rgba(196,180,154,0.1);}.stat-item:last-child{border-bottom:none;}.post-hero-glyph{display:none;}.char-glyph{font-size:1.8rem;}.compare-row{grid-template-columns:80px 1fr 1fr;}.compare-cell{padding:0.7rem 0.8rem;font-size:0.88rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../script.html">Script</a></li>
+    <li><a href="../yapiri-specification.html">Spec</a></li>
+    <li><a href="../try.html">Try</a></li>
+    <li><a href="../download.html">Download</a></li>
+    <li><a href="../community.html">Community</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><span class="nav-badge">v1.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()">&#x2715;</button>
+  <a href="../about.html" onclick="closeMenu()">About</a>
+  <a href="../script.html" onclick="closeMenu()">Script</a>
+  <a href="../yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="../try.html" onclick="closeMenu()">Try</a>
+  <a href="../download.html" onclick="closeMenu()">Download</a>
+  <a href="../community.html" onclick="closeMenu()">Community</a>
+  <a href="../blog.html" onclick="closeMenu()">Blog</a>
+</div>
+
+<div class="post-hero">
+  <div class="post-hero-glyph">&#xE000;&#xE002;&#xE004;</div>
+  <div class="post-hero-inner">
+    <a href="../blog.html" class="back-link">&#8592; Back to Blog</a>
+    <span class="post-tag">Script Design</span>
+    <h1 class="post-title">How Yapiri Handles Vowels and Marks &mdash; Full Letters and a Few Diacritics</h1>
+    <div class="gold-line"></div>
+    <p class="post-excerpt">Yapiri vowels are full, independent letters &mdash; a radical departure from the abugida tradition. But the script is honest: it also has two diacritics, one for high tone and one for reduplication, each doing exactly what no standalone letter could do.</p>
+    <div class="post-meta-bar">
+      <span class="meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>June 2026</span>
+      <span class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>15 min read</span>
+      <span class="meta-item">Animesh Debbarma</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><svg class="stat-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg><div><div class="stat-num" id="view-count">&#8212;</div><div class="stat-lbl">Views</div></div></div>
+  <div class="stat-item"><svg class="stat-icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div><div class="stat-num" id="like-count-stat">&#8212;</div><div class="stat-lbl">Likes</div></div></div>
+  <div class="stat-item"><svg class="stat-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div><div class="stat-num" id="comment-count-stat">&#8212;</div><div class="stat-lbl">Comments</div></div></div>
+</div>
+
+<article class="post-content">
+  <div class="post-body">
+
+    <p>Any honest description of Yapiri has to begin with a confession and a clarification. The confession: Yapiri is not entirely diacritic-free. The clarification: where it does use diacritics, it uses them for exactly the right reasons &mdash; reasons that no standalone letter could serve. Understanding this distinction is the key to understanding what Yapiri is, and what it is trying to do for Kokborok.</p>
+
+    <p>Let us go through it piece by piece: the vowels first, then the tone mark, then the reduplication mark. Each tells a different part of the same story.</p>
+
+    <hr class="section-divider">
+
+    <h2>The Abugida Problem</h2>
+
+    <p>To understand Yapiri's vowel design, you first need to understand what it is departing from. Most scripts used historically for Kokborok &mdash; Bengali, Devanagari, and the Aima script &mdash; are <strong>abugidas</strong>. In an abugida, every consonant carries a built-in default vowel. Other vowels are not written as letters; they are written as small marks attached to the consonant &mdash; above it, below it, or beside it. The vowel is not a letter. It is a modification of a letter.</p>
+
+    <p>This is not a flaw in abugidas as such. For Sanskrit, the language that shaped most of the scripts of the Indian subcontinent, this system is quite elegant: Sanskrit syllables are overwhelmingly consonant-led, and vowels are often predictable from context. The abugida model fits Sanskrit well.</p>
+
+    <p>But Kokborok is not Sanskrit. It belongs to the Tibeto-Burman family, not the Indo-Aryan one. Its vowel system is phonemically rich and its vowels are not predictable. Writing Kokborok in an abugida imports a set of assumptions that simply do not apply &mdash; and the most visible sign of that mismatch is the treatment of vowels as secondary marks rather than first-class sounds.</p>
+
+    <div class="compare-block">
+      <div class="compare-row" style="background:rgba(0,0,0,0.15);">
+        <div class="compare-cell label" style="font-size:0.55rem;">Concept</div>
+        <div class="col-head abugida-h" style="border-left:1px solid rgba(196,180,154,0.06);">Abugida approach</div>
+        <div class="col-head yapiri-h" style="border-left:1px solid rgba(196,180,154,0.06);">Yapiri approach</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Vowel status</div>
+        <div class="compare-cell abugida">Secondary &mdash; a modification of the consonant</div>
+        <div class="compare-cell yapiri">Primary &mdash; an independent letter of equal weight</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Visual form</div>
+        <div class="compare-cell abugida">Small diacritic mark attached to the consonant base</div>
+        <div class="compare-cell yapiri">Full glyph, same height and weight as every consonant</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Inherent vowel</div>
+        <div class="compare-cell abugida">Present &mdash; a bare consonant implies a vowel</div>
+        <div class="compare-cell yapiri">Absent &mdash; every sound must be written explicitly</div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-cell label">Writing /ki/</div>
+        <div class="compare-cell abugida">k + diacritic for i &mdash; one base, one mark</div>
+        <div class="compare-cell yapiri" style="display:flex;align-items:center;gap:0.6rem;"><span style="font-family:'Yapiri',serif;font-size:1.5rem;color:var(--gold-light);">&#xE008;&#xE002;</span><span>k + i &mdash; two equal, independent letters</span></div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Yapiri's Six Vowels — Full Letters, Every One</h2>
+
+    <p>Yapiri has six vowel letters, covering the complete phonemic vowel inventory of Kokborok. Each is a standalone character with its own codepoint in the Unicode Private Use Area. None of them depends on a consonant to exist. None attaches to anything. Each stands alone on the line, the same height and visual weight as every consonant around it.</p>
+
+    <div class="char-row">
+      <div class="char-cell">
+        <span class="char-glyph">&#xE000;</span>
+        <span class="char-ipa">/a/</span>
+        <span class="char-name">U+E000</span>
+      </div>
+      <div class="char-cell">
+        <span class="char-glyph">&#xE001;</span>
+        <span class="char-ipa">/e/</span>
+        <span class="char-name">U+E001</span>
+      </div>
+      <div class="char-cell">
+        <span class="char-glyph">&#xE002;</span>
+        <span class="char-ipa">/i/</span>
+        <span class="char-name">U+E002</span>
+      </div>
+      <div class="char-cell">
+        <span class="char-glyph">&#xE003;</span>
+        <span class="char-ipa">/u/</span>
+        <span class="char-name">U+E003</span>
+      </div>
+      <div class="char-cell">
+        <span class="char-glyph">&#xE004;</span>
+        <span class="char-ipa">/o/</span>
+        <span class="char-name">U+E004</span>
+      </div>
+      <div class="char-cell">
+        <span class="char-glyph">&#xE005;</span>
+        <span class="char-ipa">/&#601;/ schwa</span>
+        <span class="char-name">U+E005</span>
+      </div>
+    </div>
+
+    <p>The sixth vowel deserves particular attention. The schwa /&#601;/ &mdash; the neutral, central vowel &mdash; is one of Kokborok's most characteristic sounds. It appears frequently, it is phonemically contrastive (changing the vowel changes the meaning of the word), and yet it is the sound most carelessly handled by other orthographies. Bengali script renders it imprecisely. Roman Kokborok often omits it or conflates it with other vowels. In Yapiri, it has its own dedicated letter at <code>U+E005</code>, equal in standing to every other vowel. The schwa is not squeezed in as an afterthought; it is a founding member of the vowel set.</p>
+
+    <div class="pull-quote">
+      <p>"In Yapiri, you say /k/ then /i/ &mdash; you write the /k/ glyph then the /i/ glyph. The logic of the script and the logic of speech are one and the same."</p>
+      <cite>&mdash; Design principle, Yapiri v1.0</cite>
+    </div>
+
+    <p>The practical consequence is that Yapiri is a <strong>fully phonemic alphabet</strong> for its vowels: one sound, one letter, no exceptions, no implied sounds, no cancellation marks. What you see on the page is exactly what you say aloud. This makes Yapiri genuinely easier to learn than an abugida for native Kokborok speakers &mdash; not because it is simpler, but because it is more honest about how the language actually sounds.</p>
+
+    <div class="glyph-sample">
+      <span class="glyph-sample-text">&#xE008;&#xE004;&#xE008;&#xE00C;&#xE004;&#xE017;&#xE004;&#xE008;</span>
+      <span class="glyph-sample-label">kokborok &mdash; seven letters, seven sounds, none implied</span>
+      <span class="glyph-sample-roman">Every vowel written. Every sound visible. Nothing hidden.</span>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>The Marks Yapiri Does Use</h2>
+
+    <p>Here is where intellectual honesty matters. Yapiri is a phonemic alphabet for its core letter inventory &mdash; but the language itself has features that cannot be captured by standalone letters alone. For those features, Yapiri uses combining diacritical marks: characters that attach above a base letter via OpenType mark positioning. There are exactly two of them.</p>
+
+    <p>Using diacritics here is not a contradiction of Yapiri's design philosophy. The philosophy was never "no diacritics at all costs." It was "every sound deserves to be written explicitly, and no part of the language should be treated as secondary." For tone and reduplication, combining marks are precisely the right tool &mdash; because in both cases, the mark modifies a letter rather than replacing one.</p>
+
+    <hr class="section-divider">
+
+    <h2>The High Tone Mark — U+0301</h2>
+
+    <p>Kokborok is a tonal language. It has two phonemic tones: a high tone and a low tone. Change the tone on a syllable and you change the word's meaning. This is not a subtle feature &mdash; it is a core grammatical property of the language, and any script that ignores it is writing Kokborok incompletely.</p>
+
+    <p>Yapiri marks the high tone using the <strong>combining acute accent</strong> at <code>U+0301</code> &mdash; a standard Unicode combining character that floats above the letter it modifies. The low tone is left unmarked. This follows the same logical economy used in Roman Kokborok, where high tone is indicated (traditionally with the letter "h" after the vowel) and low tone is the default, unmarked state.</p>
+
+    <div class="mark-demo">
+      <div class="mark-demo-row" style="background:rgba(0,0,0,0.15);">
+        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);">
+          <span class="mark-demo-label">Low tone &mdash; unmarked (default)</span>
+        </div>
+        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);border-left:1px solid rgba(196,180,154,0.06);">
+          <span class="mark-demo-label">High tone &mdash; U+0301 above the vowel</span>
+        </div>
+      </div>
+      <div class="mark-demo-row">
+        <div class="mark-demo-cell">
+          <span class="mark-demo-glyph">&#xE008;&#xE000;</span>
+          <span class="mark-demo-roman">ka &mdash; low tone, no mark needed</span>
+          <span class="mark-demo-note">The absence of a mark is itself information</span>
+        </div>
+        <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
+          <span class="mark-demo-glyph">&#xE008;&#xE000;&#x0301;</span>
+          <span class="mark-demo-roman">ká &mdash; high tone, acute above the vowel</span>
+          <span class="mark-demo-note">U+0301 attaches above via OpenType mark positioning</span>
+        </div>
+      </div>
+    </div>
+
+    <p>Why a combining mark rather than a separate letter? Because tone is not a segment &mdash; it is a property of a segment. The high tone does not replace the vowel; it sits above it, modifying it, which is exactly what combining diacritics are designed to do. A standalone letter for high tone would be phonologically wrong; it would imply a separate sound where there is only a pitch variation on an existing one. The combining mark is the honest representation.</p>
+
+    <p>The mark is anchored above each base letter via the <code>high_tone</code> anchor class defined in the font. This means it positions itself correctly and consistently above every vowel and every consonant in the script, without any manual spacing adjustment needed from the writer.</p>
+
+    <div class="note-box">
+      <span class="note-icon">Note</span>
+      <span class="note-text">The high tone mark only ever appears above a <strong>vowel</strong> in practice, since tone in Kokborok is a property of the syllable nucleus. The font anchors it above all characters for technical completeness, but phonologically it belongs to the vowel.</span>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>The Reduplication Mark — U+030B</h2>
+
+    <p>Kokborok makes extensive use of reduplication &mdash; a grammatical process where a syllable or word is repeated to intensify meaning, create a new word, or mark a grammatical category. It is not a stylistic flourish; it is a structural feature of the language that appears constantly in everyday speech.</p>
+
+    <p>In Yapiri, reduplication is marked with the <strong>combining double acute accent</strong> at <code>U+030B</code>, placed above the <em>last letter of the repeated portion</em>. Like the tone mark, it is a zero-width combining character that attaches via the <code>reduplication</code> anchor class in the font. But precisely how and where it is used depends on which of two distinct scenarios is occurring &mdash; and this distinction matters.</p>
+
+    <h2>Scenario One — Syllable Reduplication Within a Word</h2>
+
+    <p>When a syllable repeats <em>inside</em> a single word, the reduplication mark appears alone &mdash; no hyphen. The mark sits above the last letter of the repeated syllable, signalling to the reader that this syllable is spoken twice even though the word is written as one unbroken unit.</p>
+
+    <p>The word <em>nini</em> (meaning "yours") is an example. The syllable <em>ni</em> repeats within the word. In Yapiri it is written as a continuous sequence of letters, with the mark placed above the final <em>i</em> of the reduplicated syllable:</p>
+
+    <div class="mark-demo">
+      <div class="mark-demo-row" style="background:rgba(0,0,0,0.15);">
+        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);">
+          <span class="mark-demo-label">Base syllable &mdash; ni</span>
+        </div>
+        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);border-left:1px solid rgba(196,180,154,0.06);">
+          <span class="mark-demo-label">nini (yours) &mdash; syllable reduplication, no hyphen</span>
+        </div>
+      </div>
+      <div class="mark-demo-row">
+        <div class="mark-demo-cell">
+          <span class="mark-demo-glyph">&#xE013;&#xE002;</span>
+          <span class="mark-demo-roman">ni &mdash; the base syllable</span>
+          <span class="mark-demo-note">No mark &mdash; reduplication not yet signalled</span>
+        </div>
+        <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
+          <span class="mark-demo-glyph">&#xE013;&#xE002;&#x030B;</span>
+          <span class="mark-demo-roman">nini &mdash; U+030B above the final i</span>
+          <span class="mark-demo-note">Mark above last letter of the repeated syllable, written as one word</span>
+        </div>
+      </div>
+    </div>
+
+    <p>There is no hyphen here because this is not two words &mdash; it is one word whose internal structure involves a reduplicated syllable. The mark alone is sufficient to tell the reader that the syllable repeats.</p>
+
+    <h2>Scenario Two — Word-Level Reduplication</h2>
+
+    <p>When an entire word repeats consecutively, the convention is different. Here the reduplication mark is placed above the <em>last letter of the first word</em>, and a standard hyphen (<code>U+002D</code>) follows immediately after. The hyphen is the visual signal that the full word before it repeats as a second, separate word.</p>
+
+    <p>The word <em>serek</em> (meaning "silent") reduplicated as <em>serek serek</em> (meaning "silently") is the canonical example from the Yapiri specification:</p>
+
+    <div class="mark-demo">
+      <div class="mark-demo-row" style="background:rgba(0,0,0,0.15);">
+        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);">
+          <span class="mark-demo-label">serek &mdash; base word (silent)</span>
+        </div>
+        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);border-left:1px solid rgba(196,180,154,0.06);">
+          <span class="mark-demo-label">serek serek &mdash; word reduplication (silently)</span>
+        </div>
+      </div>
+      <div class="mark-demo-row">
+        <div class="mark-demo-cell">
+          <span class="mark-demo-glyph">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;</span>
+          <span class="mark-demo-roman">serek &mdash; no mark, no hyphen</span>
+          <span class="mark-demo-note">The base word written once</span>
+        </div>
+        <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
+          <span class="mark-demo-glyph">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;-&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;</span>
+          <span class="mark-demo-roman">serek̋-serek &mdash; mark over k, then hyphen, then serek again</span>
+          <span class="mark-demo-note">U+030B above last letter of first word · U+002D hyphen · full word repeated</span>
+        </div>
+      </div>
+    </div>
+
+    <p>The two elements work together here in a specific order: the mark signals that a repetition is coming, and the hyphen marks the boundary between the two word instances. Neither alone is sufficient &mdash; the mark without the hyphen would look like syllable reduplication, and the hyphen alone would look like an ordinary compound word join.</p>
+
+    <p>The choice of a combining mark rather than a standalone character across both scenarios is deliberate and linguistically sound. Reduplication is not a new sound; it is a grammatical operation on existing sounds. The mark annotates structure rather than adding phonemic content, which is exactly what a combining diacritic is designed to do.</p>
+
+    <hr class="section-divider">
+
+    <h2>The Complete Picture</h2>
+
+    <p>With all three categories in view, the design of Yapiri becomes clear as a unified system rather than a set of ad hoc decisions.</p>
+
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Character type</th>
+          <th>Codepoint</th>
+          <th class="gold">Example</th>
+          <th>What it represents</th>
+          <th>Why this form</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Vowel letters</strong></td>
+          <td>U+E000 – U+E005</td>
+          <td class="glyph-td">&#xE000; &#xE001; &#xE002; &#xE003; &#xE004; &#xE005;</td>
+          <td>The six phonemic vowels of Kokborok</td>
+          <td>Vowels are full sounds — they deserve full letters</td>
+        </tr>
+        <tr>
+          <td><strong>High tone mark</strong></td>
+          <td>U+0301 (combining acute)</td>
+          <td class="glyph-td">&#xE000;&#x0301;</td>
+          <td>Pitch raised on the vowel it sits above</td>
+          <td>Tone is a property of a sound, not a sound itself</td>
+        </tr>
+        <tr>
+          <td><strong>Reduplication mark</strong> (syllable)</td>
+          <td>U+030B (combining double acute)</td>
+          <td class="glyph-td">&#xE013;&#xE002;&#x030B;</td>
+          <td>Syllable repeats within one word — mark above last letter of repeated syllable, no hyphen</td>
+          <td>Reduplication is a grammatical process, not a new phoneme</td>
+        </tr>
+        <tr>
+          <td><strong>Reduplication mark + hyphen</strong> (word)</td>
+          <td>U+030B + U+002D</td>
+          <td class="glyph-td">&#xE008;&#x030B;-</td>
+          <td>Full word repeats consecutively — mark above last letter of first word, then hyphen, then word again</td>
+          <td>Hyphen marks the word boundary; mark signals the repetition is grammatical</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>The pattern is consistent throughout. When something is a <em>sound</em>, Yapiri gives it a full standalone letter. When something is a <em>property of a sound</em> (like pitch) or a <em>grammatical annotation</em> (like reduplication), Yapiri uses a combining mark above the base letter. And when the grammar requires a word boundary to be visible &mdash; as in word-level reduplication &mdash; a standard hyphen steps in as a structural separator. Every tool is used for exactly the job it is suited for, and no more.</p>
+
+    <hr class="section-divider">
+
+    <h2>Why This Matters for Kokborok</h2>
+
+    <p>The scripts that Kokborok has historically used were designed for other languages. Bengali script carries the assumptions of Sanskrit phonology. Roman script was not designed with Tibeto-Burman tone systems or agglutinative grammar in mind. When you write Kokborok in either of these scripts, you spend constant effort working around the gaps &mdash; inventing workarounds for sounds the script was not built to handle, omitting or approximating features the orthography cannot represent neatly.</p>
+
+    <p>Yapiri was designed from Kokborok's phonology outward. Every design decision &mdash; the six independent vowel letters, the schwa as a first-class character, the combining tone mark, the reduplication mark &mdash; traces back to a specific feature of the language that needed a home. Nothing in Yapiri is borrowed convention applied without thought. Nothing is there because it was in some predecessor script. Every mark, every letter, every anchor has a reason rooted in the sounds and structures of Kokborok itself.</p>
+
+    <p>That is what it means to design a script for a language rather than adapting a script to one. The difference is visible in every line of Yapiri text &mdash; in the vowels that stand tall beside their consonants, in the acute that rises above a high-toned syllable, in the double mark that signals a reduplicated form. The language, written as it actually is.</p>
+
+    <div class="note-box">
+      <span class="note-icon">Try It</span>
+      <span class="note-text">You can write in Yapiri right now on the <a href="../try.html" style="color:var(--gold);">web keyboard</a>. Type a vowel and notice it stands alone, equal to every consonant. Try a high-toned word and see the acute appear above the vowel. The design explains itself the moment you begin to write.</span>
+    </div>
+
+  </div>
+</article>
+
+<div class="like-section">
+  <hr class="like-divider">
+  <div class="like-area">
+    <button class="like-btn" id="like-btn" onclick="handleLike()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span id="like-btn-text">Like this post</span>
+    </button>
+    <span class="like-label" id="like-label">Be the first to like this</span>
+  </div>
+</div>
+
+<section class="comments-section">
+  <div class="comments-header">
+    <h2 class="comments-title">Community Thoughts</h2>
+    <span class="comments-count" id="comments-count">Loading <span class="loading-dot"></span></span>
+  </div>
+  <div class="comment-form">
+    <div class="form-row">
+      <div><label class="form-label" for="comment-name">Your Name</label><input class="form-input" type="text" id="comment-name" placeholder="e.g. Riya Debbarma" maxlength="60"></div>
+      <div><label class="form-label" for="comment-location">Location (optional)</label><input class="form-input" type="text" id="comment-location" placeholder="e.g. Agartala, Tripura" maxlength="60"></div>
+    </div>
+    <label class="form-label" for="comment-text">Your Thoughts</label>
+    <textarea class="form-input form-textarea" id="comment-text" placeholder="What do you think about how Yapiri handles vowels, tone, and reduplication?" maxlength="800"></textarea>
+    <button class="submit-btn" id="submit-btn" onclick="submitComment()">Post Comment</button>
+    <p class="form-msg" id="form-msg"></p>
+  </div>
+  <div class="comment-list" id="comment-list"><div class="no-comments">Loading comments <span class="loading-dot"></span></div></div>
+</section>
+
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+    <a href="https://www.facebook.com/YapiriKokborok" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></a>
+  </div>
+  <div class="footer-copy">Created for the Kokborok language<br>Tiprasa people of Tripura, India<br>&copy; 2026 Animesh Debbarma &middot; yapiriscript.com</div>
+</footer>
+
+<script>
+  function toggleMenu(){const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+  function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');document.body.style.overflow='';}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+</script>
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js';
+  import { getFirestore, doc, getDoc, setDoc, updateDoc, increment, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+  const firebaseConfig={apiKey:"AIzaSyDdj5rM3BDDzpDop_UKZgEMMYjgjSbjluA",authDomain:"yapiriscript-df55b.firebaseapp.com",projectId:"yapiriscript-df55b",storageBucket:"yapiriscript-df55b.firebasestorage.app",messagingSenderId:"399359153590",appId:"1:399359153590:web:86c6a0a46556cf568a5d17"};
+  const POST_ID='vowels-in-yapiri';
+  const app=initializeApp(firebaseConfig);const db=getFirestore(app);const postRef=doc(db,'posts',POST_ID);const commentsRef=collection(db,'posts',POST_ID,'comments');
+  function fmt(ts){if(!ts)return '';const d=ts.toDate?ts.toDate():new Date(ts);return d.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});}
+  async function trackView(){try{const k='viewed_'+POST_ID;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,'1');const s=await getDoc(postRef);if(s.exists()){await updateDoc(postRef,{views:increment(1)});}else{await setDoc(postRef,{views:1,likes:0});}}catch(e){}}
+  async function loadPostData(){try{const s=await getDoc(postRef);const d=s.exists()?s.data():{views:0,likes:0};document.getElementById('view-count').textContent=d.views??0;updateLikeUI(d.likes??0);}catch(e){}}
+  function updateLikeUI(count){const liked=localStorage.getItem('liked_'+POST_ID);document.getElementById('like-count-stat').textContent=count;const btn=document.getElementById('like-btn');const label=document.getElementById('like-label');const txt=document.getElementById('like-btn-text');if(liked){btn.classList.add('liked');txt.textContent='Liked';btn.disabled=true;}label.textContent=count===0?'Be the first to like this':count===1?'1 person liked this':count+' people liked this';}
+  window.handleLike=async function(){const k='liked_'+POST_ID;if(localStorage.getItem(k))return;try{localStorage.setItem(k,'1');const s=await getDoc(postRef);if(s.exists()){await updateDoc(postRef,{likes:increment(1)});}else{await setDoc(postRef,{views:0,likes:1});}const u=await getDoc(postRef);updateLikeUI(u.data().likes??0);}catch(e){localStorage.removeItem(k);}};
+  async function loadComments(){try{const q=query(commentsRef,orderBy('timestamp','desc'));const s=await getDocs(q);const list=document.getElementById('comment-list');const countEl=document.getElementById('comments-count');const count=s.size;document.getElementById('comment-count-stat').textContent=count;countEl.textContent=count===0?'0 comments':count===1?'1 comment':count+' comments';if(count===0){list.innerHTML='<div class="no-comments">No comments yet — be the first to share your thoughts.</div>';return;}list.innerHTML='';s.forEach(d=>{const c=d.data();const card=document.createElement('div');card.className='comment-card';card.innerHTML='<div class="comment-header"><span class="comment-name">'+esc(c.name)+(c.location?' <span style="font-family:\'DM Mono\',monospace;font-size:0.7rem;color:var(--stone);font-weight:300;">· '+esc(c.location)+'</span>':'')+'</span><span class="comment-date">'+fmt(c.timestamp)+'</span></div><p class="comment-text">'+esc(c.text)+'</p>';list.appendChild(card);});}catch(e){document.getElementById('comment-list').innerHTML='<div class="no-comments">Could not load comments.</div>';}}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  window.submitComment=async function(){const name=document.getElementById('comment-name').value.trim();const location=document.getElementById('comment-location').value.trim();const text=document.getElementById('comment-text').value.trim();const msg=document.getElementById('form-msg');const btn=document.getElementById('submit-btn');if(!name){msg.textContent='Please enter your name.';msg.className='form-msg error';return;}if(!text||text.length<5){msg.textContent='Please write at least a few words.';msg.className='form-msg error';return;}const last=localStorage.getItem('lastComment_'+POST_ID);if(last&&Date.now()-parseInt(last)<60000){msg.textContent='Please wait a moment before commenting again.';msg.className='form-msg error';return;}btn.disabled=true;btn.textContent='Posting…';msg.textContent='';msg.className='form-msg';try{await addDoc(commentsRef,{name,location,text,timestamp:serverTimestamp()});localStorage.setItem('lastComment_'+POST_ID,Date.now().toString());document.getElementById('comment-name').value='';document.getElementById('comment-location').value='';document.getElementById('comment-text').value='';msg.textContent='Comment posted — thank you!';msg.className='form-msg success';await loadComments();}catch(e){msg.textContent='Something went wrong. Please try again.';msg.className='form-msg error';}btn.disabled=false;btn.textContent='Post Comment';};
+  trackView().then(()=>loadPostData());loadComments();
+</script>
+</body>
+</html>
