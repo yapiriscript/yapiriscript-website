@@ -219,6 +219,36 @@
   .poem-stanza-english .poem-verse { display: block; }
   .poem-credit { text-align: center; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(196,180,154,0.1); font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone); }
 
+    /* POEM SUBMISSION FORM */
+  .poem-submit-wrapper {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(196,180,154,0.1);
+  }
+  .poem-submit-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .poem-form-container {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(196,180,154,0.1);
+    padding: 2rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .poem-form-container iframe {
+    display: block;
+    width: 100%;
+    min-height: 800px;
+    border: none;
+    filter: invert(0);
+  }
+
   /* DOWNLOAD */
   #download { background: var(--ink); padding: 7rem 5rem; position: relative; overflow: hidden; }
   .download-bg-text { position: absolute; font-family: 'Teko', sans-serif; font-size: 20rem; font-weight: 300; color: rgba(201,146,42,0.03); right: -2rem; bottom: -2rem; line-height: 1; pointer-events: none; letter-spacing: -0.02em; }
@@ -436,18 +466,19 @@
     </div>
     <p class="poem-credit">Placeholder poem · Yapiri Script Poem Competition · Winner to be announced</p>
 
-    <div style="margin-top:3rem;">
-      <p style="font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta);text-align:center;margin-bottom:1.5rem;">Submit Your Poem</p>
-      <iframe 
-        src="https://tally.so/embed/A79Wa0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-        width="100%" 
-        height="800" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0"
-        style="border:none;color:var(--parchment);"
-        title="Yapiri Script Monthly Poem Competition">
-      </iframe>
+    <div class="poem-submit-wrapper">
+      <p class="poem-submit-label">Submit Your Poem</p>
+      <div class="poem-form-container">
+        <iframe 
+          src="https://tally.so/embed/A79Wa0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+          width="100%" 
+          height="800" 
+          frameborder="0" 
+          marginheight="0" 
+          marginwidth="0"
+          title="Yapiri Script Monthly Poem Competition">
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
