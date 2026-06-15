@@ -192,6 +192,12 @@
   .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.8s ease,transform 0.8s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
 
+  #yapiri-output {
+  unicode-bidi: plaintext;
+  -webkit-font-feature-settings: "mark" 1, "mkmk" 1;
+  font-feature-settings: "mark" 1, "mkmk" 1;
+}
+
   @media(max-width:900px) {
     .page-hero,.keyboard-section,.inspector-section,.tips-section { padding:8rem 2rem 4rem; }
     .tips-grid { grid-template-columns:1fr; }
@@ -331,7 +337,7 @@
 
       <div class="chart-section-label">High Tone Mark</div>
       <div class="key-row">
-        <button class="key special" onclick="typeChar('\u{F1CD1}','\u{F1CD1}')" aria-label="high tone mark"><span class="key-glyph">&#x25CC;&#xF1CD1;</span><span class="key-label">high tone</span></button>
+        <button class="key special" onclick="typeChar('\u{F1CD1}','́')" aria-label="high tone mark"><span class="key-glyph">&#x25CC;&#xF1CD1;</span><span class="key-label">high tone</span></button>
       </div>
       <p class="chart-note">
         The high tone mark is Yapiri's only combining mark. Place it directly after the vowel of the high-tone syllable — it renders above that vowel.
