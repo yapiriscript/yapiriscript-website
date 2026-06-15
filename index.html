@@ -175,6 +175,13 @@
   .hero-big-glyph { font-size: clamp(8rem,15vw,14rem); font-family: 'Yapiri', serif; color: var(--gold-light); line-height: 1; text-shadow: 0 0 80px rgba(201,146,42,0.3); display: block; margin-bottom: 0.5rem; }
   .hero-glyph-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--stone); text-transform: uppercase; }
   .hero-divider { position: absolute; left: 50%; top: 10%; bottom: 10%; width: 1px; background: linear-gradient(to bottom, transparent, rgba(201,146,42,0.3), transparent); }
+  .visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
 
   /* ABOUT */
   #about { background: var(--charcoal); padding: 7rem 5rem; position: relative; overflow: hidden; }
@@ -359,10 +366,10 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <h2 class="hero-eyebrow">An Innovative Indigenous Neography Featuring a Sleek and Modern Writing System for Kokborok</h2>
-    <h1 class="hero-title">
-      YAPIRI
-      <span>SCRIPT</span>
+    <p class="hero-eyebrow">An Innovative Indigenous Neography Featuring a Sleek and Modern Writing System for Kokborok</p>
+    <<h1 class="hero-title">
+      <span class="visually-hidden">Yapiri — New Indigenous Script for Kokborok</span>
+      <span aria-hidden="true">YAPIRI <span>SCRIPT</span></span>
     </h1>
     <p class="hero-subtitle">"Footsteps becoming footprints" across time — a living indigenous neography born from the Tiprasa people of Tripura</p>
     <p class="hero-meaning">
