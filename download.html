@@ -19,7 +19,6 @@
 <meta name="author" content="Animesh Debbarma">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://yapiriscript.com/download.html">
-
 <!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yapiri Script">
@@ -29,7 +28,6 @@
 <meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
 <meta property="og:image:alt" content="Download the Yapiri font and keyboard for writing Kokborok">
 <meta property="og:locale" content="en_US">
-
 <!-- TWITTER / X -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://yapiriscript.com/download.html">
@@ -37,13 +35,11 @@
 <meta property="twitter:description" content="Free Yapiri font (TTF/WOFF2) and Keyman keyboard for writing Kokborok, with install guides for every platform.">
 <meta property="twitter:image" content="https://yapiriscript.com/assets/images/twitter-image.png">
 <meta property="twitter:image:alt" content="Download the Yapiri font and keyboard for writing Kokborok">
-
 <!-- ICONS & FONTS -->
-<link rel="icon" type="image/svg+xml" href="assets/images/favicon.ico?v=5">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
-
 <!-- STRUCTURED DATA -->
 <script type="application/ld+json">
 {
@@ -87,19 +83,16 @@
   ]
 }
 </script>
-  
+ 
 <style>
   @font-face { font-family:'Yapiri'; src:url('assets/fonts/Yapiri.woff2?v=2') format('woff2'),url('assets/fonts/Yapiri.ttf?v=2') format('truetype'); font-weight:normal; font-style:normal; font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
-
   /* TOOLTIP */
   .tip { position:relative; cursor:help; border-bottom:1px dotted var(--stone); display:inline; }
   .tip::after { content:attr(data-tip); position:absolute; bottom:calc(100% + 7px); left:50%; transform:translateX(-50%); background:var(--charcoal); color:var(--stone-light); font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em; white-space:nowrap; padding:0.35rem 0.75rem; border:1px solid rgba(201,146,42,0.3); pointer-events:none; opacity:0; transition:opacity 0.2s ease; z-index:50; }
   .tip:hover::after { opacity:1; }
-
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
-
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(26,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,146,42,0.2);}
   .nav-logo{font-family:'Teko',sans-serif;font-size:1.6rem;font-weight:400;letter-spacing:0.15em;color:var(--gold-light);text-decoration:none;}
@@ -107,14 +100,12 @@
   .nav-links a{font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone-light);text-decoration:none;transition:color 0.3s;}
   .nav-links a:hover,.nav-links a.active{color:var(--gold-light);}
   .nav-badge { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.15em; text-transform:uppercase; background:rgba(184,92,56,0.2); border:1px solid var(--terracotta); color:var(--terracotta); padding:0.3rem 0.75rem; white-space:nowrap; }
-
   /* HAMBURGER */
   .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200;}
   .hamburger span{display:block;width:24px;height:2px;background:var(--stone-light);transition:all 0.3s;transform-origin:center;}
   .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--gold-light);}
   .hamburger.open span:nth-child(2){opacity:0;}
   .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--gold-light);}
-
   /* MOBILE MENU */
   .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(26,18,9,0.98);z-index:150;flex-direction:column;align-items:center;justify-content:center;backdrop-filter:blur(20px);}
   .mobile-menu.open{display:flex;}
@@ -122,7 +113,6 @@
   .mobile-menu-close:hover{border-color:var(--gold-light);color:var(--gold-light);}
   .mobile-menu a{font-family:'Teko',sans-serif;font-size:clamp(2.5rem,8vw,4rem);font-weight:300;letter-spacing:0.08em;color:var(--stone-light);text-decoration:none;padding:0.6rem 2rem;transition:color 0.2s;border-bottom:1px solid rgba(196,180,154,0.06);width:100%;text-align:center;}
   .mobile-menu a:hover{color:var(--gold-light);}
-
   /* SOCIAL */
   .social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(196,180,154,0.15);color:var(--stone-light);text-decoration:none;transition:all 0.25s;position:relative;overflow:hidden;}
   .social-link::before{content:'';position:absolute;inset:0;background:var(--terracotta);opacity:0;transition:opacity 0.25s;}
@@ -133,7 +123,6 @@
   .footer-social .social-link{border-color:rgba(196,180,154,0.1);}
   .footer-social .social-link:hover{border-color:var(--gold);color:var(--gold-light);}
   .footer-social .social-link:hover::before{background:rgba(201,146,42,0.15);opacity:1;}
-
   /* PAGE HERO */
   .page-hero{padding:10rem 5rem 6rem;background:linear-gradient(to bottom,#0e0c06,var(--ink));border-bottom:1px solid rgba(201,146,42,0.15);position:relative;overflow:hidden;}
   .page-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
@@ -147,10 +136,9 @@
   .section-heading{font-family:'Teko',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;color:var(--parchment);line-height:1.1;margin-bottom:1.5rem;}
   .body-text{font-size:1.1rem;font-weight:300;line-height:1.85;color:var(--stone-light);margin-bottom:1.5rem;max-width:720px;}
   .body-text strong{color:var(--parchment);font-weight:400;}
-
   /* DOWNLOAD CARDS */
   .downloads-section{padding:6rem 5rem;}
-  .downloads-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; max-width:1000px; margin:3rem auto 0; }
+  .downloads-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:2rem; max-width:1100px; margin:3rem auto 0; }
   .dl-card{border:1px solid rgba(196,180,154,0.12);padding:3rem 2.5rem;background:rgba(255,255,255,0.02);position:relative;overflow:hidden;transition:all 0.3s;}
   .dl-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--terracotta);transform:scaleX(0);transition:transform 0.3s;}
   .dl-card:hover{border-color:rgba(196,180,154,0.25);transform:translateY(-4px);}
@@ -172,7 +160,6 @@
   .dl-btn.outline{background:transparent;border:1px solid rgba(196,180,154,0.3);color:var(--stone-light);}
   .dl-btn.outline:hover{border-color:var(--gold);color:var(--gold-light);background:transparent;}
   .dl-btn svg{width:14px;height:14px;fill:currentColor;}
-
   /* INSTALLATION */
   .install-section{background:var(--charcoal);padding:6rem 5rem;position:relative;}
   .install-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,146,42,0.3),transparent);}
@@ -191,7 +178,6 @@
   .step-desc{font-size:0.95rem;font-weight:300;color:var(--stone-light);line-height:1.65;}
   .step-desc code{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--gold);background:rgba(201,146,42,0.08);padding:0.1rem 0.35rem;}
   .yapiri-glyphs{font-family:'Yapiri',serif;font-size:0.8rem;color:var(--gold);}
-
   /* LICENSE */
   .license-section{padding:6rem 5rem;}
   .license-box { border:1px solid rgba(196,180,154,0.1); padding:2.5rem; max-width:700px; background:rgba(255,255,255,0.02); margin:2rem auto 0; }
@@ -199,19 +185,15 @@
   .license-body{font-size:1rem;font-weight:300;line-height:1.8;color:var(--stone-light);}
   .license-body strong{color:var(--parchment);font-weight:400;}
   .license-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;border:1px solid rgba(109,179,109,0.4);color:#6db36d;padding:0.25rem 0.7rem;margin-bottom:1rem;}
-
   /* FOOTER */
   footer{background:#080704;padding:3rem 5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(196,180,154,0.08);flex-wrap:wrap;gap:1.5rem;}
   .footer-logo{font-family:'Teko',sans-serif;font-size:1.4rem;font-weight:300;color:var(--stone);letter-spacing:0.15em;}
   .footer-copy{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:rgba(196,180,154,0.3);text-align:right;line-height:1.8;}
-
   .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
   .reveal.visible{opacity:1;transform:translateY(0);}
-
   /* RESPONSIVE */
   @media(max-width:900px){
     .page-hero,.downloads-section,.install-section,.license-section{padding:8rem 2rem 4rem;}
-    .downloads-grid{grid-template-columns:1fr;}
     footer{flex-direction:column;text-align:center;padding:2.5rem 2rem;}
     .footer-copy{text-align:center;}
     .footer-social{justify-content:center;}
@@ -229,7 +211,6 @@
 </style>
 </head>
 <body>
-
 <nav>
   <a href="/" class="nav-logo">YAPIRI</a>
   <ul class="nav-links">
@@ -245,7 +226,6 @@
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
-
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
@@ -258,7 +238,6 @@
   <a href="blog.html" onclick="closeMenu()">Blog</a>
   <a href="ucsur.html" onclick="closeMenu()">UCSUR</a>
 </div>
-
 <!-- HERO -->
 <div class="page-hero">
   <p class="page-eyebrow">Resources</p>
@@ -267,37 +246,48 @@
   <p class="page-subtitle">Everything you need to read, write, and build with the Yapiri script — fonts, keyboard layouts, and documentation. All free.</p>
   <div class="page-hero-glyph">&#xF1CC0;&#xF1CC1;</div>
 </div>
-
 <!-- DOWNLOADS -->
 <section class="downloads-section">
-  <div style="max-width:1000px;margin:0 auto;">
+  <div style="max-width:1100px;margin:0 auto;">
     <p class="section-label reveal">Available Downloads</p>
     <h2 class="section-heading reveal">Get the Files</h2>
     <div class="gold-line reveal"></div>
-
     <div class="downloads-grid">
 
+      <!-- TTF Card -->
       <div class="dl-card featured reveal" id="font">
         <span class="dl-badge gold">Recommended First</span>
         <span class="dl-icon">🔤</span>
-        <div class="dl-title">Yapiri Font</div>
-        <div class="dl-version">Version 2.0 · TTF + WOFF2</div>
-        <p class="dl-desc">The Yapiri typeface — the core file needed to read and write in the script. Works in word processors, design software, and on the web.</p>
+        <div class="dl-title">Yapiri Font (TTF)</div>
+        <div class="dl-version">Version 2.0 · TTF</div>
+        <p class="dl-desc">The full Yapiri typeface for desktop use. Install once and use in Word, design apps, or any program that supports TTF fonts. Includes all glyphs and diacritics.</p>
         <div class="dl-meta">
-          <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">TTF · WOFF2</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">TTF (TrueType)</span></div>
           <div class="dl-meta-row"><span class="dl-meta-label">Platform</span><span class="dl-meta-value">Windows · macOS · Linux</span></div>
           <div class="dl-meta-row"><span class="dl-meta-label">License</span><span class="dl-meta-value">Free for personal &amp; educational use</span></div>
         </div>
-        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-          <a href="assets/fonts/Yapiri.ttf" download class="dl-btn">
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download TTF
-          </a>
-          <a href="assets/fonts/Yapiri.woff2" download class="dl-btn outline">
-            <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            Download WOFF2
-          </a>
+        <a href="assets/fonts/Yapiri.ttf" download class="dl-btn">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download TTF
+        </a>
+      </div>
+
+      <!-- NEW: WOFF2 Card -->
+      <div class="dl-card reveal">
+        <span class="dl-badge">Web Optimized</span>
+        <span class="dl-icon">🌐</span>
+        <div class="dl-title">Yapiri Font (WOFF2)</div>
+        <div class="dl-version">Version 2.0 · WOFF2</div>
+        <p class="dl-desc">Web-optimized version of the Yapiri font. Much smaller file size for faster page loads. Ideal for websites, blogs, PWAs, and any online Kokborok content using @font-face.</p>
+        <div class="dl-meta">
+          <div class="dl-meta-row"><span class="dl-meta-label">Format</span><span class="dl-meta-value">WOFF2 (Web Font)</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Best for</span><span class="dl-meta-value">Websites · Modern browsers</span></div>
+          <div class="dl-meta-row"><span class="dl-meta-label">Size benefit</span><span class="dl-meta-value">~35-45% smaller than TTF</span></div>
         </div>
+        <a href="assets/fonts/Yapiri.woff2" download class="dl-btn">
+          <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          Download WOFF2
+        </a>
       </div>
 
       <div class="dl-card reveal" id="keyman">
@@ -355,8 +345,7 @@
     <p class="section-label">Installation Guide</p>
     <h2 class="section-heading">How to Install the Font</h2>
     <div class="gold-line"></div>
-    <p class="body-text">After downloading, install the font on your system so it's available in all applications.</p>
-
+    <p class="body-text">After downloading, install the font on your system so it's available in all applications. For web projects, use the WOFF2 version with @font-face.</p>
     <div class="install-tabs">
       <button class="install-tab active" onclick="showInstall('windows',this)">Windows</button>
       <button class="install-tab" onclick="showInstall('mac',this)">macOS</button>
@@ -365,24 +354,27 @@
       <button class="install-tab" onclick="showInstall('keyman',this)">Keyman Keyboard</button>
     </div>
 
+    <!-- Windows -->
     <div class="install-panel active" id="install-windows">
       <div class="install-steps">
         <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Click "Download TTF" above and save <code>Yapiri.ttf</code> to your Downloads folder.</p></div></div>
         <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Open the font file</div><p class="step-desc">Double-click <code>Yapiri.ttf</code> to open the Windows Font Preview window.</p></div></div>
         <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Click Install</div><p class="step-desc">Click the <strong>Install</strong> button at the top of the preview window. The font installs system-wide immediately.</p></div></div>
-        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Word, Notepad, or any app. Select <strong class="yapiri-glyphs">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2; &#xF1CB7;&#xF1CA1;&#xF1CAC;&#xF1CA3;&#xF1CB8;&#xF1CA0;&#xF1CB7;</strong> (Yapiri Regular) from the font dropdown. PUA characters U+F1CA0–U+F1CFF will now render correctly.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Word, Notepad, or any app. Select <strong class="yapiri-glyphs">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2; &#xF1CB7;&#xF1CA1;&#xF1CAC;&#xF1CA3;&#xF1CB8;&#xF1CA0;&#xF1CB7;</strong> (Yapiri Regular) from the font dropdown.</p></div></div>
       </div>
-    </div> 
+    </div>
 
+    <!-- macOS -->
     <div class="install-panel" id="install-mac">
       <div class="install-steps">
         <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Click "Download TTF" above and save <code>Yapiri.ttf</code> to your Downloads folder.</p></div></div>
         <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Open with Font Book</div><p class="step-desc">Double-click <code>Yapiri.ttf</code>. macOS will open it in <strong>Font Book</strong> automatically.</p></div></div>
         <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Click Install Font</div><p class="step-desc">Click <strong>Install Font</strong> in the Font Book preview. The font is now available system-wide.</p></div></div>
-        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Pages, Keynote, Illustrator, or any app. Select <strong class="yapiri-glyphs">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2; &#xF1CB7;&#xF1CA1;&#xF1CAC;&#xF1CA3;&#xF1CB8;&#xF1CA0;&#xF1CB7;</strong> (Yapiri Regular) from the font menu. PUA characters U+F1CA0–U+F1CFF will now render correctly.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Select in your application</div><p class="step-desc">Open Pages, Keynote, Illustrator, or any app. Select <strong class="yapiri-glyphs">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2; &#xF1CB7;&#xF1CA1;&#xF1CAC;&#xF1CA3;&#xF1CB8;&#xF1CA0;&#xF1CB7;</strong> (Yapiri Regular) from the font menu.</p></div></div>
       </div>
     </div>
 
+    <!-- Linux -->
     <div class="install-panel" id="install-linux">
       <div class="install-steps">
         <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Download the TTF file</div><p class="step-desc">Download <code>Yapiri.ttf</code> from the button above.</p></div></div>
@@ -392,15 +384,17 @@
       </div>
     </div>
 
+    <!-- Web / CSS -->
     <div class="install-panel" id="install-web">
       <div class="install-steps">
-        <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Upload font files to your server</div><p class="step-desc">Place <code>Yapiri.woff2</code> and <code>Yapiri.ttf</code> in your project's fonts or assets folder.</p></div></div>
+        <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Upload font files to your server</div><p class="step-desc">Place <code>Yapiri.woff2</code> (and optionally TTF for fallback) in your project's fonts or assets folder.</p></div></div>
         <div class="install-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Add @font-face to your CSS</div><p class="step-desc"><code>@font-face { font-family: 'Yapiri'; src: url('Yapiri.woff2?v=2') format('woff2'), url('Yapiri.ttf?v=2') format('truetype'); font-display: swap; }</code></p></div></div>
         <div class="install-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Apply the font</div><p class="step-desc">Use <code>font-family: 'Yapiri', serif;</code> on any element containing PUA characters U+F1CA0–U+F1CFF.</p></div></div>
-        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Use WOFF2 for web</div><p class="step-desc">WOFF2 is smaller and faster than TTF for web use. Always list it first in the <code>src</code> declaration so modern browsers pick it up.</p></div></div>
+        <div class="install-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Use WOFF2 first</div><p class="step-desc">WOFF2 is smaller and faster. List it first in the <code>src</code> declaration so modern browsers use it automatically.</p></div></div>
       </div>
     </div>
 
+    <!-- Keyman -->
     <div class="install-panel" id="install-keyman">
       <div class="install-steps">
         <div class="install-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Install Keyman</div><p class="step-desc">Download and install <a href="https://keyman.com/download" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Keyman Desktop</a> (Windows/macOS/Linux) or <strong>Keyman for Android</strong> from the Play Store.</p></div></div>
@@ -464,7 +458,6 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
   const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);observer.unobserve(entry.target);}});},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
   setTimeout(() => {
     const hash = window.location.hash;
     if (hash === '#install-keyman') {
