@@ -80,7 +80,7 @@
 }
 </script>
 <style>
-  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2?v=2') format('woff2'),url('../assets/fonts/Yapiri.ttf?v=2') format('truetype'); font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
@@ -225,10 +225,11 @@
   <a href="../download.html" onclick="closeMenu()">Download</a>
   <a href="../community.html" onclick="closeMenu()">Community</a>
   <a href="../blog.html" onclick="closeMenu()">Blog</a>
+  <a href="../ucsur.html" onclick="closeMenu()">UCSUR</a>
 </div>
 
 <div class="post-hero">
-  <div class="post-hero-glyph">&#xE020;&#xE025;&#xE02A;</div>
+  <div class="post-hero-glyph">&#xF1CC0;&#xF1CC5;&#xF1CCF;</div>
   <div class="post-hero-inner">
     <a href="../blog.html" class="back-link">&#8592; Back to Blog</a>
     <span class="post-tag">Learning &amp; Reference</span>
@@ -261,23 +262,23 @@
     <p>Everything starts here. Yapiri's ten digits occupy codepoints <strong>U+E01F</strong> (zero) through <strong>U+E028</strong> (nine). Learn these ten forms and you can read any number written in the script.</p>
 
     <div class="digit-row">
-      <div class="digit-cell"><span class="dc-glyph">&#xE01F;</span><span class="dc-arabic">0</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE020;</span><span class="dc-arabic">1</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE021;</span><span class="dc-arabic">2</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE022;</span><span class="dc-arabic">3</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE023;</span><span class="dc-arabic">4</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE024;</span><span class="dc-arabic">5</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE025;</span><span class="dc-arabic">6</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE026;</span><span class="dc-arabic">7</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE027;</span><span class="dc-arabic">8</span></div>
-      <div class="digit-cell"><span class="dc-glyph">&#xE028;</span><span class="dc-arabic">9</span></div>
+      <div class="digit-cell"><span class="dc-glyph"></span><span class="dc-arabic">0</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC0;</span><span class="dc-arabic">1</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC1;</span><span class="dc-arabic">2</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC2;</span><span class="dc-arabic">3</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC3;</span><span class="dc-arabic">4</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC4;</span><span class="dc-arabic">5</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC5;</span><span class="dc-arabic">6</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC6;</span><span class="dc-arabic">7</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC7;</span><span class="dc-arabic">8</span></div>
+      <div class="digit-cell"><span class="dc-glyph">&#xF1CC8;</span><span class="dc-arabic">9</span></div>
     </div>
 
     <p>Yapiri uses a base-10 positional system &mdash; the same logic as the numerals you are already familiar with. A two-digit number places the tens digit first, followed by the units digit. 47 in Yapiri is simply the glyph for 4 followed by the glyph for 7. There is nothing more to learn in terms of structure.</p>
 
     <div class="note-box">
       <span class="note-icon">How to read</span>
-      <span class="note-text">Multi-digit numbers in Yapiri are read left to right, exactly as in Arabic numerals. The leftmost digit is the highest place value. <strong class="yapiri">&#xE021;&#xE026;</strong> is 27: the 2-glyph on the left, the 7-glyph on the right.</span>
+      <span class="note-text">Multi-digit numbers in Yapiri are read left to right, exactly as in Arabic numerals. The leftmost digit is the highest place value. <strong class="yapiri">&#xF1CC1;&#xF1CC6;</strong> is 27: the 2-glyph on the left, the 7-glyph on the right.</span>
     </div>
 
     <hr class="section-divider">
@@ -287,16 +288,16 @@
 
     <div class="count-section-title">1 &ndash; 10</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE020;</span><span class="cc-arabic">1</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;</span><span class="cc-arabic">2</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;</span><span class="cc-arabic">3</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;</span><span class="cc-arabic">4</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;</span><span class="cc-arabic">5</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;</span><span class="cc-arabic">6</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;</span><span class="cc-arabic">7</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;</span><span class="cc-arabic">8</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;</span><span class="cc-arabic">9</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE020;&#xE01F;</span><span class="cc-arabic">10</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;</span><span class="cc-arabic">1</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;</span><span class="cc-arabic">2</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;</span><span class="cc-arabic">3</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;</span><span class="cc-arabic">4</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;</span><span class="cc-arabic">5</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;</span><span class="cc-arabic">6</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;</span><span class="cc-arabic">7</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;</span><span class="cc-arabic">8</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;</span><span class="cc-arabic">9</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC0;</span><span class="cc-arabic">10</span></div>
     </div>
 
     <hr class="section-divider">
@@ -305,16 +306,16 @@
 
     <div class="count-section-title">11 &ndash; 20</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE020;</span><span class="cc-arabic">11</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE021;</span><span class="cc-arabic">12</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE022;</span><span class="cc-arabic">13</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE023;</span><span class="cc-arabic">14</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE024;</span><span class="cc-arabic">15</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE025;</span><span class="cc-arabic">16</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE026;</span><span class="cc-arabic">17</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE027;</span><span class="cc-arabic">18</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE020;&#xE028;</span><span class="cc-arabic">19</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE021;&#xE01F;</span><span class="cc-arabic">20</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC0;</span><span class="cc-arabic">11</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC1;</span><span class="cc-arabic">12</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC2;</span><span class="cc-arabic">13</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC3;</span><span class="cc-arabic">14</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC4;</span><span class="cc-arabic">15</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC5;</span><span class="cc-arabic">16</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC6;</span><span class="cc-arabic">17</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC7;</span><span class="cc-arabic">18</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC0;&#xF1CC8;</span><span class="cc-arabic">19</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC1;</span><span class="cc-arabic">20</span></div>
     </div>
 
     <hr class="section-divider">
@@ -323,16 +324,16 @@
 
     <div class="count-section-title">21 &ndash; 30</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE020;</span><span class="cc-arabic">21</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE021;</span><span class="cc-arabic">22</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE022;</span><span class="cc-arabic">23</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE023;</span><span class="cc-arabic">24</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE024;</span><span class="cc-arabic">25</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE025;</span><span class="cc-arabic">26</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE026;</span><span class="cc-arabic">27</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE027;</span><span class="cc-arabic">28</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE021;&#xE028;</span><span class="cc-arabic">29</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE022;&#xE01F;</span><span class="cc-arabic">30</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC0;</span><span class="cc-arabic">21</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC1;</span><span class="cc-arabic">22</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC2;</span><span class="cc-arabic">23</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC3;</span><span class="cc-arabic">24</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC4;</span><span class="cc-arabic">25</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC5;</span><span class="cc-arabic">26</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC6;</span><span class="cc-arabic">27</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC7;</span><span class="cc-arabic">28</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC1;&#xF1CC8;</span><span class="cc-arabic">29</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC2;</span><span class="cc-arabic">30</span></div>
     </div>
 
     <hr class="section-divider">
@@ -341,16 +342,16 @@
 
     <div class="count-section-title">31 &ndash; 40</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE020;</span><span class="cc-arabic">31</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE021;</span><span class="cc-arabic">32</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE022;</span><span class="cc-arabic">33</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE023;</span><span class="cc-arabic">34</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE024;</span><span class="cc-arabic">35</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE025;</span><span class="cc-arabic">36</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE026;</span><span class="cc-arabic">37</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE027;</span><span class="cc-arabic">38</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE022;&#xE028;</span><span class="cc-arabic">39</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE023;&#xE01F;</span><span class="cc-arabic">40</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC0;</span><span class="cc-arabic">31</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC1;</span><span class="cc-arabic">32</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC2;</span><span class="cc-arabic">33</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC3;</span><span class="cc-arabic">34</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC4;</span><span class="cc-arabic">35</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC5;</span><span class="cc-arabic">36</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC6;</span><span class="cc-arabic">37</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC7;</span><span class="cc-arabic">38</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC2;&#xF1CC8;</span><span class="cc-arabic">39</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC3;</span><span class="cc-arabic">40</span></div>
     </div>
 
     <hr class="section-divider">
@@ -359,16 +360,16 @@
 
     <div class="count-section-title">41 &ndash; 50</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE020;</span><span class="cc-arabic">41</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE021;</span><span class="cc-arabic">42</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE022;</span><span class="cc-arabic">43</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE023;</span><span class="cc-arabic">44</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE024;</span><span class="cc-arabic">45</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE025;</span><span class="cc-arabic">46</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE026;</span><span class="cc-arabic">47</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE027;</span><span class="cc-arabic">48</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE023;&#xE028;</span><span class="cc-arabic">49</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE024;&#xE01F;</span><span class="cc-arabic">50</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC0;</span><span class="cc-arabic">41</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC1;</span><span class="cc-arabic">42</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC2;</span><span class="cc-arabic">43</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC3;</span><span class="cc-arabic">44</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC4;</span><span class="cc-arabic">45</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC5;</span><span class="cc-arabic">46</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC6;</span><span class="cc-arabic">47</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC7;</span><span class="cc-arabic">48</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC3;&#xF1CC8;</span><span class="cc-arabic">49</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC4;</span><span class="cc-arabic">50</span></div>
     </div>
 
     <div class="pull-quote">
@@ -382,16 +383,16 @@
 
     <div class="count-section-title">51 &ndash; 60</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE020;</span><span class="cc-arabic">51</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE021;</span><span class="cc-arabic">52</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE022;</span><span class="cc-arabic">53</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE023;</span><span class="cc-arabic">54</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE024;</span><span class="cc-arabic">55</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE025;</span><span class="cc-arabic">56</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE026;</span><span class="cc-arabic">57</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE027;</span><span class="cc-arabic">58</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE024;&#xE028;</span><span class="cc-arabic">59</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE025;&#xE01F;</span><span class="cc-arabic">60</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC0;</span><span class="cc-arabic">51</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC1;</span><span class="cc-arabic">52</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC2;</span><span class="cc-arabic">53</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC3;</span><span class="cc-arabic">54</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC4;</span><span class="cc-arabic">55</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC5;</span><span class="cc-arabic">56</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC6;</span><span class="cc-arabic">57</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC7;</span><span class="cc-arabic">58</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC4;&#xF1CC8;</span><span class="cc-arabic">59</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC5;</span><span class="cc-arabic">60</span></div>
     </div>
 
     <hr class="section-divider">
@@ -400,16 +401,16 @@
 
     <div class="count-section-title">61 &ndash; 70</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE020;</span><span class="cc-arabic">61</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE021;</span><span class="cc-arabic">62</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE022;</span><span class="cc-arabic">63</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE023;</span><span class="cc-arabic">64</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE024;</span><span class="cc-arabic">65</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE025;</span><span class="cc-arabic">66</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE026;</span><span class="cc-arabic">67</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE027;</span><span class="cc-arabic">68</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE025;&#xE028;</span><span class="cc-arabic">69</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE026;&#xE01F;</span><span class="cc-arabic">70</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC0;</span><span class="cc-arabic">61</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC1;</span><span class="cc-arabic">62</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC2;</span><span class="cc-arabic">63</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC3;</span><span class="cc-arabic">64</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC4;</span><span class="cc-arabic">65</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC5;</span><span class="cc-arabic">66</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC6;</span><span class="cc-arabic">67</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC7;</span><span class="cc-arabic">68</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC5;&#xF1CC8;</span><span class="cc-arabic">69</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC6;</span><span class="cc-arabic">70</span></div>
     </div>
 
     <hr class="section-divider">
@@ -418,16 +419,16 @@
 
     <div class="count-section-title">71 &ndash; 80</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE020;</span><span class="cc-arabic">71</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE021;</span><span class="cc-arabic">72</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE022;</span><span class="cc-arabic">73</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE023;</span><span class="cc-arabic">74</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE024;</span><span class="cc-arabic">75</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE025;</span><span class="cc-arabic">76</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE026;</span><span class="cc-arabic">77</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE027;</span><span class="cc-arabic">78</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE026;&#xE028;</span><span class="cc-arabic">79</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE027;&#xE01F;</span><span class="cc-arabic">80</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC0;</span><span class="cc-arabic">71</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC1;</span><span class="cc-arabic">72</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC2;</span><span class="cc-arabic">73</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC3;</span><span class="cc-arabic">74</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC4;</span><span class="cc-arabic">75</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC5;</span><span class="cc-arabic">76</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC6;</span><span class="cc-arabic">77</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC7;</span><span class="cc-arabic">78</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC6;&#xF1CC8;</span><span class="cc-arabic">79</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC7;</span><span class="cc-arabic">80</span></div>
     </div>
 
     <hr class="section-divider">
@@ -436,16 +437,16 @@
 
     <div class="count-section-title">81 &ndash; 90</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE020;</span><span class="cc-arabic">81</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE021;</span><span class="cc-arabic">82</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE022;</span><span class="cc-arabic">83</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE023;</span><span class="cc-arabic">84</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE024;</span><span class="cc-arabic">85</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE025;</span><span class="cc-arabic">86</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE026;</span><span class="cc-arabic">87</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE027;</span><span class="cc-arabic">88</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE027;&#xE028;</span><span class="cc-arabic">89</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE028;&#xE01F;</span><span class="cc-arabic">90</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC0;</span><span class="cc-arabic">81</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC1;</span><span class="cc-arabic">82</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC2;</span><span class="cc-arabic">83</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC3;</span><span class="cc-arabic">84</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC4;</span><span class="cc-arabic">85</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC5;</span><span class="cc-arabic">86</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC6;</span><span class="cc-arabic">87</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC7;</span><span class="cc-arabic">88</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC7;&#xF1CC8;</span><span class="cc-arabic">89</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC8;</span><span class="cc-arabic">90</span></div>
     </div>
 
     <hr class="section-divider">
@@ -454,16 +455,16 @@
 
     <div class="count-section-title">91 &ndash; 100</div>
     <div class="count-grid">
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE020;</span><span class="cc-arabic">91</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE021;</span><span class="cc-arabic">92</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE022;</span><span class="cc-arabic">93</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE023;</span><span class="cc-arabic">94</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE024;</span><span class="cc-arabic">95</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE025;</span><span class="cc-arabic">96</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE026;</span><span class="cc-arabic">97</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE027;</span><span class="cc-arabic">98</span></div>
-      <div class="count-cell"><span class="cc-glyph">&#xE028;&#xE028;</span><span class="cc-arabic">99</span></div>
-      <div class="count-cell tens"><span class="cc-glyph">&#xE020;&#xE01F;&#xE01F;</span><span class="cc-arabic">100</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC0;</span><span class="cc-arabic">91</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC1;</span><span class="cc-arabic">92</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC2;</span><span class="cc-arabic">93</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC3;</span><span class="cc-arabic">94</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC4;</span><span class="cc-arabic">95</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC5;</span><span class="cc-arabic">96</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC6;</span><span class="cc-arabic">97</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC7;</span><span class="cc-arabic">98</span></div>
+      <div class="count-cell"><span class="cc-glyph">&#xF1CC8;&#xF1CC8;</span><span class="cc-arabic">99</span></div>
+      <div class="count-cell tens"><span class="cc-glyph">&#xF1CC0;</span><span class="cc-arabic">100</span></div>
     </div>
 
     <hr class="section-divider">
