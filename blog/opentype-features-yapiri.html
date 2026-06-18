@@ -79,7 +79,7 @@
 }
 </script>
 <style>
-  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2?v=2') format('woff2'),url('../assets/fonts/Yapiri.ttf?v=2') format('truetype'); font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
@@ -222,10 +222,11 @@
   <a href="../download.html" onclick="closeMenu()">Download</a>
   <a href="../community.html" onclick="closeMenu()">Community</a>
   <a href="../blog.html" onclick="closeMenu()">Blog</a>
+  <a href="../ucsur.html" onclick="closeMenu()">UCSUR</a>
 </div>
 
 <div class="post-hero">
-  <div class="post-hero-glyph">&#xE008;&#xE000;&#xE002;</div>
+  <div class="post-hero-glyph">&#xF1CA8;&#xF1CA0;&#xF1CA2;</div>
   <div class="post-hero-inner">
     <a href="../blog.html" class="back-link">&#8592; Back to Blog</a>
     <span class="post-tag">Font Development</span>
@@ -320,7 +321,7 @@
     <h2>The Schwa and the Hyphen</h2>
     <p>Two characters in Yapiri have no direct equivalent in Latin typography and therefore received special attention in the OpenType layer.</p>
 
-    <p>The <strong>schwa</strong> (&#xE005;, U+E005) is Kokborok's central vowel &mdash; a sound so fundamental to the language that it appears in some of the most common words. Its glyph needed to kern cleanly with the widest possible range of preceding and following consonants, including some very different in shape. It also needed its own optical baseline adjustment to sit at the same visual midpoint as the other vowels despite having a different structural form.</p>
+    <p>The <strong>schwa</strong> (&#xF1CA5;, U+E005) is Kokborok's central vowel &mdash; a sound so fundamental to the language that it appears in some of the most common words. Its glyph needed to kern cleanly with the widest possible range of preceding and following consonants, including some very different in shape. It also needed its own optical baseline adjustment to sit at the same visual midpoint as the other vowels despite having a different structural form.</p>
 
     <p>The <strong>hyphen</strong> (U+E02E) is Yapiri's 49th character, used specifically between reduplicated words &mdash; a grammatical feature central to Kokborok. The challenge was ensuring it sits at the right visual height and carries just enough visual weight to read as a connector rather than disappearing into the surrounding glyphs. Too light and the reduplication boundary is unclear; too heavy and it dominates the word.</p>
 
@@ -332,7 +333,7 @@
     <p>Each testing pass produced a short list of pairs or positions that still felt wrong. Each list drove another round of adjustments. The font went through this cycle many times before the text below &mdash; a single line of running Kokborok &mdash; read cleanly at every size from 10px screen text to 48px display.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xE008;&#xE004;&#xE008;&#xE00C;&#xE004;&#xE017;&#xE004;&#xE008;</span>
+      <span class="glyph-sample-text">&#xF1CA8;&#xF1CA4;&#xF1CA8;&#xF1CAC;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA8;</span>
       <span class="glyph-sample-label">kokborok &mdash; the OpenType test that had to pass at every size</span>
       <span class="glyph-sample-roman">Eight characters. Seven kerning pairs. One language rendered with care.</span>
     </div>
