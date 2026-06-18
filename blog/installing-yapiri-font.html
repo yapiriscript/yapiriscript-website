@@ -57,7 +57,7 @@
       "description": "A step-by-step guide to installing the Yapiri font for the Kokborok language on Windows, macOS, and Android.",
       "url": "https://yapiriscript.com/blog/installing-yapiri-font.html",
       "datePublished": "2026-05-16",
-      "dateModified": "2026-05-16",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
       "wordCount": 1100,
@@ -355,11 +355,11 @@
     </ul>
 
     <p><strong>Option 3 — Use the Keyman keyboard app</strong></p>
-    <p>The <strong>Keyman for Android</strong> app is available free on the Google Play Store. It provides a full custom keyboard experience for your device — meaning you can type Yapiri in any app that accepts text input, including messaging apps, notes, and browsers. The Yapiri keyboard package for Keyman is available on the <a href="../download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Download page</a>. Note that whether the receiving app displays the characters correctly still depends on whether that app's font includes the Yapiri codepoints — which most will not, since Yapiri uses Private Use Area codepoints pending Unicode encoding. The web keyboard at <a href="../try.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">yapiriscript.com/try</a> always renders correctly regardless.</p>
+    <p>The <strong>Keyman for Android</strong> app is available free on the Google Play Store. It provides a full custom keyboard experience for your device — meaning you can type Yapiri in any app that accepts text input, including messaging apps, notes, and browsers. The Yapiri keyboard package for Keyman is available on the <a href="../download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Download page</a>. Note that whether the receiving app displays the characters correctly still depends on whether that app's font includes the Yapiri codepoints — which most will not, since Yapiri uses UCSUR Plane 15 codepoints (U+F1CA0–U+F1CFF) that are not part of the standard Unicode set yet. The web keyboard at <a href="../try.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">yapiriscript.com/try</a> always renders correctly regardless.</p>
 
     <div class="note-box">
       <span class="note-icon">Note</span>
-      <span class="note-text">The reason Yapiri characters appear as boxes in most Android apps is that those apps use the system font, which does not include Yapiri's Private Use Area codepoints. This is not a bug — it is simply a consequence of Yapiri not yet being encoded in Unicode. Once Yapiri is accepted into Unicode (a goal actively being worked toward), rendering will become universal.</span>
+      <span class="note-text">The reason Yapiri characters appear as boxes in most Android apps is that those apps use the system font, which does not include Yapiri's codepoints. Yapiri is registered in the UCSUR at U+F1CA0–U+F1CFF — a stable, publicly documented block — but is not yet part of the official Unicode Standard. Once accepted into Unicode (a goal actively being worked toward), rendering will become universal across all apps without needing the font installed.</span>
     </div>
 
     <hr class="platform-divider">
