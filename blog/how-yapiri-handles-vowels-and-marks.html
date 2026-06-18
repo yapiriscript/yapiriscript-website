@@ -80,7 +80,7 @@
 }
 </script>
 <style>
-  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2') format('woff2'),url('../assets/fonts/Yapiri.ttf') format('truetype'); font-display:swap; }
+  @font-face { font-family:'Yapiri'; src:url('../assets/fonts/Yapiri.woff2?v=2') format('woff2'),url('../assets/fonts/Yapiri.ttf?v=2') format('truetype'); font-display:swap; }
   :root { --ink:#1a1209; --parchment:#f5edd8; --warm-white:#faf6ee; --terracotta:#b85c38; --terra-light:#d4784f; --gold:#c9922a; --gold-light:#e8b84b; --stone:#8b7355; --stone-light:#c4b49a; --charcoal:#2c2416; }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--ink);color:var(--parchment);font-family:'Cormorant Garamond',Georgia,serif;overflow-x:hidden;}
@@ -255,10 +255,11 @@
   <a href="../download.html" onclick="closeMenu()">Download</a>
   <a href="../community.html" onclick="closeMenu()">Community</a>
   <a href="../blog.html" onclick="closeMenu()">Blog</a>
+  <a href="../ucsur.html" onclick="closeMenu()">UCSUR</a>
 </div>
 
 <div class="post-hero">
-  <div class="post-hero-glyph">&#xE000;&#xE002;&#xE004;</div>
+  <div class="post-hero-glyph">&#xF1CA0;&#xF1CA2;&#xF1CA4;</div>
   <div class="post-hero-inner">
     <a href="../blog.html" class="back-link">&#8592; Back to Blog</a>
     <span class="post-tag">Script Design</span>
@@ -320,7 +321,7 @@
       <div class="compare-row">
         <div class="compare-cell label">Writing /ki/</div>
         <div class="compare-cell abugida">k + diacritic for i &mdash; one base, one mark</div>
-        <div class="compare-cell yapiri" style="display:flex;align-items:center;gap:0.6rem;"><span style="font-family:'Yapiri',serif;font-size:1.5rem;color:var(--gold-light);">&#xE008;&#xE002;</span><span>k + i &mdash; two equal, independent letters</span></div>
+        <div class="compare-cell yapiri" style="display:flex;align-items:center;gap:0.6rem;"><span style="font-family:'Yapiri',serif;font-size:1.5rem;color:var(--gold-light);">&#xF1CA8;&#xF1CA2;</span><span>k + i &mdash; two equal, independent letters</span></div>
       </div>
     </div>
 
@@ -332,32 +333,32 @@
 
     <div class="char-row">
       <div class="char-cell">
-        <span class="char-glyph">&#xE000;</span>
+        <span class="char-glyph">&#xF1CA0;</span>
         <span class="char-ipa">/a/</span>
         <span class="char-name">U+E000</span>
       </div>
       <div class="char-cell">
-        <span class="char-glyph">&#xE001;</span>
+        <span class="char-glyph">&#xF1CA1;</span>
         <span class="char-ipa">/e/</span>
         <span class="char-name">U+E001</span>
       </div>
       <div class="char-cell">
-        <span class="char-glyph">&#xE002;</span>
+        <span class="char-glyph">&#xF1CA2;</span>
         <span class="char-ipa">/i/</span>
         <span class="char-name">U+E002</span>
       </div>
       <div class="char-cell">
-        <span class="char-glyph">&#xE003;</span>
+        <span class="char-glyph">&#xF1CA3;</span>
         <span class="char-ipa">/u/</span>
         <span class="char-name">U+E003</span>
       </div>
       <div class="char-cell">
-        <span class="char-glyph">&#xE004;</span>
+        <span class="char-glyph">&#xF1CA4;</span>
         <span class="char-ipa">/o/</span>
         <span class="char-name">U+E004</span>
       </div>
       <div class="char-cell">
-        <span class="char-glyph">&#xE005;</span>
+        <span class="char-glyph">&#xF1CA5;</span>
         <span class="char-ipa">/&#601;/ schwa</span>
         <span class="char-name">U+E005</span>
       </div>
@@ -373,7 +374,7 @@
     <p>The practical consequence is that Yapiri is a <strong>fully phonemic alphabet</strong> for its vowels: one sound, one letter, no exceptions, no implied sounds, no cancellation marks. What you see on the page is exactly what you say aloud. This makes Yapiri genuinely easier to learn than an abugida for native Kokborok speakers &mdash; not because it is simpler, but because it is more honest about how the language actually sounds.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xE008;&#xE004;&#xE008;&#xE00C;&#xE004;&#xE017;&#xE004;&#xE008;</span>
+      <span class="glyph-sample-text">&#xF1CA8;&#xF1CA4;&#xF1CA8;&#xF1CAC;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA8;</span>
       <span class="glyph-sample-label">kokborok &mdash; seven letters, seven sounds, none implied</span>
       <span class="glyph-sample-roman">Every vowel written. Every sound visible. Nothing hidden.</span>
     </div>
@@ -405,12 +406,12 @@
       </div>
       <div class="mark-demo-row">
         <div class="mark-demo-cell">
-          <span class="mark-demo-glyph">&#xE008;&#xE000;</span>
+          <span class="mark-demo-glyph">&#xF1CA8;&#xF1CA0;</span>
           <span class="mark-demo-roman">ka &mdash; low tone, no mark needed</span>
           <span class="mark-demo-note">The absence of a mark is itself information</span>
         </div>
         <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-glyph">&#xE008;&#xE000;&#x0301;</span>
+          <span class="mark-demo-glyph">&#xF1CA8;&#xF1CA0;&#x0301;</span>
           <span class="mark-demo-roman">ká &mdash; high tone, acute above the vowel</span>
           <span class="mark-demo-note">U+0301 attaches above via OpenType mark positioning</span>
         </div>
@@ -451,12 +452,12 @@
       </div>
       <div class="mark-demo-row">
         <div class="mark-demo-cell">
-          <span class="mark-demo-glyph">&#xE013;&#xE002;</span>
+          <span class="mark-demo-glyph">&#xF1CB3;&#xF1CA2;</span>
           <span class="mark-demo-roman">ni &mdash; the base syllable</span>
           <span class="mark-demo-note">No mark &mdash; reduplication not yet signalled</span>
         </div>
         <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-glyph">&#xE013;&#xE002;&#x030B;</span>
+          <span class="mark-demo-glyph">&#xF1CB3;&#xF1CA2;&#x030B;</span>
           <span class="mark-demo-roman">nini &mdash; U+030B above the final i</span>
           <span class="mark-demo-note">Mark above last letter of the repeated syllable, written as one word</span>
         </div>
@@ -482,12 +483,12 @@
       </div>
       <div class="mark-demo-row">
         <div class="mark-demo-cell">
-          <span class="mark-demo-glyph">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;</span>
+          <span class="mark-demo-glyph">&#xF1CB6;&#xF1CA1;&#xF1CB7;&#xF1CA1;&#xF1CA8;</span>
           <span class="mark-demo-roman">serek &mdash; no mark, no hyphen</span>
           <span class="mark-demo-note">The base word, written and read once</span>
         </div>
         <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-glyph">&#xE016;&#xE001;&#xE017;&#xE001;&#xE008;&#x030B;-</span>
+          <span class="mark-demo-glyph">&#xF1CB6;&#xF1CA1;&#xF1CB7;&#xF1CA1;&#xF1CA8;&#x030B;-</span>
           <span class="mark-demo-roman">serek̋- &mdash; means serek serek</span>
           <span class="mark-demo-note">U+030B above k · U+002D hyphen · word written once, understood twice</span>
         </div>
@@ -518,28 +519,28 @@
         <tr>
           <td><strong>Vowel letters</strong></td>
           <td>U+E000 – U+E005</td>
-          <td class="glyph-td">&#xE000; &#xE001; &#xE002; &#xE003; &#xE004; &#xE005;</td>
+          <td class="glyph-td">&#xF1CA0; &#xF1CA1; &#xF1CA2; &#xF1CA3; &#xF1CA4; &#xF1CA5;</td>
           <td>The six phonemic vowels of Kokborok</td>
           <td>Vowels are full sounds — they deserve full letters</td>
         </tr>
         <tr>
           <td><strong>High tone mark</strong></td>
           <td>U+0301 (combining acute)</td>
-          <td class="glyph-td">&#xE000;&#x0301;</td>
+          <td class="glyph-td">&#xF1CA0;&#x0301;</td>
           <td>Pitch raised on the vowel it sits above</td>
           <td>Tone is a property of a sound, not a sound itself</td>
         </tr>
         <tr>
           <td><strong>Reduplication mark</strong> (syllable)</td>
           <td>U+030B (combining double acute)</td>
-          <td class="glyph-td">&#xE013;&#xE002;&#x030B;</td>
+          <td class="glyph-td">&#xF1CB3;&#xF1CA2;&#x030B;</td>
           <td>Syllable repeats within one word — mark above last letter of repeated syllable, no hyphen</td>
           <td>Reduplication is a grammatical process, not a new phoneme</td>
         </tr>
         <tr>
           <td><strong>Reduplication mark + hyphen</strong> (word)</td>
           <td>U+030B + U+002D</td>
-          <td class="glyph-td">&#xE008;&#x030B;-</td>
+          <td class="glyph-td">&#xF1CA8;&#x030B;-</td>
           <td>Full word repeats consecutively — mark above last letter + trailing hyphen. Word is written <em>once only</em>; the two signals replace the second occurrence</td>
           <td>Shorthand efficiency: mark + hyphen = word spoken twice, written once</td>
         </tr>
