@@ -57,10 +57,10 @@
       "description": "A technical account of how the Yapiri script for Kokborok was built: phonological analysis, glyph design in Inkscape, font engineering in FontForge, and the Keyman keyboard.",
       "url": "https://yapiriscript.com/blog/how-yapiri-was-designed.html",
       "datePublished": "2026-05-12",
-      "dateModified": "2026-05-12",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
-      "wordCount": 1150,
+      "wordCount": 1350,
       "author": { "@type": "Person", "name": "Animesh Debbarma" },
       "publisher": {
         "@type": "Organization",
@@ -252,9 +252,10 @@
     <h2>Step One — Listening to the Language</h2>
     <p>Before drawing a single glyph, I had to understand what sounds Kokborok actually uses. This is called phonological analysis — the process of identifying every distinct sound in a language that can change the meaning of a word.</p>
     <p>Kokborok is a Tibeto-Burman language. Like many languages in that family, it has a rich consonant inventory that includes plain stops, aspirated stops, and nasal consonants that do not exist in most European languages. It has six vowels, including a schwa — the neutral central vowel heard in the unstressed syllables of many Kokborok words. And it uses tone and reduplication in ways that required dedicated diacritic marks.</p>
-    <p>The inventory I settled on:</p>
-    <blockquote><strong>25 consonants (21 native + 4 extended)</strong> — including plain and aspirated pairs for p/ph, t/th, k/kh, and a palatal nasal variant n' · <strong>6 vowels</strong> — a, e, i, u, o, and schwa (ə) · <strong>10 numerals</strong> — a dedicated set of Yapiri digits · <strong>5 punctuation marks</strong> — comma, full stop, exclamation, question, and quotation · <strong>2 diacritics</strong> — a high tone mark and a reduplication mark, both combining characters that attach to base glyphs · <strong>1 adopted symbol</strong> — the hyphen (U+002D), borrowed from global punctuation but given a specific structural role as the reduplication connector for whole-word repetition</blockquote>
-    <p>That is 49 characters in total. Every one of them earned its place by representing a sound or function that is genuinely present in Kokborok — no borrowing from other scripts, no approximations.</p>
+    <p>The v1.0 inventory I settled on:</p>
+    <blockquote><strong>25 consonants (21 native + 4 extended)</strong> — including plain and aspirated pairs for p/ph, t/th, k/kh, and a palatal nasal variant n' · <strong>6 vowels</strong> — a, e, i, u, o, and schwa (ə) · <strong>10 numerals</strong> — a dedicated set of Yapiri digits · <strong>5 punctuation marks</strong> — comma, full stop, exclamation, question, and quotation · <strong>2 diacritics</strong> — a high tone mark and a reduplication mark, both combining characters that attach to base glyphs</blockquote>
+    <p>That was 48 characters in total for v1.0. Every one of them earned its place by representing a sound or function genuinely present in Kokborok — no borrowing from other scripts, no approximations.</p>
+    <p>In v2.0, launched in June 2026, the inventory was refined down to <strong>45 characters</strong>. The characters for <em>f</em> and <em>chh</em> were dropped — both sounds are unambiguously covered by existing native characters (<em>ph</em> and <em>ch</em>). The reduplication mark was removed in favour of an orthographic rule. Two loanword characters — <em>v</em> and <em>z</em> — were retained as they represent sounds with no native Kokborok equivalent. The result is a leaner, more principled inventory: 6 vowels, 23 consonants, 10 numerals, 5 punctuation marks, and one combining diacritic for high tone.</p>
 
     <h2>Step Two — Designing the Glyphs</h2>
     <p>With the phonological inventory mapped, the design work began. The central question was: what should Yapiri look like?</p>
@@ -272,15 +273,15 @@
     <div class="glyph-sample">
       <div class="pair-grid">
         <div class="pair-box">
-          <span class="pair-chars">&#xF1CA7; &#xF1CA9;</span>
+          <span class="pair-chars">&#xF1CA7; &#xF1CAD;</span>
           <span class="pair-label">p / ph</span>
         </div>
         <div class="pair-box">
-          <span class="pair-chars">&#xF1CA7; &#xF1CAA;</span>
+          <span class="pair-chars">&#xF1CA8; &#xF1CAE;</span>
           <span class="pair-label">t / th</span>
         </div>
         <div class="pair-box">
-          <span class="pair-chars">&#xF1CA8; &#xF1CAB;</span>
+          <span class="pair-chars">&#xF1CA9; &#xF1CAF;</span>
           <span class="pair-label">k / kh</span>
         </div>
       </div>
@@ -299,8 +300,8 @@
 
     <h2>Step Three — Building the Font</h2>
     <p>Once the glyphs were drawn in Inkscape, they were imported into FontForge — a professional font engineering application — where the real technical work began.</p>
-    <p>Because Yapiri's characters do not yet have official Unicode codepoints (that is a longer process, described below), the script uses the Unicode Private Use Area — a range of codepoints, <strong>U+E000 to U+E02D</strong>, that are reserved for exactly this kind of use. Each Yapiri character was assigned a specific PUA codepoint, forming a stable internal encoding that will remain consistent across all future versions of the font.</p>
-    <p>The font engineering involved several layers of work. Advance widths — the horizontal space each character occupies — were carefully calibrated so that text flows naturally. OpenType GPOS mark-to-base anchors were implemented for the two diacritic characters, ensuring that the high tone mark and reduplication mark attach correctly to whatever base glyph they follow. The font was then exported in two formats: TTF for broader compatibility, and WOFF2 for web use.</p>
+    <p>Because Yapiri's characters do not yet have official Unicode codepoints (that is a longer process, described below), the script uses the UCSUR Plane 15 — a dedicated block, <strong>U+F1CA0 to U+F1CFF</strong>, registered with the Under-ConScript Unicode Registry (UCSUR) for exactly this kind of use. Each Yapiri character was assigned a specific codepoint within this block, forming a stable, conflict-free encoding that will remain consistent across all future versions of the font.</p>
+    <p>The font engineering involved several layers of work. Advance widths — the horizontal space each character occupies — were carefully calibrated so that text flows naturally. An OpenType GPOS mark-to-base anchor was implemented for the high tone mark — Yapiri's only combining diacritic — ensuring it attaches correctly above whatever vowel it follows. The font was then exported in two formats: TTF for broader compatibility, and WOFF2 for web use.</p>
     <p>The result is a font that renders correctly in browsers, word processors, design applications, and — thanks to the Keyman keyboard package — in any text field on desktop or Android.</p>
 
     <h2>Step Four — The Keyboard</h2>
@@ -308,9 +309,10 @@
     <p>The Yapiri keyboard was built using Keyman, an open-source input method engine developed by SIL International that supports hundreds of languages and runs on Windows, macOS, Linux, and Android. The keyboard layout uses a phoneme-based mapping: the key for /a/ types the Yapiri vowel for /a/, the key for /p/ types the Yapiri consonant for /p/, and so on. Aspirated consonants use the Shift key — Shift+P for /ph/, Shift+T for /th/, Shift+K for /kh/.</p>
     <p>On mobile, the layout organises characters by phoneme group — consonants on the main layer, vowels and numerals on a second layer — with Yapiri glyphs displayed directly on every key, so the user always sees the script they are typing.</p>
 
-    <h2>What Comes Next — The Unicode Submission</h2>
-    <p>The use of Private Use Area codepoints is the right approach for now — it allows the script to be used digitally immediately, while the longer process of formal Unicode encoding proceeds. But the long-term goal is official Unicode inclusion, which would mean Yapiri characters have permanent, universally recognised codepoints that any application can support without needing the Yapiri font installed.</p>
-    <p>That process runs through the Script Encoding Initiative at UC Berkeley, which reviews and advocates for the encoding of scripts used by minority and indigenous communities. The submission requires detailed documentation — glyph charts, phonological analysis, evidence of community use, and a formal proposal. It is not a short road, but it is the right one.</p>
+    <h2>UCSUR Registration and the Road to Unicode</h2>
+    <p>In June 2026, Yapiri reached a significant milestone: the Under-ConScript Unicode Registry (UCSUR) officially reserved the block <strong>U+F1CA0–U+F1CFF</strong> for Yapiri Script, confirmed by registrar Rebecca Bettencourt. UCSUR is the recognised registry for scripts that are in active community use but not yet part of the official Unicode Standard — a stable, respected home for exactly this stage of a script's journey.</p>
+    <p>This registration matters for several reasons. It means Yapiry's codepoints are now documented, conflict-free, and publicly recorded. Any other script developer working in the Plane 15 PUA range will know to leave Yapiri's block untouched. And it gives the project a formal reference point for the next stage: a submission to the Unicode Consortium itself.</p>
+    <p>Official Unicode encoding — where Yapiri characters would have permanent, universally recognised codepoints supported by any application without needing the font installed — is the long-term goal. That process runs through the Script Encoding Initiative at UC Berkeley, which reviews and advocates for the encoding of scripts used by minority and indigenous communities. The submission requires detailed documentation: glyph charts, phonological analysis, evidence of community use, and a formal proposal. It is not a short road, but it is the right one.</p>
     <p>In the meantime, the font and keyboard are available now, free, for anyone who wants to read and write in Yapiri. The technical foundation is solid. What it needs next is people.</p>
   </div>
 </article>
