@@ -53,7 +53,7 @@
       "description": "From beautiful glyphs to a smart, professional typeface — the story of how OpenType features were added to Yapiri.ttf, and why each one matters for reading Kokborok naturally.",
       "url": "https://yapiriscript.com/blog/opentype-features-yapiri.html",
       "datePublished": "2026-05-22",
-      "dateModified": "2026-05-22",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
       "wordCount": 1400,
@@ -266,7 +266,7 @@
     <hr class="section-divider">
 
     <h2>The Challenge Specific to Yapiri</h2>
-    <p>Yapiri's 49-character set poses a specific typographic challenge that most Latin fonts never face: <strong>a large number of structurally similar characters that must remain visually distinct at every size</strong>.</p>
+    <p>Yapiri's 45-character set poses a specific typographic challenge that most Latin fonts never face: <strong>a large number of structurally similar characters that must remain visually distinct at every size</strong>.</p>
 
     <p>The plain and aspirated stop pairs &mdash; p/ph, t/th, k/kh &mdash; are related by design, their shapes carrying a family resemblance. In body text, that resemblance is a feature; it groups sounds logically. But it also means that spacing, weight, and contextual rendering have to work harder than usual to keep the pairs readable as distinct characters. A reader who momentarily reads /p/ as /ph/ has misread a different word entirely.</p>
 
@@ -296,12 +296,12 @@
       <div class="feature-card">
         <div class="feature-tag">lnum / onum</div>
         <div class="feature-name">Numeral alignment</div>
-        <div class="feature-desc">Yapiri's ten numerals (U+E01F–U+E028) are designed to sit on the same baseline as the letters, ensuring that mixed text-and-number lines — such as dates, measurements, or numbered lists — read as a single coherent line rather than an awkward collision of heights.</div>
+        <div class="feature-desc">Yapiri's ten numerals (U+F1CC0–U+F1CC9) are designed to sit on the same baseline as the letters, ensuring that mixed text-and-number lines — such as dates, measurements, or numbered lists — read as a single coherent line rather than an awkward collision of heights.</div>
       </div>
       <div class="feature-card">
         <div class="feature-tag">mark / mkmk</div>
         <div class="feature-name">Mark positioning</div>
-        <div class="feature-desc">Precise anchor-based placement ensures that punctuation marks, the hyphen at U+E02E, and any future diacritic additions sit at the correct optical position relative to the base glyph they accompany — not just stacked at a default offset.</div>
+        <div class="feature-desc">Precise anchor-based GPOS placement ensures the high tone mark (U+F1CD1) attaches correctly above any base character. Mark-to-base anchors define the exact attachment point for each glyph, so the diacritic sits at the right optical position rather than defaulting to a uniform offset.</div>
       </div>
     </div>
 
@@ -319,12 +319,12 @@
 
     <hr class="section-divider">
 
-    <h2>The Schwa and the Hyphen</h2>
+    <h2>The Schwa and the High Tone Mark</h2>
     <p>Two characters in Yapiri have no direct equivalent in Latin typography and therefore received special attention in the OpenType layer.</p>
 
-    <p>The <strong>schwa</strong> (&#xF1CA5;, U+E005) is Kokborok's central vowel &mdash; a sound so fundamental to the language that it appears in some of the most common words. Its glyph needed to kern cleanly with the widest possible range of preceding and following consonants, including some very different in shape. It also needed its own optical baseline adjustment to sit at the same visual midpoint as the other vowels despite having a different structural form.</p>
+    <p>The <strong>schwa</strong> (&#xF1CA5;, U+F1CA5) is Kokborok's central vowel &mdash; a sound so fundamental to the language that it appears in some of the most common words. Its glyph needed to kern cleanly with the widest possible range of preceding and following consonants, including some very different in shape. It also needed its own optical baseline adjustment to sit at the same visual midpoint as the other vowels despite having a different structural form.</p>
 
-    <p>The <strong>hyphen</strong> (U+E02E) is Yapiri's 49th character, used specifically between reduplicated words &mdash; a grammatical feature central to Kokborok. The challenge was ensuring it sits at the right visual height and carries just enough visual weight to read as a connector rather than disappearing into the surrounding glyphs. Too light and the reduplication boundary is unclear; too heavy and it dominates the word.</p>
+    <p>The <strong>high tone mark</strong> (U+F1CD1) is Yapiri's only combining diacritic &mdash; a mark that attaches above the preceding character to indicate high tone on that syllable. The OpenType challenge was implementing GPOS mark-to-base anchors that position it correctly over every vowel in the inventory. Each vowel has a different optical centre, so each required its own anchor coordinate. Too high and the mark floats; too low and it merges with the letter form. Getting this right for all six vowels across multiple rendering environments was one of the most technically demanding tasks in the entire font.</p>
 
     <hr class="section-divider">
 
@@ -334,7 +334,7 @@
     <p>Each testing pass produced a short list of pairs or positions that still felt wrong. Each list drove another round of adjustments. The font went through this cycle many times before the text below &mdash; a single line of running Kokborok &mdash; read cleanly at every size from 10px screen text to 48px display.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xF1CA8;&#xF1CA4;&#xF1CA8;&#xF1CAC;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA8;</span>
+      <span class="glyph-sample-text">&#xF1CA9;&#xF1CA4;&#xF1CA9;&#xF1CAA;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA9;</span>
       <span class="glyph-sample-label">kokborok &mdash; the OpenType test that had to pass at every size</span>
       <span class="glyph-sample-roman">Eight characters. Seven kerning pairs. One language rendered with care.</span>
     </div>
@@ -342,9 +342,9 @@
     <hr class="section-divider">
 
     <h2>What OpenType Cannot Do (Yet)</h2>
-    <p>It is worth being honest about the current state. Version 1.0 of Yapiri.ttf implements the core feature set: kerning, contextual alternates, numeral alignment, and mark positioning. Features that would require a larger glyph set &mdash; such as true stylistic alternate forms for characters that might suit different typographic moods &mdash; are planned but not yet in the font. They require the kind of community feedback that can only come from the script being used widely in real writing.</p>
+    <p>It is worth being honest about the current state. Version 2.0 of Yapiri.ttf implements the core feature set: kerning, contextual alternates, numeral alignment, and mark positioning. Features that would require a larger glyph set &mdash; such as true stylistic alternate forms for characters that might suit different typographic moods &mdash; are planned but not yet in the font. They require the kind of community feedback that can only come from the script being used widely in real writing.</p>
 
-    <p>This is not a limitation to apologise for. It is how fonts grow: used, tested, refined, and expanded as the community that writes in them develops a sense of what they need. Yapiri 1.0 is complete enough to write anything in Kokborok beautifully. Future versions will be shaped by the writers who use it.</p>
+    <p>This is not a limitation to apologise for. It is how fonts grow: used, tested, refined, and expanded as the community that writes in them develops a sense of what they need. Yapiri v2.0 is complete enough to write anything in Kokborok beautifully. Future versions will be shaped by the writers who use it.</p>
 
     <hr class="section-divider">
 
