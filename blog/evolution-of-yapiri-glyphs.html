@@ -345,6 +345,62 @@
       </div>
     </div>
 
+    <div class="glyph-showcase">
+      <div class="glyph-showcase-title">Secondary characters — loanword consonants</div>
+      <div class="glyph-row">
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CBC;</span><span class="glyph-name">v</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CBD;</span><span class="glyph-name">z</span></div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>The Numerals: A Complete System</h2>
+    <p>Designing the numeral set was a task I approached with the same care as the consonants. Each of the ten digits — zero through nine — had to be immediately distinguishable from every other, while still belonging unmistakably to the same visual family as the rest of the script. They follow the standard decimal positional system and render cleanly at both display and small text sizes.</p>
+
+    <div class="glyph-showcase">
+      <div class="glyph-showcase-title">Yapiri numerals — 0 through 9</div>
+      <div class="glyph-row">
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC0;</span><span class="glyph-name">0</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC1;</span><span class="glyph-name">1</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC2;</span><span class="glyph-name">2</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC3;</span><span class="glyph-name">3</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC4;</span><span class="glyph-name">4</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC5;</span><span class="glyph-name">5</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC6;</span><span class="glyph-name">6</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC7;</span><span class="glyph-name">7</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC8;</span><span class="glyph-name">8</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CC9;</span><span class="glyph-name">9</span></div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Punctuation and the High Tone Mark</h2>
+    <p>Yapiri has five native punctuation marks — comma, full stop, exclamation, quotation, and question — each drawn from scratch rather than borrowed from any existing punctuation tradition. They follow the same stroke weight and visual rhythm as the rest of the script, so they sit naturally alongside letters in running text.</p>
+
+    <div class="glyph-showcase">
+      <div class="glyph-showcase-title">Yapiri punctuation marks</div>
+      <div class="glyph-row">
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CCB;</span><span class="glyph-name">, comma</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CCC;</span><span class="glyph-name">. full stop</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CCD;</span><span class="glyph-name">! exclamation</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CCE;</span><span class="glyph-name">" quotation</span></div>
+        <div class="glyph-cell"><span class="glyph-char">&#xF1CCF;</span><span class="glyph-name">? question</span></div>
+      </div>
+    </div>
+
+    <p>The <strong>high tone mark</strong> is Yapiri's only combining diacritic — the single most technically demanding character to implement. As a combining mark (encoded at U+F1CD1), it must attach correctly above whatever character precedes it, relying on OpenType GPOS mark-to-base anchors to position itself accurately. Getting this right across different rendering environments — browsers, desktop applications, mobile — required more rounds of testing than any other character in the set.</p>
+
+    <div class="glyph-showcase">
+      <div class="glyph-showcase-title">High tone mark — Yapiri's only combining diacritic</div>
+      <div class="glyph-row">
+        <div class="glyph-cell"><span class="glyph-char" style="font-family:'Yapiri',serif;">&#xF1CA0;&#xF1CD1;</span><span class="glyph-name">á — high tone on a</span></div>
+        <div class="glyph-cell"><span class="glyph-char" style="font-family:'Yapiri',serif;">&#xF1CA4;&#xF1CD1;</span><span class="glyph-name">ó — high tone on o</span></div>
+        <div class="glyph-cell"><span class="glyph-char" style="font-family:'Yapiri',serif;">&#xF1CA2;&#xF1CD1;</span><span class="glyph-name">í — high tone on i</span></div>
+      </div>
+    </div>
+
     <hr class="section-divider">
 
     <h2>From Paper to Pixels</h2>
