@@ -13,8 +13,8 @@
 <!-- PRIMARY SEO -->
 <title>How PUA Codepoints Work and Why Yapiri Uses Them — Yapiri Script</title>
 <meta name="title" content="How PUA Codepoints Work and Why Yapiri Uses Them">
-<meta name="description" content="Every Yapiri glyph lives at a specific address in the Unicode Private Use Area. This post explains what PUA codepoints are, exactly which range Yapiri uses, why it was the right choice, and what the path to official encoding looks like.">
-<meta name="keywords" content="Unicode Private Use Area, PUA codepoints, Yapiri Unicode, Yapiri font encoding, custom script Unicode, U+E000, indigenous script digital encoding, Kokborok Unicode, Yapiri PUA range">
+<meta name="description" content="Every Yapiri glyph lives at a specific address in the UCSUR Plane 15 block U+F1CA0–U+F1CFF. This post explains what PUA codepoints are, how Yapiri migrated from BMP PUA to a registered UCSUR block, and what the path to official Unicode encoding looks like.">
+<meta name="keywords" content="Unicode Private Use Area, PUA codepoints, Yapiri Unicode, UCSUR Plane 15, Yapiri font encoding, custom script Unicode, U+F1CA0, indigenous script digital encoding, Kokborok Unicode, UCSUR registration Yapiri">
 <meta name="author" content="Animesh Debbarma">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://yapiriscript.com/blog/pua-codepoints-yapiri.html">
@@ -57,7 +57,7 @@
       "description": "Every Yapiri glyph lives at a specific address in the Unicode Private Use Area. This post explains what PUA codepoints are, exactly which range Yapiri uses, why it was the right choice, and what the path to official encoding looks like.",
       "url": "https://yapiriscript.com/blog/pua-codepoints-yapiri.html",
       "datePublished": "2026-05-15",
-      "dateModified": "2026-05-15",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
       "wordCount": 1500,
@@ -99,7 +99,7 @@
           "name": "Which codepoints does Yapiri use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yapiri occupies 49 codepoints in the BMP Private Use Area — 48 primary characters plus one additional character — starting at U+E000. The set comprises 6 vowels, 25 consonants (including 4 extended characters for loanwords), 10 numerals, 5 punctuation marks, and one further character at the end of the range."
+            "text": "Yapiri v2.0 occupies 45 codepoints in the UCSUR Plane 15 block U+F1CA0–U+F1CFF, registered with the Under-ConScript Unicode Registry in June 2026. The set comprises 6 vowels, 23 consonants (21 native + 2 extended for loanwords), 10 numerals, 5 punctuation marks, and 1 combining high tone mark."
           }
         }
       ]
@@ -285,7 +285,7 @@
   <div class="post-body">
     <p>Creating a new script is only half the challenge. The real question is: how do you make it work on computers, phones, and the internet? Every character on every device has a number. That number &mdash; a <strong>codepoint</strong> &mdash; is what tells software which shape to draw. Without a codepoint, a character cannot be typed, stored, searched, or shared.</p>
 
-    <p>For Yapiri, solving that problem required understanding a quiet but powerful corner of the Unicode standard called the <strong>Private Use Area</strong>.</p>
+    <p>For Yapiri, solving that problem has been a two-stage journey: first using the Unicode Private Use Area to get the script working immediately, then migrating to a registered UCSUR block for long-term stability. This post tells the full story.</p>
 
     <hr class="section-divider">
 
@@ -294,7 +294,7 @@
 
     <p>When you type a letter and it appears on screen, what is actually being stored is that letter's codepoint: a number. The font then reads that number and draws the corresponding shape. If the number has no official Unicode assignment &mdash; because the script is newly created and has not yet been submitted for encoding &mdash; a font cannot know which shape to draw by any agreed convention.</p>
 
-    <p>This is exactly the situation Yapiri found itself in: a complete, 49-character writing system with no official Unicode block. The solution the standard itself provides for exactly this situation is the Private Use Area.</p>
+    <p>This is exactly the situation Yapiri found itself in at launch: a complete, 45-character writing system with no official Unicode block. The solution the standard itself provides for exactly this situation is the Private Use Area.</p>
 
     <hr class="section-divider">
 
@@ -310,46 +310,44 @@
 
     <hr class="section-divider">
 
-    <h2>Yapiri's Exact Codepoint Range</h2>
-    <p>All 49 Yapiri characters are encoded in the BMP Private Use Area. The assignment is compact and sequential, starting at <code>U+E000</code> &mdash; 48 primary characters plus one additional character — the hyphen (U+E02E), used between reduplicated words.</p>
+    <h2>Yapiri v1.0 — Starting in the BMP PUA</h2>
+    <p>When Yapiri launched in May 2026, all characters were encoded in the BMP Private Use Area starting at <code>U+E000</code>. This was the right call for immediate usability &mdash; it allowed the font, keyboard, and web tools to be released without waiting for a formal registration process. PUA encoding is not a workaround or a shortcut; it is the standard's intended mechanism for exactly this use case.</p>
 
-    <div class="cp-map">
-      <div class="cp-map-title">Yapiri PUA layout — 48 primary characters + 1 additional</div>
-      <div class="cp-row"><span class="cp-range">U+E000 &ndash; U+E005</span><span class="cp-glyph">&#xF1CA0; &#xF1CA1; &#xF1CA2; &#xF1CA3; &#xF1CA4; &#xF1CA5;</span><span class="cp-desc">The six vowels: a, e, i, u, o, &#601; (schwa)</span></div>
-      <div class="cp-row"><span class="cp-range">U+E006 &ndash; U+E00B</span><span class="cp-glyph">&#xF1CA7; &#xF1CA7; &#xF1CA8; &#xF1CA9; &#xF1CAA; &#xF1CAB;</span><span class="cp-desc">Stops: p, t, k, ph, th, kh</span></div>
-      <div class="cp-row"><span class="cp-range">U+E00C &ndash; U+E00E</span><span class="cp-glyph">&#xF1CAC; &#xF1CAD; &#xF1CAE;</span><span class="cp-desc">Voiced stops: b, d, g</span></div>
-      <div class="cp-row"><span class="cp-range">U+E00F &ndash; U+E015</span><span class="cp-glyph">&#xF1CAF; &#xF1CB0; &#xF1CB1; &#xF1CB2; &#xF1CB3; &#xF1CB4; &#xF1CB5;</span><span class="cp-desc">Affricates and nasals: ch, j, chh, m, n, n&#x02B9;, ng</span></div>
-      <div class="cp-row"><span class="cp-range">U+E016 &ndash; U+E01E</span><span class="cp-glyph">&#xF1CB6; &#xF1CB7; &#xF1CB8; &#xF1CB9; &#xF1CBA; &#xF1CBB; &#xF1CBC; &#xF1CBD; &#xF1CB9;</span><span class="cp-desc">Fricatives and approximants: s, r, l, v, f, z, y, w, h</span></div>
-      <div class="cp-row"><span class="cp-range">U+E01F &ndash; U+E028</span><span class="cp-glyph"> &#xF1CC0; &#xF1CC1; &#xF1CC2; &#xF1CC3; &#xF1CC4; &#xF1CC5; &#xF1CC6; &#xF1CC7; &#xF1CC8;</span><span class="cp-desc">Numerals 0 through 9</span></div>
-      <div class="cp-row"><span class="cp-range">U+E029 &ndash; U+E02D</span><span class="cp-desc">Punctuation: comma, full stop, exclamation, quotation mark, question mark</span></div>
-      <div class="cp-row"><span class="cp-range">U+E02E</span><span class="cp-desc">Hyphen — used between reduplicated words</span></div>
-    </div>
-    <p>This gives Yapiri a clean, 49-slot footprint in the PUA. Because the assignment is sequential, it is easy to verify, easy to document for developers, and easy to migrate if official Unicode encoding is ever achieved in the future.</p>
-
-    <hr class="section-divider">
-
-    <h2>Why PUA Was the Right Choice</h2>
-    <p>When designing Yapiri's encoding, there were really two options:</p>
-    <ul>
-      <li>Wait for official Unicode encoding &mdash; a process that typically takes several years, requires substantial documentation, demonstrated community use, and surviving multiple review cycles.</li>
-      <li>Use PUA codepoints immediately, allowing the font, the keyboard, and the web tools to be released while that longer work proceeds in parallel.</li>
-    </ul>
-
-    <p>The second path was the only practical one.</p>
+    <p>Many well-known private scripts &mdash; including Klingon, Tolkien's scripts, and numerous indigenous writing systems &mdash; have lived entirely in the BMP PUA for decades, serving their communities reliably. It is a legitimate, well-understood home.</p>
 
     <div class="pull-quote">
       <p>"A script that cannot be typed today cannot preserve a language tomorrow."</p>
       <cite>&mdash; Design philosophy of Yapiri</cite>
     </div>
 
-    <p>PUA encoding is not a workaround or a shortcut. It is the standard's intended mechanism for exactly this use case. Many well-known private scripts &mdash; including Klingon, Tolkien's scripts, and numerous indigenous writing systems &mdash; have lived entirely in the PUA for decades, serving their communities reliably. It is a legitimate, well-understood home.</p>
+    <hr class="section-divider">
+
+    <h2>Yapiri v2.0 — Migration to UCSUR Plane 15</h2>
+    <p>The BMP PUA carries one structural risk: conflict. There is no central registry for BMP PUA assignments, meaning two different scripts or applications can accidentally claim the same codepoints. In Yapiri's case, this became a real concern when it was found that an overlapping range was being used by another Kokborok script project.</p>
+
+    <p>The solution was to migrate to a registered block in <strong>Supplementary Private Use Area-A (Plane 15)</strong> &mdash; and to register that block through the <strong>Under-ConScript Unicode Registry (UCSUR)</strong>, the recognised registry for scripts that are in active community use but not yet part of the official Unicode Standard.</p>
+
+    <p>In June 2026, UCSUR registrar <strong>Rebecca Bettencourt</strong> confirmed the reservation of block <strong>U+F1CA0–U+F1CFF</strong> (96 codepoints, 45 used) for Yapiri Script exclusively. This is a meaningful milestone: the codepoints are now publicly documented, conflict-free, and backed by an authoritative reference that other developers can consult.</p>
+
+    <div class="cp-map">
+      <div class="cp-map-title">Yapiri v2.0 — UCSUR Plane 15 layout (45 characters)</div>
+      <div class="cp-row"><span class="cp-range">U+F1CA0 &ndash; U+F1CA5</span><span class="cp-glyph">&#xF1CA0; &#xF1CA1; &#xF1CA2; &#xF1CA3; &#xF1CA4; &#xF1CA5;</span><span class="cp-desc">The six vowels: a, e, i, u, o, ə (schwa)</span></div>
+      <div class="cp-row"><span class="cp-range">U+F1CA7 &ndash; U+F1CAF</span><span class="cp-glyph">&#xF1CA7; &#xF1CA8; &#xF1CA9; &#xF1CAA; &#xF1CAB; &#xF1CAC; &#xF1CAD; &#xF1CAE; &#xF1CAF;</span><span class="cp-desc">Stops: p, t, k, b, d, g, ph, th, kh</span></div>
+      <div class="cp-row"><span class="cp-range">U+F1CB0 &ndash; U+F1CB5</span><span class="cp-glyph">&#xF1CB0; &#xF1CB1; &#xF1CB2; &#xF1CB3; &#xF1CB4; &#xF1CB5;</span><span class="cp-desc">Affricates and nasals: ch, j, m, n, n′, ng</span></div>
+      <div class="cp-row"><span class="cp-range">U+F1CB6 &ndash; U+F1CBD</span><span class="cp-glyph">&#xF1CB6; &#xF1CB7; &#xF1CB8; &#xF1CB9; &#xF1CBA; &#xF1CBB; &#xF1CBC; &#xF1CBD;</span><span class="cp-desc">Fricatives and approximants: s, r, l, h, y, w, v, z</span></div>
+      <div class="cp-row"><span class="cp-range">U+F1CC0 &ndash; U+F1CC9</span><span class="cp-glyph">&#xF1CC0; &#xF1CC1; &#xF1CC2; &#xF1CC3; &#xF1CC4; &#xF1CC5; &#xF1CC6; &#xF1CC7; &#xF1CC8; &#xF1CC9;</span><span class="cp-desc">Numerals 0 through 9</span></div>
+      <div class="cp-row"><span class="cp-range">U+F1CCB &ndash; U+F1CCF</span><span class="cp-glyph">&#xF1CCB; &#xF1CCC; &#xF1CCD; &#xF1CCE; &#xF1CCF;</span><span class="cp-desc">Punctuation: comma, full stop, exclamation, quotation, question</span></div>
+      <div class="cp-row"><span class="cp-range">U+F1CD1</span><span class="cp-glyph" style="font-family:'Yapiri',serif;">&#xF1CA0;&#xF1CD1;</span><span class="cp-desc">High tone mark — Yapiri's only combining diacritic</span></div>
+    </div>
+
+    <p>This gives Yapiri a clean, stable 45-character footprint in a registered, conflict-free block. The deliberate gaps (U+F1CA6, U+F1CBE–F1CBF, U+F1CCA, U+F1CD0) are reserved for potential future additions without disrupting the existing sequence.</p>
 
     <hr class="section-divider">
 
     <h2>The Limitation: Font Lock</h2>
-    <p>PUA encoding does come with one real constraint: the text is <strong>font-locked</strong>. A PUA codepoint has no universal meaning &mdash; only the Yapiri font knows that <code>U+E008</code> should be drawn as the consonant /k/. Any other font will either draw nothing, display a placeholder box, or &mdash; worse &mdash; draw a completely different character if that font also uses the same PUA slot for its own purposes.</p>
+    <p>PUA encoding &mdash; whether BMP or Plane 15 &mdash; comes with one real constraint: the text is <strong>font-locked</strong>. A PUA codepoint has no universal meaning; only the Yapiri font knows that <code>U+F1CA9</code> should be drawn as the consonant /k/. Any other font will either draw nothing, display a placeholder box, or draw a completely different character if that font also uses the same slot.</p>
 
-    <p>This means Yapiri text can only be read on a device where the Yapiri font is installed or loaded. It works perfectly on yapiriscript.com (where the font is loaded from the web), and it works on any device where the user has installed <code>Yapiri.ttf</code>. Outside those contexts, the text becomes unreadable to the eye, even though the underlying codepoints are still there and correctly stored.</p>
+    <p>This means Yapiri text can only be read on a device where the Yapiri font is installed or loaded. It works perfectly on yapiriscript.com (where the font is loaded from the web), and on any device where the user has installed <code>Yapiri.ttf</code>. Outside those contexts, the text becomes unreadable to the eye, even though the underlying codepoints are still there and correctly stored.</p>
 
     <div class="note-box">
       <span class="note-icon">Practical</span>
@@ -358,25 +356,25 @@
 
     <hr class="section-divider">
 
-    <h2>The Road Ahead: From PUA to Official Encoding</h2>
-    <p>PUA is a bridge, not a permanent home. The long-term goal is to submit Yapiri for official encoding in the Unicode Standard, which would assign it a permanent, globally recognised block &mdash; the way Chakma (another script used in the region) received its own block at <code>U+11100</code>.</p>
+    <h2>The Road Ahead: From UCSUR to Official Unicode</h2>
+    <p>UCSUR registration is a significant milestone, but it is not the final destination. The long-term goal is to submit Yapiri for official encoding in the Unicode Standard itself, which would assign it a permanent, universally recognised block &mdash; the way Chakma (another script used in the region) received its own block at <code>U+11100</code>. Official encoding means any application can display Yapiri text without needing the font installed.</p>
 
-    <p>The prerequisites for that submission are already in progress: the character database is complete, a canonical set of codepoints is documented for all 49 characters, and a transcoder exists that can migrate all existing Yapiri text to a future official block by changing a single constant. When the day comes, no text written in Yapiri today will need to be retyped or reformatted.</p>
+    <p>That process runs through the Script Encoding Initiative at UC Berkeley and requires detailed documentation: glyph charts, phonological analysis, evidence of community use, and a formal proposal. It is not a short road, but the UCSUR registration means the codepoint foundation is now solid and documented &mdash; a strong starting point for that submission.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xF1CA8;&#xF1CA4;&#xF1CA8;&#xF1CAC;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA8;</span>
-      <span class="glyph-sample-label">kokborok — U+E008 U+E004 U+E008 U+E00C U+E004 U+E017 U+E004 U+E008</span>
-      <span class="glyph-sample-roman">Eight glyphs. Eight codepoints. One word. Wherever the font goes, the text follows.</span>
+      <span class="glyph-sample-text">&#xF1CA9;&#xF1CA4;&#xF1CA9;&#xF1CAA;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA9;</span>
+      <span class="glyph-sample-label">kokborok — U+F1CA9 · U+F1CA4 · U+F1CA9 · U+F1CAA · U+F1CA4 · U+F1CB7 · U+F1CA4 · U+F1CA9</span>
+      <span class="glyph-sample-roman">Eight glyphs. Eight UCSUR-registered codepoints. One word. Wherever the font goes, the text follows.</span>
     </div>
 
     <hr class="section-divider">
 
     <h2>The Heart of the Matter</h2>
-    <p>Using PUA codepoints was a practical, well-reasoned choice. It reflects a belief that our language should not have to wait for permission to exist in the digital world. Yapiri exists and can be typed today &mdash; fully, correctly, and portably within any environment where the font is present &mdash; because we chose action over waiting.</p>
+    <p>Yapiri's encoding journey &mdash; from BMP PUA to a registered UCSUR Plane 15 block &mdash; reflects a commitment to doing things properly. Not just quickly, but durably. The UCSUR registration means the codepoints are publicly documented, conflict-free, and respected by other developers working in the same space.</p>
 
-    <p>Every time you type in Yapiri, the codepoints that carry your words are quietly sitting in a corner of the Unicode standard that was designed for exactly this purpose. The glyphs may live in private addresses for now, but the language they carry is very public: Kokborok, written beautifully and proudly by its people.</p>
+    <p>Every time you type in Yapiri, the codepoints that carry your words sit in a registered block that belongs to this script and this community. The glyphs may not yet be in the official Unicode Standard, but they have a stable, documented home &mdash; and Kokborok, written beautifully and proudly by its people, is what fills that home.</p>
 
-    <p>If you are a developer interested in the technical details, the full character database with codepoints, IPA values, and keyboard mappings is in the <a href="../yapiri-specification.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Script Specification</a>. Questions are welcome on the <a href="../community.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Community page</a>.</p>
+    <p>If you are a developer interested in the technical details, the full character database with codepoints, IPA values, and keyboard mappings is in the <a href="../yapiri-specification.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Script Specification</a>. The UCSUR registration and block details are at the <a href="../ucsur.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">UCSUR page</a>. Questions are welcome on the <a href="../community.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Community page</a>.</p>
   </div>
 </article>
 
