@@ -53,7 +53,7 @@
       "description": "A keyboard is the bridge between thought and text. Here is the story of how the Yapiri Keyman keyboard was built — the design decisions, the challenges, and why it matters for Kokborok speakers everywhere.",
       "url": "https://yapiriscript.com/blog/building-keyman-keyboard-yapiri.html",
       "datePublished": "2026-06-01",
-      "dateModified": "2026-06-01",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
       "wordCount": 1300,
@@ -252,7 +252,7 @@
 
 <article class="post-content">
   <div class="post-body">
-    <p>A script without a keyboard is like a beautiful song with no way to sing it. After completing the Yapiri font, the next urgent mission was clear: build an input method that feels natural, fast, and joyful to use &mdash; one that puts the full 49-character Yapiri set under the fingertips of anyone who wants to write Kokborok.</p>
+    <p>A script without a keyboard is like a beautiful song with no way to sing it. After completing the Yapiri font, the next urgent mission was clear: build an input method that feels natural, fast, and joyful to use &mdash; one that puts the full 45-character Yapiri set under the fingertips of anyone who wants to write Kokborok.</p>
 
     <p>This is the story of how the official Keyman keyboard for Yapiri, the <code>yapiri.kmp</code> package, was built.</p>
 
@@ -282,7 +282,7 @@
 
     <p>The second was <strong>the schwa</strong>. The central vowel /&#601;/ is one of Kokborok's most characteristic sounds, but it has no natural home on a QWERTY keyboard. Assigning it intuitively &mdash; somewhere a user would reach for it without thinking &mdash; took multiple iterations.</p>
 
-    <p>The third was <strong>the hyphen</strong>. Kokborok uses reduplication extensively as a grammatical device, and the Yapiri hyphen (<code>U+E02E</code>) that joins reduplicated words needed to be reachable in a single keystroke, not buried in a secondary layer.</p>
+    <p>The third was <strong>the high tone mark</strong>. This combining diacritic (U+F1CD1) must attach to the preceding character, which means the keyboard needs to insert it correctly without the user having to think about combining character behaviour. The solution was to assign it to a single intuitive key — typed after any vowel, it attaches automatically, producing the toned form without any manual cursor management.</p>
 
     <hr class="section-divider">
 
@@ -305,11 +305,11 @@
         <tr><td class="desc-cell">Vowel</td><td class="key-cell">u</td><td class="glyph-cell">&#xF1CA3;</td><td class="desc-cell">/u/</td></tr>
         <tr><td class="desc-cell">Vowel</td><td class="key-cell">o</td><td class="glyph-cell">&#xF1CA4;</td><td class="desc-cell">/o/</td></tr>
         <tr><td class="desc-cell">Vowel (schwa)</td><td class="key-cell">q</td><td class="glyph-cell">&#xF1CA5;</td><td class="desc-cell">/&#601;/</td></tr>
-        <tr><td class="desc-cell">Stop (plain)</td><td class="key-cell">k</td><td class="glyph-cell">&#xF1CA8;</td><td class="desc-cell">/k/</td></tr>
-        <tr><td class="desc-cell">Stop (aspirated)</td><td class="key-cell">kh</td><td class="glyph-cell">&#xF1CAB;</td><td class="desc-cell">/k&#x02B0;/</td></tr>
+        <tr><td class="desc-cell">Stop (plain)</td><td class="key-cell">k</td><td class="glyph-cell">&#xF1CA9;</td><td class="desc-cell">/k/</td></tr>
+        <tr><td class="desc-cell">Stop (aspirated)</td><td class="key-cell">kh</td><td class="glyph-cell">&#xF1CAF;</td><td class="desc-cell">/k&#x02B0;/</td></tr>
         <tr><td class="desc-cell">Nasal</td><td class="key-cell">ng</td><td class="glyph-cell">&#xF1CB5;</td><td class="desc-cell">/&#x014B;/</td></tr>
         <tr><td class="desc-cell">Approximant</td><td class="key-cell">r</td><td class="glyph-cell">&#xF1CB7;</td><td class="desc-cell">/r/</td></tr>
-        <tr><td class="desc-cell">Hyphen</td><td class="key-cell">-</td><td class="glyph-cell">-</td><td class="desc-cell">reduplication mark</td></tr>
+        <tr><td class="desc-cell">High tone mark</td><td class="key-cell">x</td><td class="glyph-cell" style="font-family:'Yapiri',serif;">&#xF1CA0;&#xF1CD1;</td><td class="desc-cell">combining high tone — typed after a vowel</td></tr>
       </tbody>
     </table>
 
@@ -335,7 +335,7 @@
     <p>The most revealing test was simple: type the word <em>kokborok</em> itself. Eight characters, touching stops, vowels, a voiced consonant, and a liquid. If that word flowed smoothly, most of the keyboard was working. The glyph sample below is what that test looks like on screen.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xF1CA8;&#xF1CA4;&#xF1CA8;&#xF1CAC;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA8;</span>
+      <span class="glyph-sample-text">&#xF1CA9;&#xF1CA4;&#xF1CA9;&#xF1CAA;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA9;</span>
       <span class="glyph-sample-label">kokborok &mdash; the eight-character test that proved the keyboard worked</span>
       <span class="glyph-sample-roman">k &middot; o &middot; k &middot; b &middot; o &middot; r &middot; o &middot; k &mdash; typed in under two seconds</span>
     </div>
