@@ -322,7 +322,7 @@
     <h2>The Schwa and the High Tone Mark</h2>
     <p>Two characters in Yapiri have no direct equivalent in Latin typography and therefore received special attention in the OpenType layer.</p>
 
-    <p>The <strong>schwa</strong> (&#xF1CA5;, U+F1CA5) is Kokborok's central vowel &mdash; a sound so fundamental to the language that it appears in some of the most common words. Its glyph needed to kern cleanly with the widest possible range of preceding and following consonants, including some very different in shape. It also needed its own optical baseline adjustment to sit at the same visual midpoint as the other vowels despite having a different structural form.</p>
+    <p>The <strong>schwa</strong> (U+F1CA5) is Kokborok's central vowel &mdash; a sound so fundamental to the language that it appears in some of the most common words. Its glyph needed to kern cleanly with the widest possible range of preceding and following consonants, including some very different in shape. It also needed its own optical baseline adjustment to sit at the same visual midpoint as the other vowels despite having a different structural form.</p>
 
     <p>The <strong>high tone mark</strong> (U+F1CD1) is Yapiri's only combining diacritic &mdash; a mark that attaches above the preceding character to indicate high tone on that syllable. The OpenType challenge was implementing GPOS mark-to-base anchors that position it correctly over every vowel in the inventory. Each vowel has a different optical centre, so each required its own anchor coordinate. Too high and the mark floats; too low and it merges with the letter form. Getting this right for all six vowels across multiple rendering environments was one of the most technically demanding tasks in the entire font.</p>
 
