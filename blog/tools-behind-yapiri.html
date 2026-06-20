@@ -28,7 +28,7 @@
 <meta property="og:image:alt" content="The tools behind the Yapiri script — Inkscape, FontForge, Keyman Developer">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-06-03">
-<meta property="article:modified_time" content="2026-06-03">
+<meta property="article:modified_time" content="2026-06-18">
 <meta property="article:author" content="Animesh Debbarma">
 <!-- TWITTER / X -->
 <meta property="twitter:card" content="summary_large_image">
@@ -54,7 +54,7 @@
       "description": "A behind-the-scenes look at the three essential free tools that made Yapiri possible: Inkscape for glyph design, FontForge for font creation, and Keyman Developer for keyboard layouts.",
       "url": "https://yapiriscript.com/blog/tools-behind-yapiri.html",
       "datePublished": "2026-06-03",
-      "dateModified": "2026-06-03",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
       "wordCount": 850,
@@ -231,7 +231,7 @@
 
 <div class="post-hero">
   <!-- yapiri: y+a+p+i+r+i = E01C·E000·E006·E002·E017·E002 -->
-  <div class="post-hero-glyph">&#xF1CBC;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2;</div>
+  <div class="post-hero-glyph">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2;</div>
   <div class="post-hero-inner">
     <a href="../blog.html" class="back-link">&#8592; Back to Blog</a>
     <span class="post-tag">Creation &amp; Tools</span>
@@ -284,7 +284,7 @@
     <p>FontForge is the veteran open-source font editor. It is not always the most beautiful interface, but it is incredibly powerful and completely free. For Yapiri it handled the heavy lifting:</p>
     <ul>
       <li>Importing SVG outlines from Inkscape</li>
-      <li>Mapping every glyph to its Private Use Area Unicode codepoint (<code>U+E000&ndash;U+E02D</code>)</li>
+      <li>Mapping every glyph to its UCSUR Plane 15 codepoint (<code>U+F1CA0&ndash;U+F1CFF</code>)</li>
       <li>Setting font metrics, baseline, and spacing</li>
       <li>Creating the necessary OpenType tables</li>
       <li>Generating the final <code>.ttf</code> and <code>.woff2</code> files used on the website and in documents</li>
