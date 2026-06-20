@@ -13,8 +13,8 @@
 <!-- PRIMARY SEO -->
 <title>How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics — Yapiri Script</title>
 <meta name="title" content="How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics">
-<meta name="description" content="Yapiri treats vowels as full, independent letters — a radical departure from abugidas. But the script also has two diacritics: a high tone mark and a reduplication mark. Here is how all of them work, and why every design choice was made for Kokborok.">
-<meta name="keywords" content="Yapiri vowels, Kokborok vowel system, abugida vs alphabet, Yapiri diacritics, Kokborok tone mark, Kokborok reduplication, Yapiri script design, phonemic alphabet Kokborok, independent vowels script, Yapiri high tone">
+<meta name="description" content="Yapiri treats vowels as full, independent letters — a radical departure from abugidas. The script also has one combining diacritic: the high tone mark. Here is how all of them work, and why every design choice was made for Kokborok.">
+<meta name="keywords" content="Yapiri vowels, Kokborok vowel system, abugida vs alphabet, Yapiri diacritics, Kokborok tone mark, Yapiri high tone mark, Yapiri script design, phonemic alphabet Kokborok, independent vowels script, UCSUR Plane 15">
 <meta name="author" content="Animesh Debbarma">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://yapiriscript.com/blog/how-yapiri-handles-vowels-and-marks.html">
@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Yapiri Script">
 <meta property="og:url" content="https://yapiriscript.com/blog/how-yapiri-handles-vowels-and-marks.html">
 <meta property="og:title" content="How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics">
-<meta property="og:description" content="Yapiri vowels are full letters, not diacritics. But the script does use two combining marks — for high tone and reduplication. Here is the complete picture of how Yapiri writes every sound and every grammatical feature of Kokborok.">
+<meta property="og:description" content="Yapiri vowels are full letters, not diacritics. The script uses one combining mark — the high tone mark. Here is the complete picture of how Yapiri writes every sound and every grammatical feature of Kokborok.">
 <meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
 <meta property="og:image:alt" content="How vowels and marks work in the Yapiri script for Kokborok">
 <meta property="og:locale" content="en_US">
@@ -34,7 +34,7 @@
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://yapiriscript.com/blog/how-yapiri-handles-vowels-and-marks.html">
 <meta property="twitter:title" content="How Yapiri Handles Vowels and Marks — Full Letters and a Few Diacritics">
-<meta property="twitter:description" content="Yapiri vowels are full letters. But the script also has a high tone mark and a reduplication mark. Here is how every sound and every mark works in Yapiri.">
+<meta property="twitter:description" content="Yapiri vowels are full letters. The script also has one combining mark — the high tone mark. Here is how every sound and every mark works in Yapiri.">
 <meta property="twitter:image" content="https://yapiriscript.com/assets/images/twitter-image.png">
 <meta property="twitter:image:alt" content="How vowels and marks work in the Yapiri script for Kokborok">
 <!-- ICONS & FONTS -->
@@ -54,7 +54,7 @@
       "description": "Yapiri treats vowels as full, independent letters — a radical departure from abugidas. But the script also has two diacritics: a high tone mark and a reduplication mark. Here is how all of them work, and why every design choice was made for Kokborok.",
       "url": "https://yapiriscript.com/blog/how-yapiri-handles-vowels-and-marks.html",
       "datePublished": "2026-05-26",
-      "dateModified": "2026-06-05",
+      "dateModified": "2026-06-18",
       "image": "https://yapiriscript.com/assets/images/og-image.png",
       "inLanguage": "en",
       "wordCount": 1800,
@@ -266,7 +266,7 @@
     <span class="post-tag">Script Design</span>
     <h1 class="post-title">How Yapiri Handles Vowels and Marks &mdash; Full Letters and a Few Diacritics</h1>
     <div class="gold-line"></div>
-    <p class="post-excerpt">Yapiri vowels are full, independent letters &mdash; a radical departure from the abugida tradition. But the script is honest: it also has two diacritics, one for high tone and one for reduplication, each doing exactly what no standalone letter could do.</p>
+    <p class="post-excerpt">Yapiri vowels are full, independent letters &mdash; a radical departure from the abugida tradition. The script has one combining diacritic: the high tone mark, doing exactly what no standalone letter could do.</p>
     <div class="post-meta-bar">
       <span class="meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>June 2026</span>
       <span class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>15 min read</span>
@@ -336,47 +336,47 @@
       <div class="char-cell">
         <span class="char-glyph">&#xF1CA0;</span>
         <span class="char-ipa">/a/</span>
-        <span class="char-name">U+E000</span>
+        <span class="char-name">U+F1CA0</span>
       </div>
       <div class="char-cell">
         <span class="char-glyph">&#xF1CA1;</span>
         <span class="char-ipa">/e/</span>
-        <span class="char-name">U+E001</span>
+        <span class="char-name">U+F1CA1</span>
       </div>
       <div class="char-cell">
         <span class="char-glyph">&#xF1CA2;</span>
         <span class="char-ipa">/i/</span>
-        <span class="char-name">U+E002</span>
+        <span class="char-name">U+F1CA2</span>
       </div>
       <div class="char-cell">
         <span class="char-glyph">&#xF1CA3;</span>
         <span class="char-ipa">/u/</span>
-        <span class="char-name">U+E003</span>
+        <span class="char-name">U+F1CA3</span>
       </div>
       <div class="char-cell">
         <span class="char-glyph">&#xF1CA4;</span>
         <span class="char-ipa">/o/</span>
-        <span class="char-name">U+E004</span>
+        <span class="char-name">U+F1CA4</span>
       </div>
       <div class="char-cell">
         <span class="char-glyph">&#xF1CA5;</span>
         <span class="char-ipa">/&#601;/ schwa</span>
-        <span class="char-name">U+E005</span>
+        <span class="char-name">U+F1CA5</span>
       </div>
     </div>
 
-    <p>The sixth vowel deserves particular attention. The schwa /&#601;/ &mdash; the neutral, central vowel &mdash; is one of Kokborok's most characteristic sounds. It appears frequently, it is phonemically contrastive (changing the vowel changes the meaning of the word), and yet it is the sound most carelessly handled by other orthographies. Bengali script renders it imprecisely. Roman Kokborok often omits it or conflates it with other vowels. In Yapiri, it has its own dedicated letter at <code>U+E005</code>, equal in standing to every other vowel. The schwa is not squeezed in as an afterthought; it is a founding member of the vowel set.</p>
+    <p>The sixth vowel deserves particular attention. The schwa /&#601;/ &mdash; the neutral, central vowel &mdash; is one of Kokborok's most characteristic sounds. It appears frequently, it is phonemically contrastive (changing the vowel changes the meaning of the word), and yet it is the sound most carelessly handled by other orthographies. Bengali script renders it imprecisely. Roman Kokborok often omits it or conflates it with other vowels. In Yapiri, it has its own dedicated letter at <code>U+F1CA5</code>, equal in standing to every other vowel. The schwa is not squeezed in as an afterthought; it is a founding member of the vowel set.</p>
 
     <div class="pull-quote">
       <p>"In Yapiri, you say /k/ then /i/ &mdash; you write the /k/ glyph then the /i/ glyph. The logic of the script and the logic of speech are one and the same."</p>
-      <cite>&mdash; Design principle, Yapiri v1.0</cite>
+      <cite>&mdash; Design principle, Yapiri v2.0</cite>
     </div>
 
     <p>The practical consequence is that Yapiri is a <strong>fully phonemic alphabet</strong> for its vowels: one sound, one letter, no exceptions, no implied sounds, no cancellation marks. What you see on the page is exactly what you say aloud. This makes Yapiri genuinely easier to learn than an abugida for native Kokborok speakers &mdash; not because it is simpler, but because it is more honest about how the language actually sounds.</p>
 
     <div class="glyph-sample">
-      <span class="glyph-sample-text">&#xF1CA8;&#xF1CA4;&#xF1CA8;&#xF1CAC;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA8;</span>
-      <span class="glyph-sample-label">kokborok &mdash; seven letters, seven sounds, none implied</span>
+      <span class="glyph-sample-text">&#xF1CA9;&#xF1CA4;&#xF1CA9;&#xF1CAA;&#xF1CA4;&#xF1CB7;&#xF1CA4;&#xF1CA9;</span>
+      <span class="glyph-sample-label">kokborok &mdash; eight letters, eight sounds, none implied</span>
       <span class="glyph-sample-roman">Every vowel written. Every sound visible. Nothing hidden.</span>
     </div>
 
@@ -384,17 +384,17 @@
 
     <h2>The Marks Yapiri Does Use</h2>
 
-    <p>Here is where intellectual honesty matters. Yapiri is a phonemic alphabet for its core letter inventory &mdash; but the language itself has features that cannot be captured by standalone letters alone. For those features, Yapiri uses combining diacritical marks: characters that attach above a base letter via OpenType mark positioning. There are exactly two of them.</p>
+    <p>Here is where intellectual honesty matters. Yapiri is a phonemic alphabet for its core letter inventory &mdash; but the language itself has features that cannot be captured by standalone letters alone. For those features, Yapiri uses combining diacritical marks: characters that attach above a base letter via OpenType mark positioning. In v2.0 there is exactly one.</p>
 
     <p>Using diacritics here is not a contradiction of Yapiri's design philosophy. The philosophy was never "no diacritics at all costs." It was "every sound deserves to be written explicitly, and no part of the language should be treated as secondary." For tone and reduplication, combining marks are precisely the right tool &mdash; because in both cases, the mark modifies a letter rather than replacing one.</p>
 
     <hr class="section-divider">
 
-    <h2>The High Tone Mark — U+0301</h2>
+    <h2>The High Tone Mark — U+F1CD1</h2>
 
     <p>Kokborok is a tonal language. It has two phonemic tones: a high tone and a low tone. Change the tone on a syllable and you change the word's meaning. This is not a subtle feature &mdash; it is a core grammatical property of the language, and any script that ignores it is writing Kokborok incompletely.</p>
 
-    <p>Yapiri marks the high tone using the <strong>combining acute accent</strong> at <code>U+0301</code> &mdash; a standard Unicode combining character that floats above the letter it modifies. The low tone is left unmarked. This follows the same logical economy used in Roman Kokborok, where high tone is indicated (traditionally with the letter "h" after the vowel) and low tone is the default, unmarked state.</p>
+    <p>Yapiri marks the high tone using its own <strong>combining high tone mark</strong> at <code>U+F1CD1</code> &mdash; a dedicated UCSUR Plane 15 combining character that floats above the letter it modifies. The low tone is left unmarked. This follows the same logical economy used in Roman Kokborok, where high tone is indicated and low tone is the default, unmarked state.</p>
 
     <div class="mark-demo">
       <div class="mark-demo-row" style="background:rgba(0,0,0,0.15);">
@@ -402,7 +402,7 @@
           <span class="mark-demo-label">Low tone &mdash; unmarked (default)</span>
         </div>
         <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-label">High tone &mdash; U+0301 above the vowel</span>
+          <span class="mark-demo-label">High tone &mdash; U+F1CD1 above the vowel</span>
         </div>
       </div>
       <div class="mark-demo-row">
@@ -412,16 +412,16 @@
           <span class="mark-demo-note">The absence of a mark is itself information</span>
         </div>
         <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-glyph">&#xF1CA8;&#xF1CA0;&#x0301;</span>
-          <span class="mark-demo-roman">ká &mdash; high tone, acute above the vowel</span>
-          <span class="mark-demo-note">U+0301 attaches above via OpenType mark positioning</span>
+          <span class="mark-demo-glyph">&#xF1CA8;&#xF1CA0;&#xF1CD1;</span>
+          <span class="mark-demo-roman">ká &mdash; high tone mark above the vowel</span>
+          <span class="mark-demo-note">U+F1CD1 attaches above via OpenType GPOS mark positioning</span>
         </div>
       </div>
     </div>
 
     <p>Why a combining mark rather than a separate letter? Because tone is not a segment &mdash; it is a property of a segment. The high tone does not replace the vowel; it sits above it, modifying it, which is exactly what combining diacritics are designed to do. A standalone letter for high tone would be phonologically wrong; it would imply a separate sound where there is only a pitch variation on an existing one. The combining mark is the honest representation.</p>
 
-    <p>The mark is anchored above each base letter via the <code>high_tone</code> anchor class defined in the font. This means it positions itself correctly and consistently above every vowel and every consonant in the script, without any manual spacing adjustment needed from the writer.</p>
+    <p>The mark (U+F1CD1) is anchored above each base letter via GPOS mark-to-base anchors defined in the font. This means it positions itself correctly above every vowel in the script, with each vowel having its own anchor coordinate tuned to its optical centre.</p>
 
     <div class="note-box">
       <span class="note-icon">Note</span>
@@ -430,81 +430,17 @@
 
     <hr class="section-divider">
 
-    <h2>The Reduplication Mark — U+030B</h2>
+    <h2>Reduplication in v2.0</h2>
 
-    <p>Kokborok makes extensive use of reduplication &mdash; a grammatical process where a syllable or word is repeated to intensify meaning, create a new word, or mark a grammatical category. It is not a stylistic flourish; it is a structural feature of the language that appears constantly in everyday speech.</p>
+    <p>Earlier versions of Yapiri included a dedicated <strong>reduplication mark</strong> (U+030B, combining double acute) for signalling repeated syllables and words. In v2.0 the decision was made to remove it from the standard inventory. The reasoning was that combining marks should be reserved for features that genuinely cannot be represented any other way &mdash; and reduplication, on reflection, is handled more naturally through orthographic conventions (writing the repeated form explicitly) than through a dedicated diacritic. Keeping the diacritic inventory as small as possible also makes the script easier to learn and reduces rendering complexity across platforms.</p>
 
-    <p>In Yapiri, reduplication is marked with the <strong>combining double acute accent</strong> at <code>U+030B</code>, placed above the <em>last letter of the repeated portion</em>. Like the tone mark, it is a zero-width combining character that attaches via the <code>reduplication</code> anchor class in the font. But precisely how and where it is used depends on which of two distinct scenarios is occurring &mdash; and this distinction matters.</p>
-
-    <h2>Scenario One — Syllable Reduplication Within a Word</h2>
-
-    <p>When a syllable repeats <em>inside</em> a single word, the reduplication mark appears alone &mdash; no hyphen. The mark sits above the last letter of the repeated syllable, signalling to the reader that this syllable is spoken twice even though the word is written as one unbroken unit.</p>
-
-    <p>The word <em>nini</em> (meaning "yours") is an example. The syllable <em>ni</em> repeats within the word. In Yapiri it is written as a continuous sequence of letters, with the mark placed above the final <em>i</em> of the reduplicated syllable:</p>
-
-    <div class="mark-demo">
-      <div class="mark-demo-row" style="background:rgba(0,0,0,0.15);">
-        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);">
-          <span class="mark-demo-label">Base syllable &mdash; ni</span>
-        </div>
-        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-label">nini (yours) &mdash; syllable reduplication, no hyphen</span>
-        </div>
-      </div>
-      <div class="mark-demo-row">
-        <div class="mark-demo-cell">
-          <span class="mark-demo-glyph">&#xF1CB3;&#xF1CA2;</span>
-          <span class="mark-demo-roman">ni &mdash; the base syllable</span>
-          <span class="mark-demo-note">No mark &mdash; reduplication not yet signalled</span>
-        </div>
-        <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-glyph">&#xF1CB3;&#xF1CA2;&#x030B;</span>
-          <span class="mark-demo-roman">nini &mdash; U+030B above the final i</span>
-          <span class="mark-demo-note">Mark above last letter of the repeated syllable, written as one word</span>
-        </div>
-      </div>
-    </div>
-
-    <p>There is no hyphen here because this is not two words &mdash; it is one word whose internal structure involves a reduplicated syllable. The mark alone is sufficient to tell the reader that the syllable repeats.</p>
-
-    <h2>Scenario Two — Word-Level Reduplication</h2>
-
-    <p>When an entire word repeats consecutively, the mark and hyphen together act as a <strong>shorthand</strong> &mdash; you write the word only once. The reduplication mark above the last letter signals that this word repeats, and the trailing hyphen confirms it is a full word-level repetition rather than a syllable repeat. The reader understands the word is spoken twice from these two signals alone. The word is never written a second time.</p>
-
-    <p>The word <em>serek</em> (meaning "silent") reduplicated as <em>serek serek</em> (to put weight on the word) is the canonical example from the Yapiri specification. In Yapiri, this is written as <em>serek̋-</em> &mdash; just once, with the mark above the final <em>k</em> and a hyphen after:</p>
-
-    <div class="mark-demo">
-      <div class="mark-demo-row" style="background:rgba(0,0,0,0.15);">
-        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);">
-          <span class="mark-demo-label">serek &mdash; base word (silent)</span>
-        </div>
-        <div class="mark-demo-cell" style="border-bottom:2px solid rgba(201,146,42,0.2);border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-label">serek serek (silently) &mdash; written as serek̋- only</span>
-        </div>
-      </div>
-      <div class="mark-demo-row">
-        <div class="mark-demo-cell">
-          <span class="mark-demo-glyph">&#xF1CB6;&#xF1CA1;&#xF1CB7;&#xF1CA1;&#xF1CA8;</span>
-          <span class="mark-demo-roman">serek &mdash; no mark, no hyphen</span>
-          <span class="mark-demo-note">The base word, written and read once</span>
-        </div>
-        <div class="mark-demo-cell" style="border-left:1px solid rgba(196,180,154,0.06);">
-          <span class="mark-demo-glyph">&#xF1CB6;&#xF1CA1;&#xF1CB7;&#xF1CA1;&#xF1CA8;&#x030B;-</span>
-          <span class="mark-demo-roman">serek̋- &mdash; means serek serek</span>
-          <span class="mark-demo-note">U+030B above k · U+002D hyphen · word written once, understood twice</span>
-        </div>
-      </div>
-    </div>
-
-    <p>This is what makes the system elegant. The mark and hyphen together are not decorations on a repeated word &mdash; they <em>replace</em> the repetition. A reader who sees <em>serek̋-</em> does not need to see <em>serek</em> written again; the two signals are sufficient. Compare this to Scenario One: the mark without a hyphen means a syllable repeats within a single word; the mark with a hyphen means the entire word repeats consecutively. The hyphen is the decisive element that distinguishes the two cases.</p>
-
-    <p>The choice of a combining mark rather than a standalone character across both scenarios is deliberate and linguistically sound. Reduplication is not a new sound; it is a grammatical operation on existing sounds. The mark annotates structure rather than adding phonemic content, which is exactly what a combining diacritic is designed to do.</p>
+    <p>The result is a clean diacritic inventory of exactly one mark: the high tone mark at U+F1CD1. Everything else in Yapiri is a full, standalone letter.</p>
 
     <hr class="section-divider">
 
     <h2>The Complete Picture</h2>
 
-    <p>With all three categories in view, the design of Yapiri becomes clear as a unified system rather than a set of ad hoc decisions.</p>
+    <p>With vowels and the high tone mark in view, the design of Yapiri is clear as a unified system.</p>
 
     <table class="summary-table">
       <thead>
@@ -519,36 +455,22 @@
       <tbody>
         <tr>
           <td><strong>Vowel letters</strong></td>
-          <td>U+E000 – U+E005</td>
+          <td>U+F1CA0 – U+F1CA5</td>
           <td class="glyph-td">&#xF1CA0; &#xF1CA1; &#xF1CA2; &#xF1CA3; &#xF1CA4; &#xF1CA5;</td>
           <td>The six phonemic vowels of Kokborok</td>
           <td>Vowels are full sounds — they deserve full letters</td>
         </tr>
         <tr>
           <td><strong>High tone mark</strong></td>
-          <td>U+0301 (combining acute)</td>
-          <td class="glyph-td">&#xF1CA0;&#x0301;</td>
+          <td>U+F1CD1 (Yapiri combining)</td>
+          <td class="glyph-td">&#xF1CA0;&#xF1CD1;</td>
           <td>Pitch raised on the vowel it sits above</td>
           <td>Tone is a property of a sound, not a sound itself</td>
-        </tr>
-        <tr>
-          <td><strong>Reduplication mark</strong> (syllable)</td>
-          <td>U+030B (combining double acute)</td>
-          <td class="glyph-td">&#xF1CB3;&#xF1CA2;&#x030B;</td>
-          <td>Syllable repeats within one word — mark above last letter of repeated syllable, no hyphen</td>
-          <td>Reduplication is a grammatical process, not a new phoneme</td>
-        </tr>
-        <tr>
-          <td><strong>Reduplication mark + hyphen</strong> (word)</td>
-          <td>U+030B + U+002D</td>
-          <td class="glyph-td">&#xF1CA8;&#x030B;-</td>
-          <td>Full word repeats consecutively — mark above last letter + trailing hyphen. Word is written <em>once only</em>; the two signals replace the second occurrence</td>
-          <td>Shorthand efficiency: mark + hyphen = word spoken twice, written once</td>
         </tr>
       </tbody>
     </table>
 
-    <p>The pattern is consistent throughout. When something is a <em>sound</em>, Yapiri gives it a full standalone letter. When something is a <em>property of a sound</em> (like pitch) or a <em>grammatical annotation</em> (like reduplication), Yapiri uses a combining mark above the base letter. And when the grammar requires a word boundary to be visible &mdash; as in word-level reduplication &mdash; a standard hyphen steps in as a structural separator. Every tool is used for exactly the job it is suited for, and no more.</p>
+    <p>When something is a <em>sound</em>, Yapiri gives it a full standalone letter. When something is a <em>property of a sound</em> (like pitch), Yapiri uses a combining mark above the base letter. Every tool is used for exactly the job it is suited for, and no more.</p>
 
     <hr class="section-divider">
 
