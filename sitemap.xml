@@ -1,262 +1,285 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- MAIN PAGES -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- MAIN PAGES                                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
   <url>
     <loc>https://yapiriscript.com/</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/about.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/script.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/yapiri-specification.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yapiriscript.com/ucsur.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/try.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/download.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/primer.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/chart.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/community.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
-  <!-- BLOG POSTS — MAY 2026 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BLOG POSTS — MAY 2026                                       -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
   <url>
     <loc>https://yapiriscript.com/blog/why-i-built-yapiri.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/how-yapiri-was-designed.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/beginners-guide-to-yapiri.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/installing-yapiri-font.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/how-to-use-virtual-keyboard.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/why-yapiri-is-a-phonemic-alphabet.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/kokborok-script-debate.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/tiprasa-relationship-with-writing.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/comparing-yapiri-koloma-kokmari-hachukma.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/language-endangerment-kokborok.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/writing-systems-cultural-identity.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/tripura-linguistic-landscape.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/evolution-of-yapiri-glyphs.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/pua-codepoints-yapiri.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/building-keyman-keyboard-yapiri.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/opentype-features-yapiri.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/yapiri-numeral-system.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/how-yapiri-handles-vowels-and-marks.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/yapiri-future-versions.html</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- BLOG POSTS — JUNE 2026 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BLOG POSTS — JUNE 2026                                      -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
   <url>
     <loc>https://yapiriscript.com/blog/yapiri-numerals-1-to-100.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/common-kokborok-words-yapiri.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/writing-your-name-in-yapiri.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/open-call-kokborok-writers-readers.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/road-to-unicode-community.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/how-to-type-yapiri-keyman.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/contribute-to-yapiri-project.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/six-weeks-to-build-yapiri.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/why-github-pages-yapiriscript.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/tools-behind-yapiri.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/yapiri-social-media-first-month.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/how-to-submit-font-feedback.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://yapiriscript.com/blog/yapiri-project-umbrella.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- POST #33 — UCSUR REGISTRATION (NEW) -->
+  <url>
+    <loc>https://yapiriscript.com/blog/yapiri-v2-ucsur-registration.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.9</priority>
   </url>
 
 </urlset>
