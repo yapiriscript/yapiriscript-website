@@ -207,40 +207,75 @@
   .ref-banner-text { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.05em; color:var(--stone-light); line-height:1.6; }
   .ref-banner-text strong { color:var(--gold-light); font-weight:400; }
 
-  /* KEY ROWS */
-  .key-section { margin-bottom:1rem; }
-  .key-section-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; display:block; padding-bottom:0.3rem; border-bottom:1px solid rgba(201,146,42,0.15); }
-  .key-row { display:flex; gap:0.35rem; flex-wrap:wrap; }
-
-  /* KEYS — now reference cells (still tappable) */
+  /* ════════ SHARED KEY STYLE ════════ */
   .key {
     background:rgba(255,255,255,0.04); border:1px solid rgba(196,180,154,0.12);
-    color:var(--parchment); padding:0.6rem 0.4rem 0.4rem;
-    min-width:50px; text-align:center; cursor:pointer;
+    color:var(--parchment); cursor:pointer;
     transition:all 0.12s; display:flex; flex-direction:column;
-    align-items:center; gap:0.18rem; user-select:none; font-family:inherit;
-    position:relative; overflow:hidden;
+    align-items:center; justify-content:center; gap:0.12rem;
+    user-select:none; font-family:inherit; position:relative; overflow:hidden;
   }
   .key::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--stone); opacity:0; transition:opacity 0.15s; }
-  .key:hover { background:rgba(184,92,56,0.18); border-color:var(--terracotta); transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.35); }
+  .key:hover { background:rgba(184,92,56,0.18); border-color:var(--terracotta); transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.35); z-index:2; }
   .key:hover::before { opacity:1; background:var(--terracotta); }
   .key:active, .key.keypress-flash { transform:translateY(0); background:rgba(201,146,42,0.32); border-color:var(--gold); }
-  .key-glyph { font-size:1.5rem; font-family:'Yapiri',serif; line-height:1; }
-  .key-label { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; color:var(--stone-light); text-transform:uppercase; }
-  /* QWERTY physical-key badge */
-  .key-qwerty { position:absolute; top:2px; right:3px; font-family:'DM Mono',monospace; font-size:0.5rem; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
+  .key-glyph { font-family:'Yapiri',serif; line-height:1; }
+  .key-label { font-family:'DM Mono',monospace; letter-spacing:0.04em; color:var(--stone-light); text-transform:uppercase; }
+  /* physical-key badge (corner) */
+  .key-qwerty { position:absolute; font-family:'DM Mono',monospace; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
   .key-qwerty.shifted { color:var(--terra-light); }
-
-  /* KEY VARIANTS */
+  /* key variants */
   .key.loanword { border-color:rgba(201,146,42,0.3); background:rgba(201,146,42,0.04); }
   .key.loanword::before { background:var(--gold); }
   .key.loanword:hover { border-color:var(--gold); background:rgba(201,146,42,0.12); }
-  .key.special { background:rgba(201,146,42,0.07); border-color:rgba(201,146,42,0.25); min-width:90px; }
-  .key.special .key-glyph { font-size:1rem; color:var(--gold-light); font-family:inherit; }
-  .key.special::before { background:var(--gold); }
 
-  /* CHART NOTE */
-  .key-note { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.06em; color:var(--stone); line-height:1.7; margin-top:0.5rem; padding:0.6rem 0.8rem; background:rgba(255,255,255,0.02); border-left:2px solid rgba(196,180,154,0.15); }
+  /* ════════ DESKTOP: QWERTY VISUAL KEYBOARD ════════ */
+  .kb-desktop { display:block; }
+  .kb-board {
+    background:rgba(8,6,3,0.55); border:1px solid rgba(196,180,154,0.14);
+    padding:0.9rem; display:flex; flex-direction:column; gap:0.45rem;
+  }
+  .kb-row { display:flex; gap:0.45rem; justify-content:flex-start; }
+  /* base key in QWERTY board */
+  .kb-row .key {
+    flex:1 1 0; min-width:0; height:64px; padding:0.3rem 0.2rem;
+  }
+  .kb-row .key .key-qwerty { top:4px; left:6px; font-size:0.6rem; }
+  .kb-row .key .key-glyph { font-size:1.6rem; }
+  .kb-row .key .key-label { font-size:0.6rem; margin-top:0.05rem; }
+  /* special / wide non-typing keys */
+  .kb-key-wide { background:rgba(139,115,85,0.08) !important; border-color:rgba(196,180,154,0.15) !important; cursor:default; }
+  .kb-key-wide:hover { transform:none !important; box-shadow:none !important; background:rgba(139,115,85,0.08) !important; border-color:rgba(196,180,154,0.15) !important; }
+  .kb-key-wide::before { display:none; }
+  .kb-key-label-only { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; color:var(--stone); text-transform:uppercase; }
+  .kb-key-wide.is-active { cursor:pointer; }
+  .kb-key-wide.is-active:hover { background:rgba(184,92,56,0.16) !important; border-color:var(--terracotta) !important; }
+  /* width multipliers */
+  .w-15 { flex-grow:1.5 !important; }
+  .w-18 { flex-grow:1.8 !important; }
+  .w-20 { flex-grow:2 !important; }
+  .w-225 { flex-grow:2.25 !important; }
+  .w-spacebar { flex-grow:7 !important; }
+  /* loanword tint inside board */
+  .kb-row .key.loanword .key-glyph { color:var(--gold-light); }
+  /* high-tone key */
+  .kb-row .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
+
+  /* ════════ MOBILE: TAP GRID ════════ */
+  .kb-mobile { display:none; }
+  .kb-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:0.4rem; }
+  .kb-grid .key { aspect-ratio:1 / 1; padding:0.3rem; }
+  .kb-grid .key .key-qwerty { top:3px; right:4px; font-size:0.5rem; }
+  .kb-grid .key .key-glyph { font-size:1.55rem; }
+  .kb-grid .key .key-label { font-size:0.58rem; }
+  .kb-grid .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
+  .kb-grid .key.wide-tap { grid-column:span 2; aspect-ratio:auto; min-height:54px; }
+  .kb-grid .key.span3 { grid-column:span 3; aspect-ratio:auto; min-height:54px; }
+
+  /* FOOTNOTE under keyboard */
+  .kb-footnote { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.04em; color:var(--stone); line-height:1.9; margin-top:1rem; padding:0.7rem 1rem; background:rgba(255,255,255,0.02); border-left:2px solid rgba(201,146,42,0.25); }
+  .kb-footnote code { color:var(--gold-light); background:rgba(201,146,42,0.1); padding:0.05rem 0.35rem; border-radius:2px; font-size:0.95em; }
+  .kb-footnote .fn-glyph { font-family:'Yapiri',serif; font-size:1.1rem; color:var(--parchment); vertical-align:-0.1em; }
 
   /* TIPS */
   .tips-section { padding:4rem 2rem 5rem; max-width:980px; margin:0 auto; }
@@ -280,12 +315,24 @@
     .nav-links { display:none; }
     .hamburger { display:flex; }
     .page-hero-glyph { display:none; }
-    .key { min-width:42px; padding:0.5rem 0.28rem 0.34rem; }
-    .key-glyph { font-size:1.25rem; }
-    .key-label { font-size:0.56rem; }
-    .key-qwerty { font-size:0.46rem; }
-    .key.special { min-width:64px; }
+  }
+  /* QWERTY board shrinks down to tablet, then hands off to tap grid on phones */
+  @media(max-width:820px) {
+    .kb-row .key { height:54px; }
+    .kb-row .key .key-glyph { font-size:1.35rem; }
+    .kb-row .key .key-qwerty { font-size:0.52rem; }
+    .kb-row .key .key-label { font-size:0.5rem; }
+    .kb-board { padding:0.6rem; }
+    .kb-row { gap:0.3rem; }
+  }
+  @media(max-width:640px) {
+    .kb-desktop { display:none; }
+    .kb-mobile { display:block; }
     #yapiri-output { font-size:1.9rem; max-height:30vh; }
+  }
+  @media(max-width:380px) {
+    .kb-grid { gap:0.3rem; }
+    .kb-grid .key .key-glyph { font-size:1.35rem; }
   }
 </style>
 </head>
@@ -374,80 +421,119 @@
   <!-- REFERENCE BANNER -->
   <div class="ref-banner reveal">
     <span class="ref-banner-icon">&#9000;</span>
-    <span class="ref-banner-text"><strong>Reference map.</strong> Each cell shows its physical keyboard key in the corner. Type on your keyboard — or tap a cell — to input that letter.</span>
+    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. Tapping a key also works.</span>
   </div>
 
-  <!-- VOWELS -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Vowels — independent letters</span>
-    <div class="key-row">
+  <!-- ════ DESKTOP: QWERTY VISUAL KEYBOARD ════ -->
+  <div class="kb-desktop reveal">
+    <div class="kb-board">
+      <!-- NUMBER ROW -->
+      <div class="kb-row">
+        <button class="key" data-key="1" onclick="typeChar('\u{F1CC1}','1',this)"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
+        <button class="key" data-key="2" onclick="typeChar('\u{F1CC2}','2',this)"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
+        <button class="key" data-key="3" onclick="typeChar('\u{F1CC3}','3',this)"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
+        <button class="key" data-key="4" onclick="typeChar('\u{F1CC4}','4',this)"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
+        <button class="key" data-key="5" onclick="typeChar('\u{F1CC5}','5',this)"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
+        <button class="key" data-key="6" onclick="typeChar('\u{F1CC6}','6',this)"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
+        <button class="key" data-key="7" onclick="typeChar('\u{F1CC7}','7',this)"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
+        <button class="key" data-key="8" onclick="typeChar('\u{F1CC8}','8',this)"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
+        <button class="key" data-key="9" onclick="typeChar('\u{F1CC9}','9',this)"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+        <button class="key" data-key="0" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+        <button class="key kb-key-wide is-active w-18" onclick="backspace()"><span class="kb-key-label-only">&#9003; Bksp</span></button>
+      </div>
+      <!-- TOP ROW: QWERTYUIOP -->
+      <div class="kb-row">
+        <button class="key" data-key="q" onclick="typeChar('\u{F1CA5}','\u0259',this)"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
+        <button class="key" data-key="w" onclick="typeChar('\u{F1CBB}','w',this)"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
+        <button class="key" data-key="e" onclick="typeChar('\u{F1CA1}','e',this)"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
+        <button class="key" data-key="r" onclick="typeChar('\u{F1CB7}','r',this)"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+        <button class="key" data-key="t" onclick="typeChar('\u{F1CA8}','t',this)"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
+        <button class="key" data-key="y" onclick="typeChar('\u{F1CBA}','y',this)"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
+        <button class="key" data-key="u" onclick="typeChar('\u{F1CA3}','u',this)"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
+        <button class="key" data-key="i" onclick="typeChar('\u{F1CA2}','i',this)"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
+        <button class="key" data-key="o" onclick="typeChar('\u{F1CA4}','o',this)"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
+        <button class="key" data-key="p" onclick="typeChar('\u{F1CA7}','p',this)"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
+      </div>
+      <!-- HOME ROW: ASDFGHJKL + ' -->
+      <div class="kb-row">
+        <button class="key" data-key="a" onclick="typeChar('\u{F1CA0}','a',this)"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
+        <button class="key" data-key="s" onclick="typeChar('\u{F1CB6}','s',this)"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
+        <button class="key" data-key="d" onclick="typeChar('\u{F1CAB}','d',this)"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
+        <button class="key" data-key="f" onclick="typeChar('\u{F1CB5}','ng',this)"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
+        <button class="key" data-key="g" onclick="typeChar('\u{F1CAC}','g',this)"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
+        <button class="key" data-key="h" onclick="typeChar('\u{F1CB9}','h',this)"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+        <button class="key" data-key="j" onclick="typeChar('\u{F1CB1}','j',this)"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+        <button class="key" data-key="k" onclick="typeChar('\u{F1CA9}','k',this)"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
+        <button class="key" data-key="l" onclick="typeChar('\u{F1CB8}','l',this)"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
+        <button class="key special" data-key="'" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
+      </div>
+      <!-- BOTTOM ROW: ZXCVBNM + , . -->
+      <div class="kb-row">
+        <button class="key loanword" data-key="z" onclick="typeChar('\u{F1CBD}','z',this)"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
+        <button class="key" data-key="c" onclick="typeChar('\u{F1CB0}','ch',this)"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
+        <button class="key loanword" data-key="v" onclick="typeChar('\u{F1CBC}','v',this)"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
+        <button class="key" data-key="b" onclick="typeChar('\u{F1CAA}','b',this)"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
+        <button class="key" data-key="n" onclick="typeChar('\u{F1CB3}','n',this)"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
+        <button class="key" data-key="m" onclick="typeChar('\u{F1CB2}','m',this)"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
+        <button class="key" data-key="," onclick="typeChar('\u{F1CCB}',',',this)"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+        <button class="key" data-key="." onclick="typeChar('\u{F1CCC}','.',this)"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+        <button class="key" data-key="?" onclick="typeChar('\u{F1CCF}','?',this)"><span class="key-qwerty shifted">&#8679;/</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+        <button class="key" data-key="!" onclick="typeChar('\u{F1CCD}','!',this)"><span class="key-qwerty shifted">&#8679;1</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+        <button class="key kb-key-wide is-active w-20" onclick="insertEnter()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">&#8626; Enter</span></button>
+      </div>
+      <!-- SPACE ROW -->
+      <div class="kb-row">
+        <button class="key kb-key-wide w-20" style="cursor:default;background:rgba(139,115,85,0.1);border-color:rgba(139,115,85,0.2);" title="Hold Shift for aspirates"><span class="kb-key-label-only" style="color:var(--stone);font-size:0.55rem;line-height:1.5;">&#8679; Shift<br><span style="color:rgba(196,180,154,0.4);font-size:0.48rem;letter-spacing:0;">ph · th · kh · n′</span></span></button>
+        <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CAD}','ph',this)" data-key="P"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAD;</span><span class="key-label" style="font-size:0.55rem;">ph</span></button>
+        <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CAE}','th',this)" data-key="T"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAE;</span><span class="key-label" style="font-size:0.55rem;">th</span></button>
+        <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CAF}','kh',this)" data-key="K"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAF;</span><span class="key-label" style="font-size:0.55rem;">kh</span></button>
+        <button class="key kb-key-wide is-active w-spacebar" onclick="insertSpace()"><span class="kb-key-label-only">space</span></button>
+        <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CB4}','n\'',this)" data-key="N"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CB4;</span><span class="key-label" style="font-size:0.55rem;">n&#8242;</span></button>
+        <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CCE}','&quot;',this)" data-key="&quot;"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CCE;</span><span class="key-label" style="font-size:0.55rem;">"</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ MOBILE: TAP GRID ════ -->
+  <div class="kb-mobile reveal">
+    <div class="kb-grid">
+      <!-- vowels first, then consonants in QWERTY-ish reading order -->
       <button class="key" data-key="a" onclick="typeChar('\u{F1CA0}','a',this)"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
       <button class="key" data-key="e" onclick="typeChar('\u{F1CA1}','e',this)"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
       <button class="key" data-key="i" onclick="typeChar('\u{F1CA2}','i',this)"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
       <button class="key" data-key="u" onclick="typeChar('\u{F1CA3}','u',this)"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
       <button class="key" data-key="o" onclick="typeChar('\u{F1CA4}','o',this)"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
       <button class="key" data-key="q" onclick="typeChar('\u{F1CA5}','\u0259',this)"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
-    </div>
-  </div>
 
-  <!-- STOPS -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Stops — voiceless · aspirated (Shift) · voiced</span>
-    <div class="key-row">
       <button class="key" data-key="p" onclick="typeChar('\u{F1CA7}','p',this)"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
       <button class="key" data-key="t" onclick="typeChar('\u{F1CA8}','t',this)"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
       <button class="key" data-key="k" onclick="typeChar('\u{F1CA9}','k',this)"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
-      <button class="key" data-key="P" onclick="typeChar('\u{F1CAD}','ph',this)"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
-      <button class="key" data-key="T" onclick="typeChar('\u{F1CAE}','th',this)"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
-      <button class="key" data-key="K" onclick="typeChar('\u{F1CAF}','kh',this)"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
       <button class="key" data-key="b" onclick="typeChar('\u{F1CAA}','b',this)"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
       <button class="key" data-key="d" onclick="typeChar('\u{F1CAB}','d',this)"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
       <button class="key" data-key="g" onclick="typeChar('\u{F1CAC}','g',this)"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
-    </div>
-  </div>
 
-  <!-- AFFRICATES & NASALS -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Affricates &amp; Nasals</span>
-    <div class="key-row">
+      <button class="key" data-key="P" onclick="typeChar('\u{F1CAD}','ph',this)"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
+      <button class="key" data-key="T" onclick="typeChar('\u{F1CAE}','th',this)"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
+      <button class="key" data-key="K" onclick="typeChar('\u{F1CAF}','kh',this)"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
       <button class="key" data-key="c" onclick="typeChar('\u{F1CB0}','ch',this)"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
       <button class="key" data-key="j" onclick="typeChar('\u{F1CB1}','j',this)"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+      <button class="key" data-key="h" onclick="typeChar('\u{F1CB9}','h',this)"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+
       <button class="key" data-key="m" onclick="typeChar('\u{F1CB2}','m',this)"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
       <button class="key" data-key="n" onclick="typeChar('\u{F1CB3}','n',this)"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
       <button class="key" data-key="N" onclick="typeChar('\u{F1CB4}','n\'',this)"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph">&#xF1CB4;</span><span class="key-label">n&#8242;</span></button>
       <button class="key" data-key="f" onclick="typeChar('\u{F1CB5}','ng',this)"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
-    </div>
-  </div>
-
-  <!-- FRICATIVES & APPROXIMANTS -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Fricatives &amp; Approximants</span>
-    <div class="key-row">
       <button class="key" data-key="s" onclick="typeChar('\u{F1CB6}','s',this)"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
       <button class="key" data-key="r" onclick="typeChar('\u{F1CB7}','r',this)"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+
       <button class="key" data-key="l" onclick="typeChar('\u{F1CB8}','l',this)"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
       <button class="key" data-key="y" onclick="typeChar('\u{F1CBA}','y',this)"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
       <button class="key" data-key="w" onclick="typeChar('\u{F1CBB}','w',this)"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
-      <button class="key" data-key="h" onclick="typeChar('\u{F1CB9}','h',this)"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
-    </div>
-  </div>
-
-  <!-- SECONDARY + HIGH TONE -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Secondary &amp; Diacritic</span>
-    <div class="key-row">
       <button class="key loanword" data-key="v" onclick="typeChar('\u{F1CBC}','v',this)"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
       <button class="key loanword" data-key="z" onclick="typeChar('\u{F1CBD}','z',this)"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
-      <button class="key special" data-key="'" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph" style="font-family:'Yapiri',serif;font-size:2.8rem;">&#xF1CD1;</span><span class="key-label">high tone</span></button>
-    </div>
-    <p class="key-note">v, z — loanword characters · high tone — type the vowel, then press the apostrophe key <kbd style="font-family:'DM Mono',monospace;background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.25);border-radius:2px;padding:0.05rem 0.3rem;color:var(--gold-light);">'</kbd></p>
-  </div>
+      <button class="key special" data-key="'" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
 
-  <!-- NUMERALS -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Numerals — number row</span>
-    <div class="key-row">
-      <button class="key" data-key="0" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+      <!-- numerals -->
       <button class="key" data-key="1" onclick="typeChar('\u{F1CC1}','1',this)"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
       <button class="key" data-key="2" onclick="typeChar('\u{F1CC2}','2',this)"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
       <button class="key" data-key="3" onclick="typeChar('\u{F1CC3}','3',this)"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
@@ -457,20 +543,26 @@
       <button class="key" data-key="7" onclick="typeChar('\u{F1CC7}','7',this)"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
       <button class="key" data-key="8" onclick="typeChar('\u{F1CC8}','8',this)"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
       <button class="key" data-key="9" onclick="typeChar('\u{F1CC9}','9',this)"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+      <button class="key" data-key="0" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+
+      <!-- punctuation + wide keys -->
+      <button class="key" data-key="," onclick="typeChar('\u{F1CCB}',',',this)"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+      <button class="key" data-key="." onclick="typeChar('\u{F1CCC}','.',this)"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+      <button class="key" data-key="!" onclick="typeChar('\u{F1CCD}','!',this)"><span class="key-qwerty shifted">!</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+      <button class="key" data-key="?" onclick="typeChar('\u{F1CCF}','?',this)"><span class="key-qwerty shifted">?</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+      <button class="key" data-key="&quot;" onclick="typeChar('\u{F1CCE}','&quot;',this)"><span class="key-qwerty shifted">"</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
+      <button class="key kb-key-wide is-active" onclick="backspace()"><span class="kb-key-label-only">&#9003;</span></button>
+
+      <button class="key kb-key-wide is-active span3" onclick="insertSpace()"><span class="kb-key-label-only">space</span></button>
+      <button class="key kb-key-wide is-active" onclick="insertEnter()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">&#8626;</span></button>
+      <button class="key kb-key-wide is-active" onclick="backspace()"><span class="kb-key-label-only">&#9003;</span></button>
+      <button class="key kb-key-wide is-active" onclick="clearAll()"><span class="kb-key-label-only" style="color:var(--terracotta);">clr</span></button>
     </div>
   </div>
 
-  <!-- PUNCTUATION -->
-  <div class="key-section reveal">
-    <span class="key-section-label">Punctuation</span>
-    <div class="key-row">
-      <button class="key" data-key="," onclick="typeChar('\u{F1CCB}',',',this)"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
-      <button class="key" data-key="." onclick="typeChar('\u{F1CCC}','.',this)"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
-      <button class="key" data-key="!" onclick="typeChar('\u{F1CCD}','!',this)"><span class="key-qwerty shifted">&#8679;1</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
-      <button class="key" data-key="&quot;" onclick="typeChar('\u{F1CCE}','&quot;',this)"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
-      <button class="key" data-key="?" onclick="typeChar('\u{F1CCF}','?',this)"><span class="key-qwerty shifted">&#8679;/</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
-    </div>
-    <p class="key-note">Punctuation maps to the matching keys · <kbd style="font-family:'DM Mono',monospace;background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.25);border-radius:2px;padding:0.05rem 0.3rem;color:var(--gold-light);">"</kbd> (Shift+apostrophe) gives the Yapiri quotation mark</p>
+  <!-- FOOTNOTE -->
+  <div class="kb-footnote reveal">
+    <code>v</code> <code>z</code> loanword only · <code>'</code> high tone (type vowel first) · <code>Shift</code> aspirates (P&rarr;ph, T&rarr;th, K&rarr;kh) &amp; n&#8242; · same layout as the <a href="download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Keyman keyboard</a>
   </div>
 
 </div><!-- /keyboard-wrap -->
@@ -580,6 +672,7 @@
     outputEl.focus();
   }
   function insertSpace() { insertSegment({y:' ', r:' '}); }
+  function insertEnter() { insertSegment({y:'\n', r:'\n'}); outputEl.focus(); }
 
   function backspace() {
     if (cursor === 0) return;
