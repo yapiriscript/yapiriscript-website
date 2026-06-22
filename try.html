@@ -653,92 +653,75 @@
     "'":{y:'\u{F1CD1}',r:'\u0301'}
   };
 
-  /* state model: array of {y, r} segments. Cursor = index into this array. */
-  let history = [];
-  let cursor = 0;           // insertion point: 0..history.length
   const outputEl = document.getElementById('yapiri-output');
 
-  function getTexts() {
-    return { y: history.map(h => h.y).join(''), r: history.map(h => h.r).join('') };
+  /* ── ROMAN LOOKUP: Yapiri codepoint → roman string ── */
+  const ROMAN = {};
+  for (const [k, v] of Object.entries(KEYMAP)) ROMAN[v.y] = v.r;
+  // high tone combining acute has no visible roman equivalent in running text
+  ROMAN['\u{F1CD1}'] = '\u0301';
+
+  /* ── INSERT at current caret position via execCommand (browser owns caret) ── */
+  function insertAtCaret(text) {
+    outputEl.focus({ preventScroll: true });
+    // execCommand insertText is deprecated but universally supported and
+    // correctly handles caret position, undo stack, and selections.
+    // It never rebuilds the DOM so the caret never jumps.
+    const inserted = document.execCommand('insertText', false, text);
+    if (!inserted) {
+      // fallback for browsers that drop execCommand support
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(document.createTextNode(text));
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    syncSidebar();
   }
 
-  /* ── INSERTION respecting cursor position ── */
-  function insertSegment(seg) {
-    history.splice(cursor, 0, seg);
-    cursor++;
-    render();
-  }
   function typeChar(glyph, roman, btn) {
-    insertSegment({y: glyph, r: roman});
+    insertAtCaret(glyph);
     if (btn) flashKey(btn);
-    outputEl.focus();
+    outputEl.focus({ preventScroll: true });
   }
-  function insertSpace() { insertSegment({y:' ', r:' '}); }
-  function insertEnter() { insertSegment({y:'\n', r:'\n'}); outputEl.focus(); }
+  function insertSpace()  { insertAtCaret(' '); }
+  function insertEnter()  { insertAtCaret('\n'); outputEl.focus({ preventScroll: true }); }
 
   function backspace() {
-    if (cursor === 0) return;
-    history.splice(cursor - 1, 1);
-    cursor--;
-    render();
+    outputEl.focus({ preventScroll: true });
+    document.execCommand('delete', false);
+    syncSidebar();
   }
-  /* forward delete (Del key) */
   function forwardDelete() {
-    if (cursor >= history.length) return;
-    history.splice(cursor, 1);
-    render();
+    outputEl.focus({ preventScroll: true });
+    document.execCommand('forwardDelete', false);
+    syncSidebar();
   }
-  function clearAll() { history = []; cursor = 0; render(); outputEl.focus(); }
-
-  function moveCursor(delta) {
-    cursor = Math.max(0, Math.min(history.length, cursor + delta));
-    render();
+  function clearAll() {
+    outputEl.textContent = '';
+    outputEl.focus({ preventScroll: true });
+    syncSidebar();
   }
 
-  /* ── RENDER: rebuild output, place caret, sync roman + counter ── */
-  function render() {
-    const {y: yapiriText, r: romanText} = getTexts();
+  /* ── DERIVE roman from current DOM content ── */
+  function getYapiriText() { return outputEl.innerText || ''; }
+  function getRomanText(yapiriText) {
+    return [...yapiriText].map(ch => ROMAN[ch] || ch).join('');
+  }
 
-    // Only rebuild DOM if text actually changed — avoids unnecessary node destruction
-    if (outputEl.textContent !== yapiriText) {
-      outputEl.textContent = yapiriText;
-    }
-
-    // Map logical cursor (segment index) → DOM character offset.
-    let charOffset = 0;
-    for (let i = 0; i < cursor; i++) charOffset += [...history[i].y].length;
-
-    // Use rAF so caret is placed after browser commits the DOM update
-    requestAnimationFrame(() => placeCaret(charOffset));
-
+  /* ── SYNC sidebar: roman output, inspector, counter ── */
+  function syncSidebar() {
+    const yapiriText = getYapiriText();
+    const romanText  = getRomanText(yapiriText);
     document.getElementById('roman-output').textContent = romanText || 'Roman output will appear here';
     updateInspector(yapiriText);
     updateCounter(romanText);
-    scrollCaretIntoView();
   }
 
-  function placeCaret(charOffset) {
-    // Always place caret — refocus if needed (e.g. after button tap)
-    outputEl.focus({ preventScroll: true });
-    const node = outputEl.firstChild;
-    const sel = window.getSelection();
-    const range = document.createRange();
-    if (!node) {
-      range.setStart(outputEl, 0);
-    } else {
-      range.setStart(node, Math.min(charOffset, node.textContent.length));
-    }
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
-  }
-
-  function scrollCaretIntoView() {
-    // simplest reliable approach for an append-heavy flow
-    outputEl.scrollTop = outputEl.scrollHeight;
-  }
-
-  /* word counter from romanization (good proxy for corpus volume) */
+  /* word counter */
   function updateCounter(romanText) {
     const words = (romanText || '').trim().split(/\s+/).filter(Boolean).length;
     document.getElementById('wordCount').textContent = words;
@@ -746,54 +729,31 @@
 
   /* ── PHYSICAL KEYBOARD ENGINE ── */
   outputEl.addEventListener('keydown', (e) => {
-    // let modifier combos (copy/paste/select-all/etc) pass through
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return; // pass through shortcuts
 
     const k = e.key;
 
+    // Navigation — let browser handle natively, no interception needed
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(k)) return;
+
     if (k === 'Backspace') { e.preventDefault(); backspace(); return; }
     if (k === 'Delete')    { e.preventDefault(); forwardDelete(); return; }
-    if (k === 'ArrowLeft') { e.preventDefault(); moveCursor(-1); return; }
-    if (k === 'ArrowRight'){ e.preventDefault(); moveCursor(1); return; }
-    if (k === 'Home')      { e.preventDefault(); cursor = 0; render(); return; }
-    if (k === 'End')       { e.preventDefault(); cursor = history.length; render(); return; }
-    if (k === ' ')         { e.preventDefault(); insertSpace(); return; }
-    if (k === 'Enter')     { e.preventDefault(); insertSegment({y:'\n', r:'\n'}); return; }
+    if (k === ' ')         { e.preventDefault(); insertAtCaret(' '); return; }
+    if (k === 'Enter')     { e.preventDefault(); insertAtCaret('\n'); return; }
 
-    // single printable character → look up in keymap
     if (k.length === 1 && KEYMAP[k]) {
       e.preventDefault();
-      const m = KEYMAP[k];
-      insertSegment({y: m.y, r: m.r});
+      insertAtCaret(KEYMAP[k].y);
       flashRefKey(k);
       return;
     }
 
-    // any other single printable char: swallow it (keeps corpus clean)
-    if (k.length === 1) { e.preventDefault(); }
+    // swallow unmapped printable keys
+    if (k.length === 1) e.preventDefault();
   });
 
-  /* clicking inside the box → map DOM caret back to a segment index */
-  outputEl.addEventListener('click', syncCursorFromDom);
-  outputEl.addEventListener('keyup', (e) => {
-    if (['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return; // handled already
-  });
-
-  function syncCursorFromDom() {
-    const sel = window.getSelection();
-    if (!sel.rangeCount) return;
-    const range = sel.getRangeAt(0);
-    if (range.startContainer !== outputEl.firstChild && range.startContainer !== outputEl) return;
-    const domOffset = range.startOffset;
-    // walk segments accumulating char length until we reach domOffset
-    let acc = 0, idx = 0;
-    for (; idx < history.length; idx++) {
-      const len = [...history[idx].y].length;
-      if (acc + len > domOffset) break;
-      acc += len;
-    }
-    cursor = idx;
-  }
+  // sync sidebar on any content change (covers paste block, programmatic edits)
+  outputEl.addEventListener('input', syncSidebar);
 
   /* ── KEY FLASH FEEDBACK ── */
   function flashKey(btn) {
@@ -826,7 +786,7 @@
 
   function toggleCp() {
     const body = document.getElementById('cpBody');
-    const btn = document.getElementById('cpToggle');
+    const btn  = document.getElementById('cpToggle');
     const isOpen = body.classList.contains('open');
     body.classList.toggle('open', !isOpen);
     btn.classList.toggle('open', !isOpen);
@@ -834,20 +794,20 @@
 
   /* ── COPY ── */
   async function copyText() {
-    const {y: yapiriText} = getTexts();
-    if (!yapiriText) return;
+    const text = getYapiriText();
+    if (!text) return;
     try {
-      await navigator.clipboard.writeText(yapiriText);
+      await navigator.clipboard.writeText(text);
       const btn = document.getElementById('copyBtn');
       btn.textContent = 'Copied!'; btn.classList.add('success');
       setTimeout(() => { btn.textContent = 'Copy Text'; btn.classList.remove('success'); }, 1500);
     } catch(e) {}
   }
   async function copyRoman() {
-    const {r: romanText} = getTexts();
-    if (!romanText) return;
+    const text = getRomanText(getYapiriText());
+    if (!text) return;
     try {
-      await navigator.clipboard.writeText(romanText);
+      await navigator.clipboard.writeText(text);
       const btn = document.getElementById('copyRomanBtn');
       btn.textContent = 'Copied!'; btn.classList.add('success');
       setTimeout(() => { btn.textContent = 'Copy Romanization'; btn.classList.remove('success'); }, 1500);
@@ -868,8 +828,7 @@
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   /* ── INIT ── */
-  render();
-  // auto-focus the typing surface on load (desktop); harmless on mobile
+  syncSidebar();
   window.addEventListener('load', () => { try { outputEl.focus(); } catch(e){} });
 </script>
 </body>
