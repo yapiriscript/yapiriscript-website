@@ -148,14 +148,14 @@
 
   /* contenteditable typing surface — FIXED HEIGHT + INTERNAL SCROLL */
   #yapiri-output {
-    font-size:2.4rem; font-family:'Yapiri',serif; color:var(--parchment);
-    letter-spacing:0.1em; line-height:1.45;
-    max-height:34vh; min-height:62px; overflow-y:auto; overflow-x:hidden;
+    font-size:1.6rem; font-family:'Yapiri',serif; color:var(--parchment);
+    letter-spacing:0.1em; line-height:1.5;
+    height:90px; overflow-y:scroll; overflow-x:hidden;
     word-break:break-word; overflow-wrap:break-word; white-space:pre-wrap;
     unicode-bidi:plaintext; outline:none; caret-color:var(--gold-light);
     -webkit-font-feature-settings:"mark" 1,"mkmk" 1;
     font-feature-settings:"mark" 1,"mkmk" 1;
-    padding-right:0.2rem;
+    padding-right:0.2rem; resize:none;
   }
   #yapiri-output:empty::before { content:attr(data-placeholder); color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.95rem; letter-spacing:0.04em; }
   #yapiri-output::-webkit-scrollbar { width:4px; }
@@ -329,7 +329,7 @@
   @media(max-width:640px) {
     .kb-desktop { display:none; }
     .kb-mobile { display:block; }
-    #yapiri-output { font-size:1.9rem; max-height:30vh; }
+    #yapiri-output { font-size:1.4rem; height:80px; }
   }
   @media(max-width:380px) {
     .kb-grid { gap:0.3rem; }
