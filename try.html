@@ -362,6 +362,17 @@
     .kb-desktop { display:none; }
     .kb-mobile { display:block; }
     #yapiri-output { font-size:1.4rem; height:80px; }
+    /* sticky output on mobile — stays visible while tapping the grid */
+    .output-panel,
+    .controls-bar { position:sticky; top:62px; z-index:50; }
+    .controls-bar { top:auto; position:sticky; }
+    /* collapse output padding on mobile to save space */
+    .output-top { padding:0.8rem 1rem 0.6rem; }
+    .output-label-row { margin-bottom:0.4rem; }
+    #roman-output { margin-top:0.4rem; padding-top:0.4rem; height:36px; }
+    /* transition for hide/show */
+    #stickyOutputWrap { transition:opacity 0.2s ease; }
+    #stickyOutputWrap.hidden { opacity:0; pointer-events:none; }
   }
   @media(max-width:380px) {
     .kb-grid { gap:0.3rem; }
@@ -405,7 +416,7 @@
   <h1 class="page-title">Type in <em>Yapiri</em></h1>
   <div class="gold-line"></div>
   <p class="page-subtitle">Type directly with your keyboard — each key maps to a Yapiri letter. The on-screen layout below is your reference map. Copy your text into any application that has the font installed.</p>
-  <div class="page-hero-glyph">Virtual Keyboard</div>
+  <div class="page-hero-glyph">&#xF1CBA;&#xF1CB6;</div>
 </div>
 
 <!-- OUTPUT + KEYBOARD -->
@@ -429,6 +440,7 @@
   </div>
 
   <!-- OUTPUT PANEL -->
+  <div id="stickyOutputWrap">
   <div class="output-panel reveal">
     <div class="output-top">
       <div class="output-label-row">
@@ -456,6 +468,7 @@
     <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
     <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
   </div>
+  </div><!-- /stickyOutputWrap -->
 
   <!-- ════ DESKTOP: QWERTY VISUAL KEYBOARD ════ -->
   <div class="kb-desktop reveal">
@@ -910,6 +923,16 @@
   }
 
 
+
+  /* ── MOBILE: hide sticky output when keyboard scrolled away ── */
+  if (window.innerWidth <= 640) {
+    const stickyWrap = document.getElementById('stickyOutputWrap');
+    const kbSection  = document.getElementById('keyboardSection');
+    const mobileObserver = new IntersectionObserver(([entry]) => {
+      stickyWrap.classList.toggle('hidden', !entry.isIntersecting);
+    }, { threshold: 0, rootMargin: '-50px 0px -80% 0px' });
+    mobileObserver.observe(kbSection);
+  }
 
   /* ── NAV ── */
   function toggleMenu() { const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
