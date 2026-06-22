@@ -118,7 +118,7 @@
   .footer-social .social-link:hover::before { background:rgba(201,146,42,0.15); opacity:1; }
 
   /* PAGE HERO */
-  .page-hero { padding:10rem 5rem 5rem; background:linear-gradient(to bottom,#0e0c06,var(--ink)); border-bottom:1px solid rgba(201,146,42,0.15); position:relative; overflow:hidden; }
+  .page-hero { padding:10rem 5rem 4rem; background:linear-gradient(to bottom,#0e0c06,var(--ink)); border-bottom:1px solid rgba(201,146,42,0.15); position:relative; overflow:hidden; }
   .page-hero::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); }
   .page-eyebrow { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1rem; }
   .page-title { font-family:'Teko',sans-serif; font-size:clamp(3rem,7vw,6rem); font-weight:300; line-height:1; color:var(--parchment); margin-bottom:1.5rem; }
@@ -128,37 +128,45 @@
   .gold-line { width:60px; height:2px; background:var(--gold); margin:1.5rem 0 2rem; }
 
   /* ── KEYBOARD LAYOUT ── */
-  .keyboard-wrap { padding:2rem 2rem 5rem; max-width:980px; margin:0 auto; }
-  .sticky-block { position:sticky; top:70px; z-index:50; margin-bottom:0; max-width:980px; margin-left:auto; margin-right:auto; padding:0 2rem; }
+  .keyboard-wrap { padding:1.5rem 2rem 5rem; max-width:980px; margin:0 auto; }
+  .sticky-block { position:sticky; top:62px; z-index:50; max-width:980px; margin:0 auto; padding:0 2rem; }
 
   /* OUTPUT PANEL */
   .output-panel {
     background:#0e0b07;
     border:1px solid rgba(196,180,154,0.2);
     border-bottom:none;
-    position:sticky;
-    top:70px;
-    z-index:50;
   }
+  .output-panel:focus-within { border-color:rgba(201,146,42,0.45); }
+  .output-top { padding:1.3rem 2rem 0.9rem; }
+  .output-label-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.7rem; }
+  .output-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--stone); display:block; }
+  .session-counter { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); opacity:0.85; }
+  .session-counter span { color:var(--gold-light); }
 
-  .output-panel:focus-within { border-color:rgba(201,146,42,0.4); }
-  .output-top { padding:1.5rem 2rem 1rem; }
-  .output-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--stone); margin-bottom:0.8rem; display:block; }
+  /* contenteditable typing surface — FIXED HEIGHT + INTERNAL SCROLL */
   #yapiri-output {
-    font-size:2.6rem; font-family:'Yapiri',serif; color:var(--parchment);
-    letter-spacing:0.1em; min-height:60px; line-height:1.4;
-    word-break:break-all; overflow-wrap:break-word; white-space:pre-wrap;
-    unicode-bidi:plaintext;
+    font-size:2.4rem; font-family:'Yapiri',serif; color:var(--parchment);
+    letter-spacing:0.1em; line-height:1.45;
+    max-height:34vh; min-height:62px; overflow-y:auto; overflow-x:hidden;
+    word-break:break-word; overflow-wrap:break-word; white-space:pre-wrap;
+    unicode-bidi:plaintext; outline:none; caret-color:var(--gold-light);
     -webkit-font-feature-settings:"mark" 1,"mkmk" 1;
     font-feature-settings:"mark" 1,"mkmk" 1;
+    padding-right:0.2rem;
   }
-  #roman-output { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--stone); letter-spacing:0.08em; margin-top:0.6rem; min-height:1.2em; overflow-wrap:break-word; word-break:break-word; white-space:pre-wrap; }
+  #yapiri-output:empty::before { content:attr(data-placeholder); color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.95rem; letter-spacing:0.04em; }
+  #yapiri-output::-webkit-scrollbar { width:4px; }
+  #yapiri-output::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); }
+
+  #roman-output { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--stone); letter-spacing:0.08em; margin-top:0.7rem; min-height:1.2em; overflow-wrap:break-word; word-break:break-word; white-space:pre-wrap; padding-top:0.6rem; border-top:1px solid rgba(196,180,154,0.08); }
+
+  /* TYPING HINT */
+  .typing-hint { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.1em; color:var(--stone); margin-top:0.5rem; opacity:0.7; }
+  .typing-hint kbd { background:rgba(201,146,42,0.1); border:1px solid rgba(201,146,42,0.25); border-radius:2px; padding:0.05rem 0.35rem; color:var(--gold-light); font-size:0.9em; }
 
   /* CODEPOINT BAR */
-  .codepoint-bar {
-    border-top:1px solid rgba(196,180,154,0.1);
-    background:#0a0805;
-  }
+  .codepoint-bar { border-top:1px solid rgba(196,180,154,0.1); background:#0a0805; }
   .cp-toggle {
     width:100%; background:none; border:none; cursor:pointer;
     display:flex; justify-content:space-between; align-items:center;
@@ -182,7 +190,6 @@
     border:1px solid rgba(196,180,154,0.2);
     border-top:1px solid rgba(201,146,42,0.15);
     padding:0.7rem 1rem;
-    margin-bottom:0;
   }
   .ctrl-btn { background:transparent; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); padding:0.45rem 1rem; font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
   .ctrl-btn:hover { border-color:var(--gold); color:var(--gold); }
@@ -194,26 +201,35 @@
   .font-notice-text { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.06em; color:var(--stone-light); line-height:1.6; }
   .font-notice-text a { color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,146,42,0.3); }
 
+  /* REFERENCE PANEL HEADER */
+  .ref-banner { display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem; padding:0.7rem 1rem; background:rgba(184,92,56,0.05); border:1px solid rgba(184,92,56,0.18); }
+  .ref-banner-icon { font-size:1.1rem; flex-shrink:0; color:var(--terracotta); }
+  .ref-banner-text { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.05em; color:var(--stone-light); line-height:1.6; }
+  .ref-banner-text strong { color:var(--gold-light); font-weight:400; }
+
   /* KEY ROWS */
   .key-section { margin-bottom:1rem; }
   .key-section-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; display:block; padding-bottom:0.3rem; border-bottom:1px solid rgba(201,146,42,0.15); }
   .key-row { display:flex; gap:0.35rem; flex-wrap:wrap; }
 
-  /* KEYS */
+  /* KEYS — now reference cells (still tappable) */
   .key {
     background:rgba(255,255,255,0.04); border:1px solid rgba(196,180,154,0.12);
-    color:var(--parchment); padding:0.65rem 0.4rem 0.45rem;
+    color:var(--parchment); padding:0.6rem 0.4rem 0.4rem;
     min-width:50px; text-align:center; cursor:pointer;
-    transition:all 0.15s; display:flex; flex-direction:column;
-    align-items:center; gap:0.2rem; user-select:none; font-family:inherit;
+    transition:all 0.12s; display:flex; flex-direction:column;
+    align-items:center; gap:0.18rem; user-select:none; font-family:inherit;
     position:relative; overflow:hidden;
   }
   .key::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--stone); opacity:0; transition:opacity 0.15s; }
   .key:hover { background:rgba(184,92,56,0.18); border-color:var(--terracotta); transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.35); }
   .key:hover::before { opacity:1; background:var(--terracotta); }
-  .key:active { transform:translateY(0); background:rgba(184,92,56,0.32); }
+  .key:active, .key.keypress-flash { transform:translateY(0); background:rgba(201,146,42,0.32); border-color:var(--gold); }
   .key-glyph { font-size:1.5rem; font-family:'Yapiri',serif; line-height:1; }
-  .key-label { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.08em; color:var(--stone-light); text-transform:uppercase; }
+  .key-label { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.06em; color:var(--stone-light); text-transform:uppercase; }
+  /* QWERTY physical-key badge */
+  .key-qwerty { position:absolute; top:2px; right:3px; font-family:'DM Mono',monospace; font-size:0.5rem; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
+  .key-qwerty.shifted { color:var(--terra-light); }
 
   /* KEY VARIANTS */
   .key.loanword { border-color:rgba(201,146,42,0.3); background:rgba(201,146,42,0.04); }
@@ -222,45 +238,9 @@
   .key.special { background:rgba(201,146,42,0.07); border-color:rgba(201,146,42,0.25); min-width:90px; }
   .key.special .key-glyph { font-size:1rem; color:var(--gold-light); font-family:inherit; }
   .key.special::before { background:var(--gold); }
-  .key.space-key { min-width:200px; }
-  .key.space-key .key-label { font-size:0.6rem; color:var(--stone); }
-  .key.backspace-key { min-width:80px; background:rgba(184,92,56,0.06); border-color:rgba(184,92,56,0.2); }
-  .key.backspace-key .key-label { color:var(--terracotta); }
-  .key.math-key { background:rgba(201,146,42,0.05); border-color:rgba(201,146,42,0.2); }
-  .key.math-key .key-glyph { font-size:1.2rem; color:var(--gold); font-family:inherit; }
-  .key.solve-key { background:rgba(184,92,56,0.08); border-color:rgba(184,92,56,0.3); min-width:80px; }
-  .key.solve-key .key-glyph { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--terracotta); letter-spacing:0.05em; }
-  .key.currency-key .key-glyph { font-size:1.2rem; font-family:inherit; }
-  .key.symbol-key .key-glyph { font-size:1.1rem; font-family:inherit; color:var(--stone-light); }
-  .key.symbol-key { background:rgba(139,115,85,0.06); border-color:rgba(139,115,85,0.2); }
-  .key.symbol-key:hover { border-color:var(--stone-light); background:rgba(139,115,85,0.15); }
 
   /* CHART NOTE */
   .key-note { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.06em; color:var(--stone); line-height:1.7; margin-top:0.5rem; padding:0.6rem 0.8rem; background:rgba(255,255,255,0.02); border-left:2px solid rgba(196,180,154,0.15); }
-
-  /* COLLAPSIBLE PANELS */
-  .collapsible-group { margin-bottom:0.6rem; }
-  .collapsible-toggle {
-    width:100%; background:rgba(26,18,9,0.6); border:1px solid rgba(196,180,154,0.15);
-    color:var(--stone-light); padding:0.7rem 1rem;
-    font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em;
-    text-transform:uppercase; cursor:pointer; display:flex;
-    justify-content:space-between; align-items:center; transition:all 0.2s;
-    text-align:left;
-  }
-  .collapsible-toggle:hover { border-color:rgba(201,146,42,0.3); color:var(--gold-light); }
-  .collapsible-toggle.open { border-color:rgba(201,146,42,0.3); color:var(--gold-light); border-bottom:none; }
-  .collapsible-toggle .toggle-arrow { transition:transform 0.25s; font-style:normal; font-size:0.7rem; }
-  .collapsible-toggle.open .toggle-arrow { transform:rotate(90deg); }
-  .collapsible-note { font-family:'DM Mono',monospace; font-size:0.52rem; color:var(--stone); letter-spacing:0.04em; text-transform:none; }
-  .collapsible-body {
-    max-height:0; overflow:hidden;
-    transition:max-height 0.3s ease, padding 0.3s ease;
-    background:rgba(26,18,9,0.4);
-    border:1px solid rgba(201,146,42,0.3);
-    border-top:none;
-  }
-  .collapsible-body.open { max-height:300px; padding:1rem; }
 
   /* TIPS */
   .tips-section { padding:4rem 2rem 5rem; max-width:980px; margin:0 auto; }
@@ -272,6 +252,7 @@
   .tip-body { font-size:0.95rem; font-weight:300; color:var(--stone-light); line-height:1.75; }
   .tip-body strong { color:var(--parchment); font-weight:400; }
   .tip-body code { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--gold); background:rgba(201,146,42,0.08); padding:0.1rem 0.3rem; }
+  .tip-body kbd { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gold-light); background:rgba(201,146,42,0.1); border:1px solid rgba(201,146,42,0.25); border-radius:2px; padding:0.05rem 0.35rem; }
 
   /* FOOTER */
   footer { background:#080704; padding:3rem 5rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(196,180,154,0.08); flex-wrap:wrap; gap:1.5rem; }
@@ -286,7 +267,7 @@
   ::-webkit-scrollbar-thumb { background:var(--stone); border-radius:0; }
 
   @media(max-width:900px) {
-    .page-hero { padding:8rem 2rem 4rem; }
+    .page-hero { padding:8rem 2rem 3.5rem; }
     footer { flex-direction:column; text-align:center; padding:2.5rem 2rem; }
     .footer-copy { text-align:center; }
     .footer-social { justify-content:center; }
@@ -299,12 +280,12 @@
     .nav-links { display:none; }
     .hamburger { display:flex; }
     .page-hero-glyph { display:none; }
-    .key { min-width:42px; padding:0.55rem 0.28rem 0.38rem; }
+    .key { min-width:42px; padding:0.5rem 0.28rem 0.34rem; }
     .key-glyph { font-size:1.25rem; }
-    .key-label { font-size:0.58rem; }
-    .key.space-key { min-width:150px; }
-    .key.special, .key.backspace-key, .key.solve-key { min-width:68px; }
-    #yapiri-output { font-size:2rem; }
+    .key-label { font-size:0.56rem; }
+    .key-qwerty { font-size:0.46rem; }
+    .key.special { min-width:64px; }
+    #yapiri-output { font-size:1.9rem; max-height:30vh; }
   }
 </style>
 </head>
@@ -343,76 +324,85 @@
   <p class="page-eyebrow">Interactive Tool</p>
   <h1 class="page-title">Type in <em>Yapiri</em></h1>
   <div class="gold-line"></div>
-  <p class="page-subtitle">Use the on-screen keyboard to compose text in the Yapiri script. Copy it into any application that has the font installed.</p>
+  <p class="page-subtitle">Type directly with your keyboard — each key maps to a Yapiri letter. The on-screen layout below is your reference map. Copy your text into any application that has the font installed.</p>
   <div class="page-hero-glyph">&#xF1CBA;&#xF1CB6;</div>
 </div>
 
-<!-- KEYBOARD -->
-  <!-- STICKY OUTPUT + CONTROLS -->
-  <div class="sticky-block">
+<!-- STICKY OUTPUT + CONTROLS -->
+<div id="keyboardSection">
+<div class="sticky-block" id="stickyBlock">
   <div class="output-panel">
     <div class="output-top">
-      <span class="output-label">Yapiri Output</span>
-      <div id="yapiri-output" aria-live="polite">&#8203;</div>
+      <div class="output-label-row">
+        <span class="output-label">Yapiri Output</span>
+        <span class="session-counter" id="sessionCounter">Words: <span id="wordCount">0</span></span>
+      </div>
+      <div id="yapiri-output" contenteditable="true" spellcheck="false" autocapitalize="off" autocomplete="off" data-placeholder="Start typing — a, e, i, k, p…" aria-label="Yapiri text input" onpaste="return false"></div>
       <div id="roman-output">romanization will appear here</div>
+      <div class="typing-hint">Type with your keyboard · <kbd>Shift</kbd> for aspirates (P&rarr;ph) · see reference below</div>
     </div>
     <div class="codepoint-bar">
       <button class="cp-toggle" id="cpToggle" onclick="toggleCp()">
         <span>Codepoints</span>
-        <span class="cp-toggle-arrow">▶</span>
+        <span class="cp-toggle-arrow">&#9654;</span>
       </button>
       <div class="cp-body" id="cpBody">
         <div id="inspector-output">type something above to inspect codepoints…</div>
       </div>
     </div>
   </div>
-    <!-- CONTROLS (sticky) -->
-    <div class="controls-bar">
-      <button class="ctrl-btn" onclick="insertSpace()">Space</button>
-      <button class="ctrl-btn danger" onclick="backspace()">⌫ Delete</button>
-      <button class="ctrl-btn danger" onclick="clearAll()">Clear All</button>
-      <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
-      <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
-    </div>
-    </div><!-- /sticky-block -->
-  </div><!-- /output-panel -->
+  <!-- CONTROLS -->
+  <div class="controls-bar">
+    <button class="ctrl-btn" onclick="insertSpace()">Space</button>
+    <button class="ctrl-btn danger" onclick="backspace()">&#9003; Delete</button>
+    <button class="ctrl-btn danger" onclick="clearAll()">Clear All</button>
+    <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
+    <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
+  </div>
+</div><!-- /sticky-block -->
 
 <div class="keyboard-wrap">
   <!-- FONT NOTICE -->
   <div class="font-notice reveal">
-    <span style="font-size:1.1rem;flex-shrink:0;">⬇</span>
+    <span style="font-size:1.1rem;flex-shrink:0;">&#11015;</span>
     <span class="font-notice-text">
       The Yapiri font must be installed for glyphs to render correctly outside this browser.
       <a href="download.html">Download the font here</a> before copying text into other applications.
     </span>
   </div>
 
+  <!-- REFERENCE BANNER -->
+  <div class="ref-banner reveal">
+    <span class="ref-banner-icon">&#9000;</span>
+    <span class="ref-banner-text"><strong>Reference map.</strong> Each cell shows its physical keyboard key in the corner. Type on your keyboard — or tap a cell — to input that letter.</span>
+  </div>
+
   <!-- VOWELS -->
   <div class="key-section reveal">
     <span class="key-section-label">Vowels — independent letters</span>
     <div class="key-row">
-      <button class="key" onclick="typeChar('\u{F1CA0}','a')"><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA1}','e')"><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA2}','i')"><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA3}','u')"><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA4}','o')"><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA5}','\u0259')"><span class="key-glyph">&#xF1CA5;</span><span class="key-label">ə</span></button>
+      <button class="key" data-key="a" onclick="typeChar('\u{F1CA0}','a',this)"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
+      <button class="key" data-key="e" onclick="typeChar('\u{F1CA1}','e',this)"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
+      <button class="key" data-key="i" onclick="typeChar('\u{F1CA2}','i',this)"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
+      <button class="key" data-key="u" onclick="typeChar('\u{F1CA3}','u',this)"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
+      <button class="key" data-key="o" onclick="typeChar('\u{F1CA4}','o',this)"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
+      <button class="key" data-key="q" onclick="typeChar('\u{F1CA5}','\u0259',this)"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
     </div>
   </div>
 
   <!-- STOPS -->
   <div class="key-section reveal">
-    <span class="key-section-label">Stops — voiceless · aspirated · voiced</span>
+    <span class="key-section-label">Stops — voiceless · aspirated (Shift) · voiced</span>
     <div class="key-row">
-      <button class="key" onclick="typeChar('\u{F1CA7}','p')"><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA8}','t')"><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
-      <button class="key" onclick="typeChar('\u{F1CA9}','k')"><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
-      <button class="key" onclick="typeChar('\u{F1CAD}','ph')"><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
-      <button class="key" onclick="typeChar('\u{F1CAE}','th')"><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
-      <button class="key" onclick="typeChar('\u{F1CAF}','kh')"><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
-      <button class="key" onclick="typeChar('\u{F1CAA}','b')"><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
-      <button class="key" onclick="typeChar('\u{F1CAB}','d')"><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
-      <button class="key" onclick="typeChar('\u{F1CAC}','g')"><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
+      <button class="key" data-key="p" onclick="typeChar('\u{F1CA7}','p',this)"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
+      <button class="key" data-key="t" onclick="typeChar('\u{F1CA8}','t',this)"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
+      <button class="key" data-key="k" onclick="typeChar('\u{F1CA9}','k',this)"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
+      <button class="key" data-key="P" onclick="typeChar('\u{F1CAD}','ph',this)"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
+      <button class="key" data-key="T" onclick="typeChar('\u{F1CAE}','th',this)"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
+      <button class="key" data-key="K" onclick="typeChar('\u{F1CAF}','kh',this)"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
+      <button class="key" data-key="b" onclick="typeChar('\u{F1CAA}','b',this)"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
+      <button class="key" data-key="d" onclick="typeChar('\u{F1CAB}','d',this)"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
+      <button class="key" data-key="g" onclick="typeChar('\u{F1CAC}','g',this)"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
     </div>
   </div>
 
@@ -420,12 +410,12 @@
   <div class="key-section reveal">
     <span class="key-section-label">Affricates &amp; Nasals</span>
     <div class="key-row">
-      <button class="key" onclick="typeChar('\u{F1CB0}','ch')"><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB1}','j')"><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB2}','m')"><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB3}','n')"><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB4}','n\'')"><span class="key-glyph">&#xF1CB4;</span><span class="key-label">n′</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB5}','ng')"><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
+      <button class="key" data-key="c" onclick="typeChar('\u{F1CB0}','ch',this)"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
+      <button class="key" data-key="j" onclick="typeChar('\u{F1CB1}','j',this)"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+      <button class="key" data-key="m" onclick="typeChar('\u{F1CB2}','m',this)"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
+      <button class="key" data-key="n" onclick="typeChar('\u{F1CB3}','n',this)"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
+      <button class="key" data-key="N" onclick="typeChar('\u{F1CB4}','n\'',this)"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph">&#xF1CB4;</span><span class="key-label">n&#8242;</span></button>
+      <button class="key" data-key="f" onclick="typeChar('\u{F1CB5}','ng',this)"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
     </div>
   </div>
 
@@ -433,12 +423,12 @@
   <div class="key-section reveal">
     <span class="key-section-label">Fricatives &amp; Approximants</span>
     <div class="key-row">
-      <button class="key" onclick="typeChar('\u{F1CB6}','s')"><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB7}','r')"><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB8}','l')"><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
-      <button class="key" onclick="typeChar('\u{F1CBA}','y')"><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
-      <button class="key" onclick="typeChar('\u{F1CBB}','w')"><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
-      <button class="key" onclick="typeChar('\u{F1CB9}','h')"><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+      <button class="key" data-key="s" onclick="typeChar('\u{F1CB6}','s',this)"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
+      <button class="key" data-key="r" onclick="typeChar('\u{F1CB7}','r',this)"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+      <button class="key" data-key="l" onclick="typeChar('\u{F1CB8}','l',this)"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
+      <button class="key" data-key="y" onclick="typeChar('\u{F1CBA}','y',this)"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
+      <button class="key" data-key="w" onclick="typeChar('\u{F1CBB}','w',this)"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
+      <button class="key" data-key="h" onclick="typeChar('\u{F1CB9}','h',this)"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
     </div>
   </div>
 
@@ -446,27 +436,27 @@
   <div class="key-section reveal">
     <span class="key-section-label">Secondary &amp; Diacritic</span>
     <div class="key-row">
-      <button class="key loanword" onclick="typeChar('\u{F1CBC}','v')"><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
-      <button class="key loanword" onclick="typeChar('\u{F1CBD}','z')"><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
-      <button class="key special" onclick="typeChar('\u{F1CD1}','́')"><span class="key-glyph" style="font-family:'Yapiri',serif;font-size:2.8rem;">&#xF1CD1;</span><span class="key-label">high tone</span></button>
+      <button class="key loanword" data-key="v" onclick="typeChar('\u{F1CBC}','v',this)"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
+      <button class="key loanword" data-key="z" onclick="typeChar('\u{F1CBD}','z',this)"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
+      <button class="key special" data-key="'" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph" style="font-family:'Yapiri',serif;font-size:2.8rem;">&#xF1CD1;</span><span class="key-label">high tone</span></button>
     </div>
-    <p class="key-note">v, z — loanword characters · high tone — place after the vowel of the high-tone syllable</p>
+    <p class="key-note">v, z — loanword characters · high tone — type the vowel, then press the apostrophe key <kbd style="font-family:'DM Mono',monospace;background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.25);border-radius:2px;padding:0.05rem 0.3rem;color:var(--gold-light);">'</kbd></p>
   </div>
 
   <!-- NUMERALS -->
   <div class="key-section reveal">
-    <span class="key-section-label">Numerals</span>
+    <span class="key-section-label">Numerals — number row</span>
     <div class="key-row">
-      <button class="key" onclick="typeChar('\u{F1CC0}','0')"><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC1}','1')"><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC2}','2')"><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC3}','3')"><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC4}','4')"><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC5}','5')"><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC6}','6')"><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC7}','7')"><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC8}','8')"><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
-      <button class="key" onclick="typeChar('\u{F1CC9}','9')"><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+      <button class="key" data-key="0" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+      <button class="key" data-key="1" onclick="typeChar('\u{F1CC1}','1',this)"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
+      <button class="key" data-key="2" onclick="typeChar('\u{F1CC2}','2',this)"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
+      <button class="key" data-key="3" onclick="typeChar('\u{F1CC3}','3',this)"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
+      <button class="key" data-key="4" onclick="typeChar('\u{F1CC4}','4',this)"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
+      <button class="key" data-key="5" onclick="typeChar('\u{F1CC5}','5',this)"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
+      <button class="key" data-key="6" onclick="typeChar('\u{F1CC6}','6',this)"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
+      <button class="key" data-key="7" onclick="typeChar('\u{F1CC7}','7',this)"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
+      <button class="key" data-key="8" onclick="typeChar('\u{F1CC8}','8',this)"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
+      <button class="key" data-key="9" onclick="typeChar('\u{F1CC9}','9',this)"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
     </div>
   </div>
 
@@ -474,89 +464,17 @@
   <div class="key-section reveal">
     <span class="key-section-label">Punctuation</span>
     <div class="key-row">
-      <button class="key" onclick="typeChar('\u{F1CCB}',',')"><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
-      <button class="key" onclick="typeChar('\u{F1CCC}','.')"><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
-      <button class="key" onclick="typeChar('\u{F1CCD}','!')"><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
-      <button class="key" onclick="typeChar('\u{F1CCE}','&quot;')"><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
-      <button class="key" onclick="typeChar('\u{F1CCF}','?')"><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+      <button class="key" data-key="," onclick="typeChar('\u{F1CCB}',',',this)"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+      <button class="key" data-key="." onclick="typeChar('\u{F1CCC}','.',this)"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+      <button class="key" data-key="!" onclick="typeChar('\u{F1CCD}','!',this)"><span class="key-qwerty shifted">&#8679;1</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+      <button class="key" data-key="&quot;" onclick="typeChar('\u{F1CCE}','&quot;',this)"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
+      <button class="key" data-key="?" onclick="typeChar('\u{F1CCF}','?',this)"><span class="key-qwerty shifted">&#8679;/</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
     </div>
-  </div>
-
-  <!-- COLLAPSIBLE: MATH -->
-  <div class="collapsible-group reveal">
-    <button class="collapsible-toggle" onclick="togglePanel('math',this)">
-      <span>Mathematical Operators <span class="collapsible-note">· for demo — not native Yapiri glyphs</span></span>
-      <span class="toggle-arrow">▶</span>
-    </button>
-    <div class="collapsible-body" id="panel-math">
-      <div class="key-row">
-        <button class="key math-key" onclick="mathOp('+')"><span class="key-glyph">+</span><span class="key-label">add</span></button>
-        <button class="key math-key" onclick="mathOp('−')"><span class="key-glyph">−</span><span class="key-label">subtract</span></button>
-        <button class="key math-key" onclick="mathOp('×')"><span class="key-glyph">×</span><span class="key-label">multiply</span></button>
-        <button class="key math-key" onclick="mathOp('÷')"><span class="key-glyph">÷</span><span class="key-label">divide</span></button>
-        <button class="key math-key" onclick="typeChar('=','=')"><span class="key-glyph">=</span><span class="key-label">equals</span></button>
-        <button class="key solve-key" onclick="calcResult()"><span class="key-glyph">SOLVE</span><span class="key-label">auto calc</span></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- COLLAPSIBLE: CURRENCY -->
-  <div class="collapsible-group reveal">
-    <button class="collapsible-toggle" onclick="togglePanel('currency',this)">
-      <span>Currency Symbols <span class="collapsible-note">· for demo — not native Yapiri glyphs</span></span>
-      <span class="toggle-arrow">▶</span>
-    </button>
-    <div class="collapsible-body" id="panel-currency">
-      <div class="key-row">
-        <button class="key currency-key" onclick="typeChar('$','$')"><span class="key-glyph">$</span><span class="key-label">USD</span></button>
-        <button class="key currency-key" onclick="typeChar('₹','₹')"><span class="key-glyph">₹</span><span class="key-label">INR</span></button>
-        <button class="key currency-key" onclick="typeChar('¥','¥')"><span class="key-glyph">¥</span><span class="key-label">CNY</span></button>
-        <button class="key currency-key" onclick="typeChar('€','€')"><span class="key-glyph">€</span><span class="key-label">EUR</span></button>
-        <button class="key currency-key" onclick="typeChar('£','£')"><span class="key-glyph">£</span><span class="key-label">GBP</span></button>
-        <button class="key currency-key" onclick="typeChar('₿','₿')"><span class="key-glyph">₿</span><span class="key-label">BTC</span></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- COLLAPSIBLE: GLOBAL SYMBOLS -->
-  <div class="collapsible-group reveal">
-    <button class="collapsible-toggle" onclick="togglePanel('symbols',this)">
-      <span>Global Symbols <span class="collapsible-note">· punctuation, brackets, special characters</span></span>
-      <span class="toggle-arrow">▶</span>
-    </button>
-    <div class="collapsible-body" id="panel-symbols">
-      <div class="key-row" style="margin-bottom:0.4rem;">
-        <button class="key symbol-key" onclick="typeChar('@','@')"><span class="key-glyph">@</span><span class="key-label">at</span></button>
-        <button class="key symbol-key" onclick="typeChar('#','#')"><span class="key-glyph">#</span><span class="key-label">hash</span></button>
-        <button class="key symbol-key" onclick="typeChar('%','%')"><span class="key-glyph">%</span><span class="key-label">pct</span></button>
-        <button class="key symbol-key" onclick="typeChar('&','&')"><span class="key-glyph">&</span><span class="key-label">and</span></button>
-        <button class="key symbol-key" onclick="typeChar('*','*')"><span class="key-glyph">*</span><span class="key-label">star</span></button>
-        <button class="key symbol-key" onclick="typeChar('/','/')"><span class="key-glyph">/</span><span class="key-label">slash</span></button>
-        <button class="key symbol-key" onclick="typeChar('\\','\\')"><span class="key-glyph">\</span><span class="key-label">back</span></button>
-      </div>
-      <div class="key-row" style="margin-bottom:0.4rem;">
-        <button class="key symbol-key" onclick="typeChar('(','(')"><span class="key-glyph">(</span><span class="key-label">( </span></button>
-        <button class="key symbol-key" onclick="typeChar(')',')')"><span class="key-glyph">)</span><span class="key-label"> )</span></button>
-        <button class="key symbol-key" onclick="typeChar('[','[')"><span class="key-glyph">[</span><span class="key-label">[ </span></button>
-        <button class="key symbol-key" onclick="typeChar(']',']')"><span class="key-glyph">]</span><span class="key-label"> ]</span></button>
-        <button class="key symbol-key" onclick="typeChar('{','{')"><span class="key-glyph">{</span><span class="key-label">{ </span></button>
-        <button class="key symbol-key" onclick="typeChar('}','}')"><span class="key-glyph">}</span><span class="key-label"> }</span></button>
-        <button class="key symbol-key" onclick="typeChar('<','<')"><span class="key-glyph">&lt;</span><span class="key-label">&lt;</span></button>
-        <button class="key symbol-key" onclick="typeChar('>','>')"><span class="key-glyph">&gt;</span><span class="key-label">&gt;</span></button>
-      </div>
-      <div class="key-row">
-        <button class="key symbol-key" onclick="typeChar('©','©')"><span class="key-glyph">©</span><span class="key-label">copy</span></button>
-        <button class="key symbol-key" onclick="typeChar('®','®')"><span class="key-glyph">®</span><span class="key-label">reg</span></button>
-        <button class="key symbol-key" onclick="typeChar('™','™')"><span class="key-glyph">™</span><span class="key-label">TM</span></button>
-        <button class="key symbol-key" onclick="typeChar('°','°')"><span class="key-glyph">°</span><span class="key-label">deg</span></button>
-        <button class="key symbol-key" onclick="typeChar('…','...')"><span class="key-glyph">…</span><span class="key-label">elip</span></button>
-        <button class="key symbol-key" onclick="typeChar('–','–')"><span class="key-glyph">–</span><span class="key-label">en</span></button>
-        <button class="key symbol-key" onclick="typeChar('—','—')"><span class="key-glyph">—</span><span class="key-label">em</span></button>
-      </div>
-    </div>
+    <p class="key-note">Punctuation maps to the matching keys · <kbd style="font-family:'DM Mono',monospace;background:rgba(201,146,42,0.1);border:1px solid rgba(201,146,42,0.25);border-radius:2px;padding:0.05rem 0.3rem;color:var(--gold-light);">"</kbd> (Shift+apostrophe) gives the Yapiri quotation mark</p>
   </div>
 
 </div><!-- /keyboard-wrap -->
+</div><!-- /keyboardSection -->
 
 <!-- TIPS -->
 <section class="tips-section reveal">
@@ -564,30 +482,27 @@
   <div class="tips-grid">
     <div class="tip-card">
       <div class="tip-num">01</div>
-      <div class="tip-title">Schwa vs. Consonant W</div>
+      <div class="tip-title">Just Type</div>
       <p class="tip-body">
-        <strong>W <span style="font-family:'Yapiri',serif;">(&#xF1CBB;)</span></strong> appears word-initially only.
-        <strong>Schwa ə <span style="font-family:'Yapiri',serif;">(&#xF1CA5;)</span></strong> appears mid-word only.<br><br>
-        <span style="font-family:'Yapiri',serif;font-size:1.3rem;color:var(--parchment);">&#xF1CBB;&#xF1CA0;&#xF1CA9;</span>
-        <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);"> wak — pig</span><br>
-        <span style="font-family:'Yapiri',serif;font-size:1.3rem;color:var(--parchment);">&#xF1CA9;&#xF1CA5;&#xF1CA8;&#xF1CA5;&#xF1CA2;</span>
-        <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);"> kwtwi — sweet</span>
+        Click the output box and type on your keyboard. Each key produces its Yapiri letter — <kbd>k</kbd> &rarr; <span style="font-family:'Yapiri',serif;font-size:1.2rem;">&#xF1CA9;</span>, <kbd>a</kbd> &rarr; <span style="font-family:'Yapiri',serif;font-size:1.2rem;">&#xF1CA0;</span>. Backspace, arrows and click-to-position all work normally.
       </p>
     </div>
     <div class="tip-card">
       <div class="tip-num">02</div>
-      <div class="tip-title">High Tone Mark</div>
-      <p class="tip-body">Type the vowel first, then tap the high tone key. The mark attaches above the vowel automatically.<br><br>
+      <div class="tip-title">Aspirates &amp; High Tone</div>
+      <p class="tip-body">
+        Hold <kbd>Shift</kbd> for aspirated stops: <kbd>Shift</kbd>+<kbd>P</kbd> &rarr; ph, <kbd>Shift</kbd>+<kbd>T</kbd> &rarr; th, <kbd>Shift</kbd>+<kbd>K</kbd> &rarr; kh.<br><br>
+        For high tone, type the vowel then press <kbd>'</kbd> (apostrophe).<br>
         <span style="font-family:'Yapiri',serif;font-size:1.3rem;color:var(--parchment);">&#xF1CAA;&#xF1CA4;&#xF1CD1;&#xF1CB7;&#xF1CA4;&#xF1CA9;</span>
-        <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);"> bohrok — they · b·ó·r·o·k</span>
+        <span style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);"> bórok — they</span>
       </p>
     </div>
     <div class="tip-card">
       <div class="tip-num">03</div>
-      <div class="tip-title">Secondary Keys</div>
+      <div class="tip-title">Key Map Notes</div>
       <p class="tip-body">
-        <strong>v, z</strong> — loanword characters for borrowed vocabulary and scientific names. <code>v</code> cannot be rendered by <code>b</code>, and <code>z</code> is too distinct from <code>j</code> for scientific names like <em>Zea mays</em>.<br><br>
-        For everyday Kokborok writing, 21 native consonants + 6 vowels cover virtually everything.
+        <kbd>q</kbd> &rarr; schwa <span style="font-family:'Yapiri',serif;">(&#xF1CA5;)</span> · <kbd>f</kbd> &rarr; ng <span style="font-family:'Yapiri',serif;">(&#xF1CB5;)</span> · <kbd>c</kbd> &rarr; ch <span style="font-family:'Yapiri',serif;">(&#xF1CB0;)</span> · <kbd>Shift</kbd>+<kbd>N</kbd> &rarr; n&#8242;.<br><br>
+        This is the same layout as the installable <a href="download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Keyman keyboard</a> — learn it once, use it everywhere.
       </p>
     </div>
   </div>
@@ -607,34 +522,194 @@
 </footer>
 
 <script>
+  /* ============================================================
+     KEY MAP — desktop physical-keyboard rules from
+     kokborok_yapiri.kmn (v2.0, UCSUR Plane 15).
+     Keyed by the character the keydown event produces (e.key),
+     so it works identically for desktop hardware keyboards and
+     mobile software keyboards. Shift is encoded in the key char.
+     ============================================================ */
+  const KEYMAP = {
+    // vowels
+    'a':{y:'\u{F1CA0}',r:'a'}, 'e':{y:'\u{F1CA1}',r:'e'}, 'i':{y:'\u{F1CA2}',r:'i'},
+    'u':{y:'\u{F1CA3}',r:'u'}, 'o':{y:'\u{F1CA4}',r:'o'}, 'q':{y:'\u{F1CA5}',r:'\u0259'},
+    // plain stops
+    'p':{y:'\u{F1CA7}',r:'p'}, 't':{y:'\u{F1CA8}',r:'t'}, 'k':{y:'\u{F1CA9}',r:'k'},
+    'b':{y:'\u{F1CAA}',r:'b'}, 'd':{y:'\u{F1CAB}',r:'d'}, 'g':{y:'\u{F1CAC}',r:'g'},
+    // aspirates (Shift)
+    'P':{y:'\u{F1CAD}',r:'ph'}, 'T':{y:'\u{F1CAE}',r:'th'}, 'K':{y:'\u{F1CAF}',r:'kh'},
+    // affricates
+    'c':{y:'\u{F1CB0}',r:'ch'}, 'j':{y:'\u{F1CB1}',r:'j'},
+    // nasals
+    'm':{y:'\u{F1CB2}',r:'m'}, 'n':{y:'\u{F1CB3}',r:'n'}, 'N':{y:'\u{F1CB4}',r:"n'"},
+    'f':{y:'\u{F1CB5}',r:'ng'},
+    // fricatives / liquids / glides
+    's':{y:'\u{F1CB6}',r:'s'}, 'r':{y:'\u{F1CB7}',r:'r'}, 'l':{y:'\u{F1CB8}',r:'l'},
+    'h':{y:'\u{F1CB9}',r:'h'}, 'y':{y:'\u{F1CBA}',r:'y'}, 'w':{y:'\u{F1CBB}',r:'w'},
+    'v':{y:'\u{F1CBC}',r:'v'}, 'z':{y:'\u{F1CBD}',r:'z'},
+    // numerals
+    '0':{y:'\u{F1CC0}',r:'0'}, '1':{y:'\u{F1CC1}',r:'1'}, '2':{y:'\u{F1CC2}',r:'2'},
+    '3':{y:'\u{F1CC3}',r:'3'}, '4':{y:'\u{F1CC4}',r:'4'}, '5':{y:'\u{F1CC5}',r:'5'},
+    '6':{y:'\u{F1CC6}',r:'6'}, '7':{y:'\u{F1CC7}',r:'7'}, '8':{y:'\u{F1CC8}',r:'8'},
+    '9':{y:'\u{F1CC9}',r:'9'},
+    // punctuation
+    ',':{y:'\u{F1CCB}',r:','}, '.':{y:'\u{F1CCC}',r:'.'},
+    '!':{y:'\u{F1CCD}',r:'!'}, '"':{y:'\u{F1CCE}',r:'"'}, '?':{y:'\u{F1CCF}',r:'?'},
+    // high tone (apostrophe). Roman side carries combining acute for display.
+    "'":{y:'\u{F1CD1}',r:'\u0301'}
+  };
+
+  /* state model: array of {y, r} segments. Cursor = index into this array. */
   let history = [];
+  let cursor = 0;           // insertion point: 0..history.length
+  const outputEl = document.getElementById('yapiri-output');
 
   function getTexts() {
-    return {
-      y: history.map(h => h.y).join(''),
-      r: history.map(h => h.r).join('')
-    };
+    return { y: history.map(h => h.y).join(''), r: history.map(h => h.r).join('') };
   }
 
-  function typeChar(glyph, roman) { history.push({y: glyph, r: roman}); render(); }
-  function insertSpace() { history.push({y: ' ', r: ' '}); render(); }
-  function mathOp(op) { history.push({y: op, r: op}); render(); }
+  /* ── INSERTION respecting cursor position ── */
+  function insertSegment(seg) {
+    history.splice(cursor, 0, seg);
+    cursor++;
+    render();
+  }
+  function typeChar(glyph, roman, btn) {
+    insertSegment({y: glyph, r: roman});
+    if (btn) flashKey(btn);
+    outputEl.focus();
+  }
+  function insertSpace() { insertSegment({y:' ', r:' '}); }
 
   function backspace() {
-    if (!history.length) return;
-    history.pop();
+    if (cursor === 0) return;
+    history.splice(cursor - 1, 1);
+    cursor--;
+    render();
+  }
+  /* forward delete (Del key) */
+  function forwardDelete() {
+    if (cursor >= history.length) return;
+    history.splice(cursor, 1);
+    render();
+  }
+  function clearAll() { history = []; cursor = 0; render(); outputEl.focus(); }
+
+  function moveCursor(delta) {
+    cursor = Math.max(0, Math.min(history.length, cursor + delta));
     render();
   }
 
-  function clearAll() { history = []; render(); }
-
+  /* ── RENDER: rebuild output, place caret, sync roman + counter ── */
   function render() {
     const {y: yapiriText, r: romanText} = getTexts();
-    document.getElementById('yapiri-output').textContent = yapiriText || '\u200B';
+
+    // Rebuild contenteditable as a single text node so caret math is simple.
+    outputEl.textContent = yapiriText;
+
+    // Map logical cursor (segment index) → DOM character offset.
+    let charOffset = 0;
+    for (let i = 0; i < cursor; i++) charOffset += [...history[i].y].length;
+    placeCaret(charOffset);
+
     document.getElementById('roman-output').textContent = romanText || 'romanization will appear here';
     updateInspector(yapiriText);
+    updateCounter(romanText);
+
+    // keep caret in view inside the fixed-height box
+    scrollCaretIntoView();
   }
 
+  function placeCaret(charOffset) {
+    if (document.activeElement !== outputEl) return; // don't steal focus
+    const node = outputEl.firstChild;
+    const sel = window.getSelection();
+    const range = document.createRange();
+    if (!node) {
+      range.setStart(outputEl, 0);
+    } else {
+      const max = node.textContent.length;
+      range.setStart(node, Math.min(charOffset, max));
+    }
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  function scrollCaretIntoView() {
+    // simplest reliable approach for an append-heavy flow
+    outputEl.scrollTop = outputEl.scrollHeight;
+  }
+
+  /* word counter from romanization (good proxy for corpus volume) */
+  function updateCounter(romanText) {
+    const words = (romanText || '').trim().split(/\s+/).filter(Boolean).length;
+    document.getElementById('wordCount').textContent = words;
+  }
+
+  /* ── PHYSICAL KEYBOARD ENGINE ── */
+  outputEl.addEventListener('keydown', (e) => {
+    // let modifier combos (copy/paste/select-all/etc) pass through
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+    const k = e.key;
+
+    if (k === 'Backspace') { e.preventDefault(); backspace(); return; }
+    if (k === 'Delete')    { e.preventDefault(); forwardDelete(); return; }
+    if (k === 'ArrowLeft') { e.preventDefault(); moveCursor(-1); return; }
+    if (k === 'ArrowRight'){ e.preventDefault(); moveCursor(1); return; }
+    if (k === 'Home')      { e.preventDefault(); cursor = 0; render(); return; }
+    if (k === 'End')       { e.preventDefault(); cursor = history.length; render(); return; }
+    if (k === ' ')         { e.preventDefault(); insertSpace(); return; }
+    if (k === 'Enter')     { e.preventDefault(); insertSegment({y:'\n', r:'\n'}); return; }
+
+    // single printable character → look up in keymap
+    if (k.length === 1 && KEYMAP[k]) {
+      e.preventDefault();
+      const m = KEYMAP[k];
+      insertSegment({y: m.y, r: m.r});
+      flashRefKey(k);
+      return;
+    }
+
+    // any other single printable char: swallow it (keeps corpus clean)
+    if (k.length === 1) { e.preventDefault(); }
+  });
+
+  /* clicking inside the box → map DOM caret back to a segment index */
+  outputEl.addEventListener('click', syncCursorFromDom);
+  outputEl.addEventListener('keyup', (e) => {
+    if (['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return; // handled already
+  });
+
+  function syncCursorFromDom() {
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    if (range.startContainer !== outputEl.firstChild && range.startContainer !== outputEl) return;
+    const domOffset = range.startOffset;
+    // walk segments accumulating char length until we reach domOffset
+    let acc = 0, idx = 0;
+    for (; idx < history.length; idx++) {
+      const len = [...history[idx].y].length;
+      if (acc + len > domOffset) break;
+      acc += len;
+    }
+    cursor = idx;
+  }
+
+  /* ── KEY FLASH FEEDBACK ── */
+  function flashKey(btn) {
+    btn.classList.add('keypress-flash');
+    setTimeout(() => btn.classList.remove('keypress-flash'), 130);
+  }
+  function flashRefKey(k) {
+    const btn = document.querySelector('.key[data-key="' + cssEscape(k) + '"]');
+    if (btn) flashKey(btn);
+  }
+  function cssEscape(s) { return s.replace(/["\\]/g, '\\$&'); }
+
+  /* ── CODEPOINT INSPECTOR ── */
   function updateInspector(yapiriText) {
     const el = document.getElementById('inspector-output');
     if (!yapiriText) { el.textContent = 'type something above to inspect codepoints…'; return; }
@@ -644,6 +719,7 @@
       const isPUA = (codePoint >= 0xF0000 && codePoint <= 0xFFFFD) || (codePoint >= 0xE000 && codePoint <= 0xF8FF);
       let label;
       if (ch === ' ') label = 'SPACE';
+      else if (ch === '\n') label = 'NL';
       else if (isPUA) label = `<span style="font-family:'Yapiri',serif;">${ch}</span>`;
       else label = ch;
       return `<span>U+${cp}</span> (${label})`;
@@ -651,7 +727,6 @@
     el.innerHTML = parts.join('&nbsp;&nbsp;·&nbsp;&nbsp;');
   }
 
-  // Collapsible codepoints
   function toggleCp() {
     const body = document.getElementById('cpBody');
     const btn = document.getElementById('cpToggle');
@@ -660,47 +735,7 @@
     btn.classList.toggle('open', !isOpen);
   }
 
-  // Collapsible panels
-  function togglePanel(id, btn) {
-    const body = document.getElementById('panel-' + id);
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    btn.classList.toggle('open', !isOpen);
-  }
-
-  // Math calculator
-  const yapiriDigitMap = {'\u{F1CC0}':0,'\u{F1CC1}':1,'\u{F1CC2}':2,'\u{F1CC3}':3,'\u{F1CC4}':4,'\u{F1CC5}':5,'\u{F1CC6}':6,'\u{F1CC7}':7,'\u{F1CC8}':8,'\u{F1CC9}':9};
-  const digitToYapiri = ['\u{F1CC0}','\u{F1CC1}','\u{F1CC2}','\u{F1CC3}','\u{F1CC4}','\u{F1CC5}','\u{F1CC6}','\u{F1CC7}','\u{F1CC8}','\u{F1CC9}'];
-
-  function numberToYapiri(n) {
-    const isNeg = n < 0;
-    const str = Number.isInteger(Math.abs(n)) ? String(Math.abs(n)) : Math.abs(n).toFixed(10).replace(/\.?0+$/, '');
-    let out = isNeg ? '−' : '';
-    for (const ch of str) out += ch === '.' ? '.' : digitToYapiri[parseInt(ch)];
-    return out;
-  }
-
-  function calcResult() {
-    const {y: yapiriText} = getTexts();
-    if (!yapiriText) return;
-    let expr = '';
-    for (const ch of yapiriText) {
-      if (ch in yapiriDigitMap) expr += yapiriDigitMap[ch];
-      else if (ch === '+') expr += '+';
-      else if (ch === '−' || ch === '-') expr += '-';
-      else if (ch === '×') expr += '*';
-      else if (ch === '÷') expr += '/';
-      else if (ch === '.') expr += '.';
-    }
-    expr = expr.replace(/[\+\-\*\/\.]+$/, '');
-    let result;
-    try { result = Function('"use strict";return(' + expr + ')')(); } catch(e) { return; }
-    if (!isFinite(result)) return;
-    result = parseFloat(result.toPrecision(12));
-    history.push({y: '=' + numberToYapiri(result), r: '=' + String(result)});
-    render();
-  }
-
+  /* ── COPY ── */
   async function copyText() {
     const {y: yapiriText} = getTexts();
     if (!yapiriText) return;
@@ -711,7 +746,6 @@
       setTimeout(() => { btn.textContent = 'Copy Text'; btn.classList.remove('success'); }, 1500);
     } catch(e) {}
   }
-
   async function copyRoman() {
     const {r: romanText} = getTexts();
     if (!romanText) return;
@@ -723,13 +757,32 @@
     } catch(e) {}
   }
 
+  /* ── INTERSECTION OBSERVER: hide sticky output when keyboard scrolled away ── */
+  const stickyBlock = document.getElementById('stickyBlock');
+  const keyboardSection = document.getElementById('keyboardSection');
+  const visObserver = new IntersectionObserver(([entry]) => {
+    // when less than ~8% of keyboard section is visible, hide the sticky output
+    stickyBlock.style.opacity = entry.isIntersecting ? '1' : '0';
+    stickyBlock.style.pointerEvents = entry.isIntersecting ? 'auto' : 'none';
+    stickyBlock.style.transition = 'opacity 0.25s ease';
+  }, { threshold: 0, rootMargin: '-50px 0px -85% 0px' });
+  visObserver.observe(keyboardSection);
+
+  /* ── NAV ── */
   function toggleMenu() { const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
   function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
+
+  /* ── REVEAL ── */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => { if(entry.isIntersecting) { setTimeout(()=>entry.target.classList.add('visible'), i*80); observer.unobserve(entry.target); } });
   }, { threshold:0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── INIT ── */
+  render();
+  // auto-focus the typing surface on load (desktop); harmless on mobile
+  window.addEventListener('load', () => { try { outputEl.focus(); } catch(e){} });
 </script>
 </body>
 </html>
