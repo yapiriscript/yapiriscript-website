@@ -129,7 +129,9 @@
 
   /* ── KEYBOARD LAYOUT ── */
   .keyboard-wrap { padding:1.5rem 2rem 5rem; max-width:980px; margin:0 auto; }
-  .sticky-block { position:sticky; top:62px; z-index:50; max-width:980px; margin:0 auto; padding:0 2rem; }
+  .keyboard-section-inner { max-width:980px; margin:0 auto; }
+  /* desktop: hide space/delete/clear from controls — keyboard handles it */
+  @media(min-width:641px) { .ctrl-desktop-hide { display:none; } }
 
   /* OUTPUT PANEL */
   .output-panel {
@@ -225,9 +227,9 @@
   .key-qwerty { position:absolute; font-family:'DM Mono',monospace; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
   .key-qwerty.shifted { color:var(--terra-light); }
   /* key variants */
-  .key.loanword { border-color:rgba(201,146,42,0.3); background:rgba(201,146,42,0.04); }
-  .key.loanword::before { background:var(--gold); }
-  .key.loanword:hover { border-color:var(--gold); background:rgba(201,146,42,0.12); }
+  .key.loanword { border-color:rgba(196,180,154,0.12); background:rgba(255,255,255,0.04); }
+  .key.loanword::before { background:var(--terracotta); }
+  .key.loanword:hover { border-color:var(--terracotta); background:rgba(184,92,56,0.18); }
 
   /* ════════ DESKTOP: QWERTY VISUAL KEYBOARD ════════ */
   .kb-desktop { display:block; }
@@ -256,8 +258,7 @@
   .w-20 { flex-grow:2 !important; }
   .w-225 { flex-grow:2.25 !important; }
   .w-spacebar { flex-grow:7 !important; }
-  /* loanword tint inside board */
-  .kb-row .key.loanword .key-glyph { color:var(--gold-light); }
+  /* loanword — no color distinction */
   /* high-tone key */
   .kb-row .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
 
@@ -375,38 +376,9 @@
   <div class="page-hero-glyph">&#xF1CBA;&#xF1CB6;</div>
 </div>
 
-<!-- STICKY OUTPUT + CONTROLS -->
+<!-- OUTPUT + KEYBOARD -->
 <div id="keyboardSection">
-<div class="sticky-block" id="stickyBlock">
-  <div class="output-panel">
-    <div class="output-top">
-      <div class="output-label-row">
-        <span class="output-label">Yapiri Output</span>
-        <span class="session-counter" id="sessionCounter">Words: <span id="wordCount">0</span></span>
-      </div>
-      <div id="yapiri-output" contenteditable="true" spellcheck="false" autocapitalize="off" autocomplete="off" data-placeholder="Start typing — a, e, i, k, p…" aria-label="Yapiri text input" onpaste="return false"></div>
-      <div id="roman-output">romanization will appear here</div>
-      <div class="typing-hint">Type with your keyboard · <kbd>Shift</kbd> for aspirates (P&rarr;ph) · see reference below</div>
-    </div>
-    <div class="codepoint-bar">
-      <button class="cp-toggle" id="cpToggle" onclick="toggleCp()">
-        <span>Codepoints</span>
-        <span class="cp-toggle-arrow">&#9654;</span>
-      </button>
-      <div class="cp-body" id="cpBody">
-        <div id="inspector-output">type something above to inspect codepoints…</div>
-      </div>
-    </div>
-  </div>
-  <!-- CONTROLS -->
-  <div class="controls-bar">
-    <button class="ctrl-btn" onclick="insertSpace()">Space</button>
-    <button class="ctrl-btn danger" onclick="backspace()">&#9003; Delete</button>
-    <button class="ctrl-btn danger" onclick="clearAll()">Clear All</button>
-    <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
-    <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
-  </div>
-</div><!-- /sticky-block -->
+<div class="keyboard-section-inner" id="stickyBlock">
 
 <div class="keyboard-wrap">
   <!-- FONT NOTICE -->
@@ -422,6 +394,35 @@
   <div class="ref-banner reveal">
     <span class="ref-banner-icon">&#9000;</span>
     <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. Tapping a key also works.</span>
+  </div>
+
+  <!-- OUTPUT PANEL -->
+  <div class="output-panel reveal">
+    <div class="output-top">
+      <div class="output-label-row">
+        <span class="output-label">Yapiri Output</span>
+        <span class="session-counter" id="sessionCounter">Words: <span id="wordCount">0</span></span>
+      </div>
+      <div id="yapiri-output" contenteditable="true" spellcheck="false" autocapitalize="off" autocomplete="off" data-placeholder="Start typing — a, e, i, k, p…" aria-label="Yapiri text input" onpaste="return false"></div>
+      <div id="roman-output">Roman output will appear here</div>
+    </div>
+    <div class="codepoint-bar">
+      <button class="cp-toggle" id="cpToggle" onclick="toggleCp()">
+        <span>Codepoints</span>
+        <span class="cp-toggle-arrow">&#9654;</span>
+      </button>
+      <div class="cp-body" id="cpBody">
+        <div id="inspector-output">type something above to inspect codepoints…</div>
+      </div>
+    </div>
+  </div>
+  <!-- CONTROLS — desktop hides space/delete/clear/copy, mobile keeps all -->
+  <div class="controls-bar">
+    <button class="ctrl-btn ctrl-desktop-hide" onclick="insertSpace()">Space</button>
+    <button class="ctrl-btn danger ctrl-desktop-hide" onclick="backspace()">&#9003; Delete</button>
+    <button class="ctrl-btn danger ctrl-desktop-hide" onclick="clearAll()">Clear All</button>
+    <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
+    <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
   </div>
 
   <!-- ════ DESKTOP: QWERTY VISUAL KEYBOARD ════ -->
@@ -566,6 +567,7 @@
   </div>
 
 </div><!-- /keyboard-wrap -->
+</div><!-- /keyboard-section-inner -->
 </div><!-- /keyboardSection -->
 
 <!-- TIPS -->
@@ -705,7 +707,7 @@
     for (let i = 0; i < cursor; i++) charOffset += [...history[i].y].length;
     placeCaret(charOffset);
 
-    document.getElementById('roman-output').textContent = romanText || 'romanization will appear here';
+    document.getElementById('roman-output').textContent = romanText || 'Roman output will appear here';
     updateInspector(yapiriText);
     updateCounter(romanText);
 
@@ -850,16 +852,7 @@
     } catch(e) {}
   }
 
-  /* ── INTERSECTION OBSERVER: hide sticky output when keyboard scrolled away ── */
-  const stickyBlock = document.getElementById('stickyBlock');
-  const keyboardSection = document.getElementById('keyboardSection');
-  const visObserver = new IntersectionObserver(([entry]) => {
-    // when less than ~8% of keyboard section is visible, hide the sticky output
-    stickyBlock.style.opacity = entry.isIntersecting ? '1' : '0';
-    stickyBlock.style.pointerEvents = entry.isIntersecting ? 'auto' : 'none';
-    stickyBlock.style.transition = 'opacity 0.25s ease';
-  }, { threshold: 0, rootMargin: '-50px 0px -85% 0px' });
-  visObserver.observe(keyboardSection);
+
 
   /* ── NAV ── */
   function toggleMenu() { const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
