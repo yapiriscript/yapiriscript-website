@@ -699,32 +699,34 @@
   function render() {
     const {y: yapiriText, r: romanText} = getTexts();
 
-    // Rebuild contenteditable as a single text node so caret math is simple.
-    outputEl.textContent = yapiriText;
+    // Only rebuild DOM if text actually changed — avoids unnecessary node destruction
+    if (outputEl.textContent !== yapiriText) {
+      outputEl.textContent = yapiriText;
+    }
 
     // Map logical cursor (segment index) → DOM character offset.
     let charOffset = 0;
     for (let i = 0; i < cursor; i++) charOffset += [...history[i].y].length;
-    placeCaret(charOffset);
+
+    // Use rAF so caret is placed after browser commits the DOM update
+    requestAnimationFrame(() => placeCaret(charOffset));
 
     document.getElementById('roman-output').textContent = romanText || 'Roman output will appear here';
     updateInspector(yapiriText);
     updateCounter(romanText);
-
-    // keep caret in view inside the fixed-height box
     scrollCaretIntoView();
   }
 
   function placeCaret(charOffset) {
-    if (document.activeElement !== outputEl) return; // don't steal focus
+    // Always place caret — refocus if needed (e.g. after button tap)
+    outputEl.focus({ preventScroll: true });
     const node = outputEl.firstChild;
     const sel = window.getSelection();
     const range = document.createRange();
     if (!node) {
       range.setStart(outputEl, 0);
     } else {
-      const max = node.textContent.length;
-      range.setStart(node, Math.min(charOffset, max));
+      range.setStart(node, Math.min(charOffset, node.textContent.length));
     }
     range.collapse(true);
     sel.removeAllRanges();
