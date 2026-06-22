@@ -282,6 +282,34 @@
   .kb-footnote code { color:var(--gold-light); background:rgba(201,146,42,0.1); padding:0.05rem 0.35rem; border-radius:2px; font-size:0.95em; }
   .kb-footnote .fn-glyph { font-family:'Yapiri',serif; font-size:1.1rem; color:var(--parchment); vertical-align:-0.1em; }
 
+  /* COLLAPSIBLE PANELS */
+  .collapsible-group { margin-top:0.6rem; }
+  .collapsible-toggle {
+    width:100%; background:rgba(26,18,9,0.6); border:1px solid rgba(196,180,154,0.15);
+    color:var(--stone-light); padding:0.7rem 1rem;
+    font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em;
+    text-transform:uppercase; cursor:pointer; display:flex;
+    justify-content:space-between; align-items:center; transition:all 0.2s; text-align:left;
+  }
+  .collapsible-toggle:hover { border-color:rgba(201,146,42,0.3); color:var(--gold-light); }
+  .collapsible-toggle.open { border-color:rgba(201,146,42,0.3); color:var(--gold-light); border-bottom:none; }
+  .toggle-arrow { transition:transform 0.25s; font-size:0.65rem; }
+  .collapsible-toggle.open .toggle-arrow { transform:rotate(90deg); }
+  .collapsible-body {
+    max-height:0; overflow:hidden;
+    transition:max-height 0.3s ease, padding 0.3s ease;
+    background:rgba(26,18,9,0.4);
+    border:1px solid rgba(201,146,42,0.3); border-top:none;
+  }
+  .collapsible-body.open { max-height:160px; padding:1rem; }
+  .key-row { display:flex; gap:0.35rem; flex-wrap:wrap; }
+  .key.math-key { min-width:54px; background:rgba(201,146,42,0.05); border-color:rgba(201,146,42,0.2); }
+  .key.math-key:hover { border-color:var(--gold); background:rgba(201,146,42,0.14); }
+  .key.math-key::before { background:var(--gold); }
+  .key-glyph.math-sym { font-family:inherit; font-size:1.3rem; color:var(--gold-light); line-height:1; }
+  .key.solve-key { background:rgba(184,92,56,0.08); border-color:rgba(184,92,56,0.3); min-width:72px; }
+  .key.solve-key:hover { border-color:var(--terracotta); background:rgba(184,92,56,0.18); }
+
   /* TIPS */
   .tips-section { padding:4rem 2rem 5rem; max-width:980px; margin:0 auto; }
   .tips-heading { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:2rem; }
@@ -397,7 +425,7 @@
   <!-- REFERENCE BANNER -->
   <div class="ref-banner reveal">
     <span class="ref-banner-icon">&#9000;</span>
-    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. Tapping a key also works.</span>
+    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
   </div>
 
   <!-- OUTPUT PANEL -->
@@ -562,6 +590,25 @@
       <button class="key kb-key-wide is-active" onclick="insertEnter()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">&#8626;</span></button>
       <button class="key kb-key-wide is-active" onclick="backspace()"><span class="kb-key-label-only">&#9003;</span></button>
       <button class="key kb-key-wide is-active" onclick="clearAll()"><span class="kb-key-label-only" style="color:var(--terracotta);">clr</span></button>
+    </div>
+  </div>
+
+  <!-- COLLAPSIBLE: MATH OPERATORS -->
+  <div class="collapsible-group reveal">
+    <button class="collapsible-toggle" onclick="togglePanel('math',this)">
+      <span>Mathematical Operators</span>
+      <span class="toggle-arrow">&#9654;</span>
+    </button>
+    <div class="collapsible-body" id="panel-math">
+      <div class="key-row">
+        <button class="key math-key" onclick="insertAtCaret('+')"><span class="key-glyph math-sym">+</span><span class="key-label">add</span></button>
+        <button class="key math-key" onclick="insertAtCaret('−')"><span class="key-glyph math-sym">−</span><span class="key-label">sub</span></button>
+        <button class="key math-key" onclick="insertAtCaret('×')"><span class="key-glyph math-sym">×</span><span class="key-label">mul</span></button>
+        <button class="key math-key" onclick="insertAtCaret('÷')"><span class="key-glyph math-sym">÷</span><span class="key-label">div</span></button>
+        <button class="key math-key" onclick="insertAtCaret('=')"><span class="key-glyph math-sym">=</span><span class="key-label">eq</span></button>
+        <button class="key math-key" onclick="insertAtCaret('%')"><span class="key-glyph math-sym">%</span><span class="key-label">pct</span></button>
+        <button class="key math-key solve-key" onclick="calcResult()"><span class="key-glyph math-sym" style="font-size:0.75rem;letter-spacing:0.04em;">SOLVE</span><span class="key-label">auto</span></button>
+      </div>
     </div>
   </div>
 
@@ -794,6 +841,46 @@
     const isOpen = body.classList.contains('open');
     body.classList.toggle('open', !isOpen);
     btn.classList.toggle('open', !isOpen);
+  }
+
+  function togglePanel(id, btn) {
+    const body = document.getElementById('panel-' + id);
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+  }
+
+  /* ── MATH SOLVER ── */
+  const yapiriDigitMap = {'\u{F1CC0}':0,'\u{F1CC1}':1,'\u{F1CC2}':2,'\u{F1CC3}':3,'\u{F1CC4}':4,'\u{F1CC5}':5,'\u{F1CC6}':6,'\u{F1CC7}':7,'\u{F1CC8}':8,'\u{F1CC9}':9};
+  const digitToYapiri  = ['\u{F1CC0}','\u{F1CC1}','\u{F1CC2}','\u{F1CC3}','\u{F1CC4}','\u{F1CC5}','\u{F1CC6}','\u{F1CC7}','\u{F1CC8}','\u{F1CC9}'];
+
+  function numberToYapiri(n) {
+    const isNeg = n < 0;
+    const str = Number.isInteger(Math.abs(n)) ? String(Math.abs(n)) : Math.abs(n).toFixed(10).replace(/\.?0+$/,'');
+    let out = isNeg ? '−' : '';
+    for (const ch of str) out += ch === '.' ? '.' : digitToYapiri[parseInt(ch)];
+    return out;
+  }
+
+  function calcResult() {
+    const yapiriText = getYapiriText();
+    if (!yapiriText) return;
+    let expr = '';
+    for (const ch of yapiriText) {
+      if (ch in yapiriDigitMap) expr += yapiriDigitMap[ch];
+      else if (ch === '+') expr += '+';
+      else if (ch === '−' || ch === '-') expr += '-';
+      else if (ch === '×') expr += '*';
+      else if (ch === '÷') expr += '/';
+      else if (ch === '%') expr += '/100';
+      else if (ch === '.') expr += '.';
+    }
+    expr = expr.replace(/[\+\-\*\/\.]+$/, '');
+    let result;
+    try { result = Function('"use strict";return(' + expr + ')')(); } catch(e) { return; }
+    if (!isFinite(result)) return;
+    result = parseFloat(result.toPrecision(12));
+    insertAtCaret('=' + numberToYapiri(result));
   }
 
   /* ── COPY ── */
