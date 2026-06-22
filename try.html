@@ -405,7 +405,7 @@
   <h1 class="page-title">Type in <em>Yapiri</em></h1>
   <div class="gold-line"></div>
   <p class="page-subtitle">Type directly with your keyboard — each key maps to a Yapiri letter. The on-screen layout below is your reference map. Copy your text into any application that has the font installed.</p>
-  <div class="page-hero-glyph">Virtual Keyboard</div>
+  <div class="page-hero-glyph">&#xF1CBA;&#xF1CB6;</div>
 </div>
 
 <!-- OUTPUT + KEYBOARD -->
@@ -770,6 +770,10 @@
     document.getElementById('roman-output').textContent = romanText || 'Roman Output';
     updateInspector(yapiriText);
     updateCounter(romanText);
+    // auto-scroll both output areas to bottom so latest text is always visible
+    outputEl.scrollTop = outputEl.scrollHeight;
+    const romanEl = document.getElementById('roman-output');
+    romanEl.scrollTop = romanEl.scrollHeight;
   }
 
   /* word counter */
