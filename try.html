@@ -204,34 +204,50 @@
   .ctrl-btn.danger:hover { border-color:var(--terracotta); color:var(--terracotta); }
   .ctrl-btn.success { border-color:rgba(109,179,109,0.4); color:#6db36d; }
 
-  /* CONSENT BANNER */
+  /* CONSENT BANNER — fixed strip below nav */
   .consent-banner {
-    background:rgba(201,146,42,0.07);
-    border:1px solid rgba(201,146,42,0.35);
-    border-bottom:none;
-    padding:1rem 1.4rem 0.9rem;
-    display:flex; flex-direction:column; gap:0.8rem;
+    position:fixed; top:62px; left:0; right:0; z-index:90;
+    background:#0e0b07;
+    border-bottom:1px solid rgba(201,146,42,0.4);
+    box-shadow:0 4px 24px rgba(0,0,0,0.5);
+    transform:translateY(0);
+    transition:transform 0.3s ease, opacity 0.3s ease;
   }
-  .consent-banner.hidden { display:none; }
-  .consent-body { display:flex; flex-direction:column; gap:0.45rem; }
-  .consent-en {
-    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.04em;
-    color:var(--stone-light); line-height:1.75;
+  .consent-banner.hidden {
+    transform:translateY(-110%);
+    pointer-events:none;
+    opacity:0;
   }
-  .consent-kok {
+  .consent-inner {
+    max-width:980px; margin:0 auto;
+    padding:1rem 2rem;
+    display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;
+  }
+  .consent-title {
+    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--gold); white-space:nowrap; flex-shrink:0;
+  }
+  .consent-text {
     font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.03em;
-    color:var(--stone); line-height:1.75; font-style:italic;
-    border-top:1px solid rgba(196,180,154,0.1); padding-top:0.4rem;
+    color:var(--stone-light); line-height:1.7; flex:1; min-width:200px;
   }
+  .consent-actions { display:flex; gap:0.6rem; flex-shrink:0; }
   .consent-btn {
-    align-self:flex-end;
-    background:transparent; border:1px solid rgba(201,146,42,0.5);
-    color:var(--gold); padding:0.4rem 1.1rem;
-    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em;
-    text-transform:uppercase; cursor:pointer; transition:all 0.2s;
-    white-space:nowrap;
+    background:transparent; padding:0.38rem 1rem;
+    font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em;
+    text-transform:uppercase; cursor:pointer; transition:all 0.2s; white-space:nowrap;
+    border:1px solid rgba(196,180,154,0.25); color:var(--stone-light);
   }
-  .consent-btn:hover { background:rgba(201,146,42,0.12); border-color:var(--gold-light); color:var(--gold-light); }
+  .consent-btn:hover { border-color:var(--stone-light); color:var(--parchment); }
+  .consent-accept {
+    border-color:rgba(201,146,42,0.5) !important; color:var(--gold) !important;
+  }
+  .consent-accept:hover { background:rgba(201,146,42,0.12) !important; border-color:var(--gold-light) !important; color:var(--gold-light) !important; }
+  @media(max-width:640px) {
+    .consent-inner { padding:0.8rem 1rem; gap:0.8rem; }
+    .consent-title { display:none; }
+    .consent-text { font-size:0.58rem; }
+  }
 
   /* corpus controls */
   .ctrl-select {
@@ -430,6 +446,18 @@
 </head>
 <body>
 
+<!-- CONSENT BANNER — fixed below nav, triggered by Contribute button -->
+<div id="consentBanner" class="consent-banner hidden" role="dialog" aria-modal="true" aria-label="Corpus contribution consent">
+  <div class="consent-inner">
+    <p class="consent-title">Before you contribute</p>
+    <p class="consent-text">When you contribute, your typed Kokborok text is saved to the Yapiri corpus — a growing archive to help build language tools for future generations. We also note what device you used and what language your browser is set to. No names, no accounts, nothing personal.</p>
+    <div class="consent-actions">
+      <button class="consent-btn consent-decline" onclick="handleConsent(false)">No thanks</button>
+      <button class="consent-btn consent-accept" onclick="handleConsent(true)">I understand</button>
+    </div>
+  </div>
+</div>
+
 <nav>
   <a href="/" class="nav-logo">YAPIRI</a>
   <ul class="nav-links">
@@ -490,14 +518,6 @@
      so position:sticky has no overflow parent to break it.
 ════════════════════════════════════════════════ -->
 <div id="stickyOutputWrap">
-  <!-- CONSENT BANNER — shown once, dismissed to localStorage -->
-  <div id="consentBanner" class="consent-banner" role="alert" aria-live="polite">
-    <div class="consent-body">
-      <p class="consent-en">When you contribute, your typed Kokborok text is saved to the Yapiri corpus — a growing archive to help build language tools for future generations. We also note what device you used and what language your browser is set to. No names, no accounts, nothing personal.</p>
-      <p class="consent-kok">Nwng contribute khaina gosi khe, nwng type khaimani kokborok text Yapiri corpus ni bagwi narakjaknai — phainai generations ni bagwi language tools swnamthani samung nangnai. Nwng bo device use khaika tei bo language o nini browser set khaijak, chwng naio. Nini mung, nini accounts, tei sakbaithang ni kunu information collect khaijakya.</p>
-    </div>
-    <button class="consent-btn" onclick="dismissConsent()">I understand &nbsp;/&nbsp; Ang sio</button>
-  </div>
   <div class="output-panel reveal">
     <div class="output-top">
       <div class="output-label-row">
@@ -1046,19 +1066,26 @@
   }
 
   /* ── CONSENT BANNER ── */
-  (function() {
-    const banner = document.getElementById('consentBanner');
-    if (!banner) return;
-    // If already dismissed in a previous visit, hide immediately
-    if (localStorage.getItem('yapiri_corpus_consent') === '1') {
-      banner.classList.add('hidden');
-    }
-  })();
+  // Consent states: null = not decided, 'yes' = accepted, 'no' = declined
+  function getConsent() { return localStorage.getItem('yapiri_corpus_consent'); }
 
-  window.dismissConsent = function() {
-    const banner = document.getElementById('consentBanner');
-    if (banner) banner.classList.add('hidden');
-    localStorage.setItem('yapiri_corpus_consent', '1');
+  function showConsentBanner() {
+    document.getElementById('consentBanner').classList.remove('hidden');
+  }
+  function hideConsentBanner() {
+    document.getElementById('consentBanner').classList.add('hidden');
+  }
+
+  // Called by the two banner buttons
+  window.handleConsent = function(accepted) {
+    hideConsentBanner();
+    if (accepted) {
+      localStorage.setItem('yapiri_corpus_consent', 'yes');
+      // Proceed with submission now that consent is given
+      window.submitCorpus(true);
+    } else {
+      localStorage.setItem('yapiri_corpus_consent', 'no');
+    }
   };
 
   /* ── FIREBASE + CORPUS SUBMISSION ── */
@@ -1107,10 +1134,18 @@
     }
 
     // Expose submit function globally
-    window.submitCorpus = async function() {
+    window.submitCorpus = async function(consentJustGiven) {
       const yapiriText = getYapiriText().trim();
       if (!yapiriText) {
         showFeedback('Nothing to contribute — type something first.', 'err');
+        return;
+      }
+
+      // Check consent — show banner if not yet decided
+      const consent = getConsent();
+      if (!consent) { showConsentBanner(); return; }
+      if (consent === 'no') {
+        showFeedback('Contribution is off. Clear browser data to reset.', 'err');
         return;
       }
 
