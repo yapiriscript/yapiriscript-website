@@ -35,6 +35,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Firebase — loaded eagerly so corpus submission is instant -->
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1060,7 +1063,6 @@
 
   /* ── FIREBASE + CORPUS SUBMISSION ── */
   (function() {
-    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyDdj5rM3BDDzpDop_UKZgEMMYjgjSbjluA",
       authDomain: "yapiriscript-df55b.firebaseapp.com",
@@ -1070,20 +1072,10 @@
       appId: "1:399359153590:web:7af1ee83347138028a5d17"
     };
 
-    // Lazy-load Firebase SDKs from CDN then initialise
-    function loadScript(src) {
-      return new Promise((res, rej) => {
-        const s = document.createElement('script');
-        s.src = src; s.onload = res; s.onerror = rej;
-        document.head.appendChild(s);
-      });
-    }
-
+    // Firebase scripts are loaded via defer in <head> — init once DOM is ready
     let db = null;
-    async function getDb() {
+    function getDb() {
       if (db) return db;
-      await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
-      await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js');
       if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
       db = firebase.firestore();
       return db;
@@ -1146,7 +1138,7 @@
       };
 
       try {
-        const firestore = await getDb();
+        const firestore = getDb();
         await firestore.collection('corpus_contributions').add(doc);
         showFeedback('Contributed to the Kokborok corpus — thank you.', 'ok');
         // Reset domain dropdown but leave text untouched
