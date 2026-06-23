@@ -131,7 +131,8 @@
   #stickyOutputWrap {
     max-width:980px;
     margin:0 auto;
-    transition: opacity 0.25s ease, pointer-events 0s;
+    padding:0 2rem;
+    transition: opacity 0.25s ease;
   }
   #stickyOutputWrap.output-hidden {
     opacity: 0;
@@ -329,6 +330,7 @@
       position:sticky;
       top:62px;
       z-index:50;
+      padding:0;
     }
 
     /* tighter padding on mobile */
@@ -590,10 +592,7 @@
       <button class="key" onclick="typeChar('\u{F1CCE}','&quot;',this)"><span class="key-qwerty shifted">"</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
       <button class="key kb-key-wide is-active" onclick="backspace()"><span class="kb-key-label-only">&#9003;</span></button>
 
-      <button class="key kb-key-wide is-active span3" onclick="insertSpace()"><span class="kb-key-label-only">space</span></button>
-      <button class="key kb-key-wide is-active" onclick="insertEnter()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">&#8626;</span></button>
-      <button class="key kb-key-wide is-active" onclick="backspace()"><span class="kb-key-label-only">&#9003;</span></button>
-      <button class="key kb-key-wide is-active" onclick="clearAll()"><span class="kb-key-label-only" style="color:var(--terracotta);">clr</span></button>
+
     </div>
   </div>
 
@@ -944,14 +943,19 @@
   }, { threshold:0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ── HIDE STICKY OUTPUT when tips section scrolls into view ── */
+  /* ── HIDE STICKY OUTPUT once the keyboard section has fully scrolled past ──
+     We observe the kb-footnote (last element inside keyboardSection).
+     When it leaves the viewport upward, hide the output.
+     When it re-enters, show it again. */
   const stickyWrap = document.getElementById('stickyOutputWrap');
-  const tipsSection = document.querySelector('.tips-section');
-  if (stickyWrap && tipsSection) {
-    const tipsObserver = new IntersectionObserver(([entry]) => {
-      stickyWrap.classList.toggle('output-hidden', entry.isIntersecting);
+  const kbEnd = document.querySelector('.kb-footnote');
+  if (stickyWrap && kbEnd) {
+    const hideObserver = new IntersectionObserver(([entry]) => {
+      /* isIntersecting=false AND boundingClientRect.bottom<0 means it scrolled above */
+      const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+      stickyWrap.classList.toggle('output-hidden', scrolledPast);
     }, { threshold: 0 });
-    tipsObserver.observe(tipsSection);
+    hideObserver.observe(kbEnd);
   }
 
   /* ── INIT ── */
