@@ -142,14 +142,33 @@
     pointer-events: none;
   }
 
-  /* INFO BANNERS — same max-width and padding as the output/keyboard panels */
+  /* INFO BOX — single unified panel above the output */
   .info-banners {
     max-width:980px;
     margin:0 auto;
-    padding:1.5rem 2rem 0;
+    padding:1.5rem 2rem 1.2rem;
   }
-  .info-banners .font-notice { margin-bottom:1rem; }
-  .info-banners .ref-banner  { margin-bottom:0; }
+  .info-box {
+    border:1px solid rgba(196,180,154,0.15);
+    background:rgba(255,255,255,0.02);
+    padding:0.9rem 1.2rem;
+  }
+  .info-row {
+    display:flex; align-items:flex-start; gap:0.9rem;
+  }
+  .info-icon {
+    font-size:0.9rem; flex-shrink:0; color:var(--stone);
+    margin-top:0.1rem; width:1rem; text-align:center;
+  }
+  .info-text {
+    font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.04em;
+    color:var(--stone); line-height:1.75;
+  }
+  .info-text strong { color:var(--stone-light); font-weight:400; }
+  .info-text a { color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,146,42,0.3); }
+  .info-divider {
+    height:1px; background:rgba(196,180,154,0.08); margin:0.65rem 0;
+  }
 
   /* OUTPUT PANEL */
   .output-panel {
@@ -204,49 +223,60 @@
   .ctrl-btn.danger:hover { border-color:var(--terracotta); color:var(--terracotta); }
   .ctrl-btn.success { border-color:rgba(109,179,109,0.4); color:#6db36d; }
 
-  /* CONSENT BANNER — fixed strip below nav */
-  .consent-banner {
-    position:fixed; top:62px; left:0; right:0; z-index:90;
+
+
+  /* CONTRIBUTE BUTTON WRAPPER — positions the tooltip */
+  .corpus-btn-wrap { position:relative; margin-left:auto; }
+
+  /* CONSENT TOOLTIP */
+  .consent-tooltip {
+    display:none;
+    position:absolute; bottom:calc(100% + 10px); right:0;
+    width:320px; z-index:200;
     background:#0e0b07;
-    border-bottom:1px solid rgba(201,146,42,0.4);
-    box-shadow:0 4px 24px rgba(0,0,0,0.5);
-    transform:translateY(0);
-    transition:transform 0.3s ease, opacity 0.3s ease;
+    border:1px solid rgba(201,146,42,0.45);
+    box-shadow:0 8px 32px rgba(0,0,0,0.7);
+    padding:1.1rem 1.2rem 0.9rem;
   }
-  .consent-banner.hidden {
-    transform:translateY(-110%);
-    pointer-events:none;
-    opacity:0;
+  .consent-tooltip::after {
+    content:''; position:absolute; bottom:-7px; right:18px;
+    width:12px; height:12px;
+    background:#0e0b07;
+    border-right:1px solid rgba(201,146,42,0.45);
+    border-bottom:1px solid rgba(201,146,42,0.45);
+    transform:rotate(45deg);
   }
-  .consent-inner {
-    max-width:980px; margin:0 auto;
-    padding:1rem 2rem;
-    display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;
+  .consent-tooltip.visible { display:block; }
+  .ct-title {
+    font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem;
   }
-  .consent-title {
-    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em;
-    text-transform:uppercase; color:var(--gold); white-space:nowrap; flex-shrink:0;
+  .ct-body {
+    font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.03em;
+    color:var(--stone-light); line-height:1.75; margin-bottom:0.9rem;
   }
-  .consent-text {
-    font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.03em;
-    color:var(--stone-light); line-height:1.7; flex:1; min-width:200px;
-  }
-  .consent-actions { display:flex; gap:0.6rem; flex-shrink:0; }
-  .consent-btn {
-    background:transparent; padding:0.38rem 1rem;
-    font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em;
+  .ct-body strong { color:var(--parchment); font-weight:400; }
+  .ct-actions { display:flex; gap:0.5rem; justify-content:flex-end; }
+  .ct-btn {
+    background:transparent; padding:0.35rem 0.85rem;
+    font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.08em;
     text-transform:uppercase; cursor:pointer; transition:all 0.2s; white-space:nowrap;
-    border:1px solid rgba(196,180,154,0.25); color:var(--stone-light);
+    border:1px solid rgba(196,180,154,0.2); color:var(--stone-light);
   }
-  .consent-btn:hover { border-color:var(--stone-light); color:var(--parchment); }
-  .consent-accept {
-    border-color:rgba(201,146,42,0.5) !important; color:var(--gold) !important;
+  .ct-btn:hover { border-color:var(--stone-light); color:var(--parchment); }
+  .ct-accept {
+    border-color:rgba(201,146,42,0.45) !important; color:var(--gold) !important;
   }
-  .consent-accept:hover { background:rgba(201,146,42,0.12) !important; border-color:var(--gold-light) !important; color:var(--gold-light) !important; }
+  .ct-accept:hover { background:rgba(201,146,42,0.1) !important; color:var(--gold-light) !important; }
+
+  /* On mobile: tooltip opens below the button instead, full width */
   @media(max-width:640px) {
-    .consent-inner { padding:0.8rem 1rem; gap:0.8rem; }
-    .consent-title { display:none; }
-    .consent-text { font-size:0.58rem; }
+    .corpus-btn-wrap { margin-left:0; width:100%; }
+    .ctrl-btn.corpus-btn { width:100%; justify-content:center; }
+    .consent-tooltip {
+      bottom:auto; top:calc(100% + 8px); right:0; left:0; width:100%;
+    }
+    .consent-tooltip::after { display:none; }
   }
 
   /* corpus controls */
@@ -446,18 +476,6 @@
 </head>
 <body>
 
-<!-- CONSENT BANNER — fixed below nav, triggered by Contribute button -->
-<div id="consentBanner" class="consent-banner hidden" role="dialog" aria-modal="true" aria-label="Corpus contribution consent">
-  <div class="consent-inner">
-    <p class="consent-title">Before you contribute</p>
-    <p class="consent-text">When you contribute, your typed Kokborok text is saved to the Yapiri corpus — a growing archive to help build language tools for future generations. We also note what device you used and what language your browser is set to. No names, no accounts, nothing personal.</p>
-    <div class="consent-actions">
-      <button class="consent-btn consent-decline" onclick="handleConsent(false)">No thanks</button>
-      <button class="consent-btn consent-accept" onclick="handleConsent(true)">I understand</button>
-    </div>
-  </div>
-</div>
-
 <nav>
   <a href="/" class="nav-logo">YAPIRI</a>
   <ul class="nav-links">
@@ -498,17 +516,22 @@
 <!-- ══════════════════════════════════════════════
      INFO BANNERS — above the output, same width/padding as output panel
 ════════════════════════════════════════════════ -->
-<div class="info-banners">
-  <div class="font-notice reveal">
-    <span style="font-size:1.1rem;flex-shrink:0;">&#11015;</span>
-    <span class="font-notice-text">
-      The Yapiri font must be installed for glyphs to render correctly outside this browser.
-      <a href="download.html">Download the font here</a> before copying text into other applications.
-    </span>
-  </div>
-  <div class="ref-banner reveal">
-    <span class="ref-banner-icon">&#9000;</span>
-    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
+<div class="info-banners reveal">
+  <div class="info-box">
+    <div class="info-row">
+      <span class="info-icon">&#11015;</span>
+      <span class="info-text"><strong>Font</strong> — The Yapiri font must be installed for glyphs to render correctly outside this browser. <a href="download.html">Download it here</a>.</span>
+    </div>
+    <div class="info-divider"></div>
+    <div class="info-row">
+      <span class="info-icon">&#9000;</span>
+      <span class="info-text"><strong>Keys</strong> — Each key on this page produces the Yapiri letter shown. The physical key label sits top-left on each cell. Tapping works too.</span>
+    </div>
+    <div class="info-divider"></div>
+    <div class="info-row">
+      <span class="info-icon">&#8593;</span>
+      <span class="info-text"><strong>Corpus</strong> — The Contribute button lets you anonymously donate typed Kokborok text to the Yapiri corpus. No personal data collected.</span>
+    </div>
   </div>
 </div>
 
@@ -560,7 +583,22 @@
       <option value="story">Story</option>
       <option value="other">Other</option>
     </select>
-    <button class="ctrl-btn corpus-btn" onclick="submitCorpus()" id="submitBtn">Contribute &#8593;</button>
+    <div class="corpus-btn-wrap" id="corpusBtnWrap">
+      <button class="ctrl-btn corpus-btn" id="submitBtn"
+        onmouseenter="showTooltip()"
+        onmouseleave="scheduleHideTooltip()"
+        onclick="handleContributeClick()">Contribute &#8593;</button>
+      <div class="consent-tooltip" id="consentTooltip"
+        onmouseenter="cancelHideTooltip()"
+        onmouseleave="scheduleHideTooltip()">
+        <p class="ct-title">Before you contribute</p>
+        <p class="ct-body">When you click Contribute, only the Kokborok text you have typed is saved to the Yapiri corpus — an open archive for language research and technology development. We also record your device type and browser language to help us understand how the corpus is being built. <strong>We do not collect your name, email, account information, or any data that could identify you personally.</strong> Your contribution is entirely anonymous.</p>
+        <div class="ct-actions">
+          <button class="ct-btn ct-decline" onclick="handleConsent(false)">No thanks</button>
+          <button class="ct-btn ct-accept" onclick="handleConsent(true)">I understand — contribute</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="corpusFeedback" class="corpus-feedback" aria-live="polite"></div>
 </div><!-- /stickyOutputWrap -->
@@ -1065,28 +1103,72 @@
     hideObserver.observe(kbEnd);
   }
 
-  /* ── CONSENT BANNER ── */
-  // Consent states: null = not decided, 'yes' = accepted, 'no' = declined
+  /* ── CONSENT TOOLTIP ── */
+  // Desktop: 'yes'/'no' stored in localStorage (permanent)
+  // Mobile:  'yes' stored in localStorage, 'no' stored in sessionStorage (session only)
   function getConsent() { return localStorage.getItem('yapiri_corpus_consent'); }
 
-  function showConsentBanner() {
-    document.getElementById('consentBanner').classList.remove('hidden');
-  }
-  function hideConsentBanner() {
-    document.getElementById('consentBanner').classList.add('hidden');
-  }
+  let tooltipHideTimer = null;
+  const tooltip = document.getElementById('consentTooltip');
 
-  // Called by the two banner buttons
+  window.showTooltip = function() {
+    // Only show tooltip if consent not yet given
+    if (getConsent() === 'yes') return;
+    cancelHideTooltip();
+    if (tooltip) tooltip.classList.add('visible');
+  };
+  window.scheduleHideTooltip = function() {
+    tooltipHideTimer = setTimeout(() => {
+      if (tooltip) tooltip.classList.remove('visible');
+    }, 300);
+  };
+  window.cancelHideTooltip = function() {
+    if (tooltipHideTimer) { clearTimeout(tooltipHideTimer); tooltipHideTimer = null; }
+  };
+
+  // Mobile: first tap shows tooltip if no consent yet
+  window.handleContributeClick = function() {
+    const consent = getConsent();
+    if (!consent) {
+      // No consent yet — show tooltip instead of submitting
+      if (tooltip) tooltip.classList.toggle('visible');
+      return;
+    }
+    if (consent === 'no') {
+      // Desktop permanent no — check sessionStorage for mobile session-no
+      showFeedback('Contribution declined. Reload the page to reconsider.', 'err');
+      return;
+    }
+    // Consent given — submit
+    window.submitCorpus();
+  };
+
+  // Called by the tooltip buttons
   window.handleConsent = function(accepted) {
-    hideConsentBanner();
+    if (tooltip) tooltip.classList.remove('visible');
     if (accepted) {
       localStorage.setItem('yapiri_corpus_consent', 'yes');
-      // Proceed with submission now that consent is given
-      window.submitCorpus(true);
+      window.submitCorpus();
     } else {
-      localStorage.setItem('yapiri_corpus_consent', 'no');
+      // Desktop: permanent. Mobile: session only.
+      if (isMobile) {
+        sessionStorage.setItem('yapiri_corpus_consent_session', 'no');
+      } else {
+        localStorage.setItem('yapiri_corpus_consent', 'no');
+      }
+      showFeedback('No problem — the keyboard is still fully yours to use.', 'ok');
     }
   };
+
+  // Also expose showFeedback globally so handleConsent can use it
+  // (it's defined inside the Firebase IIFE — we'll reference it via window)
+  function showFeedback(msg, type) {
+    const el = document.getElementById('corpusFeedback');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'corpus-feedback ' + type;
+    if (type === 'ok') setTimeout(() => { el.textContent = ''; el.className = 'corpus-feedback'; }, 4000);
+  }
 
   /* ── FIREBASE + CORPUS SUBMISSION ── */
   (function() {
@@ -1125,14 +1207,6 @@
       return 'desktop';
     }
 
-    // Feedback helper
-    function showFeedback(msg, type) {
-      const el = document.getElementById('corpusFeedback');
-      el.textContent = msg;
-      el.className = 'corpus-feedback ' + type;
-      if (type === 'ok') setTimeout(() => { el.textContent = ''; el.className = 'corpus-feedback'; }, 4000);
-    }
-
     // Expose submit function globally
     window.submitCorpus = async function(consentJustGiven) {
       const yapiriText = getYapiriText().trim();
@@ -1141,11 +1215,15 @@
         return;
       }
 
-      // Check consent — show banner if not yet decided
+      // Check consent
       const consent = getConsent();
-      if (!consent) { showConsentBanner(); return; }
+      const sessionNo = sessionStorage.getItem('yapiri_corpus_consent_session') === 'no';
+      if (!consent || sessionNo) {
+        if (tooltip) tooltip.classList.add('visible');
+        return;
+      }
       if (consent === 'no') {
-        showFeedback('Contribution is off. Clear browser data to reset.', 'err');
+        showFeedback('Contribution declined. Reload the page to reconsider.', 'err');
         return;
       }
 
