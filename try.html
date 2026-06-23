@@ -10,7 +10,6 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- PRIMARY SEO -->
 <title>Yapiri Keyboard — Type Kokborok Script Online (Free)</title>
 <meta name="title" content="Yapiri Keyboard — Type Kokborok Script Online (Free)">
 <meta name="description" content="Type in the Yapiri script online with a free interactive Kokborok keyboard. Compose, preview, and copy Kokborok text in its modern phonemic alphabet — no download needed.">
@@ -18,7 +17,6 @@
 <meta name="author" content="Animesh Debbarma">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://yapiriscript.com/try.html">
-<!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Yapiri Script">
 <meta property="og:url" content="https://yapiriscript.com/try.html">
@@ -27,19 +25,16 @@
 <meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
 <meta property="og:image:alt" content="Yapiri online keyboard for typing the Kokborok script">
 <meta property="og:locale" content="en_US">
-<!-- TWITTER / X -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://yapiriscript.com/try.html">
 <meta property="twitter:title" content="Type in Yapiri — Free Online Kokborok Keyboard">
 <meta property="twitter:description" content="Type Kokborok in the Yapiri script directly in your browser. Free, interactive, no download.">
 <meta property="twitter:image" content="https://yapiriscript.com/assets/images/twitter-image.png">
 <meta property="twitter:image:alt" content="Yapiri online keyboard for typing the Kokborok script">
-<!-- ICONS & FONTS -->
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.ico?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- STRUCTURED DATA -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -130,7 +125,6 @@
   /* ── KEYBOARD LAYOUT ── */
   .keyboard-wrap { padding:1.5rem 2rem 5rem; max-width:980px; margin:0 auto; }
   .keyboard-section-inner { max-width:980px; margin:0 auto; }
-  /* desktop: hide space/delete/clear from controls — keyboard handles it */
   @media(min-width:641px) { .ctrl-desktop-hide { display:none; } }
 
   /* OUTPUT PANEL */
@@ -146,7 +140,6 @@
   .session-counter { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); opacity:0.85; }
   .session-counter span { color:var(--gold-light); }
 
-  /* contenteditable typing surface — FIXED HEIGHT + INTERNAL SCROLL */
   #yapiri-output {
     font-size:1.6rem; font-family:'Yapiri',serif; color:var(--parchment);
     letter-spacing:0.1em; line-height:1.5;
@@ -167,7 +160,6 @@
   #roman-output::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); cursor:pointer; }
   #roman-output::-webkit-scrollbar-track { background:transparent; cursor:pointer; }
 
-  /* TYPING HINT */
   .typing-hint { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.1em; color:var(--stone); margin-top:0.5rem; opacity:0.7; }
   .typing-hint kbd { background:rgba(201,146,42,0.1); border:1px solid rgba(201,146,42,0.25); border-radius:2px; padding:0.05rem 0.35rem; color:var(--gold-light); font-size:0.9em; }
 
@@ -227,10 +219,8 @@
   .key:active, .key.keypress-flash { transform:translateY(0); background:rgba(201,146,42,0.32); border-color:var(--gold); }
   .key-glyph { font-family:'Yapiri',serif; line-height:1; }
   .key-label { font-family:'DM Mono',monospace; letter-spacing:0.04em; color:var(--stone-light); text-transform:uppercase; }
-  /* physical-key badge (corner) */
   .key-qwerty { position:absolute; font-family:'DM Mono',monospace; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
   .key-qwerty.shifted { color:var(--terra-light); }
-  /* key variants */
   .key.loanword { border-color:rgba(196,180,154,0.12); background:rgba(255,255,255,0.04); }
   .key.loanword::before { background:var(--terracotta); }
   .key.loanword:hover { border-color:var(--terracotta); background:rgba(184,92,56,0.18); }
@@ -242,28 +232,23 @@
     padding:0.9rem; display:flex; flex-direction:column; gap:0.45rem;
   }
   .kb-row { display:flex; gap:0.45rem; justify-content:flex-start; }
-  /* base key in QWERTY board */
   .kb-row .key {
     flex:1 1 0; min-width:0; height:64px; padding:0.3rem 0.2rem;
   }
   .kb-row .key .key-qwerty { top:4px; left:6px; font-size:0.6rem; }
   .kb-row .key .key-glyph { font-size:1.6rem; }
   .kb-row .key .key-label { font-size:0.6rem; margin-top:0.05rem; }
-  /* special / wide non-typing keys */
   .kb-key-wide { background:rgba(139,115,85,0.08) !important; border-color:rgba(196,180,154,0.15) !important; cursor:default; }
   .kb-key-wide:hover { transform:none !important; box-shadow:none !important; background:rgba(139,115,85,0.08) !important; border-color:rgba(196,180,154,0.15) !important; }
   .kb-key-wide::before { display:none; }
   .kb-key-label-only { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; color:var(--stone); text-transform:uppercase; }
   .kb-key-wide.is-active { cursor:pointer; }
   .kb-key-wide.is-active:hover { background:rgba(184,92,56,0.16) !important; border-color:var(--terracotta) !important; }
-  /* width multipliers */
   .w-15 { flex-grow:1.5 !important; }
   .w-18 { flex-grow:1.8 !important; }
   .w-20 { flex-grow:2 !important; }
   .w-225 { flex-grow:2.25 !important; }
   .w-spacebar { flex-grow:7 !important; }
-  /* loanword — no color distinction */
-  /* high-tone key */
   .kb-row .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
 
   /* ════════ MOBILE: TAP GRID ════════ */
@@ -277,7 +262,7 @@
   .kb-grid .key.wide-tap { grid-column:span 2; aspect-ratio:auto; min-height:54px; }
   .kb-grid .key.span3 { grid-column:span 3; aspect-ratio:auto; min-height:54px; }
 
-  /* FOOTNOTE under keyboard */
+  /* FOOTNOTE */
   .kb-footnote { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.04em; color:var(--stone); line-height:1.9; margin-top:1rem; padding:0.7rem 1rem; background:rgba(255,255,255,0.02); border-left:2px solid rgba(201,146,42,0.25); }
   .kb-footnote code { color:var(--gold-light); background:rgba(201,146,42,0.1); padding:0.05rem 0.35rem; border-radius:2px; font-size:0.95em; }
   .kb-footnote .fn-glyph { font-family:'Yapiri',serif; font-size:1.1rem; color:var(--parchment); vertical-align:-0.1em; }
@@ -349,7 +334,6 @@
     .hamburger { display:flex; }
     .page-hero-glyph { display:none; }
   }
-  /* QWERTY board shrinks down to tablet, then hands off to tap grid on phones */
   @media(max-width:820px) {
     .kb-row .key { height:54px; }
     .kb-row .key .key-glyph { font-size:1.35rem; }
@@ -362,14 +346,29 @@
     .kb-desktop { display:none; }
     .kb-mobile { display:block; }
     #yapiri-output { font-size:1.4rem; height:80px; }
-    /* sticky output on mobile — stays visible while tapping the grid */
-    .output-panel,
-    .controls-bar { position:sticky; top:62px; z-index:50; }
-    .controls-bar { top:auto; position:sticky; }
-    /* collapse output padding on mobile to save space */
+
+    /* ── STICKY OUTPUT STACK ──
+       output-panel sticks just below the fixed nav (62px).
+       controls-bar sticks immediately below the output panel.
+       Nav = 62px
+       output-top padding-top = 0.8rem ≈ 13px
+       output-label-row + margin ≈ 28px
+       #yapiri-output height = 80px
+       #roman-output margin-top + padding-top + height = 0.4rem+0.4rem+36px ≈ 45px
+       codepoint-bar cp-toggle (hidden on mobile by default) ≈ 0px
+       output-top padding-bottom = 0.6rem ≈ 10px
+       border-bottom of output-panel = 0 (border-bottom:none)
+       Total output-panel ≈ 62 + 13 + 28 + 80 + 45 + 10 = 238px
+       controls-bar height ≈ ~44px
+    ── */
+    .output-panel { position:sticky; top:62px; z-index:50; }
+    .controls-bar  { position:sticky; top:238px; z-index:49; }
+
+    /* tighten padding on mobile */
     .output-top { padding:0.8rem 1rem 0.6rem; }
     .output-label-row { margin-bottom:0.4rem; }
     #roman-output { margin-top:0.4rem; padding-top:0.4rem; height:36px; }
+
     /* transition for hide/show */
     #stickyOutputWrap { transition:opacity 0.2s ease; }
     #stickyOutputWrap.hidden { opacity:0; pointer-events:none; }
@@ -439,7 +438,7 @@
     <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
   </div>
 
-  <!-- OUTPUT PANEL -->
+  <!-- OUTPUT PANEL + CONTROLS wrapped for sticky behaviour -->
   <div id="stickyOutputWrap">
   <div class="output-panel reveal">
     <div class="output-top">
@@ -680,60 +679,37 @@
 </footer>
 
 <script>
-  /* ============================================================
-     KEY MAP — desktop physical-keyboard rules from
-     kokborok_yapiri.kmn (v2.0, UCSUR Plane 15).
-     Keyed by the character the keydown event produces (e.key),
-     so it works identically for desktop hardware keyboards and
-     mobile software keyboards. Shift is encoded in the key char.
-     ============================================================ */
   const KEYMAP = {
-    // vowels
     'a':{y:'\u{F1CA0}',r:'a'}, 'e':{y:'\u{F1CA1}',r:'e'}, 'i':{y:'\u{F1CA2}',r:'i'},
     'u':{y:'\u{F1CA3}',r:'u'}, 'o':{y:'\u{F1CA4}',r:'o'}, 'q':{y:'\u{F1CA5}',r:'\u0259'},
-    // plain stops
     'p':{y:'\u{F1CA7}',r:'p'}, 't':{y:'\u{F1CA8}',r:'t'}, 'k':{y:'\u{F1CA9}',r:'k'},
     'b':{y:'\u{F1CAA}',r:'b'}, 'd':{y:'\u{F1CAB}',r:'d'}, 'g':{y:'\u{F1CAC}',r:'g'},
-    // aspirates (Shift)
     'P':{y:'\u{F1CAD}',r:'ph'}, 'T':{y:'\u{F1CAE}',r:'th'}, 'K':{y:'\u{F1CAF}',r:'kh'},
-    // affricates
     'c':{y:'\u{F1CB0}',r:'ch'}, 'j':{y:'\u{F1CB1}',r:'j'},
-    // nasals
     'm':{y:'\u{F1CB2}',r:'m'}, 'n':{y:'\u{F1CB3}',r:'n'}, 'N':{y:'\u{F1CB4}',r:"n'"},
     'f':{y:'\u{F1CB5}',r:'ng'},
-    // fricatives / liquids / glides
     's':{y:'\u{F1CB6}',r:'s'}, 'r':{y:'\u{F1CB7}',r:'r'}, 'l':{y:'\u{F1CB8}',r:'l'},
     'h':{y:'\u{F1CB9}',r:'h'}, 'y':{y:'\u{F1CBA}',r:'y'}, 'w':{y:'\u{F1CBB}',r:'w'},
     'v':{y:'\u{F1CBC}',r:'v'}, 'z':{y:'\u{F1CBD}',r:'z'},
-    // numerals
     '0':{y:'\u{F1CC0}',r:'0'}, '1':{y:'\u{F1CC1}',r:'1'}, '2':{y:'\u{F1CC2}',r:'2'},
     '3':{y:'\u{F1CC3}',r:'3'}, '4':{y:'\u{F1CC4}',r:'4'}, '5':{y:'\u{F1CC5}',r:'5'},
     '6':{y:'\u{F1CC6}',r:'6'}, '7':{y:'\u{F1CC7}',r:'7'}, '8':{y:'\u{F1CC8}',r:'8'},
     '9':{y:'\u{F1CC9}',r:'9'},
-    // punctuation
     ',':{y:'\u{F1CCB}',r:','}, '.':{y:'\u{F1CCC}',r:'.'},
     '!':{y:'\u{F1CCD}',r:'!'}, '"':{y:'\u{F1CCE}',r:'"'}, '?':{y:'\u{F1CCF}',r:'?'},
-    // high tone (apostrophe). Roman side carries combining acute for display.
     "'":{y:'\u{F1CD1}',r:'\u0301'}
   };
 
   const outputEl = document.getElementById('yapiri-output');
 
-  /* ── ROMAN LOOKUP: Yapiri codepoint → roman string ── */
   const ROMAN = {};
   for (const [k, v] of Object.entries(KEYMAP)) ROMAN[v.y] = v.r;
-  // high tone combining acute has no visible roman equivalent in running text
   ROMAN['\u{F1CD1}'] = '\u0301';
 
-  /* ── INSERT at current caret position via execCommand (browser owns caret) ── */
   function insertAtCaret(text) {
     outputEl.focus({ preventScroll: true });
-    // execCommand insertText is deprecated but universally supported and
-    // correctly handles caret position, undo stack, and selections.
-    // It never rebuilds the DOM so the caret never jumps.
     const inserted = document.execCommand('insertText', false, text);
     if (!inserted) {
-      // fallback for browsers that drop execCommand support
       const sel = window.getSelection();
       if (!sel.rangeCount) return;
       const range = sel.getRangeAt(0);
@@ -770,60 +746,46 @@
     syncSidebar();
   }
 
-  /* ── DERIVE roman from current DOM content ── */
   function getYapiriText() { return outputEl.innerText || ''; }
   function getRomanText(yapiriText) {
     return [...yapiriText].map(ch => ROMAN[ch] || ch).join('');
   }
 
-  /* ── SYNC sidebar: roman output, inspector, counter ── */
   function syncSidebar() {
     const yapiriText = getYapiriText();
     const romanText  = getRomanText(yapiriText);
     document.getElementById('roman-output').textContent = romanText || 'Roman Output';
     updateInspector(yapiriText);
     updateCounter(romanText);
-    // auto-scroll both output areas to bottom so latest text is always visible
     outputEl.scrollTop = outputEl.scrollHeight;
     const romanEl = document.getElementById('roman-output');
     romanEl.scrollTop = romanEl.scrollHeight;
   }
 
-  /* word counter */
   function updateCounter(romanText) {
     const words = (romanText || '').trim().split(/\s+/).filter(Boolean).length;
     document.getElementById('wordCount').textContent = words;
   }
 
-  /* ── PHYSICAL KEYBOARD ENGINE ── */
   outputEl.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey || e.altKey) return; // pass through shortcuts
-
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
     const k = e.key;
-
-    // Navigation — let browser handle natively, no interception needed
     if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(k)) return;
-
     if (k === 'Backspace') { e.preventDefault(); backspace(); return; }
     if (k === 'Delete')    { e.preventDefault(); forwardDelete(); return; }
     if (k === ' ')         { e.preventDefault(); insertAtCaret(' '); return; }
     if (k === 'Enter')     { e.preventDefault(); insertAtCaret('\n'); return; }
-
     if (k.length === 1 && KEYMAP[k]) {
       e.preventDefault();
       insertAtCaret(KEYMAP[k].y);
       flashRefKey(k);
       return;
     }
-
-    // swallow unmapped printable keys
     if (k.length === 1) e.preventDefault();
   });
 
-  // sync sidebar on any content change (covers paste block, programmatic edits)
   outputEl.addEventListener('input', syncSidebar);
 
-  /* ── KEY FLASH FEEDBACK ── */
   function flashKey(btn) {
     btn.classList.add('keypress-flash');
     setTimeout(() => btn.classList.remove('keypress-flash'), 130);
@@ -834,7 +796,6 @@
   }
   function cssEscape(s) { return s.replace(/["\\]/g, '\\$&'); }
 
-  /* ── CODEPOINT INSPECTOR ── */
   function updateInspector(yapiriText) {
     const el = document.getElementById('inspector-output');
     if (!yapiriText) { el.textContent = 'type something above to inspect codepoints…'; return; }
@@ -867,7 +828,6 @@
     btn.classList.toggle('open', !isOpen);
   }
 
-  /* ── MATH SOLVER ── */
   const yapiriDigitMap = {'\u{F1CC0}':0,'\u{F1CC1}':1,'\u{F1CC2}':2,'\u{F1CC3}':3,'\u{F1CC4}':4,'\u{F1CC5}':5,'\u{F1CC6}':6,'\u{F1CC7}':7,'\u{F1CC8}':8,'\u{F1CC9}':9};
   const digitToYapiri  = ['\u{F1CC0}','\u{F1CC1}','\u{F1CC2}','\u{F1CC3}','\u{F1CC4}','\u{F1CC5}','\u{F1CC6}','\u{F1CC7}','\u{F1CC8}','\u{F1CC9}'];
 
@@ -900,7 +860,6 @@
     insertAtCaret('=' + numberToYapiri(result));
   }
 
-  /* ── COPY ── */
   async function copyText() {
     const text = getYapiriText();
     if (!text) return;
@@ -922,15 +881,13 @@
     } catch(e) {}
   }
 
-
-
-  /* ── MOBILE: hide sticky output when keyboard scrolled away ── */
+  /* ── MOBILE: hide sticky output when keyboard section scrolled fully above viewport ── */
   if (window.innerWidth <= 640) {
     const stickyWrap = document.getElementById('stickyOutputWrap');
     const kbSection  = document.getElementById('keyboardSection');
     const mobileObserver = new IntersectionObserver(([entry]) => {
-      stickyWrap.classList.toggle('hidden', !entry.isIntersecting);
-    }, { threshold: 0, rootMargin: '-50px 0px -80% 0px' });
+      stickyWrap.classList.toggle('hidden', entry.boundingClientRect.bottom < 0);
+    }, { threshold: 0, rootMargin: '0px' });
     mobileObserver.observe(kbSection);
   }
 
