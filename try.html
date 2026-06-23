@@ -139,6 +139,15 @@
     pointer-events: none;
   }
 
+  /* INFO BANNERS — same max-width and padding as the output/keyboard panels */
+  .info-banners {
+    max-width:980px;
+    margin:0 auto;
+    padding:1.5rem 2rem 0;
+  }
+  .info-banners .font-notice { margin-bottom:1rem; }
+  .info-banners .ref-banner  { margin-bottom:0; }
+
   /* OUTPUT PANEL */
   .output-panel {
     background:#0e0b07;
@@ -403,6 +412,23 @@
 </div>
 
 <!-- ══════════════════════════════════════════════
+     INFO BANNERS — above the output, same width/padding as output panel
+════════════════════════════════════════════════ -->
+<div class="info-banners">
+  <div class="font-notice reveal">
+    <span style="font-size:1.1rem;flex-shrink:0;">&#11015;</span>
+    <span class="font-notice-text">
+      The Yapiri font must be installed for glyphs to render correctly outside this browser.
+      <a href="download.html">Download the font here</a> before copying text into other applications.
+    </span>
+  </div>
+  <div class="ref-banner reveal">
+    <span class="ref-banner-icon">&#9000;</span>
+    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
      STICKY OUTPUT BLOCK
      Sits at top level — NOT inside keyboard-wrap —
      so position:sticky has no overflow parent to break it.
@@ -450,19 +476,6 @@
 ════════════════════════════════════════════════ -->
 <div id="keyboardSection">
 <div class="keyboard-wrap">
-
-  <div class="font-notice reveal">
-    <span style="font-size:1.1rem;flex-shrink:0;">&#11015;</span>
-    <span class="font-notice-text">
-      The Yapiri font must be installed for glyphs to render correctly outside this browser.
-      <a href="download.html">Download the font here</a> before copying text into other applications.
-    </span>
-  </div>
-
-  <div class="ref-banner reveal">
-    <span class="ref-banner-icon">&#9000;</span>
-    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
-  </div>
 
   <!-- ════ DESKTOP: QWERTY VISUAL KEYBOARD ════ -->
   <div class="kb-desktop reveal">
