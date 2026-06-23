@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCCXMREP3D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QCCXMREP3D');
+</script>
+
+<title>Learn Yapiri Script — Interactive Lessons & Kokborok Exercises</title>
+<meta name="description" content="Learn Yapiri Script interactively — explore the 45-character alphabet, follow guided lessons from vowels to sentences, and practise translating Kokborok. Your submissions help build the corpus.">
+<meta name="keywords" content="learn Yapiri script, Kokborok alphabet, Yapiri lessons, Kokborok writing, Tiprasa script lessons, Yapiri characters">
+<meta name="author" content="Animesh Debbarma">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yapiriscript.com/learn.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yapiriscript.com/learn.html">
+<meta property="og:title" content="Learn Yapiri Script — Interactive Lessons & Kokborok Exercises">
+<meta property="og:description" content="Learn Yapiri Script interactively — explore the 45-character alphabet, follow guided lessons, and practise translating Kokborok.">
+<meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<meta property="og:locale" content="en_US">
+
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.ico?v=5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Teko:wght@300;400;500&display=swap&v=2" rel="stylesheet">
+
+<style>
+  @font-face {
+    font-family: 'Yapiri';
+    src: url('assets/fonts/Yapiri.woff2?v=2') format('woff2'),
+         url('assets/fonts/Yapiri.ttf?v=2') format('truetype');
+    font-weight: normal; font-style: normal; font-display: swap;
+  }
+
+  :root {
+    --ink: #1a1209;
+    --parchment: #f5edd8;
+    --warm-white: #faf6ee;
+    --terracotta: #b85c38;
+    --terra-light: #d4784f;
+    --gold: #c9922a;
+    --gold-light: #e8b84b;
+    --stone: #8b7355;
+    --stone-light: #c4b49a;
+    --charcoal: #2c2416;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(26,18,9,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+  }
+  .nav-logo {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.6rem; font-weight: 400; letter-spacing: 0.15em;
+    color: var(--gold-light); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--stone-light); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a.active { color: var(--gold-light); }
+  .nav-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+    background: rgba(184,92,56,0.2); border: 1px solid var(--terracotta);
+    color: var(--terracotta); padding: 0.3rem 0.75rem; white-space: nowrap;
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--stone-light); transition: all 0.3s ease; transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--gold-light); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--gold-light); }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0;
+    background: rgba(26,18,9,0.98); z-index: 150;
+    flex-direction: column; align-items: center; justify-content: center;
+    backdrop-filter: blur(20px);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-close {
+    position: absolute; top: 1.4rem; right: 1.5rem;
+    background: none; border: 1px solid rgba(196,180,154,0.2);
+    color: var(--stone-light); width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.4rem; line-height: 1;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .mobile-menu-close:hover { border-color: var(--gold-light); color: var(--gold-light); }
+  .mobile-menu a {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 300; letter-spacing: 0.08em;
+    color: var(--stone-light); text-decoration: none;
+    padding: 0.6rem 2rem; transition: color 0.2s;
+    border-bottom: 1px solid rgba(196,180,154,0.06);
+    width: 100%; text-align: center;
+  }
+  .mobile-menu a:hover { color: var(--gold-light); }
+
+  /* ── SHARED ── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.5rem; display: block;
+  }
+  .gold-line { width: 60px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+  .btn-primary {
+    background: var(--terracotta); color: var(--warm-white);
+    padding: 0.85rem 2rem; font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--terra-light); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--parchment);
+    padding: 0.85rem 2rem; font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid rgba(196,180,154,0.4); cursor: pointer;
+    transition: border-color 0.3s, color 0.3s; display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--gold-light); color: var(--gold-light); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 72vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 9rem 5rem 5rem;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid rgba(201,146,42,0.15);
+  }
+  .hero-bg-glyphs {
+    position: absolute; inset: 0;
+    display: grid; grid-template-columns: repeat(10, 1fr);
+    opacity: 0.06; pointer-events: none; overflow: hidden;
+  }
+  .hero-bg-cell {
+    border: 1px solid rgba(201,146,42,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Yapiri', serif; font-size: 1.6rem;
+    color: var(--gold-light);
+    animation: glyphPulse var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+  }
+  @keyframes glyphPulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(4rem, 9vw, 8rem); font-weight: 300;
+    line-height: 0.9; letter-spacing: 0.02em;
+    color: var(--parchment); margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title em { color: var(--gold-light); font-style: italic; font-family: 'Cormorant Garamond', serif; display: block; }
+  .hero-subtitle {
+    font-size: 1.3rem; font-weight: 300; font-style: italic;
+    color: var(--stone-light); line-height: 1.65; max-width: 560px;
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 1s ease 0.7s forwards;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero-scroll-hint {
+    position: absolute; bottom: 2rem; right: 5rem; z-index: 2;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--stone); opacity: 0; animation: fadeIn 1s ease 1.4s forwards;
+    writing-mode: vertical-rl;
+  }
+
+  /* ── JUMP NAV ── */
+  .jump-nav {
+    background: var(--charcoal);
+    border-bottom: 1px solid rgba(201,146,42,0.15);
+    display: flex; gap: 0;
+    position: sticky; top: 70px; z-index: 90;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .jump-nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone); text-decoration: none;
+    padding: 1rem 2rem; border-right: 1px solid rgba(201,146,42,0.1);
+    transition: color 0.2s, background 0.2s; white-space: nowrap;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .jump-nav a:hover { color: var(--gold-light); background: rgba(201,146,42,0.05); }
+  .jump-nav a .jn-num {
+    font-size: 0.5rem; letter-spacing: 0.1em;
+    color: var(--terracotta); opacity: 0.8;
+  }
+
+  /* ── ALPHABET SECTION ── */
+  #alphabet {
+    background: var(--ink);
+    padding: 7rem 5rem;
+    position: relative;
+  }
+  #alphabet::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .alphabet-inner { max-width: 1100px; margin: 0 auto; }
+
+  .char-group { margin-bottom: 3.5rem; }
+  .char-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(196,180,154,0.1);
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .char-group-title span {
+    font-size: 0.5rem; color: var(--terracotta);
+    border: 1px solid rgba(184,92,56,0.4); padding: 0.15rem 0.4rem;
+  }
+
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+    gap: 0.5rem;
+  }
+  .char-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,180,154,0.1);
+    padding: 1rem 0.5rem 0.7rem;
+    text-align: center; cursor: pointer;
+    transition: all 0.25s; position: relative; overflow: hidden;
+    user-select: none;
+  }
+  .char-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--terracotta); transform: scaleX(0); transition: transform 0.25s;
+  }
+  .char-card:hover { border-color: rgba(196,180,154,0.25); transform: translateY(-3px); }
+  .char-card:hover::after { transform: scaleX(1); }
+  .char-card.active { border-color: rgba(201,146,42,0.5); background: rgba(201,146,42,0.06); }
+  .char-card.active::after { transform: scaleX(1); background: var(--gold); }
+  .char-glyph {
+    font-family: 'Yapiri', serif; font-size: 2.1rem; line-height: 1.1;
+    color: var(--parchment); display: block; margin-bottom: 0.4rem;
+  }
+  .char-roman {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    color: var(--gold-light); display: block; margin-bottom: 0.1rem;
+  }
+  .char-ipa {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    color: var(--stone); display: block;
+  }
+
+  /* Detail panel */
+  .char-detail {
+    display: none;
+    background: var(--charcoal);
+    border: 1px solid rgba(201,146,42,0.2);
+    padding: 2rem 2.5rem;
+    margin-top: 1rem;
+    position: relative;
+  }
+  .char-detail::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+  }
+  .char-detail.visible { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center; }
+  .detail-glyph-wrap {
+    font-family: 'Yapiri', serif; font-size: 6rem; line-height: 1;
+    color: var(--gold-light); flex-shrink: 0;
+    text-shadow: 0 0 60px rgba(232,184,75,0.2);
+  }
+  .detail-info h4 {
+    font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 400;
+    color: var(--parchment); margin-bottom: 0.4rem; letter-spacing: 0.05em;
+  }
+  .detail-info p {
+    font-size: 1rem; font-weight: 300; font-style: italic;
+    color: var(--stone-light); line-height: 1.6; margin-bottom: 1rem;
+  }
+  .detail-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .detail-meta-item { }
+  .detail-meta-item .meta-label {
+    font-family: 'DM Mono', monospace; font-size: 0.55rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--stone); display: block; margin-bottom: 0.2rem;
+  }
+  .detail-meta-item .meta-val {
+    font-family: 'DM Mono', monospace; font-size: 0.8rem;
+    color: var(--gold-light);
+  }
+
+  /* ── LESSONS SECTION ── */
+  #lessons {
+    background: var(--charcoal);
+    padding: 7rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  #lessons::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .lessons-inner { max-width: 1100px; margin: 0 auto; }
+
+  .lessons-tab-row {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border: 1px solid rgba(196,180,154,0.1);
+    margin-bottom: 3rem; overflow: hidden;
+  }
+  .lesson-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+    background: none; border: none; border-right: 1px solid rgba(196,180,154,0.1);
+    color: var(--stone); padding: 0.9rem 1.4rem;
+    cursor: pointer; transition: color 0.2s, background 0.2s;
+    flex: 1; min-width: 120px; text-align: center;
+  }
+  .lesson-tab:hover { color: var(--parchment); background: rgba(255,255,255,0.03); }
+  .lesson-tab.active { color: var(--gold-light); background: rgba(201,146,42,0.08); border-bottom: 2px solid var(--gold); }
+  .lesson-tab:last-child { border-right: none; }
+
+  .lesson-panel { display: none; }
+  .lesson-panel.active { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start; }
+
+  .lesson-intro {
+    font-size: 1.1rem; font-weight: 300; line-height: 1.85;
+    color: var(--stone-light); margin-bottom: 2rem;
+  }
+  .lesson-intro strong { color: var(--parchment); font-weight: 400; }
+  .lesson-intro em { color: var(--gold-light); font-style: italic; }
+
+  .lesson-chars-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
+  .lesson-char-item {
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,180,154,0.1);
+    padding: 0.9rem 1rem; min-width: 68px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lesson-char-item:hover { border-color: rgba(201,146,42,0.3); transform: translateY(-2px); }
+  .lesson-char-glyph {
+    font-family: 'Yapiri', serif; font-size: 2.4rem;
+    color: var(--parchment); line-height: 1.15; margin-bottom: 0.35rem;
+  }
+  .lesson-char-roman {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--gold-light);
+  }
+  .lesson-char-ipa {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--stone);
+  }
+
+  .lesson-right-col { }
+  .lesson-examples-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .lesson-examples-title::after { content: ''; flex: 1; height: 1px; background: rgba(184,92,56,0.3); }
+  .lesson-example {
+    border-left: 2px solid rgba(201,146,42,0.3);
+    padding: 0.8rem 1.2rem; margin-bottom: 1rem;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s;
+  }
+  .lesson-example:hover { border-left-color: var(--gold); }
+  .ex-yapiri {
+    font-family: 'Yapiri', serif; font-size: 1.7rem;
+    color: var(--gold-light); display: block; margin-bottom: 0.25rem;
+  }
+  .ex-roman {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--parchment); display: block; margin-bottom: 0.15rem;
+  }
+  .ex-meaning {
+    font-size: 0.88rem; font-style: italic; color: var(--stone); display: block;
+  }
+
+  /* ── EXERCISES SECTION ── */
+  #exercises {
+    background: linear-gradient(160deg, #130e04 0%, #0e0c06 50%, #17100a 100%);
+    padding: 7rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  #exercises::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .exercises-inner { max-width: 1100px; margin: 0 auto; }
+  .exercises-layout { display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: start; }
+
+  /* Consent */
+  .consent-box {
+    background: rgba(184,92,56,0.08);
+    border: 1px solid rgba(184,92,56,0.25);
+    padding: 1.4rem 1.8rem;
+    margin-bottom: 2.5rem;
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+  }
+  .consent-box p {
+    flex: 1; min-width: 220px;
+    font-size: 0.9rem; font-weight: 300; font-style: italic;
+    color: var(--stone-light); line-height: 1.55;
+  }
+  .consent-box.hidden { display: none; }
+  .consent-btns { display: flex; gap: 0.6rem; flex-shrink: 0; }
+  .btn-consent-accept {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--terracotta); color: var(--warm-white);
+    border: none; padding: 0.5rem 1.1rem; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-consent-accept:hover { background: var(--terra-light); }
+  .btn-consent-decline {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; color: var(--stone);
+    border: 1px solid rgba(196,180,154,0.2); padding: 0.5rem 1rem; cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-consent-decline:hover { color: var(--stone-light); border-color: rgba(196,180,154,0.4); }
+
+  /* Sentence card */
+  .ex-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 1rem;
+  }
+  .ex-counter strong { color: var(--gold-light); }
+  .sentence-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(196,180,154,0.12);
+    padding: 2rem 2rem 1.6rem;
+    margin-bottom: 1.4rem;
+    position: relative; overflow: hidden;
+  }
+  .sentence-card::before {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    background: var(--terracotta);
+  }
+  .sentence-domain {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 0.7rem;
+  }
+  .sentence-english {
+    font-size: 1.35rem; font-weight: 300; line-height: 1.5;
+    color: var(--parchment);
+  }
+
+  .ex-input-label {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 0.5rem;
+  }
+  .ex-input {
+    width: 100%;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(196,180,154,0.18);
+    color: var(--parchment);
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    padding: 0.85rem 1rem;
+    resize: vertical; min-height: 90px;
+    outline: none; transition: border-color 0.25s;
+    border-radius: 2px;
+  }
+  .ex-input::placeholder { color: var(--stone); font-style: italic; opacity: 0.6; }
+  .ex-input:focus { border-color: rgba(201,146,42,0.45); }
+  .ex-input-hint {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.06em; color: var(--stone);
+    margin-top: 0.4rem; margin-bottom: 1.2rem; line-height: 1.6;
+  }
+  .ex-input-hint a { color: var(--gold); text-decoration: none; }
+  .ex-input-hint a:hover { color: var(--gold-light); }
+
+  .ex-controls { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .ex-btn-submit {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--terracotta); color: var(--warm-white);
+    border: none; padding: 0.8rem 2rem; cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .ex-btn-submit:hover { background: var(--terra-light); transform: translateY(-2px); }
+  .ex-btn-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .ex-btn-nav {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; color: var(--stone);
+    border: 1px solid rgba(196,180,154,0.18); padding: 0.8rem 1.2rem; cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .ex-btn-nav:hover { color: var(--parchment); border-color: rgba(196,180,154,0.35); }
+
+  .ex-feedback {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em;
+    padding: 0.65rem 1rem; display: none; margin-bottom: 0.5rem;
+  }
+  .ex-feedback.success { display: block; color: #8fcf8f; background: rgba(143,207,143,0.08); border: 1px solid rgba(143,207,143,0.2); }
+  .ex-feedback.error   { display: block; color: var(--terra-light); background: rgba(184,92,56,0.08); border: 1px solid rgba(184,92,56,0.25); }
+
+  /* Sidebar */
+  .ex-sidebar { }
+  .sidebar-block {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(196,180,154,0.1);
+    padding: 1.5rem; margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .sidebar-block-title {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .sidebar-block-title::after { content: ''; flex: 1; height: 1px; background: rgba(184,92,56,0.25); }
+
+  /* Progress */
+  .progress-bar-bg {
+    background: rgba(255,255,255,0.06); height: 3px; margin: 0.6rem 0 0.4rem;
+  }
+  .progress-bar-fill {
+    height: 100%; background: var(--gold);
+    transition: width 0.5s ease; width: 0%;
+  }
+  .progress-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1rem; }
+  .prog-stat .prog-num {
+    font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 400;
+    color: var(--gold-light); line-height: 1;
+  }
+  .prog-stat .prog-lbl {
+    font-family: 'DM Mono', monospace; font-size: 0.55rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone);
+  }
+
+  /* Domain chips */
+  .domain-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .domain-chip {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em;
+    padding: 0.25rem 0.6rem;
+    background: rgba(196,180,154,0.06); border: 1px solid rgba(196,180,154,0.12);
+    color: var(--stone); cursor: pointer; transition: all 0.2s;
+  }
+  .domain-chip:hover { color: var(--gold-light); border-color: rgba(201,146,42,0.3); }
+  .domain-chip.active { color: var(--gold-light); border-color: rgba(201,146,42,0.4); background: rgba(201,146,42,0.08); }
+
+  /* ── QUICK REF FLOATER ── */
+  .qr-btn {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--charcoal); color: var(--gold-light);
+    border: 1px solid rgba(201,146,42,0.3);
+    padding: 0.7rem 1.2rem; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    transition: background 0.2s, transform 0.1s;
+  }
+  .qr-btn:hover { background: rgba(44,36,22,0.98); transform: translateY(-2px); }
+  .qr-drawer {
+    position: fixed; bottom: 0; right: 0; z-index: 199;
+    width: min(420px, 100vw);
+    max-height: 70vh; overflow-y: auto;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    border-left: 1px solid rgba(201,146,42,0.15);
+    transform: translateY(100%); transition: transform 0.3s ease;
+    padding: 1.5rem 2rem 2rem;
+  }
+  .qr-drawer.open { transform: translateY(0); }
+  .qr-drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+  .qr-drawer-head h3 {
+    font-family: 'Teko', sans-serif; font-size: 1.4rem; font-weight: 400;
+    color: var(--parchment); letter-spacing: 0.06em;
+  }
+  .qr-close {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: none; border: none; color: var(--stone); cursor: pointer;
+  }
+  .qr-group-title {
+    font-family: 'DM Mono', monospace; font-size: 0.55rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--terracotta); margin: 1rem 0 0.5rem;
+  }
+  .qr-row {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(196,180,154,0.06);
+  }
+  .qr-glyph { font-family: 'Yapiri', serif; font-size: 1.4rem; color: var(--parchment); width: 32px; }
+  .qr-roman { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold-light); width: 40px; }
+  .qr-ipa   { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--stone); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080704;
+    padding: 3rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(196,180,154,0.08);
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Teko', sans-serif; font-size: 1.4rem; font-weight: 300;
+    color: var(--stone); letter-spacing: 0.15em;
+  }
+  .footer-copy {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.1em; color: rgba(196,180,154,0.3);
+    text-align: right; line-height: 1.8;
+  }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-family: 'DM Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--stone); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .lesson-panel.active { grid-template-columns: 1fr; gap: 2.5rem; }
+    .exercises-layout { grid-template-columns: 1fr; }
+    .ex-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-badge { display: none; }
+    #hero, #alphabet, #lessons, #exercises, footer { padding: 5rem 2rem; }
+    #hero { padding-top: 7rem; }
+  }
+  @media (max-width: 600px) {
+    .lessons-tab-row { flex-direction: column; }
+    .lesson-tab { border-right: none; border-bottom: 1px solid rgba(196,180,154,0.1); }
+    .ex-sidebar { grid-template-columns: 1fr; }
+    .char-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
+    .char-detail.visible { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-copy { text-align: center; }
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: var(--stone); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">YAPIRI</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="script.html">Script</a></li>
+    <li><a href="yapiri-specification.html">Spec</a></li>
+    <li><a href="learn.html" class="active">Learn</a></li>
+    <li><a href="try.html">Try</a></li>
+    <li><a href="download.html">Download</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="ucsur.html">UCSUR</a></li>
+    <li><span class="nav-badge">v2.0</span></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="script.html" onclick="closeMenu()">Script</a>
+  <a href="yapiri-specification.html" onclick="closeMenu()">Spec</a>
+  <a href="learn.html" onclick="closeMenu()">Learn</a>
+  <a href="try.html" onclick="closeMenu()">Try</a>
+  <a href="download.html" onclick="closeMenu()">Download</a>
+  <a href="community.html" onclick="closeMenu()">Community</a>
+  <a href="blog.html" onclick="closeMenu()">Blog</a>
+  <a href="ucsur.html" onclick="closeMenu()">UCSUR</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-glyphs" id="heroBgGlyphs" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Yapiri Script · Interactive Reference &amp; Corpus</p>
+    <h1 class="hero-title">
+      Learn the<br><em>Script</em>
+    </h1>
+    <p class="hero-subtitle">Explore all 45 characters, follow guided lessons from vowels to sentences — and practise translating Kokborok. Every submission helps build the language corpus.</p>
+    <div class="hero-cta">
+      <a href="#alphabet" class="btn-primary">Start with the Alphabet</a>
+      <a href="#exercises" class="btn-secondary">Jump to Exercises</a>
+    </div>
+  </div>
+  <p class="hero-scroll-hint" aria-hidden="true">scroll to explore</p>
+</section>
+
+<!-- JUMP NAV -->
+<nav class="jump-nav" aria-label="Page sections">
+  <a href="#alphabet"><span class="jn-num">01</span> Alphabet</a>
+  <a href="#lessons"><span class="jn-num">02</span> Lessons</a>
+  <a href="#exercises"><span class="jn-num">03</span> Exercises</a>
+</nav>
+
+<!-- ══ SECTION 01: ALPHABET ══ -->
+<section id="alphabet" style="scroll-margin-top:115px">
+  <div class="alphabet-inner">
+    <div class="reveal" style="margin-bottom:3rem">
+      <span class="section-label">Section 01</span>
+      <div class="gold-line"></div>
+      <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Alphabet Reference</h2>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Click any character to expand its detail — romanization, IPA value, codepoint, and description.</p>
+    </div>
+
+    <div class="char-group reveal">
+      <p class="char-group-title">Vowels <span>6</span></p>
+      <div class="char-grid" id="grid-vowels"></div>
+    </div>
+    <div class="char-group reveal">
+      <p class="char-group-title">Native Consonants <span>21</span></p>
+      <div class="char-grid" id="grid-consonants"></div>
+    </div>
+    <div class="char-group reveal">
+      <p class="char-group-title">Loanword Consonants <span>2</span></p>
+      <div class="char-grid" id="grid-loanword"></div>
+    </div>
+    <div class="char-group reveal">
+      <p class="char-group-title">Numerals <span>10</span></p>
+      <div class="char-grid" id="grid-numerals"></div>
+    </div>
+    <div class="char-group reveal">
+      <p class="char-group-title">Punctuation &amp; Diacritics <span>6</span></p>
+      <div class="char-grid" id="grid-punct"></div>
+    </div>
+
+    <!-- Detail panel -->
+    <div class="char-detail" id="char-detail">
+      <div class="detail-glyph-wrap" id="detail-glyph"></div>
+      <div class="detail-info">
+        <h4 id="detail-name"></h4>
+        <p id="detail-desc"></p>
+        <div class="detail-meta">
+          <div class="detail-meta-item">
+            <span class="meta-label">Romanization</span>
+            <span class="meta-val" id="detail-roman"></span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="meta-label">IPA</span>
+            <span class="meta-val" id="detail-ipa"></span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="meta-label">Codepoint</span>
+            <span class="meta-val" id="detail-cp"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 02: LESSONS ══ -->
+<section id="lessons" style="scroll-margin-top:115px">
+  <div class="lessons-inner">
+    <div class="reveal" style="margin-bottom:3rem">
+      <span class="section-label">Section 02</span>
+      <div class="gold-line"></div>
+      <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Guided Lessons</h2>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Five progressive lessons — learn each character group before moving to the next, with worked examples throughout.</p>
+    </div>
+    <div class="lessons-tab-row reveal" id="lessons-tab-row"></div>
+    <div id="lessons-content"></div>
+  </div>
+</section>
+
+<!-- ══ SECTION 03: EXERCISES ══ -->
+<section id="exercises" style="scroll-margin-top:115px">
+  <div class="exercises-inner">
+    <div class="reveal" style="margin-bottom:3rem">
+      <span class="section-label">Section 03</span>
+      <div class="gold-line"></div>
+      <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Translation Exercises</h2>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Translate English sentences into Kokborok. Your submissions are anonymously added to the Yapiri Kokborok Corpus — a community-built language dataset.</p>
+    </div>
+
+    <!-- Consent -->
+    <div class="consent-box reveal" id="consent-box">
+      <p>Your translations will be saved anonymously to the <strong style="color:var(--parchment);font-weight:400;">Yapiri Kokborok Corpus</strong>. No name, email, or personal data is ever collected.</p>
+      <div class="consent-btns">
+        <button class="btn-consent-accept" id="btn-consent-accept">Contribute</button>
+        <button class="btn-consent-decline" id="btn-consent-decline">Skip</button>
+      </div>
+    </div>
+
+    <div class="exercises-layout">
+      <!-- Main exercise area -->
+      <div>
+        <p class="ex-counter reveal">
+          Sentence <strong id="ex-current">1</strong> of <strong id="ex-total">20</strong>
+          &ensp;·&ensp; Domain: <strong id="ex-domain">—</strong>
+        </p>
+
+        <div class="sentence-card reveal">
+          <p class="sentence-domain" id="ex-domain-label"></p>
+          <p class="sentence-english" id="ex-sentence">Loading…</p>
+        </div>
+
+        <p class="ex-input-label reveal">Your Kokborok translation</p>
+        <textarea class="ex-input reveal" id="ex-input"
+          placeholder="Type in Roman Kokborok, or paste Yapiri glyphs from the virtual keyboard…"
+          rows="3"></textarea>
+        <p class="ex-input-hint reveal">
+          Use Roman Kokborok script, or copy Yapiri glyphs from the <a href="try.html">virtual keyboard →</a>
+        </p>
+
+        <div class="ex-controls reveal">
+          <button class="ex-btn-submit" id="btn-submit">Submit Translation</button>
+          <button class="ex-btn-nav" id="btn-skip">Skip</button>
+          <button class="ex-btn-nav" id="btn-prev">← Prev</button>
+          <button class="ex-btn-nav" id="btn-next">Next →</button>
+        </div>
+
+        <div class="ex-feedback" id="ex-feedback"></div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="ex-sidebar">
+        <div class="sidebar-block reveal">
+          <p class="sidebar-block-title">Session Progress</p>
+          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--stone);letter-spacing:0.08em;">
+            <span id="progress-pct">0</span>% complete
+          </p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-stats">
+            <div class="prog-stat">
+              <div class="prog-num" id="prog-submitted">0</div>
+              <div class="prog-lbl">Submitted</div>
+            </div>
+            <div class="prog-stat">
+              <div class="prog-num" id="prog-skipped">0</div>
+              <div class="prog-lbl">Skipped</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-block reveal">
+          <p class="sidebar-block-title">Filter by Domain</p>
+          <div class="domain-chips" id="domain-chips"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">YAPIRI SCRIPT</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="yapiri-specification.html">Spec</a></li>
+    <li><a href="try.html">Try</a></li>
+    <li><a href="blog.html">Blog</a></li>
+  </ul>
+  <div class="footer-copy">
+    Created for the Kokborok language<br>
+    Tiprasa people of Tripura, India<br>
+    © 2026 Animesh Debbarma · yapiriscript.com
+  </div>
+</footer>
+
+<!-- Quick Reference floater -->
+<button class="qr-btn" id="qr-btn" aria-label="Quick reference chart">Quick Ref ↑</button>
+<div class="qr-drawer" id="qr-drawer" role="dialog" aria-label="Quick reference">
+  <div class="qr-drawer-head">
+    <h3>Quick Reference</h3>
+    <button class="qr-close" id="qr-close">Close ✕</button>
+  </div>
+  <div id="qr-content"></div>
+</div>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "REPLACE_WITH_YOUR_API_KEY",
+  authDomain: "yapiriscript-df55b.firebaseapp.com",
+  projectId: "yapiriscript-df55b",
+  storageBucket: "yapiriscript-df55b.appspot.com",
+  messagingSenderId: "REPLACE_WITH_SENDER_ID",
+  appId: "REPLACE_WITH_APP_ID",
+  measurementId: "G-QCCXMREP3D"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+// ────────────────────────────────────────────────
+// CHARACTER DATA
+// ────────────────────────────────────────────────
+const VOWELS = [
+  { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.' },
+  { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.' },
+  { cp:'F1CA2', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.' },
+  { cp:'F1CA3', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.' },
+  { cp:'F1CA4', roman:'o',  ipa:'/o/',  name:'O',     desc:'Mid back rounded vowel.' },
+  { cp:'F1CA5', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.' },
+];
+const CONSONANTS = [
+  { cp:'F1CA6', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.' },
+  { cp:'F1CA7', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop. Aspiration is phonemically contrastive.' },
+  { cp:'F1CA8', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.' },
+  { cp:'F1CA9', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a first-person pronoun.' },
+  { cp:'F1CAA', roman:'ch', ipa:'/tɕ/',name:'Cha', desc:'Voiceless palatal affricate.' },
+  { cp:'F1CAB', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.' },
+  { cp:'F1CAC', roman:'ny', ipa:'/ɲ/',  name:'Nya', desc:'Palatal nasal — represented as ny in Roman Kokborok.' },
+  { cp:'F1CAD', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.' },
+  { cp:'F1CAE', roman:'th', ipa:'/tʰ/', name:'Tha', desc:'Aspirated voiceless dental stop.' },
+  { cp:'F1CAF', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.' },
+  { cp:'F1CB0', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.' },
+  { cp:'F1CB1', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.' },
+  { cp:'F1CB2', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop.' },
+  { cp:'F1CB3', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.' },
+  { cp:'F1CB4', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.' },
+  { cp:'F1CB5', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.' },
+  { cp:'F1CB6', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.' },
+  { cp:'F1CB7', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.' },
+  { cp:'F1CB8', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.' },
+  { cp:'F1CB9', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.' },
+  { cp:'F1CBA', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.' },
+];
+const LOANWORD = [
+  { cp:'F1CBB', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.' },
+  { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.' },
+];
+const NUMERALS = [
+  { cp:'F1CBD', roman:'0', ipa:'', name:'Zero',  desc:'Yapiri numeral zero.' },
+  { cp:'F1CBE', roman:'1', ipa:'', name:'One',   desc:'Yapiri numeral one.' },
+  { cp:'F1CBF', roman:'2', ipa:'', name:'Two',   desc:'Yapiri numeral two.' },
+  { cp:'F1CC0', roman:'3', ipa:'', name:'Three', desc:'Yapiri numeral three.' },
+  { cp:'F1CC1', roman:'4', ipa:'', name:'Four',  desc:'Yapiri numeral four.' },
+  { cp:'F1CC2', roman:'5', ipa:'', name:'Five',  desc:'Yapiri numeral five.' },
+  { cp:'F1CC3', roman:'6', ipa:'', name:'Six',   desc:'Yapiri numeral six.' },
+  { cp:'F1CC4', roman:'7', ipa:'', name:'Seven', desc:'Yapiri numeral seven.' },
+  { cp:'F1CC5', roman:'8', ipa:'', name:'Eight', desc:'Yapiri numeral eight.' },
+  { cp:'F1CC6', roman:'9', ipa:'', name:'Nine',  desc:'Yapiri numeral nine.' },
+];
+const PUNCT = [
+  { cp:'F1CC7', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.' },
+  { cp:'F1CC8', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.' },
+  { cp:'F1CC9', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.' },
+  { cp:'F1CCA', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.' },
+  { cp:'F1CCB', roman:':',  ipa:'', name:'Colon',         desc:'Introduces lists or explanations.' },
+  { cp:'F1CD1', roman:'◌́', ipa:'/◌́/', name:'High tone mark', desc:'Combining diacritic — sits above a base character to mark high tone, which is phonemically contrastive in Kokborok. U+F1CD1.' },
+];
+
+function cp(hex) { return String.fromCodePoint(parseInt(hex, 16)); }
+
+function buildGrid(id, chars) {
+  const grid = document.getElementById(id);
+  if (!grid) return;
+  chars.forEach(ch => {
+    const card = document.createElement('div');
+    card.className = 'char-card';
+    card.innerHTML = `
+      <span class="char-glyph">${cp(ch.cp)}</span>
+      <span class="char-roman">${ch.roman}</span>
+      ${ch.ipa ? `<span class="char-ipa">${ch.ipa}</span>` : ''}
+    `;
+    card.addEventListener('click', () => showDetail(ch, card));
+    grid.appendChild(card);
+  });
+}
+
+let activeCard = null;
+function showDetail(ch, card) {
+  const panel = document.getElementById('char-detail');
+  if (activeCard === card && panel.classList.contains('visible')) {
+    panel.classList.remove('visible');
+    card.classList.remove('active');
+    activeCard = null;
+    return;
+  }
+  if (activeCard) activeCard.classList.remove('active');
+  activeCard = card;
+  card.classList.add('active');
+  document.getElementById('detail-glyph').textContent = cp(ch.cp);
+  document.getElementById('detail-name').textContent = ch.name;
+  document.getElementById('detail-desc').textContent = ch.desc;
+  document.getElementById('detail-roman').textContent = ch.roman;
+  document.getElementById('detail-ipa').textContent = ch.ipa || '—';
+  document.getElementById('detail-cp').textContent = 'U+' + ch.cp;
+  panel.classList.add('visible');
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+}
+
+buildGrid('grid-vowels',     VOWELS);
+buildGrid('grid-consonants', CONSONANTS);
+buildGrid('grid-loanword',   LOANWORD);
+buildGrid('grid-numerals',   NUMERALS);
+buildGrid('grid-punct',      PUNCT);
+
+// ────────────────────────────────────────────────
+// LESSONS
+// ────────────────────────────────────────────────
+const LESSONS = [
+  {
+    id: 'vowels', title: 'Vowels',
+    intro: `Yapiri has <strong>six vowel characters</strong> for the six phonemic monophthongs of Kokborok: /a e ə i o u/. The schwa /ə/ is phonemically distinct — it is <em>not</em> a reduced vowel, and confusing it with /a/ changes word meaning. Learn these six shapes first; every other character builds on this foundation.`,
+    chars: VOWELS,
+    examples: [
+      { yap:'\uF1CA3\uF1CA0', rom:'ia', eng:'yes / affirmative particle' },
+      { yap:'\uF1CA0\uF1CA3', rom:'ai', eng:'diphthong, as in "now"' },
+      { yap:'\uF1CA5\uF1CA6\uF1CB0\uF1CA4', rom:'ukno', eng:'sky' },
+    ]
+  },
+  {
+    id: 'stops', title: 'Stop Consonants',
+    intro: `Kokborok distinguishes <strong>plain</strong> and <strong>aspirated</strong> stops. The pairs <em>k/kh</em>, <em>t/th</em>, and <em>p/ph</em> are separate phonemes — aspiration is contrastive and changes word meaning. Both characters in each pair must be learned as distinct symbols.`,
+    chars: CONSONANTS.filter(c => ['k','kh','g','t','th','d','p','ph','b'].includes(c.roman)),
+    examples: [
+      { yap:'\uF1CA6\uF1CA0\uF1CB0\uF1CA0', rom:'kana', eng:'ear' },
+      { yap:'\uF1CAD\uF1CA3\uF1CB0\uF1CA0', rom:'tina', eng:'mother' },
+      { yap:'\uF1CB3\uF1CA0\uF1CB0\uF1CA0', rom:'bana', eng:'forest / jungle' },
+    ]
+  },
+  {
+    id: 'nasals', title: 'Nasals & Approximants',
+    intro: `Kokborok has four nasal phonemes: <em>m, n, ny, ng</em>. The palatal nasal /ɲ/ — written <em>ny</em> — and the velar nasal /ŋ/ — written <em>ng</em> — are both very common in native vocabulary. <em>nga</em> (ŋa) is the first-person singular pronoun. Approximants <em>w, y, r, l</em> are also in this group.`,
+    chars: CONSONANTS.filter(c => ['ng','ny','n','m','r','l','w','y'].includes(c.roman)),
+    examples: [
+      { yap:'\uF1CA9\uF1CA0', rom:'nga', eng:'I / me (first person singular)' },
+      { yap:'\uF1CB4\uF1CA0\uF1CB0\uF1CA3', rom:'mani', eng:'money / bead' },
+      { yap:'\uF1CB0\uF1CA4\uF1CB5\uF1CA0', rom:'nora', eng:'water' },
+    ]
+  },
+  {
+    id: 'fricatives', title: 'Fricatives & Affricates',
+    intro: `The affricates <em>ch</em> and <em>j</em> and the fricative <em>s</em> are frequent in everyday Kokborok speech. <em>h</em> is common as a suffix and in compound words. The extended consonants <em>z</em> and <em>v</em> appear only in loanwords from Bengali, English, and other contact languages.`,
+    chars: CONSONANTS.filter(c => ['ch','j','s','h'].includes(c.roman)).concat(LOANWORD),
+    examples: [
+      { yap:'\uF1CBA\uF1CA0\uF1CA6\uF1CA0', rom:'saka', eng:'vegetable' },
+      { yap:'\uF1CAA\uF1CA0\uF1CB0\uF1CA0', rom:'chana', eng:'to know' },
+      { yap:'\uF1CAB\uF1CA0\uF1CB7\uF1CA0', rom:'jawa', eng:'to go' },
+    ]
+  },
+  {
+    id: 'numerals', title: 'Numerals & Tone',
+    intro: `Yapiri has its own <strong>ten numerals</strong> (0–9) designed to harmonise visually with the script's letterforms. The <strong>high tone mark</strong> (U+F1CD1) is a combining diacritic — it attaches above a base character to mark the high tone, which is phonemically contrastive in Kokborok. It was designed as a native Yapiri combining character with OpenType mark-to-base anchors.`,
+    chars: NUMERALS,
+    examples: [
+      { yap:'\uF1CBE\uF1CBF\uF1CC0', rom:'1-2-3', eng:'one, two, three' },
+      { yap:'\uF1CC1\uF1CC2\uF1CC3', rom:'4-5-6', eng:'four, five, six' },
+      { yap:'\uF1CC4\uF1CC5\uF1CC6', rom:'7-8-9', eng:'seven, eight, nine' },
+    ]
+  },
+];
+
+function buildLessons() {
+  const tabRow  = document.getElementById('lessons-tab-row');
+  const content = document.getElementById('lessons-content');
+  LESSONS.forEach((lesson, i) => {
+    // Tab
+    const tab = document.createElement('button');
+    tab.className = 'lesson-tab' + (i === 0 ? ' active' : '');
+    tab.textContent = lesson.title;
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.lesson-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.lesson-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('lp-' + lesson.id).classList.add('active');
+    });
+    tabRow.appendChild(tab);
+
+    // Panel
+    const panel = document.createElement('div');
+    panel.className = 'lesson-panel reveal' + (i === 0 ? ' active' : '');
+    panel.id = 'lp-' + lesson.id;
+
+    // Left col
+    const left = document.createElement('div');
+    const intro = document.createElement('p');
+    intro.className = 'lesson-intro'; intro.innerHTML = lesson.intro;
+    left.appendChild(intro);
+    const charsWrap = document.createElement('div');
+    charsWrap.className = 'lesson-chars-wrap';
+    lesson.chars.forEach(ch => {
+      const item = document.createElement('div');
+      item.className = 'lesson-char-item';
+      item.innerHTML = `
+        <span class="lesson-char-glyph">${cp(ch.cp)}</span>
+        <span class="lesson-char-roman">${ch.roman}</span>
+        <span class="lesson-char-ipa">${ch.ipa || ''}</span>
+      `;
+      charsWrap.appendChild(item);
+    });
+    left.appendChild(charsWrap);
+    panel.appendChild(left);
+
+    // Right col
+    const right = document.createElement('div');
+    right.className = 'lesson-right-col';
+    const exTitle = document.createElement('p');
+    exTitle.className = 'lesson-examples-title'; exTitle.textContent = 'Worked Examples';
+    right.appendChild(exTitle);
+    lesson.examples.forEach(ex => {
+      const div = document.createElement('div');
+      div.className = 'lesson-example';
+      div.innerHTML = `
+        <span class="ex-yapiri">${ex.yap}</span>
+        <span class="ex-roman">${ex.rom}</span>
+        <span class="ex-meaning">${ex.eng}</span>
+      `;
+      right.appendChild(div);
+    });
+    panel.appendChild(right);
+    content.appendChild(panel);
+  });
+}
+buildLessons();
+
+// ────────────────────────────────────────────────
+// QUICK REFERENCE
+// ────────────────────────────────────────────────
+function buildQR() {
+  const container = document.getElementById('qr-content');
+  const groups = [
+    { label: 'Vowels', chars: VOWELS },
+    { label: 'Consonants', chars: CONSONANTS },
+    { label: 'Loanword', chars: LOANWORD },
+    { label: 'Numerals', chars: NUMERALS },
+  ];
+  groups.forEach(g => {
+    const t = document.createElement('p'); t.className = 'qr-group-title'; t.textContent = g.label;
+    container.appendChild(t);
+    g.chars.forEach(ch => {
+      const row = document.createElement('div'); row.className = 'qr-row';
+      row.innerHTML = `<span class="qr-glyph">${cp(ch.cp)}</span><span class="qr-roman">${ch.roman}</span><span class="qr-ipa">${ch.ipa}</span>`;
+      container.appendChild(row);
+    });
+  });
+}
+buildQR();
+
+document.getElementById('qr-btn').addEventListener('click', () => document.getElementById('qr-drawer').classList.toggle('open'));
+document.getElementById('qr-close').addEventListener('click', () => document.getElementById('qr-drawer').classList.remove('open'));
+
+// ────────────────────────────────────────────────
+// SENTENCE EXERCISES
+// ────────────────────────────────────────────────
+const SENTENCES = [
+  { id:'s001', english:'Good morning.',                    domain:'Greetings' },
+  { id:'s002', english:'What is your name?',               domain:'Greetings' },
+  { id:'s003', english:'How are you?',                     domain:'Greetings' },
+  { id:'s004', english:'Thank you very much.',             domain:'Greetings' },
+  { id:'s005', english:'Where is the market?',             domain:'Directions' },
+  { id:'s006', english:'Turn left at the river.',          domain:'Directions' },
+  { id:'s007', english:'How far is the village?',          domain:'Directions' },
+  { id:'s008', english:'I am hungry.',                     domain:'Food' },
+  { id:'s009', english:'This food is delicious.',          domain:'Food' },
+  { id:'s010', english:'Can I have some water?',           domain:'Food' },
+  { id:'s011', english:'My mother is cooking rice.',       domain:'Family' },
+  { id:'s012', english:'He is my elder brother.',          domain:'Family' },
+  { id:'s013', english:'We have three children.',          domain:'Family' },
+  { id:'s014', english:'I need to see a doctor.',          domain:'Health' },
+  { id:'s015', english:'My head is aching.',               domain:'Health' },
+  { id:'s016', english:'The rain is coming.',              domain:'Nature' },
+  { id:'s017', english:'The river is rising.',             domain:'Nature' },
+  { id:'s018', english:'How much does this cost?',         domain:'Shopping' },
+  { id:'s019', english:'I will come tomorrow.',            domain:'Everyday Life' },
+  { id:'s020', english:'Please speak slowly.',             domain:'Everyday Life' },
+];
+
+const DOMAINS = [...new Set(SENTENCES.map(s => s.domain))];
+let activeDomain = null;
+let filteredSentences = [...SENTENCES];
+let currentIdx = 0;
+let submittedCount = 0;
+let skippedCount = 0;
+let submittedIds = new Set();
+
+// Build domain chips
+const chipsEl = document.getElementById('domain-chips');
+DOMAINS.forEach(d => {
+  const chip = document.createElement('button');
+  chip.className = 'domain-chip';
+  chip.textContent = d;
+  chip.addEventListener('click', () => {
+    if (activeDomain === d) {
+      activeDomain = null;
+      filteredSentences = [...SENTENCES];
+      chip.classList.remove('active');
+    } else {
+      activeDomain = d;
+      filteredSentences = SENTENCES.filter(s => s.domain === d);
+      document.querySelectorAll('.domain-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    }
+    currentIdx = 0;
+    loadSentence(0);
+    document.getElementById('ex-total').textContent = filteredSentences.length;
+  });
+  chipsEl.appendChild(chip);
+});
+
+// Consent
+let consentGiven = localStorage.getItem('yapiri_learn_consent') === 'accept';
+const consentBox = document.getElementById('consent-box');
+function updateConsentUI() {
+  const stored = localStorage.getItem('yapiri_learn_consent');
+  if (stored) consentBox.classList.add('hidden');
+}
+updateConsentUI();
+document.getElementById('btn-consent-accept').addEventListener('click', () => {
+  localStorage.setItem('yapiri_learn_consent', 'accept');
+  consentGiven = true; consentBox.classList.add('hidden');
+});
+document.getElementById('btn-consent-decline').addEventListener('click', () => {
+  localStorage.setItem('yapiri_learn_consent', 'decline');
+  consentBox.classList.add('hidden');
+});
+
+// Session ID
+let sessionId = sessionStorage.getItem('yapiri_learn_session');
+if (!sessionId) {
+  sessionId = 'learn_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+  sessionStorage.setItem('yapiri_learn_session', sessionId);
+}
+
+function loadSentence(idx) {
+  const s = filteredSentences[idx];
+  if (!s) return;
+  document.getElementById('ex-sentence').textContent = s.english;
+  document.getElementById('ex-domain').textContent = s.domain;
+  document.getElementById('ex-domain-label').textContent = s.domain;
+  document.getElementById('ex-current').textContent = idx + 1;
+  document.getElementById('ex-total').textContent = filteredSentences.length;
+  const fb = document.getElementById('ex-feedback');
+  fb.className = 'ex-feedback'; fb.textContent = '';
+  const input = document.getElementById('ex-input');
+  input.value = '';
+  input.placeholder = submittedIds.has(s.id)
+    ? '✓ Already contributed — type again to add another version'
+    : 'Type in Roman Kokborok, or paste Yapiri glyphs from the virtual keyboard…';
+}
+
+function updateProgress() {
+  const total = SENTENCES.length;
+  const pct = Math.round((submittedCount / total) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-pct').textContent = pct;
+  document.getElementById('prog-submitted').textContent = submittedCount;
+  document.getElementById('prog-skipped').textContent = skippedCount;
+}
+
+function showFeedback(msg, type) {
+  const fb = document.getElementById('ex-feedback');
+  fb.textContent = msg; fb.className = 'ex-feedback ' + type;
+}
+
+async function submitTranslation() {
+  const text = document.getElementById('ex-input').value.trim();
+  if (!text) { showFeedback('Type your translation before submitting.', 'error'); return; }
+  const s = filteredSentences[currentIdx];
+  const btn = document.getElementById('btn-submit');
+  btn.disabled = true; btn.textContent = 'Saving…';
+
+  const payload = {
+    sentence_id: s.id,
+    english: s.english,
+    domain: s.domain,
+    learner_text: text,
+    timestamp: serverTimestamp(),
+    session_id: sessionId,
+    consent: consentGiven,
+    word_count: text.split(/\s+/).filter(Boolean).length,
+    char_count: text.length,
+    device_type: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+    browser_lang: navigator.language || '',
+  };
+
+  try {
+    if (consentGiven) await addDoc(collection(db, 'learner_submissions'), payload);
+    submittedIds.add(s.id);
+    submittedCount++;
+    updateProgress();
+    showFeedback('Contributed to the Kokborok corpus — thank you.', 'success');
+    setTimeout(() => {
+      if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
+    }, 1100);
+  } catch(err) {
+    console.error(err);
+    showFeedback('Could not save — check your connection and try again.', 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Submit Translation';
+  }
+}
+
+document.getElementById('btn-submit').addEventListener('click', submitTranslation);
+document.getElementById('btn-skip').addEventListener('click', () => {
+  skippedCount++; updateProgress();
+  if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
+});
+document.getElementById('btn-prev').addEventListener('click', () => {
+  if (currentIdx > 0) { currentIdx--; loadSentence(currentIdx); }
+});
+document.getElementById('btn-next').addEventListener('click', () => {
+  if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
+});
+
+// Keyboard shortcut: Ctrl+Enter to submit
+document.getElementById('ex-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) submitTranslation();
+});
+
+loadSentence(0);
+updateProgress();
+document.getElementById('ex-total').textContent = filteredSentences.length;
+
+// ── Future: pull sentence_pairs from Firestore when populated ──
+try {
+  const q = query(collection(db, 'sentence_pairs'), orderBy('id'), limit(50));
+  const snap = await getDocs(q);
+  if (!snap.empty) {
+    const remote = [];
+    snap.forEach(doc => remote.push({ ...doc.data(), id: doc.id }));
+    if (remote.length >= 5) {
+      SENTENCES.length = 0;
+      remote.forEach(r => SENTENCES.push({ id: r.id, english: r.english || '', domain: r.domain || 'General' }));
+      filteredSentences = [...SENTENCES];
+      document.getElementById('ex-total').textContent = SENTENCES.length;
+      loadSentence(0);
+    }
+  }
+} catch(_) { /* no sentence_pairs yet */ }
+
+</script>
+
+<script>
+// Hero bg glyphs
+const sampleGlyphs = [
+  '\uDB87\uDCA0','\uDB87\uDCA1','\uDB87\uDCA2','\uDB87\uDCA3','\uDB87\uDCA4','\uDB87\uDCA5',
+  '\uDB87\uDCA7','\uDB87\uDCA8','\uDB87\uDCA9','\uDB87\uDCAA','\uDB87\uDCAB','\uDB87\uDCAC',
+  '\uDB87\uDCAD','\uDB87\uDCAE','\uDB87\uDCAF','\uDB87\uDCB0','\uDB87\uDCB1','\uDB87\uDCB2',
+  '\uDB87\uDCB3','\uDB87\uDCB4','\uDB87\uDCB5','\uDB87\uDCB6','\uDB87\uDCB7','\uDB87\uDCB8',
+  '\uDB87\uDCB9','\uDB87\uDCBA','\uDB87\uDCBB','\uDB87\uDCBC','\uDB87\uDCBD','\uDB87\uDCC0',
+  '\uDB87\uDCC1','\uDB87\uDCC2','\uDB87\uDCC3','\uDB87\uDCC4','\uDB87\uDCC5','\uDB87\uDCC6',
+  '\uDB87\uDCC7','\uDB87\uDCC8','\uDB87\uDCC9','\uDB87\uDCCB','\uDB87\uDCCC','\uDB87\uDCCD',
+  '\uDB87\uDCCE','\uDB87\uDCCF','\uDB87\uDCD1'
+];
+const grid = document.getElementById('heroBgGlyphs');
+for (let i = 0; i < 60; i++) {
+  const cell = document.createElement('div');
+  cell.className = 'hero-bg-cell';
+  cell.textContent = sampleGlyphs[i % sampleGlyphs.length];
+  cell.style.setProperty('--dur',   (3 + Math.random() * 6) + 's');
+  cell.style.setProperty('--delay', (Math.random() * 8) + 's');
+  grid.appendChild(cell);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav hamburger
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  burger.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+</body>
+</html>
