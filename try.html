@@ -122,10 +122,21 @@
   .page-hero-glyph { position:absolute; right:5rem; top:50%; transform:translateY(-50%); font-family:'Yapiri',serif; font-size:clamp(6rem,12vw,10rem); color:rgba(201,146,42,0.07); line-height:1; pointer-events:none; }
   .gold-line { width:60px; height:2px; background:var(--gold); margin:1.5rem 0 2rem; }
 
-  /* ── KEYBOARD LAYOUT ── */
-  .keyboard-wrap { padding:1.5rem 2rem 5rem; max-width:980px; margin:0 auto; }
-  .keyboard-section-inner { max-width:980px; margin:0 auto; }
+  /* ── KEYBOARD SECTION ── */
+  /* Desktop hides space/delete from controls — keyboard handles those */
   @media(min-width:641px) { .ctrl-desktop-hide { display:none; } }
+
+  /* ── STICKY OUTPUT WRAPPER ──
+     Sits OUTSIDE keyboard-wrap so no parent padding/overflow can break stickiness. */
+  #stickyOutputWrap {
+    max-width:980px;
+    margin:0 auto;
+    transition: opacity 0.25s ease, pointer-events 0s;
+  }
+  #stickyOutputWrap.output-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   /* OUTPUT PANEL */
   .output-panel {
@@ -140,6 +151,7 @@
   .session-counter { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); opacity:0.85; }
   .session-counter span { color:var(--gold-light); }
 
+  /* Desktop: contenteditable typing surface */
   #yapiri-output {
     font-size:1.6rem; font-family:'Yapiri',serif; color:var(--parchment);
     letter-spacing:0.1em; line-height:1.5;
@@ -151,27 +163,18 @@
     padding-right:0.2rem; resize:none;
   }
   #yapiri-output:empty::before { content:attr(data-placeholder); color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.95rem; letter-spacing:0.04em; }
-  #yapiri-output::-webkit-scrollbar { width:4px; cursor:pointer; }
-  #yapiri-output::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); cursor:pointer; }
-  #yapiri-output::-webkit-scrollbar-track { background:transparent; cursor:pointer; }
+  #yapiri-output::-webkit-scrollbar { width:4px; }
+  #yapiri-output::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); }
+  #yapiri-output::-webkit-scrollbar-track { background:transparent; }
 
   #roman-output { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--stone); letter-spacing:0.08em; margin-top:0.7rem; overflow-wrap:break-word; word-break:break-word; white-space:pre-wrap; padding-top:0.6rem; border-top:1px solid rgba(196,180,154,0.08); height:48px; overflow-y:scroll; resize:none; }
-  #roman-output::-webkit-scrollbar { width:4px; cursor:pointer; }
-  #roman-output::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); cursor:pointer; }
-  #roman-output::-webkit-scrollbar-track { background:transparent; cursor:pointer; }
-
-  .typing-hint { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.1em; color:var(--stone); margin-top:0.5rem; opacity:0.7; }
-  .typing-hint kbd { background:rgba(201,146,42,0.1); border:1px solid rgba(201,146,42,0.25); border-radius:2px; padding:0.05rem 0.35rem; color:var(--gold-light); font-size:0.9em; }
+  #roman-output::-webkit-scrollbar { width:4px; }
+  #roman-output::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); }
+  #roman-output::-webkit-scrollbar-track { background:transparent; }
 
   /* CODEPOINT BAR */
   .codepoint-bar { border-top:1px solid rgba(196,180,154,0.1); background:#0a0805; }
-  .cp-toggle {
-    width:100%; background:none; border:none; cursor:pointer;
-    display:flex; justify-content:space-between; align-items:center;
-    padding:0.55rem 2rem; font-family:'DM Mono',monospace;
-    font-size:0.52rem; letter-spacing:0.22em; text-transform:uppercase;
-    color:var(--stone); transition:color 0.2s; text-align:left;
-  }
+  .cp-toggle { width:100%; background:none; border:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; padding:0.55rem 2rem; font-family:'DM Mono',monospace; font-size:0.52rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--stone); transition:color 0.2s; text-align:left; }
   .cp-toggle:hover { color:var(--gold); }
   .cp-toggle.open { color:var(--gold); }
   .cp-toggle-arrow { transition:transform 0.25s; font-size:0.6rem; }
@@ -182,37 +185,28 @@
   #inspector-output span { color:var(--gold-light); }
 
   /* CONTROLS BAR */
-  .controls-bar {
-    display:flex; gap:0.5rem; flex-wrap:wrap;
-    background:#060402;
-    border:1px solid rgba(196,180,154,0.2);
-    border-top:1px solid rgba(201,146,42,0.15);
-    padding:0.7rem 1rem;
-  }
+  .controls-bar { display:flex; gap:0.5rem; flex-wrap:wrap; background:#060402; border:1px solid rgba(196,180,154,0.2); border-top:1px solid rgba(201,146,42,0.15); padding:0.7rem 1rem; }
   .ctrl-btn { background:transparent; border:1px solid rgba(196,180,154,0.2); color:var(--stone-light); padding:0.45rem 1rem; font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; }
   .ctrl-btn:hover { border-color:var(--gold); color:var(--gold); }
   .ctrl-btn.danger:hover { border-color:var(--terracotta); color:var(--terracotta); }
   .ctrl-btn.success { border-color:rgba(109,179,109,0.4); color:#6db36d; }
+
+  /* KEYBOARD WRAP — content below the sticky block */
+  .keyboard-wrap { padding:1.5rem 2rem 5rem; max-width:980px; margin:0 auto; }
 
   /* FONT NOTICE */
   .font-notice { background:rgba(201,146,42,0.06); border:1px solid rgba(201,146,42,0.2); padding:0.8rem 1.2rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.8rem; }
   .font-notice-text { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.06em; color:var(--stone-light); line-height:1.6; }
   .font-notice-text a { color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,146,42,0.3); }
 
-  /* REFERENCE PANEL HEADER */
+  /* REFERENCE BANNER */
   .ref-banner { display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem; padding:0.7rem 1rem; background:rgba(184,92,56,0.05); border:1px solid rgba(184,92,56,0.18); }
   .ref-banner-icon { font-size:1.1rem; flex-shrink:0; color:var(--terracotta); }
   .ref-banner-text { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.05em; color:var(--stone-light); line-height:1.6; }
   .ref-banner-text strong { color:var(--gold-light); font-weight:400; }
 
   /* ════════ SHARED KEY STYLE ════════ */
-  .key {
-    background:rgba(255,255,255,0.04); border:1px solid rgba(196,180,154,0.12);
-    color:var(--parchment); cursor:pointer;
-    transition:all 0.12s; display:flex; flex-direction:column;
-    align-items:center; justify-content:center; gap:0.12rem;
-    user-select:none; font-family:inherit; position:relative; overflow:hidden;
-  }
+  .key { background:rgba(255,255,255,0.04); border:1px solid rgba(196,180,154,0.12); color:var(--parchment); cursor:pointer; transition:all 0.12s; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.12rem; user-select:none; font-family:inherit; position:relative; overflow:hidden; }
   .key::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--stone); opacity:0; transition:opacity 0.15s; }
   .key:hover { background:rgba(184,92,56,0.18); border-color:var(--terracotta); transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.35); z-index:2; }
   .key:hover::before { opacity:1; background:var(--terracotta); }
@@ -221,20 +215,14 @@
   .key-label { font-family:'DM Mono',monospace; letter-spacing:0.04em; color:var(--stone-light); text-transform:uppercase; }
   .key-qwerty { position:absolute; font-family:'DM Mono',monospace; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
   .key-qwerty.shifted { color:var(--terra-light); }
-  .key.loanword { border-color:rgba(196,180,154,0.12); background:rgba(255,255,255,0.04); }
   .key.loanword::before { background:var(--terracotta); }
   .key.loanword:hover { border-color:var(--terracotta); background:rgba(184,92,56,0.18); }
 
   /* ════════ DESKTOP: QWERTY VISUAL KEYBOARD ════════ */
   .kb-desktop { display:block; }
-  .kb-board {
-    background:rgba(8,6,3,0.55); border:1px solid rgba(196,180,154,0.14);
-    padding:0.9rem; display:flex; flex-direction:column; gap:0.45rem;
-  }
+  .kb-board { background:rgba(8,6,3,0.55); border:1px solid rgba(196,180,154,0.14); padding:0.9rem; display:flex; flex-direction:column; gap:0.45rem; }
   .kb-row { display:flex; gap:0.45rem; justify-content:flex-start; }
-  .kb-row .key {
-    flex:1 1 0; min-width:0; height:64px; padding:0.3rem 0.2rem;
-  }
+  .kb-row .key { flex:1 1 0; min-width:0; height:64px; padding:0.3rem 0.2rem; }
   .kb-row .key .key-qwerty { top:4px; left:6px; font-size:0.6rem; }
   .kb-row .key .key-glyph { font-size:1.6rem; }
   .kb-row .key .key-label { font-size:0.6rem; margin-top:0.05rem; }
@@ -247,7 +235,6 @@
   .w-15 { flex-grow:1.5 !important; }
   .w-18 { flex-grow:1.8 !important; }
   .w-20 { flex-grow:2 !important; }
-  .w-225 { flex-grow:2.25 !important; }
   .w-spacebar { flex-grow:7 !important; }
   .kb-row .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
 
@@ -265,27 +252,15 @@
   /* FOOTNOTE */
   .kb-footnote { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.04em; color:var(--stone); line-height:1.9; margin-top:1rem; padding:0.7rem 1rem; background:rgba(255,255,255,0.02); border-left:2px solid rgba(201,146,42,0.25); }
   .kb-footnote code { color:var(--gold-light); background:rgba(201,146,42,0.1); padding:0.05rem 0.35rem; border-radius:2px; font-size:0.95em; }
-  .kb-footnote .fn-glyph { font-family:'Yapiri',serif; font-size:1.1rem; color:var(--parchment); vertical-align:-0.1em; }
 
   /* COLLAPSIBLE PANELS */
   .collapsible-group { margin-top:0.6rem; }
-  .collapsible-toggle {
-    width:100%; background:rgba(26,18,9,0.6); border:1px solid rgba(196,180,154,0.15);
-    color:var(--stone-light); padding:0.7rem 1rem;
-    font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em;
-    text-transform:uppercase; cursor:pointer; display:flex;
-    justify-content:space-between; align-items:center; transition:all 0.2s; text-align:left;
-  }
+  .collapsible-toggle { width:100%; background:rgba(26,18,9,0.6); border:1px solid rgba(196,180,154,0.15); color:var(--stone-light); padding:0.7rem 1rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:all 0.2s; text-align:left; }
   .collapsible-toggle:hover { border-color:rgba(201,146,42,0.3); color:var(--gold-light); }
   .collapsible-toggle.open { border-color:rgba(201,146,42,0.3); color:var(--gold-light); border-bottom:none; }
   .toggle-arrow { transition:transform 0.25s; font-size:0.65rem; }
   .collapsible-toggle.open .toggle-arrow { transform:rotate(90deg); }
-  .collapsible-body {
-    max-height:0; overflow:hidden;
-    transition:max-height 0.3s ease, padding 0.3s ease;
-    background:rgba(26,18,9,0.4);
-    border:1px solid rgba(201,146,42,0.3); border-top:none;
-  }
+  .collapsible-body { max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s ease; background:rgba(26,18,9,0.4); border:1px solid rgba(201,146,42,0.3); border-top:none; }
   .collapsible-body.open { max-height:160px; padding:1rem; }
   .key-row { display:flex; gap:0.35rem; flex-wrap:wrap; }
   .key.math-key { min-width:54px; background:rgba(201,146,42,0.05); border-color:rgba(201,146,42,0.2); }
@@ -315,10 +290,11 @@
   .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease,transform 0.7s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
 
-  ::-webkit-scrollbar { width:5px; cursor:pointer; }
-  ::-webkit-scrollbar-track { background:var(--ink); cursor:pointer; }
-  ::-webkit-scrollbar-thumb { background:var(--stone); border-radius:0; cursor:pointer; }
+  ::-webkit-scrollbar { width:5px; }
+  ::-webkit-scrollbar-track { background:var(--ink); }
+  ::-webkit-scrollbar-thumb { background:var(--stone); border-radius:0; }
 
+  /* ── TABLET / MOBILE BREAKPOINTS ── */
   @media(max-width:900px) {
     .page-hero { padding:8rem 2rem 3.5rem; }
     footer { flex-direction:column; text-align:center; padding:2.5rem 2rem; }
@@ -342,36 +318,42 @@
     .kb-board { padding:0.6rem; }
     .kb-row { gap:0.3rem; }
   }
+
+  /* ════ MOBILE ≤640px ════ */
   @media(max-width:640px) {
     .kb-desktop { display:none; }
     .kb-mobile { display:block; }
-    #yapiri-output { font-size:1.4rem; height:80px; }
 
-    /* ── STICKY OUTPUT STACK ──
-       output-panel sticks just below the fixed nav (62px).
-       controls-bar sticks immediately below the output panel.
-       Nav = 62px
-       output-top padding-top = 0.8rem ≈ 13px
-       output-label-row + margin ≈ 28px
-       #yapiri-output height = 80px
-       #roman-output margin-top + padding-top + height = 0.4rem+0.4rem+36px ≈ 45px
-       codepoint-bar cp-toggle (hidden on mobile by default) ≈ 0px
-       output-top padding-bottom = 0.6rem ≈ 10px
-       border-bottom of output-panel = 0 (border-bottom:none)
-       Total output-panel ≈ 62 + 13 + 28 + 80 + 45 + 10 = 238px
-       controls-bar height ≈ ~44px
-    ── */
-    .output-panel { position:sticky; top:62px; z-index:50; }
-    .controls-bar  { position:sticky; top:238px; z-index:49; }
+    /* sticky output — lives outside keyboard-wrap so nothing blocks it */
+    #stickyOutputWrap {
+      position:sticky;
+      top:62px;
+      z-index:50;
+    }
 
-    /* tighten padding on mobile */
+    /* tighter padding on mobile */
     .output-top { padding:0.8rem 1rem 0.6rem; }
     .output-label-row { margin-bottom:0.4rem; }
-    #roman-output { margin-top:0.4rem; padding-top:0.4rem; height:36px; }
+    #yapiri-output { font-size:1.4rem; height:72px; }
+    #roman-output { margin-top:0.4rem; padding-top:0.4rem; height:34px; font-size:0.7rem; }
 
-    /* transition for hide/show */
-    #stickyOutputWrap { transition:opacity 0.2s ease; }
-    #stickyOutputWrap.hidden { opacity:0; pointer-events:none; }
+    /* Mobile output display — not editable, no cursor, no native keyboard */
+    #yapiri-output.mobile-display {
+      cursor:default;
+      caret-color:transparent;
+      /* show a blinking fake cursor via box-shadow so it feels live */
+    }
+    #yapiri-output.mobile-display::after {
+      content:'|';
+      color:var(--gold-light);
+      animation:blink 1s step-end infinite;
+      font-family:'DM Mono',monospace;
+      font-size:1rem;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* hide codepoint toggle on mobile (saves vertical space) */
+    .codepoint-bar { display:none; }
   }
   @media(max-width:380px) {
     .kb-grid { gap:0.3rem; }
@@ -418,35 +400,28 @@
   <div class="page-hero-glyph">&#xF1CBA;&#xF1CB6;</div>
 </div>
 
-<!-- OUTPUT + KEYBOARD -->
-<div id="keyboardSection">
-<div class="keyboard-section-inner" id="stickyBlock">
-
-<div class="keyboard-wrap">
-  <!-- FONT NOTICE -->
-  <div class="font-notice reveal">
-    <span style="font-size:1.1rem;flex-shrink:0;">&#11015;</span>
-    <span class="font-notice-text">
-      The Yapiri font must be installed for glyphs to render correctly outside this browser.
-      <a href="download.html">Download the font here</a> before copying text into other applications.
-    </span>
-  </div>
-
-  <!-- REFERENCE BANNER -->
-  <div class="ref-banner reveal">
-    <span class="ref-banner-icon">&#9000;</span>
-    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
-  </div>
-
-  <!-- OUTPUT PANEL + CONTROLS wrapped for sticky behaviour -->
-  <div id="stickyOutputWrap">
+<!-- ══════════════════════════════════════════════
+     STICKY OUTPUT BLOCK
+     Sits at top level — NOT inside keyboard-wrap —
+     so position:sticky has no overflow parent to break it.
+════════════════════════════════════════════════ -->
+<div id="stickyOutputWrap">
   <div class="output-panel reveal">
     <div class="output-top">
       <div class="output-label-row">
         <span class="output-label">Yapiri Output</span>
-        <span class="session-counter" id="sessionCounter">Words: <span id="wordCount">0</span></span>
+        <span class="session-counter">Words: <span id="wordCount">0</span></span>
       </div>
-      <div id="yapiri-output" contenteditable="true" spellcheck="false" autocapitalize="off" autocomplete="off" data-placeholder="Start typing — a, e, i, k, p…" aria-label="Yapiri text input" onpaste="return false"></div>
+      <!-- Desktop: contenteditable. Mobile JS switches it to a plain div. -->
+      <div id="yapiri-output"
+           contenteditable="true"
+           spellcheck="false"
+           autocapitalize="off"
+           autocomplete="off"
+           autocorrect="off"
+           data-placeholder="Start typing — a, e, i, k, p…"
+           aria-label="Yapiri text input"
+           onpaste="return false"></div>
       <div id="roman-output">Roman output will appear here</div>
     </div>
     <div class="codepoint-bar">
@@ -459,7 +434,6 @@
       </div>
     </div>
   </div>
-  <!-- CONTROLS — desktop hides space/delete/clear/copy, mobile keeps all -->
   <div class="controls-bar">
     <button class="ctrl-btn ctrl-desktop-hide" onclick="insertSpace()">Space</button>
     <button class="ctrl-btn danger ctrl-desktop-hide" onclick="backspace()">&#9003; Delete</button>
@@ -467,7 +441,26 @@
     <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
     <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
   </div>
-  </div><!-- /stickyOutputWrap -->
+</div><!-- /stickyOutputWrap -->
+
+<!-- ══════════════════════════════════════════════
+     KEYBOARD + REFERENCE CONTENT
+════════════════════════════════════════════════ -->
+<div id="keyboardSection">
+<div class="keyboard-wrap">
+
+  <div class="font-notice reveal">
+    <span style="font-size:1.1rem;flex-shrink:0;">&#11015;</span>
+    <span class="font-notice-text">
+      The Yapiri font must be installed for glyphs to render correctly outside this browser.
+      <a href="download.html">Download the font here</a> before copying text into other applications.
+    </span>
+  </div>
+
+  <div class="ref-banner reveal">
+    <span class="ref-banner-icon">&#9000;</span>
+    <span class="ref-banner-text"><strong>Reference map.</strong> Type on your keyboard — each key produces the Yapiri letter shown. The physical key is marked top-left on each cell. Tapping a key also works.</span>
+  </div>
 
   <!-- ════ DESKTOP: QWERTY VISUAL KEYBOARD ════ -->
   <div class="kb-desktop reveal">
@@ -486,7 +479,7 @@
         <button class="key" data-key="0" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
         <button class="key kb-key-wide is-active w-18" onclick="backspace()"><span class="kb-key-label-only">&#9003; Bksp</span></button>
       </div>
-      <!-- TOP ROW: QWERTYUIOP -->
+      <!-- TOP ROW -->
       <div class="kb-row">
         <button class="key" data-key="q" onclick="typeChar('\u{F1CA5}','\u0259',this)"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
         <button class="key" data-key="w" onclick="typeChar('\u{F1CBB}','w',this)"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
@@ -499,7 +492,7 @@
         <button class="key" data-key="o" onclick="typeChar('\u{F1CA4}','o',this)"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
         <button class="key" data-key="p" onclick="typeChar('\u{F1CA7}','p',this)"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
       </div>
-      <!-- HOME ROW: ASDFGHJKL + ' -->
+      <!-- HOME ROW -->
       <div class="kb-row">
         <button class="key" data-key="a" onclick="typeChar('\u{F1CA0}','a',this)"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
         <button class="key" data-key="s" onclick="typeChar('\u{F1CB6}','s',this)"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
@@ -512,7 +505,7 @@
         <button class="key" data-key="l" onclick="typeChar('\u{F1CB8}','l',this)"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
         <button class="key special" data-key="'" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
       </div>
-      <!-- BOTTOM ROW: ZXCVBNM + , . -->
+      <!-- BOTTOM ROW -->
       <div class="kb-row">
         <button class="key loanword" data-key="z" onclick="typeChar('\u{F1CBD}','z',this)"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
         <button class="key" data-key="c" onclick="typeChar('\u{F1CB0}','ch',this)"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
@@ -528,7 +521,7 @@
       </div>
       <!-- SPACE ROW -->
       <div class="kb-row">
-        <button class="key kb-key-wide w-20" style="cursor:default;background:rgba(139,115,85,0.1);border-color:rgba(139,115,85,0.2);" title="Hold Shift for aspirates"><span class="kb-key-label-only" style="color:var(--stone);font-size:0.55rem;line-height:1.5;">&#8679; Shift<br><span style="color:rgba(196,180,154,0.4);font-size:0.48rem;letter-spacing:0;">ph · th · kh · n′</span></span></button>
+        <button class="key kb-key-wide w-20" style="cursor:default;background:rgba(139,115,85,0.1);border-color:rgba(139,115,85,0.2);"><span class="kb-key-label-only" style="color:var(--stone);font-size:0.55rem;line-height:1.5;">&#8679; Shift<br><span style="color:rgba(196,180,154,0.4);font-size:0.48rem;">ph · th · kh · n′</span></span></button>
         <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CAD}','ph',this)" data-key="P"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAD;</span><span class="key-label" style="font-size:0.55rem;">ph</span></button>
         <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CAE}','th',this)" data-key="T"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAE;</span><span class="key-label" style="font-size:0.55rem;">th</span></button>
         <button class="key kb-key-wide is-active w-15" onclick="typeChar('\u{F1CAF}','kh',this)" data-key="K"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAF;</span><span class="key-label" style="font-size:0.55rem;">kh</span></button>
@@ -542,60 +535,59 @@
   <!-- ════ MOBILE: TAP GRID ════ -->
   <div class="kb-mobile reveal">
     <div class="kb-grid">
-      <!-- vowels first, then consonants in QWERTY-ish reading order -->
-      <button class="key" data-key="a" onclick="typeChar('\u{F1CA0}','a',this)"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
-      <button class="key" data-key="e" onclick="typeChar('\u{F1CA1}','e',this)"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
-      <button class="key" data-key="i" onclick="typeChar('\u{F1CA2}','i',this)"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
-      <button class="key" data-key="u" onclick="typeChar('\u{F1CA3}','u',this)"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
-      <button class="key" data-key="o" onclick="typeChar('\u{F1CA4}','o',this)"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
-      <button class="key" data-key="q" onclick="typeChar('\u{F1CA5}','\u0259',this)"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA0}','a',this)"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA1}','e',this)"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA2}','i',this)"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA3}','u',this)"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA4}','o',this)"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA5}','\u0259',this)"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
 
-      <button class="key" data-key="p" onclick="typeChar('\u{F1CA7}','p',this)"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
-      <button class="key" data-key="t" onclick="typeChar('\u{F1CA8}','t',this)"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
-      <button class="key" data-key="k" onclick="typeChar('\u{F1CA9}','k',this)"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
-      <button class="key" data-key="b" onclick="typeChar('\u{F1CAA}','b',this)"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
-      <button class="key" data-key="d" onclick="typeChar('\u{F1CAB}','d',this)"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
-      <button class="key" data-key="g" onclick="typeChar('\u{F1CAC}','g',this)"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA7}','p',this)"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA8}','t',this)"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
+      <button class="key" onclick="typeChar('\u{F1CA9}','k',this)"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
+      <button class="key" onclick="typeChar('\u{F1CAA}','b',this)"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
+      <button class="key" onclick="typeChar('\u{F1CAB}','d',this)"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
+      <button class="key" onclick="typeChar('\u{F1CAC}','g',this)"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
 
-      <button class="key" data-key="P" onclick="typeChar('\u{F1CAD}','ph',this)"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
-      <button class="key" data-key="T" onclick="typeChar('\u{F1CAE}','th',this)"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
-      <button class="key" data-key="K" onclick="typeChar('\u{F1CAF}','kh',this)"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
-      <button class="key" data-key="c" onclick="typeChar('\u{F1CB0}','ch',this)"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
-      <button class="key" data-key="j" onclick="typeChar('\u{F1CB1}','j',this)"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
-      <button class="key" data-key="h" onclick="typeChar('\u{F1CB9}','h',this)"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+      <button class="key" onclick="typeChar('\u{F1CAD}','ph',this)"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
+      <button class="key" onclick="typeChar('\u{F1CAE}','th',this)"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
+      <button class="key" onclick="typeChar('\u{F1CAF}','kh',this)"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB0}','ch',this)"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB1}','j',this)"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB9}','h',this)"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
 
-      <button class="key" data-key="m" onclick="typeChar('\u{F1CB2}','m',this)"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
-      <button class="key" data-key="n" onclick="typeChar('\u{F1CB3}','n',this)"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
-      <button class="key" data-key="N" onclick="typeChar('\u{F1CB4}','n\'',this)"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph">&#xF1CB4;</span><span class="key-label">n&#8242;</span></button>
-      <button class="key" data-key="f" onclick="typeChar('\u{F1CB5}','ng',this)"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
-      <button class="key" data-key="s" onclick="typeChar('\u{F1CB6}','s',this)"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
-      <button class="key" data-key="r" onclick="typeChar('\u{F1CB7}','r',this)"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB2}','m',this)"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB3}','n',this)"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB4}','n\'',this)"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph">&#xF1CB4;</span><span class="key-label">n&#8242;</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB5}','ng',this)"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB6}','s',this)"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB7}','r',this)"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
 
-      <button class="key" data-key="l" onclick="typeChar('\u{F1CB8}','l',this)"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
-      <button class="key" data-key="y" onclick="typeChar('\u{F1CBA}','y',this)"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
-      <button class="key" data-key="w" onclick="typeChar('\u{F1CBB}','w',this)"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
-      <button class="key loanword" data-key="v" onclick="typeChar('\u{F1CBC}','v',this)"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
-      <button class="key loanword" data-key="z" onclick="typeChar('\u{F1CBD}','z',this)"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
-      <button class="key special" data-key="'" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
+      <button class="key" onclick="typeChar('\u{F1CB8}','l',this)"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
+      <button class="key" onclick="typeChar('\u{F1CBA}','y',this)"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
+      <button class="key" onclick="typeChar('\u{F1CBB}','w',this)"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
+      <button class="key loanword" onclick="typeChar('\u{F1CBC}','v',this)"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
+      <button class="key loanword" onclick="typeChar('\u{F1CBD}','z',this)"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
+      <button class="key special" onclick="typeChar('\u{F1CD1}','\u0301',this)"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
 
       <!-- numerals -->
-      <button class="key" data-key="1" onclick="typeChar('\u{F1CC1}','1',this)"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
-      <button class="key" data-key="2" onclick="typeChar('\u{F1CC2}','2',this)"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
-      <button class="key" data-key="3" onclick="typeChar('\u{F1CC3}','3',this)"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
-      <button class="key" data-key="4" onclick="typeChar('\u{F1CC4}','4',this)"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
-      <button class="key" data-key="5" onclick="typeChar('\u{F1CC5}','5',this)"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
-      <button class="key" data-key="6" onclick="typeChar('\u{F1CC6}','6',this)"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
-      <button class="key" data-key="7" onclick="typeChar('\u{F1CC7}','7',this)"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
-      <button class="key" data-key="8" onclick="typeChar('\u{F1CC8}','8',this)"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
-      <button class="key" data-key="9" onclick="typeChar('\u{F1CC9}','9',this)"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
-      <button class="key" data-key="0" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC1}','1',this)"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC2}','2',this)"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC3}','3',this)"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC4}','4',this)"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC5}','5',this)"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC6}','6',this)"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC7}','7',this)"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC8}','8',this)"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC9}','9',this)"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+      <button class="key" onclick="typeChar('\u{F1CC0}','0',this)"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
 
-      <!-- punctuation + wide keys -->
-      <button class="key" data-key="," onclick="typeChar('\u{F1CCB}',',',this)"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
-      <button class="key" data-key="." onclick="typeChar('\u{F1CCC}','.',this)"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
-      <button class="key" data-key="!" onclick="typeChar('\u{F1CCD}','!',this)"><span class="key-qwerty shifted">!</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
-      <button class="key" data-key="?" onclick="typeChar('\u{F1CCF}','?',this)"><span class="key-qwerty shifted">?</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
-      <button class="key" data-key="&quot;" onclick="typeChar('\u{F1CCE}','&quot;',this)"><span class="key-qwerty shifted">"</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
+      <!-- punctuation + utility -->
+      <button class="key" onclick="typeChar('\u{F1CCB}',',',this)"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+      <button class="key" onclick="typeChar('\u{F1CCC}','.',this)"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+      <button class="key" onclick="typeChar('\u{F1CCD}','!',this)"><span class="key-qwerty shifted">!</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+      <button class="key" onclick="typeChar('\u{F1CCF}','?',this)"><span class="key-qwerty shifted">?</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+      <button class="key" onclick="typeChar('\u{F1CCE}','&quot;',this)"><span class="key-qwerty shifted">"</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
       <button class="key kb-key-wide is-active" onclick="backspace()"><span class="kb-key-label-only">&#9003;</span></button>
 
       <button class="key kb-key-wide is-active span3" onclick="insertSpace()"><span class="kb-key-label-only">space</span></button>
@@ -605,7 +597,7 @@
     </div>
   </div>
 
-  <!-- COLLAPSIBLE: MATH OPERATORS -->
+  <!-- COLLAPSIBLE: MATH -->
   <div class="collapsible-group reveal">
     <button class="collapsible-toggle" onclick="togglePanel('math',this)">
       <span>Mathematical Operators</span>
@@ -624,13 +616,11 @@
     </div>
   </div>
 
-  <!-- FOOTNOTE -->
   <div class="kb-footnote reveal">
     <code>v</code> <code>z</code> loanword only · <code>'</code> high tone (type vowel first) · <code>Shift</code> aspirates (P&rarr;ph, T&rarr;th, K&rarr;kh) &amp; n&#8242; · same layout as the <a href="download.html" style="color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,146,42,0.3);">Keyman keyboard</a>
   </div>
 
 </div><!-- /keyboard-wrap -->
-</div><!-- /keyboard-section-inner -->
 </div><!-- /keyboardSection -->
 
 <!-- TIPS -->
@@ -640,9 +630,7 @@
     <div class="tip-card">
       <div class="tip-num">01</div>
       <div class="tip-title">Just Type</div>
-      <p class="tip-body">
-        Click the output box and type on your keyboard. Each key produces its Yapiri letter — <kbd>k</kbd> &rarr; <span style="font-family:'Yapiri',serif;font-size:1.2rem;">&#xF1CA9;</span>, <kbd>a</kbd> &rarr; <span style="font-family:'Yapiri',serif;font-size:1.2rem;">&#xF1CA0;</span>. Backspace, arrows and click-to-position all work normally.
-      </p>
+      <p class="tip-body">Click the output box and type on your keyboard. Each key produces its Yapiri letter — <kbd>k</kbd> &rarr; <span style="font-family:'Yapiri',serif;font-size:1.2rem;">&#xF1CA9;</span>, <kbd>a</kbd> &rarr; <span style="font-family:'Yapiri',serif;font-size:1.2rem;">&#xF1CA0;</span>. Backspace, arrows and click-to-position all work normally.</p>
     </div>
     <div class="tip-card">
       <div class="tip-num">02</div>
@@ -679,6 +667,7 @@
 </footer>
 
 <script>
+  /* ── KEY MAP ── */
   const KEYMAP = {
     'a':{y:'\u{F1CA0}',r:'a'}, 'e':{y:'\u{F1CA1}',r:'e'}, 'i':{y:'\u{F1CA2}',r:'i'},
     'u':{y:'\u{F1CA3}',r:'u'}, 'o':{y:'\u{F1CA4}',r:'o'}, 'q':{y:'\u{F1CA5}',r:'\u0259'},
@@ -700,66 +689,126 @@
     "'":{y:'\u{F1CD1}',r:'\u0301'}
   };
 
-  const outputEl = document.getElementById('yapiri-output');
-
   const ROMAN = {};
   for (const [k, v] of Object.entries(KEYMAP)) ROMAN[v.y] = v.r;
   ROMAN['\u{F1CD1}'] = '\u0301';
 
+  const outputEl = document.getElementById('yapiri-output');
+
+  /* ── MOBILE DETECTION ──
+     On touch devices we switch to a purely display-driven model:
+     - contenteditable is removed so no native keyboard fires
+     - all text is stored in a JS string (mobileBuffer)
+     - the div renders from that string on every tap
+  ── */
+  const isMobile = ('ontouchstart' in window) || (window.innerWidth <= 640);
+  let mobileBuffer = '';   // stores the raw Yapiri string on mobile
+
+  if (isMobile) {
+    /* Remove contenteditable so the native keyboard never appears */
+    outputEl.removeAttribute('contenteditable');
+    outputEl.setAttribute('readonly', '');
+    outputEl.classList.add('mobile-display');
+    /* Also block any accidental focus that might trigger native keyboard */
+    outputEl.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+    outputEl.addEventListener('mousedown', e => e.preventDefault());
+  }
+
+  /* ── INSERT: desktop uses execCommand into contenteditable;
+                mobile appends to mobileBuffer and re-renders ── */
   function insertAtCaret(text) {
-    outputEl.focus({ preventScroll: true });
-    const inserted = document.execCommand('insertText', false, text);
-    if (!inserted) {
-      const sel = window.getSelection();
-      if (!sel.rangeCount) return;
-      const range = sel.getRangeAt(0);
-      range.deleteContents();
-      range.insertNode(document.createTextNode(text));
-      range.collapse(false);
-      sel.removeAllRanges();
-      sel.addRange(range);
+    if (isMobile) {
+      mobileBuffer += text;
+      renderMobile();
+    } else {
+      outputEl.focus({ preventScroll: true });
+      const inserted = document.execCommand('insertText', false, text);
+      if (!inserted) {
+        const sel = window.getSelection();
+        if (!sel.rangeCount) return;
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(document.createTextNode(text));
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
     }
     syncSidebar();
+  }
+
+  function renderMobile() {
+    /* Display buffer content; empty state shows placeholder via CSS :empty-like logic */
+    outputEl.textContent = mobileBuffer;
+    /* Scroll to bottom */
+    outputEl.scrollTop = outputEl.scrollHeight;
   }
 
   function typeChar(glyph, roman, btn) {
     insertAtCaret(glyph);
     if (btn) flashKey(btn);
-    outputEl.focus({ preventScroll: true });
   }
   function insertSpace()  { insertAtCaret(' '); }
-  function insertEnter()  { insertAtCaret('\n'); outputEl.focus({ preventScroll: true }); }
+  function insertEnter()  {
+    insertAtCaret('\n');
+    if (!isMobile) outputEl.focus({ preventScroll: true });
+  }
 
   function backspace() {
-    outputEl.focus({ preventScroll: true });
-    document.execCommand('delete', false);
-    syncSidebar();
-  }
-  function forwardDelete() {
-    outputEl.focus({ preventScroll: true });
-    document.execCommand('forwardDelete', false);
-    syncSidebar();
-  }
-  function clearAll() {
-    outputEl.textContent = '';
-    outputEl.focus({ preventScroll: true });
-    syncSidebar();
+    if (isMobile) {
+      /* Delete last Unicode codepoint (handles surrogate pairs) */
+      const arr = [...mobileBuffer];
+      arr.pop();
+      mobileBuffer = arr.join('');
+      renderMobile();
+      syncSidebar();
+    } else {
+      outputEl.focus({ preventScroll: true });
+      document.execCommand('delete', false);
+      syncSidebar();
+    }
   }
 
-  function getYapiriText() { return outputEl.innerText || ''; }
+  function forwardDelete() {
+    if (!isMobile) {
+      outputEl.focus({ preventScroll: true });
+      document.execCommand('forwardDelete', false);
+      syncSidebar();
+    }
+  }
+
+  function clearAll() {
+    if (isMobile) {
+      mobileBuffer = '';
+      renderMobile();
+      syncSidebar();
+    } else {
+      outputEl.textContent = '';
+      outputEl.focus({ preventScroll: true });
+      syncSidebar();
+    }
+  }
+
+  /* ── TEXT GETTERS ── */
+  function getYapiriText() {
+    return isMobile ? mobileBuffer : (outputEl.innerText || '');
+  }
   function getRomanText(yapiriText) {
     return [...yapiriText].map(ch => ROMAN[ch] || ch).join('');
   }
 
+  /* ── SYNC sidebar: roman output, inspector, word counter ── */
   function syncSidebar() {
     const yapiriText = getYapiriText();
     const romanText  = getRomanText(yapiriText);
-    document.getElementById('roman-output').textContent = romanText || 'Roman Output';
+    const romanEl = document.getElementById('roman-output');
+    romanEl.textContent = romanText || 'Roman Output';
+    romanEl.scrollTop = romanEl.scrollHeight;
     updateInspector(yapiriText);
     updateCounter(romanText);
-    outputEl.scrollTop = outputEl.scrollHeight;
-    const romanEl = document.getElementById('roman-output');
-    romanEl.scrollTop = romanEl.scrollHeight;
+    if (!isMobile) {
+      outputEl.scrollTop = outputEl.scrollHeight;
+    }
   }
 
   function updateCounter(romanText) {
@@ -767,48 +816,48 @@
     document.getElementById('wordCount').textContent = words;
   }
 
-  outputEl.addEventListener('keydown', (e) => {
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    const k = e.key;
-    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(k)) return;
-    if (k === 'Backspace') { e.preventDefault(); backspace(); return; }
-    if (k === 'Delete')    { e.preventDefault(); forwardDelete(); return; }
-    if (k === ' ')         { e.preventDefault(); insertAtCaret(' '); return; }
-    if (k === 'Enter')     { e.preventDefault(); insertAtCaret('\n'); return; }
-    if (k.length === 1 && KEYMAP[k]) {
-      e.preventDefault();
-      insertAtCaret(KEYMAP[k].y);
-      flashRefKey(k);
-      return;
-    }
-    if (k.length === 1) e.preventDefault();
-  });
+  /* ── PHYSICAL KEYBOARD ENGINE (desktop only) ── */
+  if (!isMobile) {
+    outputEl.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const k = e.key;
+      if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(k)) return;
+      if (k === 'Backspace') { e.preventDefault(); backspace(); return; }
+      if (k === 'Delete')    { e.preventDefault(); forwardDelete(); return; }
+      if (k === ' ')         { e.preventDefault(); insertAtCaret(' '); return; }
+      if (k === 'Enter')     { e.preventDefault(); insertAtCaret('\n'); return; }
+      if (k.length === 1 && KEYMAP[k]) {
+        e.preventDefault();
+        insertAtCaret(KEYMAP[k].y);
+        flashRefKey(k);
+        return;
+      }
+      if (k.length === 1) e.preventDefault();
+    });
+    outputEl.addEventListener('input', syncSidebar);
+  }
 
-  outputEl.addEventListener('input', syncSidebar);
-
+  /* ── KEY FLASH ── */
   function flashKey(btn) {
     btn.classList.add('keypress-flash');
     setTimeout(() => btn.classList.remove('keypress-flash'), 130);
   }
   function flashRefKey(k) {
-    const btn = document.querySelector('.key[data-key="' + cssEscape(k) + '"]');
+    const btn = document.querySelector('.key[data-key="' + k.replace(/["\\]/g,'\\$&') + '"]');
     if (btn) flashKey(btn);
   }
-  function cssEscape(s) { return s.replace(/["\\]/g, '\\$&'); }
 
+  /* ── CODEPOINT INSPECTOR ── */
   function updateInspector(yapiriText) {
     const el = document.getElementById('inspector-output');
+    if (!el) return;
     if (!yapiriText) { el.textContent = 'type something above to inspect codepoints…'; return; }
     const parts = [...yapiriText].map(ch => {
-      const codePoint = ch.codePointAt(0);
-      const cp = codePoint.toString(16).toUpperCase().padStart(4, '0');
-      const isPUA = (codePoint >= 0xF0000 && codePoint <= 0xFFFFD) || (codePoint >= 0xE000 && codePoint <= 0xF8FF);
-      let label;
-      if (ch === ' ') label = 'SPACE';
-      else if (ch === '\n') label = 'NL';
-      else if (isPUA) label = `<span style="font-family:'Yapiri',serif;">${ch}</span>`;
-      else label = ch;
-      return `<span>U+${cp}</span> (${label})`;
+      const cp = ch.codePointAt(0);
+      const hex = cp.toString(16).toUpperCase().padStart(4,'0');
+      const isPUA = (cp >= 0xF0000 && cp <= 0xFFFFD) || (cp >= 0xE000 && cp <= 0xF8FF);
+      let label = ch === ' ' ? 'SPACE' : ch === '\n' ? 'NL' : isPUA ? `<span style="font-family:'Yapiri',serif;">${ch}</span>` : ch;
+      return `<span>U+${hex}</span> (${label})`;
     });
     el.innerHTML = parts.join('&nbsp;&nbsp;·&nbsp;&nbsp;');
   }
@@ -816,21 +865,18 @@
   function toggleCp() {
     const body = document.getElementById('cpBody');
     const btn  = document.getElementById('cpToggle');
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    btn.classList.toggle('open', !isOpen);
+    body.classList.toggle('open');
+    btn.classList.toggle('open');
   }
 
   function togglePanel(id, btn) {
-    const body = document.getElementById('panel-' + id);
-    const isOpen = body.classList.contains('open');
-    body.classList.toggle('open', !isOpen);
-    btn.classList.toggle('open', !isOpen);
+    document.getElementById('panel-' + id).classList.toggle('open');
+    btn.classList.toggle('open');
   }
 
+  /* ── MATH SOLVER ── */
   const yapiriDigitMap = {'\u{F1CC0}':0,'\u{F1CC1}':1,'\u{F1CC2}':2,'\u{F1CC3}':3,'\u{F1CC4}':4,'\u{F1CC5}':5,'\u{F1CC6}':6,'\u{F1CC7}':7,'\u{F1CC8}':8,'\u{F1CC9}':9};
   const digitToYapiri  = ['\u{F1CC0}','\u{F1CC1}','\u{F1CC2}','\u{F1CC3}','\u{F1CC4}','\u{F1CC5}','\u{F1CC6}','\u{F1CC7}','\u{F1CC8}','\u{F1CC9}'];
-
   function numberToYapiri(n) {
     const isNeg = n < 0;
     const str = Number.isInteger(Math.abs(n)) ? String(Math.abs(n)) : Math.abs(n).toFixed(10).replace(/\.?0+$/,'');
@@ -838,73 +884,81 @@
     for (const ch of str) out += ch === '.' ? '.' : digitToYapiri[parseInt(ch)];
     return out;
   }
-
   function calcResult() {
-    const yapiriText = getYapiriText();
-    if (!yapiriText) return;
+    const t = getYapiriText(); if (!t) return;
     let expr = '';
-    for (const ch of yapiriText) {
+    for (const ch of t) {
       if (ch in yapiriDigitMap) expr += yapiriDigitMap[ch];
-      else if (ch === '+') expr += '+';
-      else if (ch === '−' || ch === '-') expr += '-';
-      else if (ch === '×') expr += '*';
-      else if (ch === '÷') expr += '/';
-      else if (ch === '%') expr += '/100';
-      else if (ch === '.') expr += '.';
+      else if (ch==='+') expr+='+'; else if (ch==='−'||ch==='-') expr+='-';
+      else if (ch==='×') expr+='*'; else if (ch==='÷') expr+='/';
+      else if (ch==='%') expr+='/100'; else if (ch==='.') expr+='.';
     }
-    expr = expr.replace(/[\+\-\*\/\.]+$/, '');
+    expr = expr.replace(/[\+\-\*\/\.]+$/,'');
     let result;
-    try { result = Function('"use strict";return(' + expr + ')')(); } catch(e) { return; }
+    try { result = Function('"use strict";return('+expr+')')(); } catch(e) { return; }
     if (!isFinite(result)) return;
-    result = parseFloat(result.toPrecision(12));
-    insertAtCaret('=' + numberToYapiri(result));
+    insertAtCaret('=' + numberToYapiri(parseFloat(result.toPrecision(12))));
   }
 
+  /* ── COPY ── */
   async function copyText() {
-    const text = getYapiriText();
-    if (!text) return;
+    const text = getYapiriText(); if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
       const btn = document.getElementById('copyBtn');
-      btn.textContent = 'Copied!'; btn.classList.add('success');
-      setTimeout(() => { btn.textContent = 'Copy Text'; btn.classList.remove('success'); }, 1500);
+      btn.textContent='Copied!'; btn.classList.add('success');
+      setTimeout(()=>{ btn.textContent='Copy Text'; btn.classList.remove('success'); },1500);
     } catch(e) {}
   }
   async function copyRoman() {
-    const text = getRomanText(getYapiriText());
-    if (!text) return;
+    const text = getRomanText(getYapiriText()); if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
       const btn = document.getElementById('copyRomanBtn');
-      btn.textContent = 'Copied!'; btn.classList.add('success');
-      setTimeout(() => { btn.textContent = 'Copy Romanization'; btn.classList.remove('success'); }, 1500);
+      btn.textContent='Copied!'; btn.classList.add('success');
+      setTimeout(()=>{ btn.textContent='Copy Romanization'; btn.classList.remove('success'); },1500);
     } catch(e) {}
   }
 
-  /* ── MOBILE: hide sticky output when keyboard section scrolled fully above viewport ── */
-  if (window.innerWidth <= 640) {
-    const stickyWrap = document.getElementById('stickyOutputWrap');
-    const kbSection  = document.getElementById('keyboardSection');
-    const mobileObserver = new IntersectionObserver(([entry]) => {
-      stickyWrap.classList.toggle('hidden', entry.boundingClientRect.bottom < 0);
-    }, { threshold: 0, rootMargin: '0px' });
-    mobileObserver.observe(kbSection);
-  }
-
   /* ── NAV ── */
-  function toggleMenu() { const m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
-  function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); document.getElementById('hamburger').classList.remove('open'); document.body.style.overflow=''; }
+  function toggleMenu() {
+    const m=document.getElementById('mobileMenu'), b=document.getElementById('hamburger');
+    m.classList.toggle('open'); b.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow='';
+  }
   document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
 
-  /* ── REVEAL ── */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => { if(entry.isIntersecting) { setTimeout(()=>entry.target.classList.add('visible'), i*80); observer.unobserve(entry.target); } });
+  /* ── REVEAL ANIMATIONS ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if(entry.isIntersecting) {
+        setTimeout(()=>entry.target.classList.add('visible'), i*80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
   }, { threshold:0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── HIDE STICKY OUTPUT when tips section scrolls into view ── */
+  const stickyWrap = document.getElementById('stickyOutputWrap');
+  const tipsSection = document.querySelector('.tips-section');
+  if (stickyWrap && tipsSection) {
+    const tipsObserver = new IntersectionObserver(([entry]) => {
+      stickyWrap.classList.toggle('output-hidden', entry.isIntersecting);
+    }, { threshold: 0 });
+    tipsObserver.observe(tipsSection);
+  }
 
   /* ── INIT ── */
   syncSidebar();
-  window.addEventListener('load', () => { try { outputEl.focus(); } catch(e){} });
+  if (!isMobile) {
+    window.addEventListener('load', () => { try { outputEl.focus(); } catch(e){} });
+  }
 </script>
 </body>
 </html>
