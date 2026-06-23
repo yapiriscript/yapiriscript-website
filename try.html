@@ -201,6 +201,59 @@
   .ctrl-btn.danger:hover { border-color:var(--terracotta); color:var(--terracotta); }
   .ctrl-btn.success { border-color:rgba(109,179,109,0.4); color:#6db36d; }
 
+  /* CONSENT BANNER */
+  .consent-banner {
+    background:rgba(201,146,42,0.07);
+    border:1px solid rgba(201,146,42,0.35);
+    border-bottom:none;
+    padding:1rem 1.4rem 0.9rem;
+    display:flex; flex-direction:column; gap:0.8rem;
+  }
+  .consent-banner.hidden { display:none; }
+  .consent-body { display:flex; flex-direction:column; gap:0.45rem; }
+  .consent-en {
+    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.04em;
+    color:var(--stone-light); line-height:1.75;
+  }
+  .consent-kok {
+    font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.03em;
+    color:var(--stone); line-height:1.75; font-style:italic;
+    border-top:1px solid rgba(196,180,154,0.1); padding-top:0.4rem;
+  }
+  .consent-btn {
+    align-self:flex-end;
+    background:transparent; border:1px solid rgba(201,146,42,0.5);
+    color:var(--gold); padding:0.4rem 1.1rem;
+    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em;
+    text-transform:uppercase; cursor:pointer; transition:all 0.2s;
+    white-space:nowrap;
+  }
+  .consent-btn:hover { background:rgba(201,146,42,0.12); border-color:var(--gold-light); color:var(--gold-light); }
+
+  /* corpus controls */
+  .ctrl-select {
+    background:transparent; border:1px solid rgba(196,180,154,0.2);
+    color:var(--stone-light); padding:0.45rem 0.6rem;
+    font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.06em;
+    text-transform:uppercase; cursor:pointer; transition:all 0.2s;
+    appearance:none; -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238b7355'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 0.5rem center;
+    padding-right:1.6rem;
+  }
+  .ctrl-select:hover { border-color:var(--gold); color:var(--gold); }
+  .ctrl-select option { background:#1a1209; color:var(--parchment); text-transform:none; }
+  .ctrl-btn.corpus-btn { border-color:rgba(201,146,42,0.4); color:var(--gold); margin-left:auto; }
+  .ctrl-btn.corpus-btn:hover { border-color:var(--gold-light); color:var(--gold-light); background:rgba(201,146,42,0.08); }
+  .ctrl-btn.corpus-btn.sending { opacity:0.5; pointer-events:none; }
+  .corpus-feedback {
+    font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em;
+    padding:0 1rem 0.5rem; min-height:1.4em; transition:opacity 0.3s;
+    background:#060402; border:1px solid rgba(196,180,154,0.2); border-top:none;
+  }
+  .corpus-feedback.ok  { color:#6db36d; }
+  .corpus-feedback.err { color:var(--terracotta); }
+
   /* KEYBOARD WRAP — content below the sticky block */
   .keyboard-wrap { padding:1.5rem 2rem 5rem; max-width:980px; margin:0 auto; }
 
@@ -408,7 +461,7 @@
   <h1 class="page-title">Type in <em>Yapiri</em></h1>
   <div class="gold-line"></div>
   <p class="page-subtitle">Type directly with your keyboard — each key maps to a Yapiri letter. The on-screen layout below is your reference map. Copy your text into any application that has the font installed.</p>
-  <div class="page-hero-glyph">Virtual Keyboard</div>
+  <div class="page-hero-glyph">&#xF1CBA;&#xF1CB6;</div>
 </div>
 
 <!-- ══════════════════════════════════════════════
@@ -434,6 +487,14 @@
      so position:sticky has no overflow parent to break it.
 ════════════════════════════════════════════════ -->
 <div id="stickyOutputWrap">
+  <!-- CONSENT BANNER — shown once, dismissed to localStorage -->
+  <div id="consentBanner" class="consent-banner" role="alert" aria-live="polite">
+    <div class="consent-body">
+      <p class="consent-en">When you contribute, your typed Kokborok text is saved to the Yapiri corpus — a growing archive to help build language tools for future generations. We also note what device you used and what language your browser is set to. No names, no accounts, nothing personal.</p>
+      <p class="consent-kok">Nwng contribute khaina gosi khe, nwng type khaimani kokborok text Yapiri corpus ni bagwi narakjaknai — phainai generations ni bagwi language tools swnamthani samung nangnai. Nwng bo device use khaika tei bo language o nini browser set khaijak, chwng naio. Nini mung, nini accounts, tei sakbaithang ni kunu information collect khaijakya.</p>
+    </div>
+    <button class="consent-btn" onclick="dismissConsent()">I understand &nbsp;/&nbsp; Ang sio</button>
+  </div>
   <div class="output-panel reveal">
     <div class="output-top">
       <div class="output-label-row">
@@ -468,7 +529,17 @@
     <button class="ctrl-btn danger" onclick="clearAll()">Clear All</button>
     <button class="ctrl-btn" onclick="copyText()" id="copyBtn">Copy Text</button>
     <button class="ctrl-btn" onclick="copyRoman()" id="copyRomanBtn">Copy Romanization</button>
+    <select class="ctrl-select" id="domainTag" aria-label="Topic domain">
+      <option value="">Topic (optional)</option>
+      <option value="everyday">Everyday life</option>
+      <option value="nature">Nature</option>
+      <option value="family">Family</option>
+      <option value="story">Story</option>
+      <option value="other">Other</option>
+    </select>
+    <button class="ctrl-btn corpus-btn" onclick="submitCorpus()" id="submitBtn">Contribute &#8593;</button>
   </div>
+  <div id="corpusFeedback" class="corpus-feedback" aria-live="polite"></div>
 </div><!-- /stickyOutputWrap -->
 
 <!-- ══════════════════════════════════════════════
@@ -970,6 +1041,125 @@
     }, { threshold: 0 });
     hideObserver.observe(kbEnd);
   }
+
+  /* ── CONSENT BANNER ── */
+  (function() {
+    const banner = document.getElementById('consentBanner');
+    if (!banner) return;
+    // If already dismissed in a previous visit, hide immediately
+    if (localStorage.getItem('yapiri_corpus_consent') === '1') {
+      banner.classList.add('hidden');
+    }
+  })();
+
+  window.dismissConsent = function() {
+    const banner = document.getElementById('consentBanner');
+    if (banner) banner.classList.add('hidden');
+    localStorage.setItem('yapiri_corpus_consent', '1');
+  };
+
+  /* ── FIREBASE + CORPUS SUBMISSION ── */
+  (function() {
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDdj5rM3BDDzpDop_UKZgEMMYjgjSbjluA",
+      authDomain: "yapiriscript-df55b.firebaseapp.com",
+      projectId: "yapiriscript-df55b",
+      storageBucket: "yapiriscript-df55b.firebasestorage.app",
+      messagingSenderId: "399359153590",
+      appId: "1:399359153590:web:7af1ee83347138028a5d17"
+    };
+
+    // Lazy-load Firebase SDKs from CDN then initialise
+    function loadScript(src) {
+      return new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = src; s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+
+    let db = null;
+    async function getDb() {
+      if (db) return db;
+      await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
+      await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js');
+      if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+      return db;
+    }
+
+    // Session ID — anonymous, persists for this browser tab session only
+    function getSessionId() {
+      let id = sessionStorage.getItem('yapiri_session_id');
+      if (!id) {
+        id = 'sess_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+        sessionStorage.setItem('yapiri_session_id', id);
+      }
+      return id;
+    }
+
+    // Device type
+    function getDeviceType() {
+      if (window.innerWidth <= 640) return 'mobile';
+      if (window.innerWidth <= 1024) return 'tablet';
+      return 'desktop';
+    }
+
+    // Feedback helper
+    function showFeedback(msg, type) {
+      const el = document.getElementById('corpusFeedback');
+      el.textContent = msg;
+      el.className = 'corpus-feedback ' + type;
+      if (type === 'ok') setTimeout(() => { el.textContent = ''; el.className = 'corpus-feedback'; }, 4000);
+    }
+
+    // Expose submit function globally
+    window.submitCorpus = async function() {
+      const yapiriText = getYapiriText().trim();
+      if (!yapiriText) {
+        showFeedback('Nothing to contribute — type something first.', 'err');
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.classList.add('sending');
+      btn.textContent = 'Sending…';
+      showFeedback('', '');
+
+      const romanText  = getRomanText(yapiriText);
+      const domainTag  = document.getElementById('domainTag').value;
+      const wordCount  = yapiriText.trim().split(/\s+/).filter(Boolean).length;
+      const charCount  = [...yapiriText].length;
+
+      const doc = {
+        text_yapiri:  yapiriText,
+        text_roman:   romanText,
+        timestamp:    firebase.firestore.FieldValue.serverTimestamp(),
+        session_id:   getSessionId(),
+        word_count:   wordCount,
+        char_count:   charCount,
+        device_type:  getDeviceType(),
+        referrer:     document.referrer || 'direct',
+        browser_lang: navigator.language || '',
+        domain_tag:   domainTag || null,
+      };
+
+      try {
+        const firestore = await getDb();
+        await firestore.collection('corpus_contributions').add(doc);
+        showFeedback('Contributed to the Kokborok corpus — thank you.', 'ok');
+        // Reset domain dropdown but leave text untouched
+        document.getElementById('domainTag').value = '';
+      } catch (err) {
+        console.error('Corpus submission error:', err);
+        showFeedback('Submission failed — please try again.', 'err');
+      } finally {
+        btn.classList.remove('sending');
+        btn.textContent = 'Contribute ↑';
+      }
+    };
+  })();
 
   /* ── INIT ── */
   syncSidebar();
