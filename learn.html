@@ -13,19 +13,82 @@
   gtag('config', 'G-QCCXMREP3D');
 </script>
 
-<title>Learn Yapiri Script — Interactive Lessons & Kokborok Exercises</title>
-<meta name="description" content="Learn Yapiri Script interactively — explore the 45-character alphabet, follow guided lessons from vowels to sentences, and practise translating Kokborok. Your submissions help build the corpus.">
-<meta name="keywords" content="learn Yapiri script, Kokborok alphabet, Yapiri lessons, Kokborok writing, Tiprasa script lessons, Yapiri characters">
+<!-- PRIMARY SEO -->
+<title>Learn Yapiri Script — Interactive Kokborok Alphabet, Lessons & Exercises</title>
+<meta name="title" content="Learn Yapiri Script — Interactive Kokborok Alphabet, Lessons & Exercises">
+<meta name="description" content="Learn Yapiri Script interactively — explore all 45 characters of the Kokborok phonemic alphabet, follow guided lessons from vowels to sentences, and practise translating Kokborok. Your submissions help build the language corpus.">
+<meta name="keywords" content="learn Yapiri script, learn Kokborok script, Kokborok alphabet, Yapiri alphabet, Kokborok writing lessons, Tiprasa script lessons, Yapiri characters, Kokborok phonemic alphabet, how to write Kokborok, Yapiri script tutorial, Kokborok language learning, Tiprasa language script">
 <meta name="author" content="Animesh Debbarma">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://yapiriscript.com/learn.html">
 
+<!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Yapiri Script">
 <meta property="og:url" content="https://yapiriscript.com/learn.html">
-<meta property="og:title" content="Learn Yapiri Script — Interactive Lessons & Kokborok Exercises">
-<meta property="og:description" content="Learn Yapiri Script interactively — explore the 45-character alphabet, follow guided lessons, and practise translating Kokborok.">
+<meta property="og:title" content="Learn Yapiri Script — Interactive Kokborok Alphabet & Lessons">
+<meta property="og:description" content="Explore all 45 characters of the Kokborok phonemic alphabet, follow guided lessons, and practise translating Kokborok. Your submissions build the language corpus.">
 <meta property="og:image" content="https://yapiriscript.com/assets/images/og-image.png">
+<meta property="og:image:alt" content="Learn Yapiri Script — interactive alphabet reference and lessons for the Kokborok language">
 <meta property="og:locale" content="en_US">
+
+<!-- TWITTER / X -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yapiriscript.com/learn.html">
+<meta property="twitter:title" content="Learn Yapiri Script — Kokborok Alphabet & Lessons">
+<meta property="twitter:description" content="Explore all 45 Yapiri characters, follow guided lessons, and practise translating Kokborok. Your submissions build the corpus.">
+<meta property="twitter:image" content="https://yapiriscript.com/assets/images/twitter-image.png">
+<meta property="twitter:image:alt" content="Learn Yapiri Script — interactive Kokborok alphabet and lessons">
+
+<!-- STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://yapiriscript.com/learn.html#webpage",
+      "url": "https://yapiriscript.com/learn.html",
+      "name": "Learn Yapiri Script — Interactive Kokborok Alphabet, Lessons & Exercises",
+      "description": "Interactive reference and learning environment for Yapiri Script — the modern phonemic alphabet for the Kokborok language of the Tiprasa people of Tripura.",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://yapiriscript.com/#website" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://yapiriscript.com/#website",
+      "url": "https://yapiriscript.com/",
+      "name": "Yapiri Script",
+      "description": "A new indigenous, phonemic writing system for the Kokborok language of the Tiprasa people of Tripura.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "LearningResource",
+      "@id": "https://yapiriscript.com/learn.html#resource",
+      "name": "Yapiri Script Interactive Lessons",
+      "url": "https://yapiriscript.com/learn.html",
+      "description": "Guided lessons for learning Yapiri Script — the 45-character phonemic alphabet for the Kokborok language. Covers vowels, consonants, numerals, tone mark, and sentence-level translation exercises.",
+      "educationalLevel": "Beginner",
+      "about": {
+        "@type": "Language",
+        "name": "Kokborok",
+        "alternateName": "Tiprakok",
+        "sameAs": "https://en.wikipedia.org/wiki/Kokborok"
+      },
+      "creator": { "@type": "Person", "name": "Animesh Debbarma" },
+      "inLanguage": "en",
+      "isAccessibleForFree": true
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yapiriscript.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://yapiriscript.com/learn.html" }
+      ]
+    }
+  ]
+}
+</script>
 
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.ico?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -653,13 +716,15 @@
     letter-spacing: 0.1em; color: rgba(196,180,154,0.3);
     text-align: right; line-height: 1.8;
   }
-  .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--stone); text-decoration: none; transition: color 0.2s;
-  }
-  .footer-links a:hover { color: var(--gold-light); }
+  .social-link { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid rgba(196,180,154,0.2); color: var(--stone-light); text-decoration: none; transition: all 0.25s; position: relative; overflow: hidden; }
+  .social-link::before { content: ''; position: absolute; inset: 0; background: var(--terracotta); opacity: 0; transition: opacity 0.25s; }
+  .social-link:hover { border-color: var(--terracotta); color: var(--warm-white); }
+  .social-link:hover::before { opacity: 1; }
+  .social-link svg { width: 16px; height: 16px; position: relative; z-index: 1; fill: currentColor; }
+  .footer-social { display: flex; gap: 0.8rem; align-items: center; }
+  .footer-social .social-link { width: 34px; height: 34px; border-color: rgba(196,180,154,0.1); }
+  .footer-social .social-link:hover { border-color: var(--gold); color: var(--gold-light); }
+  .footer-social .social-link:hover::before { background: rgba(201,146,42,0.15); opacity: 1; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
@@ -681,8 +746,9 @@
     .ex-sidebar { grid-template-columns: 1fr; }
     .char-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
     .char-detail.visible { grid-template-columns: 1fr; }
-    footer { flex-direction: column; text-align: center; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-copy { text-align: center; }
+    .footer-social { justify-content: center; }
   }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--ink); }
@@ -907,12 +973,23 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">YAPIRI SCRIPT</div>
-  <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="yapiri-specification.html">Spec</a></li>
-    <li><a href="learn.html">Learn</a></li><li><a href="try.html">Try</a></li>
-    <li><a href="blog.html">Blog</a></li>
-  </ul>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/yapiri_script/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.facebook.com/YapiriKokborok" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@YapiriScript26" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://x.com/yapiriscript" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter">
+      <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb7nZNk4o7qV793yfz1d" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>
+  </div>
   <div class="footer-copy">
     Created for the Kokborok language<br>
     Tiprasa people of Tripura, India<br>
@@ -950,61 +1027,61 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
 // ────────────────────────────────────────────────
-// CHARACTER DATA
+// CHARACTER DATA — codepoints verified against try.html KEYMAP (ground truth)
 // ────────────────────────────────────────────────
 const VOWELS = [
   { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.' },
   { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.' },
-  { cp:'F1CA2', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.' },
-  { cp:'F1CA3', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.' },
+  { cp:'F1CA2', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.' },
+  { cp:'F1CA3', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.' },
   { cp:'F1CA4', roman:'o',  ipa:'/o/',  name:'O',     desc:'Mid back rounded vowel.' },
-  { cp:'F1CA5', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.' },
+  { cp:'F1CA5', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.' },
 ];
 const CONSONANTS = [
-  { cp:'F1CA6', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.' },
-  { cp:'F1CA7', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop. Aspiration is phonemically contrastive.' },
-  { cp:'F1CA8', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.' },
-  { cp:'F1CA9', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a first-person pronoun.' },
-  { cp:'F1CAA', roman:'ch', ipa:'/tɕ/',name:'Cha', desc:'Voiceless palatal affricate.' },
-  { cp:'F1CAB', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.' },
-  { cp:'F1CAC', roman:'ny', ipa:'/ɲ/',  name:'Nya', desc:'Palatal nasal — represented as ny in Roman Kokborok.' },
-  { cp:'F1CAD', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.' },
+  { cp:'F1CA7', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.' },
+  { cp:'F1CA8', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.' },
+  { cp:'F1CA9', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.' },
+  { cp:'F1CAA', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.' },
+  { cp:'F1CAB', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.' },
+  { cp:'F1CAC', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.' },
+  { cp:'F1CAD', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop. Aspiration is phonemically contrastive.' },
   { cp:'F1CAE', roman:'th', ipa:'/tʰ/', name:'Tha', desc:'Aspirated voiceless dental stop.' },
-  { cp:'F1CAF', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.' },
-  { cp:'F1CB0', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.' },
-  { cp:'F1CB1', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.' },
-  { cp:'F1CB2', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop.' },
-  { cp:'F1CB3', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.' },
-  { cp:'F1CB4', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.' },
-  { cp:'F1CB5', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.' },
-  { cp:'F1CB6', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.' },
-  { cp:'F1CB7', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.' },
-  { cp:'F1CB8', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.' },
-  { cp:'F1CB9', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.' },
-  { cp:'F1CBA', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.' },
+  { cp:'F1CAF', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop.' },
+  { cp:'F1CB0', roman:'ch', ipa:'/tɕ/', name:'Cha', desc:'Voiceless palatal affricate.' },
+  { cp:'F1CB1', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.' },
+  { cp:'F1CB2', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.' },
+  { cp:'F1CB3', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.' },
+  { cp:'F1CB4', roman:"n'", ipa:'/n/',  name:"N-prime", desc:"Orthographic n-prime — used exclusively in in' (yes) and in'he (no) per TTAADC convention." },
+  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as the first-person singular pronoun nga.' },
+  { cp:'F1CB6', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.' },
+  { cp:'F1CB7', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.' },
+  { cp:'F1CB8', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.' },
+  { cp:'F1CB9', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.' },
+  { cp:'F1CBA', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.' },
+  { cp:'F1CBB', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.' },
 ];
 const LOANWORD = [
-  { cp:'F1CBB', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.' },
   { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.' },
+  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.' },
 ];
 const NUMERALS = [
-  { cp:'F1CBD', roman:'0', ipa:'', name:'Zero',  desc:'Yapiri numeral zero.' },
-  { cp:'F1CBE', roman:'1', ipa:'', name:'One',   desc:'Yapiri numeral one.' },
-  { cp:'F1CBF', roman:'2', ipa:'', name:'Two',   desc:'Yapiri numeral two.' },
-  { cp:'F1CC0', roman:'3', ipa:'', name:'Three', desc:'Yapiri numeral three.' },
-  { cp:'F1CC1', roman:'4', ipa:'', name:'Four',  desc:'Yapiri numeral four.' },
-  { cp:'F1CC2', roman:'5', ipa:'', name:'Five',  desc:'Yapiri numeral five.' },
-  { cp:'F1CC3', roman:'6', ipa:'', name:'Six',   desc:'Yapiri numeral six.' },
-  { cp:'F1CC4', roman:'7', ipa:'', name:'Seven', desc:'Yapiri numeral seven.' },
-  { cp:'F1CC5', roman:'8', ipa:'', name:'Eight', desc:'Yapiri numeral eight.' },
-  { cp:'F1CC6', roman:'9', ipa:'', name:'Nine',  desc:'Yapiri numeral nine.' },
+  { cp:'F1CC0', roman:'0', ipa:'', name:'Zero',  desc:'Yapiri numeral zero.' },
+  { cp:'F1CC1', roman:'1', ipa:'', name:'One',   desc:'Yapiri numeral one.' },
+  { cp:'F1CC2', roman:'2', ipa:'', name:'Two',   desc:'Yapiri numeral two.' },
+  { cp:'F1CC3', roman:'3', ipa:'', name:'Three', desc:'Yapiri numeral three.' },
+  { cp:'F1CC4', roman:'4', ipa:'', name:'Four',  desc:'Yapiri numeral four.' },
+  { cp:'F1CC5', roman:'5', ipa:'', name:'Five',  desc:'Yapiri numeral five.' },
+  { cp:'F1CC6', roman:'6', ipa:'', name:'Six',   desc:'Yapiri numeral six.' },
+  { cp:'F1CC7', roman:'7', ipa:'', name:'Seven', desc:'Yapiri numeral seven.' },
+  { cp:'F1CC8', roman:'8', ipa:'', name:'Eight', desc:'Yapiri numeral eight.' },
+  { cp:'F1CC9', roman:'9', ipa:'', name:'Nine',  desc:'Yapiri numeral nine.' },
 ];
 const PUNCT = [
-  { cp:'F1CC7', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.' },
-  { cp:'F1CC8', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.' },
-  { cp:'F1CC9', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.' },
-  { cp:'F1CCA', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.' },
-  { cp:'F1CCB', roman:':',  ipa:'', name:'Colon',         desc:'Introduces lists or explanations.' },
+  { cp:'F1CCB', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.' },
+  { cp:'F1CCC', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.' },
+  { cp:'F1CCD', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.' },
+  { cp:'F1CCE', roman:'"',  ipa:'', name:'Quotation mark',desc:'Marks quoted speech.' },
+  { cp:'F1CCF', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.' },
   { cp:'F1CD1', roman:'◌́', ipa:'/◌́/', name:'High tone mark', desc:'Combining diacritic — sits above a base character to mark high tone, which is phonemically contrastive in Kokborok. U+F1CD1.' },
 ];
 
@@ -1063,9 +1140,9 @@ const LESSONS = [
     intro: `Yapiri has <strong>six vowel characters</strong> for the six phonemic monophthongs of Kokborok: /a e ə i o u/. The schwa /ə/ is phonemically distinct — it is <em>not</em> a reduced vowel, and confusing it with /a/ changes word meaning. Learn these six shapes first; every other character builds on this foundation.`,
     chars: VOWELS,
     examples: [
-      { yap:'\uF1CA3\uF1CA0', rom:'ia', eng:'yes / affirmative particle' },
-      { yap:'\uF1CA0\uF1CA3', rom:'ai', eng:'diphthong, as in "now"' },
-      { yap:'\uF1CA5\uF1CA6\uF1CB0\uF1CA4', rom:'ukno', eng:'sky' },
+      { yap:'\uF1CA2\uF1CA0', rom:'ia', eng:'yes / affirmative particle' },
+      { yap:'\uF1CA0\uF1CA2', rom:'ai', eng:'diphthong, as in "now"' },
+      { yap:'\uF1CA3\uF1CA9\uF1CB3\uF1CA4', rom:'ukno', eng:'sky' },
     ]
   },
   {
@@ -1073,9 +1150,9 @@ const LESSONS = [
     intro: `Kokborok distinguishes <strong>plain</strong> and <strong>aspirated</strong> stops. The pairs <em>k/kh</em>, <em>t/th</em>, and <em>p/ph</em> are separate phonemes — aspiration is contrastive and changes word meaning. Both characters in each pair must be learned as distinct symbols.`,
     chars: CONSONANTS.filter(c => ['k','kh','g','t','th','d','p','ph','b'].includes(c.roman)),
     examples: [
-      { yap:'\uF1CA6\uF1CA0\uF1CB0\uF1CA0', rom:'kana', eng:'ear' },
-      { yap:'\uF1CAD\uF1CA3\uF1CB0\uF1CA0', rom:'tina', eng:'mother' },
-      { yap:'\uF1CB3\uF1CA0\uF1CB0\uF1CA0', rom:'bana', eng:'forest / jungle' },
+      { yap:'\uF1CA9\uF1CA0\uF1CB3\uF1CA0', rom:'kana', eng:'ear' },
+      { yap:'\uF1CA8\uF1CA2\uF1CB3\uF1CA0', rom:'tina', eng:'mother' },
+      { yap:'\uF1CAA\uF1CA0\uF1CB3\uF1CA0', rom:'bana', eng:'forest / jungle' },
     ]
   },
   {
@@ -1083,9 +1160,9 @@ const LESSONS = [
     intro: `Kokborok has four nasal phonemes: <em>m, n, ny, ng</em>. The palatal nasal /ɲ/ — written <em>ny</em> — and the velar nasal /ŋ/ — written <em>ng</em> — are both very common in native vocabulary. <em>nga</em> (ŋa) is the first-person singular pronoun. Approximants <em>w, y, r, l</em> are also in this group.`,
     chars: CONSONANTS.filter(c => ['ng','ny','n','m','r','l','w','y'].includes(c.roman)),
     examples: [
-      { yap:'\uF1CA9\uF1CA0', rom:'nga', eng:'I / me (first person singular)' },
-      { yap:'\uF1CB4\uF1CA0\uF1CB0\uF1CA3', rom:'mani', eng:'money / bead' },
-      { yap:'\uF1CB0\uF1CA4\uF1CB5\uF1CA0', rom:'nora', eng:'water' },
+      { yap:'\uF1CB5\uF1CA0', rom:'nga', eng:'I / me (first person singular)' },
+      { yap:'\uF1CB2\uF1CA0\uF1CB3\uF1CA2', rom:'mani', eng:'money / bead' },
+      { yap:'\uF1CB3\uF1CA4\uF1CB7\uF1CA0', rom:'nora', eng:'water' },
     ]
   },
   {
@@ -1093,9 +1170,9 @@ const LESSONS = [
     intro: `The affricates <em>ch</em> and <em>j</em> and the fricative <em>s</em> are frequent in everyday Kokborok speech. <em>h</em> is common as a suffix and in compound words. The extended consonants <em>z</em> and <em>v</em> appear only in loanwords from Bengali, English, and other contact languages.`,
     chars: CONSONANTS.filter(c => ['ch','j','s','h'].includes(c.roman)).concat(LOANWORD),
     examples: [
-      { yap:'\uF1CBA\uF1CA0\uF1CA6\uF1CA0', rom:'saka', eng:'vegetable' },
-      { yap:'\uF1CAA\uF1CA0\uF1CB0\uF1CA0', rom:'chana', eng:'to know' },
-      { yap:'\uF1CAB\uF1CA0\uF1CB7\uF1CA0', rom:'jawa', eng:'to go' },
+      { yap:'\uF1CB6\uF1CA0\uF1CA9\uF1CA0', rom:'saka', eng:'vegetable' },
+      { yap:'\uF1CB0\uF1CA0\uF1CB3\uF1CA0', rom:'chana', eng:'to know' },
+      { yap:'\uF1CB1\uF1CA0\uF1CBB\uF1CA0', rom:'jawa', eng:'to go' },
     ]
   },
   {
@@ -1103,9 +1180,9 @@ const LESSONS = [
     intro: `Yapiri has its own <strong>ten numerals</strong> (0–9) designed to harmonise visually with the script's letterforms. The <strong>high tone mark</strong> (U+F1CD1) is a combining diacritic — it attaches above a base character to mark the high tone, which is phonemically contrastive in Kokborok. It was designed as a native Yapiri combining character with OpenType mark-to-base anchors.`,
     chars: NUMERALS,
     examples: [
-      { yap:'\uF1CBE\uF1CBF\uF1CC0', rom:'1-2-3', eng:'one, two, three' },
-      { yap:'\uF1CC1\uF1CC2\uF1CC3', rom:'4-5-6', eng:'four, five, six' },
-      { yap:'\uF1CC4\uF1CC5\uF1CC6', rom:'7-8-9', eng:'seven, eight, nine' },
+      { yap:'\uF1CC1\uF1CC2\uF1CC3', rom:'1-2-3', eng:'one, two, three' },
+      { yap:'\uF1CC4\uF1CC5\uF1CC6', rom:'4-5-6', eng:'four, five, six' },
+      { yap:'\uF1CC7\uF1CC8\uF1CC9', rom:'7-8-9', eng:'seven, eight, nine' },
     ]
   },
 ];
@@ -1128,7 +1205,7 @@ function buildLessons() {
 
     // Panel
     const panel = document.createElement('div');
-    panel.className = 'lesson-panel reveal' + (i === 0 ? ' active visible' : '');
+    panel.className = 'lesson-panel reveal' + (i === 0 ? ' active' : '');
     panel.id = 'lp-' + lesson.id;
 
     // Left col
