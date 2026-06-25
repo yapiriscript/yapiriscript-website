@@ -858,6 +858,26 @@
   .domain-chip.active { color:var(--gold-light); border-color:rgba(201,146,42,0.4); background:rgba(201,146,42,0.08); }
   .ex-loading { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--stone); letter-spacing:0.1em; text-align:center; padding:2rem; display:none; }
   .ex-loading.visible { display:block; }
+
+  /* ════════ EXERCISE KEYBOARD — try.html style ════════ */
+  .ex-kb-wrap { background:rgba(8,6,3,0.55); border:1px solid rgba(196,180,154,0.14); padding:0.9rem; display:flex; flex-direction:column; gap:0.45rem; margin-bottom:1rem; }
+  .ex-kb-row { display:flex; gap:0.45rem; justify-content:flex-start; }
+  .ex-kb-row .key { flex:1 1 0; min-width:0; height:64px; padding:0.3rem 0.2rem; }
+  .ex-kb-row .key .key-qwerty { top:4px; left:6px; font-size:0.6rem; }
+  .ex-kb-row .key .key-glyph { font-size:1.6rem; }
+  .ex-kb-row .key .key-label { font-size:0.6rem; margin-top:0.05rem; }
+  @media(max-width:820px) {
+    .ex-kb-row .key { height:52px; }
+    .ex-kb-row .key .key-glyph { font-size:1.35rem; }
+    .ex-kb-row .key .key-qwerty { font-size:0.52rem; }
+    .ex-kb-row .key .key-label { font-size:0.5rem; }
+    .ex-kb-wrap { padding:0.6rem; }
+    .ex-kb-row { gap:0.3rem; }
+  }
+  @media(max-width:480px) {
+    .ex-kb-row .key { height:46px; }
+    .ex-kb-row .key .key-glyph { font-size:1.2rem; }
+  }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--ink); }
   ::-webkit-scrollbar-thumb { background: var(--stone); }
@@ -1062,71 +1082,73 @@
           <div class="roman-preview" id="roman-preview"></div>
         </div>
 
-        <!-- Inline keyboard: VOWELS -->
+        <!-- Inline keyboard — try.html style -->
         <div class="ex-keyboard reveal">
-          <span class="ex-kb-label">Vowels</span>
-          <div class="ex-kb-row">
-            <button class="ex-key" onclick="exType('a')"><span class="ex-key-glyph">&#xF1CA0;</span><span class="ex-key-label">a</span></button>
-            <button class="ex-key" onclick="exType('e')"><span class="ex-key-glyph">&#xF1CA1;</span><span class="ex-key-label">e</span></button>
-            <button class="ex-key" onclick="exType('i')"><span class="ex-key-glyph">&#xF1CA2;</span><span class="ex-key-label">i</span></button>
-            <button class="ex-key" onclick="exType('u')"><span class="ex-key-glyph">&#xF1CA3;</span><span class="ex-key-label">u</span></button>
-            <button class="ex-key" onclick="exType('o')"><span class="ex-key-glyph">&#xF1CA4;</span><span class="ex-key-label">o</span></button>
-            <button class="ex-key" onclick="exType('q')"><span class="ex-key-glyph">&#xF1CA5;</span><span class="ex-key-label">&#601;</span></button>
-          </div>
-          <!-- Consonants row 1: plain + aspirated stops + affricates -->
-          <span class="ex-kb-label">Consonants</span>
-          <div class="ex-kb-row">
-            <button class="ex-key" onclick="exType('p')"><span class="ex-key-glyph">&#xF1CA7;</span><span class="ex-key-label">p</span></button>
-            <button class="ex-key" onclick="exType('t')"><span class="ex-key-glyph">&#xF1CA8;</span><span class="ex-key-label">t</span></button>
-            <button class="ex-key" onclick="exType('k')"><span class="ex-key-glyph">&#xF1CA9;</span><span class="ex-key-label">k</span></button>
-            <button class="ex-key" onclick="exType('b')"><span class="ex-key-glyph">&#xF1CAA;</span><span class="ex-key-label">b</span></button>
-            <button class="ex-key" onclick="exType('d')"><span class="ex-key-glyph">&#xF1CAB;</span><span class="ex-key-label">d</span></button>
-            <button class="ex-key" onclick="exType('g')"><span class="ex-key-glyph">&#xF1CAC;</span><span class="ex-key-label">g</span></button>
-            <button class="ex-key" onclick="exType('P')"><span class="ex-key-glyph">&#xF1CAD;</span><span class="ex-key-label">ph</span></button>
-            <button class="ex-key" onclick="exType('T')"><span class="ex-key-glyph">&#xF1CAE;</span><span class="ex-key-label">th</span></button>
-            <button class="ex-key" onclick="exType('K')"><span class="ex-key-glyph">&#xF1CAF;</span><span class="ex-key-label">kh</span></button>
-            <button class="ex-key" onclick="exType('c')"><span class="ex-key-glyph">&#xF1CB0;</span><span class="ex-key-label">ch</span></button>
-            <button class="ex-key" onclick="exType('j')"><span class="ex-key-glyph">&#xF1CB1;</span><span class="ex-key-label">j</span></button>
-          </div>
-          <!-- Consonants row 2: nasals, fricatives, approximants -->
-          <div class="ex-kb-row">
-            <button class="ex-key" onclick="exType('m')"><span class="ex-key-glyph">&#xF1CB2;</span><span class="ex-key-label">m</span></button>
-            <button class="ex-key" onclick="exType('n')"><span class="ex-key-glyph">&#xF1CB3;</span><span class="ex-key-label">n</span></button>
-            <button class="ex-key" onclick="exType('N')"><span class="ex-key-glyph">&#xF1CB4;</span><span class="ex-key-label">n&prime;</span></button>
-            <button class="ex-key" onclick="exType('f')"><span class="ex-key-glyph">&#xF1CB5;</span><span class="ex-key-label">ng</span></button>
-            <button class="ex-key" onclick="exType('s')"><span class="ex-key-glyph">&#xF1CB6;</span><span class="ex-key-label">s</span></button>
-            <button class="ex-key" onclick="exType('r')"><span class="ex-key-glyph">&#xF1CB7;</span><span class="ex-key-label">r</span></button>
-            <button class="ex-key" onclick="exType('l')"><span class="ex-key-glyph">&#xF1CB8;</span><span class="ex-key-label">l</span></button>
-            <button class="ex-key" onclick="exType('h')"><span class="ex-key-glyph">&#xF1CB9;</span><span class="ex-key-label">h</span></button>
-            <button class="ex-key" onclick="exType('y')"><span class="ex-key-glyph">&#xF1CBA;</span><span class="ex-key-label">y</span></button>
-            <button class="ex-key" onclick="exType('w')"><span class="ex-key-glyph">&#xF1CBB;</span><span class="ex-key-label">w</span></button>
-            <button class="ex-key loanword" onclick="exType('v')"><span class="ex-key-glyph">&#xF1CBC;</span><span class="ex-key-label">v</span></button>
-            <button class="ex-key loanword" onclick="exType('z')"><span class="ex-key-glyph">&#xF1CBD;</span><span class="ex-key-label">z</span></button>
-            <button class="ex-key tone-key" onclick="exType("'")"><span class="ex-key-glyph">&#xF1CD1;</span><span class="ex-key-label">tone</span></button>
-          </div>
-          <!-- Numerals + punctuation -->
-          <span class="ex-kb-label">Numerals &amp; Punctuation</span>
-          <div class="ex-kb-row">
-            <button class="ex-key" onclick="exType('1')"><span class="ex-key-glyph">&#xF1CC1;</span><span class="ex-key-label">1</span></button>
-            <button class="ex-key" onclick="exType('2')"><span class="ex-key-glyph">&#xF1CC2;</span><span class="ex-key-label">2</span></button>
-            <button class="ex-key" onclick="exType('3')"><span class="ex-key-glyph">&#xF1CC3;</span><span class="ex-key-label">3</span></button>
-            <button class="ex-key" onclick="exType('4')"><span class="ex-key-glyph">&#xF1CC4;</span><span class="ex-key-label">4</span></button>
-            <button class="ex-key" onclick="exType('5')"><span class="ex-key-glyph">&#xF1CC5;</span><span class="ex-key-label">5</span></button>
-            <button class="ex-key" onclick="exType('6')"><span class="ex-key-glyph">&#xF1CC6;</span><span class="ex-key-label">6</span></button>
-            <button class="ex-key" onclick="exType('7')"><span class="ex-key-glyph">&#xF1CC7;</span><span class="ex-key-label">7</span></button>
-            <button class="ex-key" onclick="exType('8')"><span class="ex-key-glyph">&#xF1CC8;</span><span class="ex-key-label">8</span></button>
-            <button class="ex-key" onclick="exType('9')"><span class="ex-key-glyph">&#xF1CC9;</span><span class="ex-key-label">9</span></button>
-            <button class="ex-key" onclick="exType('0')"><span class="ex-key-glyph">&#xF1CC0;</span><span class="ex-key-label">0</span></button>
-            <button class="ex-key" onclick="exType(',')"><span class="ex-key-glyph">&#xF1CCB;</span><span class="ex-key-label">,</span></button>
-            <button class="ex-key" onclick="exType('.')"><span class="ex-key-glyph">&#xF1CCC;</span><span class="ex-key-label">.</span></button>
-            <button class="ex-key" onclick="exType('!')"><span class="ex-key-glyph">&#xF1CCD;</span><span class="ex-key-label">!</span></button>
-            <button class="ex-key" onclick="exType('?')"><span class="ex-key-glyph">&#xF1CCF;</span><span class="ex-key-label">?</span></button>
-          </div>
-          <!-- Utility row -->
-          <div class="ex-kb-utility">
-            <button class="ex-key-wide ex-kb-util-btn" onclick="exSpace()">Space</button>
-            <button class="ex-key-wide ex-kb-util-btn danger" onclick="exBackspace()">&#9003; Delete</button>
-            <button class="ex-key-wide ex-kb-util-btn danger" onclick="exClear()">Clear All</button>
+          <div class="ex-kb-wrap">
+            <!-- NUMBER ROW -->
+            <div class="ex-kb-row">
+              <button class="key" onclick="exType('1')"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
+              <button class="key" onclick="exType('2')"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
+              <button class="key" onclick="exType('3')"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
+              <button class="key" onclick="exType('4')"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
+              <button class="key" onclick="exType('5')"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
+              <button class="key" onclick="exType('6')"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
+              <button class="key" onclick="exType('7')"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
+              <button class="key" onclick="exType('8')"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
+              <button class="key" onclick="exType('9')"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+              <button class="key" onclick="exType('0')"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+              <button class="key kb-key-wide is-active w-18" onclick="exBackspace()"><span class="kb-key-label-only">&#9003; Bksp</span></button>
+            </div>
+            <!-- TOP ROW: q w e r t y u i o p -->
+            <div class="ex-kb-row">
+              <button class="key" onclick="exType('q')"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
+              <button class="key" onclick="exType('w')"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
+              <button class="key" onclick="exType('e')"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
+              <button class="key" onclick="exType('r')"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+              <button class="key" onclick="exType('t')"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
+              <button class="key" onclick="exType('y')"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
+              <button class="key" onclick="exType('u')"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
+              <button class="key" onclick="exType('i')"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
+              <button class="key" onclick="exType('o')"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
+              <button class="key" onclick="exType('p')"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
+            </div>
+            <!-- HOME ROW: a s d f g h j k l ' -->
+            <div class="ex-kb-row">
+              <button class="key" onclick="exType('a')"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
+              <button class="key" onclick="exType('s')"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
+              <button class="key" onclick="exType('d')"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
+              <button class="key" onclick="exType('f')"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
+              <button class="key" onclick="exType('g')"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
+              <button class="key" onclick="exType('h')"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+              <button class="key" onclick="exType('j')"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+              <button class="key" onclick="exType('k')"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
+              <button class="key" onclick="exType('l')"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
+              <button class="key special" onclick="exType("'")"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
+            </div>
+            <!-- BOTTOM ROW: z c v b n m , . ? ! Enter -->
+            <div class="ex-kb-row">
+              <button class="key loanword" onclick="exType('z')"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
+              <button class="key" onclick="exType('c')"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
+              <button class="key loanword" onclick="exType('v')"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
+              <button class="key" onclick="exType('b')"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
+              <button class="key" onclick="exType('n')"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
+              <button class="key" onclick="exType('m')"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
+              <button class="key" onclick="exType(',')"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+              <button class="key" onclick="exType('.')"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+              <button class="key" onclick="exType('?')"><span class="key-qwerty shifted">&#8679;/</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+              <button class="key" onclick="exType('!')"><span class="key-qwerty shifted">&#8679;1</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+              <button class="key kb-key-wide is-active w-20" onclick="exClear()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">Clear</span></button>
+            </div>
+            <!-- SPACE ROW -->
+            <div class="ex-kb-row">
+              <button class="key kb-key-wide w-20" style="cursor:default;background:rgba(139,115,85,0.1);border-color:rgba(139,115,85,0.2);"><span class="kb-key-label-only" style="color:var(--stone);font-size:0.55rem;line-height:1.5;">&#8679; Shift<br><span style="color:rgba(196,180,154,0.4);font-size:0.48rem;">ph &middot; th &middot; kh &middot; n&prime;</span></span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('P')"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAD;</span><span class="key-label" style="font-size:0.55rem;">ph</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('T')"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAE;</span><span class="key-label" style="font-size:0.55rem;">th</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('K')"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAF;</span><span class="key-label" style="font-size:0.55rem;">kh</span></button>
+              <button class="key kb-key-wide is-active w-spacebar" onclick="exSpace()"><span class="kb-key-label-only">space</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('N')"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CB4;</span><span class="key-label" style="font-size:0.55rem;">n&#8242;</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('"')"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CCE;</span><span class="key-label" style="font-size:0.55rem;">"</span></button>
+            </div>
           </div>
         </div>
 
