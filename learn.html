@@ -1390,6 +1390,16 @@ function exRender() {
 }
 
 // Exercise state
+const FALLBACK_SENTENCES = [
+  { id:'starter_001', english:'I am learning Yapiri script.', domain:'starter_practice', difficulty:'easy' },
+  { id:'starter_002', english:'We speak Kokborok at home.', domain:'starter_practice', difficulty:'easy' },
+  { id:'starter_003', english:'This water is clean.', domain:'daily_life', difficulty:'easy' },
+  { id:'starter_004', english:'The child goes to school.', domain:'daily_life', difficulty:'medium' },
+  { id:'starter_005', english:'Our language carries our memory.', domain:'culture', difficulty:'medium' },
+  { id:'starter_006', english:'Write the sentence carefully in Yapiri.', domain:'learning', difficulty:'medium' },
+  { id:'starter_007', english:'The community is building a verified corpus.', domain:'learning', difficulty:'hard' },
+  { id:'starter_008', english:'Every careful translation helps future learners.', domain:'culture', difficulty:'hard' },
+];
 let allSentences      = [];
 let filteredSentences = [];
 let currentIdx        = 0;
@@ -1398,6 +1408,7 @@ let skippedCount      = 0;
 let submittedIds      = new Set();
 let activeDifficulty  = 'all';
 let activeDomain      = null;
+let usingFallbackSentences = false;
 let consentGiven = localStorage.getItem('yapiri_learn_consent') === 'accept';
 let sessionId = sessionStorage.getItem('yapiri_learn_session');
 if (!sessionId) {
@@ -1449,6 +1460,7 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
 function buildDomainChips() {
   const domains = [...new Set(allSentences.map(s => s.domain))].sort();
   const el = document.getElementById('domain-chips');
+  if (!el) return;
   el.innerHTML = '';
   domains.forEach(d => {
     const chip = document.createElement('button');
@@ -1475,6 +1487,13 @@ function applyFilters() {
     const mOk = !activeDomain || s.domain === activeDomain;
     return dOk && mOk;
   });
+  if (filteredSentences.length === 0 && allSentences.length > 0) {
+    activeDifficulty = 'all';
+    activeDomain = null;
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.toggle('active', b.dataset.diff === 'all'));
+    document.querySelectorAll('.domain-chip').forEach(c => c.classList.remove('active'));
+    filteredSentences = [...allSentences];
+  }
   for (let i = filteredSentences.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [filteredSentences[i], filteredSentences[j]] = [filteredSentences[j], filteredSentences[i]];
@@ -1488,13 +1507,25 @@ function applyFilters() {
 
 function loadSentence(idx) {
   const s = filteredSentences[idx];
-  if (!s) return;
   const sentEl  = document.getElementById('ex-sentence');
   const domEl   = document.getElementById('ex-domain-label');
   const curEl   = document.getElementById('ex-current');
   const totEl   = document.getElementById('ex-total');
   const badge   = document.getElementById('ex-diff-badge');
   const fbEl    = document.getElementById('ex-feedback');
+  const hasSentence = !!s;
+  document.querySelectorAll('#btn-submit,#btn-skip,#btn-prev,#btn-next,.diff-btn,.domain-chip')
+    .forEach(el => { el.disabled = !hasSentence; });
+  if (!hasSentence) {
+    if (sentEl) sentEl.textContent = 'No practice sentences are available right now.';
+    if (domEl)  domEl.textContent = '';
+    if (curEl)  curEl.textContent = '0';
+    if (totEl)  totEl.textContent = '0';
+    if (badge)  { badge.textContent = ''; badge.className = 'ex-diff-badge'; }
+    if (fbEl)   { fbEl.className = 'ex-feedback error'; fbEl.textContent = 'Could not load practice sentences.'; }
+    exBuffer = ''; exRender();
+    return;
+  }
   if (sentEl) sentEl.textContent  = s.english;
   if (domEl)  domEl.textContent   = (s.domain||'').replace(/_/g,' ');
   if (curEl)  curEl.textContent   = idx + 1;
@@ -1522,11 +1553,37 @@ function showFeedback(msg, type) {
   if (fb) { fb.textContent = msg; fb.className = 'ex-feedback '+type; }
 }
 
+function useFallbackSentences(reason) {
+  usingFallbackSentences = true;
+  allSentences = FALLBACK_SENTENCES.map(s => ({ ...s }));
+  buildDomainChips();
+  applyFilters();
+  showFeedback(reason || 'The live corpus is unavailable, so a starter practice set is loaded.', 'error');
+}
+
+function queuePendingSubmission(payload) {
+  try {
+    const key = 'yapiri_pending_submissions';
+    const pending = JSON.parse(localStorage.getItem(key) || '[]');
+    pending.push({
+      ...payload,
+      timestamp: new Date().toISOString(),
+      server_timestamp_requested: true,
+      queued_at: new Date().toISOString()
+    });
+    localStorage.setItem(key, JSON.stringify(pending.slice(-50)));
+    return true;
+  } catch(_) {
+    return false;
+  }
+}
+
 async function submitTranslation() {
   const yapiriText = exBuffer.trim();
   if (!yapiriText) { showFeedback('Type your Yapiri translation using the keyboard above.', 'error'); return; }
   const romanText = exGetRoman(yapiriText);
   const s   = filteredSentences[currentIdx];
+  if (!s) { showFeedback('No practice sentence is loaded yet. Please refresh and try again.', 'error'); return; }
   const btn = document.getElementById('btn-submit');
   btn.disabled = true; btn.textContent = 'Saving…';
 
@@ -1548,12 +1605,31 @@ async function submitTranslation() {
     verified:     false,
   };
 
+  let contributed = false;
+  let queued = false;
   try {
-    if (consentGiven) await window._fs.addDoc(window._fs.collection(window._db, 'learner_submissions'), payload);
+    if (consentGiven && window._fs && window._db && !usingFallbackSentences) {
+      await window._fs.addDoc(window._fs.collection(window._db, 'learner_submissions'), payload);
+      contributed = true;
+    } else if (consentGiven) {
+      queued = queuePendingSubmission(payload);
+    }
+  } catch(err) {
+    console.warn('Could not contribute submission; keeping practice progress local.', err);
+    queued = queuePendingSubmission(payload);
+  }
+
+  try {
     submittedIds.add(s.id);
     submittedCount++;
     updateProgress();
-    showFeedback(consentGiven ? 'Contributed to the Kokborok corpus — thank you. ✓' : 'Saved. Enable contributing to add to the corpus.', 'success');
+    showFeedback(
+      contributed ? 'Contributed to the Kokborok corpus — thank you. ✓' :
+      queued ? 'Saved locally. Corpus contribution will need a retry.' :
+      consentGiven ? 'Saved for this session. Corpus contribution is unavailable right now.' :
+      'Saved. Enable contributing to add to the corpus.',
+      'success'
+    );
     setTimeout(() => {
       if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
       else { showFeedback('Level complete! Try another difficulty or domain.', 'success'); }
@@ -1600,13 +1676,21 @@ async function loadSentencesFromFirestore() {
   if (loadEl) loadEl.classList.add('visible');
 
   try {
+    if (!window._fs || !window._db) throw new Error('Firebase is not ready.');
     const { collection, query, orderBy, limit, getDocs } = window._fs;
-    const snap = await getDocs(query(collection(window._db,'sentence_pairs'), orderBy('id'), limit(1000)));
+    let snap;
+    try {
+      snap = await getDocs(query(collection(window._db,'sentence_pairs'), orderBy('id'), limit(1000)));
+    } catch (orderedErr) {
+      console.warn('Ordered Firestore query failed; retrying without orderBy.', orderedErr);
+      snap = await getDocs(query(collection(window._db,'sentence_pairs'), limit(1000)));
+    }
 
     const loaded = [];
     snap.forEach(doc => loaded.push({ ...doc.data(), id: doc.id }));
 
     if (loaded.length > 0) {
+      usingFallbackSentences = false;
       allSentences = loaded;
       buildDomainChips();
       applyFilters();
@@ -1614,13 +1698,11 @@ async function loadSentencesFromFirestore() {
         localStorage.setItem(CACHE_KEY, JSON.stringify({ data: loaded, ts: Date.now() }));
       } catch(_) {}
     } else {
-      showFeedback('No sentences found. Please refresh the page.', 'error');
-      document.getElementById('ex-sentence').textContent = 'No sentences available.';
+      useFallbackSentences('The live corpus returned no sentences, so a starter practice set is loaded.');
     }
   } catch(err) {
-    console.error('Firestore load error:', err);
-    showFeedback('Could not load sentences. Please refresh the page or check your connection.', 'error');
-    document.getElementById('ex-sentence').textContent = 'Could not load sentences.';
+    console.warn('Firestore load error:', err);
+    useFallbackSentences('The live corpus could not be reached, so a starter practice set is loaded.');
   } finally {
     if (loadEl) loadEl.classList.remove('visible');
   }
