@@ -1723,28 +1723,50 @@ document.getElementById('btn-next').addEventListener('click', () => {
 // ── Load all 880 sentences from Firestore ──
 async function loadSentencesFromFirestore() {
   const loadEl = document.getElementById('ex-loading');
+
+  // ── Cache check: avoid re-fetching on every page load ──
+  // Sentences are stored in localStorage for 24 hours.
+  const CACHE_KEY = 'yapiri_sentence_pairs';
+  const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in ms
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { data, ts } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL && data.length > 0) {
+        allSentences = data;
+        buildDomainChips();
+        applyFilters();
+        return; // served from cache — no Firestore call needed
+      }
+    }
+  } catch(_) { /* ignore cache errors */ }
+
+  // ── Fetch from Firestore ──
   if (loadEl) loadEl.classList.add('visible');
   try {
-    // Firestore limit is 500 per query — load in two passes
-    const BATCH = 500;
-    let loaded = [];
+    // Fire both batches in parallel for speed
+    const q1 = query(collection(db,'sentence_pairs'), orderBy('id'), limit(500));
+    const q2 = query(collection(db,'sentence_pairs'), orderBy('id'), startAfter({ id:'SP0500' }), limit(500));
 
-    const snap1 = await getDocs(query(collection(db,'sentence_pairs'), orderBy('id'), limit(BATCH)));
+    const [snap1, snap2] = await Promise.all([getDocs(q1), getDocs(q2)]);
+
+    const loaded = [];
     snap1.forEach(doc => loaded.push({...doc.data(), id:doc.id}));
-
-    if (snap1.size === BATCH) {
-      const last = snap1.docs[snap1.docs.length-1];
-      // startAfter already imported at top of module
-      const snap2 = await getDocs(query(collection(db,'sentence_pairs'), orderBy('id'), startAfter(last), limit(BATCH)));
-      snap2.forEach(doc => loaded.push({...doc.data(), id:doc.id}));
-    }
+    snap2.forEach(doc => {
+      // Avoid duplicates
+      if (!loaded.find(x => x.id === doc.id)) loaded.push({...doc.data(), id:doc.id});
+    });
 
     if (loaded.length > 0) {
       allSentences = loaded;
       buildDomainChips();
       applyFilters();
+      // Save to cache
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ data: loaded, ts: Date.now() }));
+      } catch(_) { /* storage full — skip cache */ }
     } else {
-      showFeedback('No sentences found in Firestore. Check the sentence_pairs collection.', 'error');
+      showFeedback('No sentences found. Please refresh the page.', 'error');
     }
   } catch(err) {
     console.error('Firestore load error:', err);
