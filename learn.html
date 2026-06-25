@@ -19,7 +19,7 @@
 <meta name="description" content="Learn Yapiri Script interactively — explore all 45 characters of the Kokborok phonemic alphabet, follow guided lessons from vowels to sentences, and practise translating Kokborok. Your submissions help build the language corpus.">
 <meta name="keywords" content="learn Yapiri script, learn Kokborok script, Kokborok alphabet, Yapiri alphabet, Kokborok writing lessons, Tiprasa script lessons, Yapiri characters, Kokborok phonemic alphabet, how to write Kokborok, Yapiri script tutorial, Kokborok language learning, Tiprasa language script">
 <meta name="author" content="Animesh Debbarma">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://yapiriscript.com/learn.html">
 
 <!-- OPEN GRAPH -->
@@ -515,19 +515,6 @@
   }
   .consent-box.hidden { display: none; }
   .consent-btns { display: flex; gap: 0.6rem; flex-shrink: 0; }
-  .btn-consent-accept {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    background: var(--terracotta); color: var(--warm-white);
-    border: none; padding: 0.5rem 1.1rem; cursor: pointer; transition: background 0.2s;
-  }
-  .btn-consent-accept:hover { background: var(--terra-light); }
-  .btn-consent-decline {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    background: transparent; color: var(--stone);
-    border: 1px solid rgba(196,180,154,0.2); padding: 0.5rem 1rem; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .btn-consent-decline:hover { color: var(--stone-light); border-color: rgba(196,180,154,0.4); }
 
   /* Sentence card */
   .ex-counter {
@@ -806,7 +793,7 @@
   .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:0.9rem 1rem 0.6rem; min-height:70px; margin-bottom:0; }
   .yapiri-output-wrap:focus-within { border-color:rgba(201,146,42,0.4); }
   .yapiri-display { font-family:'Yapiri',serif; font-size:1.8rem; color:var(--parchment); line-height:1.3; min-height:2.2rem; word-break:break-word; }
-  .yapiri-display:empty::before { content:'Type using the keyboard below6'; color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.85rem; }
+  .yapiri-display:empty::before { content:'Type using the keyboard below'; color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.85rem; }
   .roman-preview { font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--gold); letter-spacing:0.06em; margin-top:0.5rem; min-height:1.2em; border-top:1px solid rgba(196,180,154,0.08); padding-top:0.4rem; }
 
   /* ── INLINE KEYBOARD (try.html style) ── */
@@ -838,6 +825,7 @@
   .ex-btn-submit:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
   .ex-btn-nav { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; background:transparent; color:var(--stone); border:1px solid rgba(196,180,154,0.18); padding:0.8rem 1.2rem; cursor:pointer; transition:color 0.2s,border-color 0.2s; }
   .ex-btn-nav:hover { color:var(--parchment); border-color:rgba(196,180,154,0.35); }
+
   .ex-feedback { font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; padding:0.65rem 1rem; display:none; margin-bottom:0.5rem; }
   .ex-feedback.success { display:block; color:#8fcf8f; background:rgba(143,207,143,0.08); border:1px solid rgba(143,207,143,0.2); }
   .ex-feedback.error { display:block; color:var(--terra-light); background:rgba(184,92,56,0.08); border:1px solid rgba(184,92,56,0.25); }
@@ -1123,7 +1111,7 @@
               <button class="key" onclick="exType('j')"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
               <button class="key" onclick="exType('k')"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
               <button class="key" onclick="exType('l')"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
-              <button class="key special" onclick="exType("'")"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
+              <button class="key special" onclick="exType(\"'\")"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
             </div>
             <!-- BOTTOM ROW: z c v b n m , . ? ! Enter -->
             <div class="ex-kb-row">
@@ -1147,7 +1135,7 @@
               <button class="key kb-key-wide is-active w-15" onclick="exType('K')"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAF;</span><span class="key-label" style="font-size:0.55rem;">kh</span></button>
               <button class="key kb-key-wide is-active w-spacebar" onclick="exSpace()"><span class="kb-key-label-only">space</span></button>
               <button class="key kb-key-wide is-active w-15" onclick="exType('N')"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CB4;</span><span class="key-label" style="font-size:0.55rem;">n&#8242;</span></button>
-              <button class="key kb-key-wide is-active w-15" onclick="exType('"')"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CCE;</span><span class="key-label" style="font-size:0.55rem;">"</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType(\"'\")"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CCE;</span><span class="key-label" style="font-size:0.55rem;">"</span></button>
             </div>
           </div>
         </div>
@@ -1224,7 +1212,7 @@
   <div id="qr-content"></div>
 </div>
 
-<!-- Firebase -->
+<!-- Firebase Module Script (Corrected - Keyboard handlers moved to global script) -->
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs, startAfter }
@@ -1243,9 +1231,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
-// ────────────────────────────────────────────────
-// CHARACTER DATA — codepoints verified against try.html KEYMAP (ground truth)
-// ────────────────────────────────────────────────
+// CHARACTER DATA
 const VOWELS = [
   { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.' },
   { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.' },
@@ -1348,9 +1334,7 @@ buildGrid('grid-loanword',   LOANWORD);
 buildGrid('grid-numerals',   NUMERALS);
 buildGrid('grid-punct',      PUNCT);
 
-// ────────────────────────────────────────────────
 // LESSONS
-// ────────────────────────────────────────────────
 const LESSONS = [
   {
     id: 'vowels', title: 'Vowels',
@@ -1369,7 +1353,7 @@ const LESSONS = [
     examples: [
       { yap:'\uF1CA9\uF1CA0\uF1CB3\uF1CA0', rom:'kana', eng:'ear' },
       { yap:'\uF1CA8\uF1CA2\uF1CB3\uF1CA0', rom:'tina', eng:'mother' },
-      { yap:'\uF1CAA\uF1CA0\uF1CB3\uF1CA0', rom:'bana', eng:'forest / jungle' },
+      { yap:'\uF1CAA\uF1CA3\uF1CB3\uF1CA0', rom:'bana', eng:'forest / jungle' },
     ]
   },
   {
@@ -1408,7 +1392,6 @@ function buildLessons() {
   const tabRow  = document.getElementById('lessons-tab-row');
   const content = document.getElementById('lessons-content');
   LESSONS.forEach((lesson, i) => {
-    // Tab
     const tab = document.createElement('button');
     tab.className = 'lesson-tab' + (i === 0 ? ' active' : '');
     tab.textContent = lesson.title;
@@ -1420,12 +1403,10 @@ function buildLessons() {
     });
     tabRow.appendChild(tab);
 
-    // Panel
     const panel = document.createElement('div');
     panel.className = 'lesson-panel reveal' + (i === 0 ? ' active' : '');
     panel.id = 'lp-' + lesson.id;
 
-    // Left col
     const left = document.createElement('div');
     const intro = document.createElement('p');
     intro.className = 'lesson-intro'; intro.innerHTML = lesson.intro;
@@ -1445,7 +1426,6 @@ function buildLessons() {
     left.appendChild(charsWrap);
     panel.appendChild(left);
 
-    // Right col
     const right = document.createElement('div');
     right.className = 'lesson-right-col';
     const exTitle = document.createElement('p');
@@ -1467,9 +1447,7 @@ function buildLessons() {
 }
 buildLessons();
 
-// ────────────────────────────────────────────────
 // QUICK REFERENCE
-// ────────────────────────────────────────────────
 function buildQR() {
   const container = document.getElementById('qr-content');
   const groups = [
@@ -1492,12 +1470,13 @@ buildQR();
 
 document.getElementById('qr-btn').addEventListener('click', () => document.getElementById('qr-drawer').classList.toggle('open'));
 document.getElementById('qr-close').addEventListener('click', () => document.getElementById('qr-drawer').classList.remove('open'));
+</script>
 
-// ────────────────────────────────────────────────
-// EXERCISE ENGINE — Firestore powered
-// ────────────────────────────────────────────────
+<!-- Global Keyboard Handlers + Exercise Engine (FIXED - functions are now global) -->
+<script>
+// Keyboard buffer and handlers (now global so onclick works)
+let exBuffer = '';
 
-// Keymap (same as try.html ground truth)
 const EX_KEYMAP = {
   'a':'\uF1CA0','e':'\uF1CA1','i':'\uF1CA2','u':'\uF1CA3','o':'\uF1CA4','q':'\uF1CA5',
   'p':'\uF1CA7','t':'\uF1CA8','k':'\uF1CA9','b':'\uF1CAA','d':'\uF1CAB','g':'\uF1CAC',
@@ -1510,7 +1489,6 @@ const EX_KEYMAP = {
   ',':'\uF1CCB','.':'\uF1CCC','!':'\uF1CCD','?':'\uF1CCF',"'":'\uF1CD1'
 };
 
-// Roman lookup
 const EX_ROMAN_MAP = {
   '\uF1CA0':'a','\uF1CA1':'e','\uF1CA2':'i','\uF1CA3':'u','\uF1CA4':'o','\uF1CA5':'\u0259',
   '\uF1CA7':'p','\uF1CA8':'t','\uF1CA9':'k','\uF1CAA':'b','\uF1CAB':'d','\uF1CAC':'g',
@@ -1523,18 +1501,15 @@ const EX_ROMAN_MAP = {
   '\uF1CCB':',','\uF1CCC':'.','\uF1CCD':'!','\uF1CCF':'?','\uF1CD1':'\u0301'
 };
 
-// Yapiri buffer
-let exBuffer = '';
-
-function exType(key) {
+window.exType = function(key) {
   const glyph = EX_KEYMAP[key];
   if (!glyph) return;
   exBuffer += glyph;
   exRender();
-}
-function exSpace()     { exBuffer += ' '; exRender(); }
-function exBackspace() { const a=[...exBuffer]; a.pop(); exBuffer=a.join(''); exRender(); }
-function exClear()     { exBuffer = ''; exRender(); }
+};
+window.exSpace = function()     { exBuffer += ' '; exRender(); };
+window.exBackspace = function() { const a=[...exBuffer]; a.pop(); exBuffer=a.join(''); exRender(); };
+window.exClear = function()     { exBuffer = ''; exRender(); };
 
 function exGetRoman(text) {
   return [...text].map(ch => EX_ROMAN_MAP[ch] || ch).join('');
@@ -1547,7 +1522,7 @@ function exRender() {
   if (roman) roman.textContent = exGetRoman(exBuffer) || '';
 }
 
-// ── State ──
+// Exercise state
 let allSentences      = [];
 let filteredSentences = [];
 let currentIdx        = 0;
@@ -1556,9 +1531,12 @@ let skippedCount      = 0;
 let submittedIds      = new Set();
 let activeDifficulty  = 'all';
 let activeDomain      = null;
-
-// ── Consent ──
 let consentGiven = localStorage.getItem('yapiri_learn_consent') === 'accept';
+let sessionId = sessionStorage.getItem('yapiri_learn_session');
+if (!sessionId) {
+  sessionId = 'learn_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+  sessionStorage.setItem('yapiri_learn_session', sessionId);
+}
 
 function updateConsentIndicator() {
   const ind = document.getElementById('consent-indicator');
@@ -1589,14 +1567,7 @@ document.getElementById('consent-indicator').addEventListener('click', () => {
   updateConsentIndicator();
 });
 
-// ── Session ID ──
-let sessionId = sessionStorage.getItem('yapiri_learn_session');
-if (!sessionId) {
-  sessionId = 'learn_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
-  sessionStorage.setItem('yapiri_learn_session', sessionId);
-}
-
-// ── Difficulty ──
+// Difficulty buttons
 document.querySelectorAll('.diff-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
@@ -1608,7 +1579,6 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
   });
 });
 
-// ── Domain chips ──
 function buildDomainChips() {
   const domains = [...new Set(allSentences.map(s => s.domain))].sort();
   const el = document.getElementById('domain-chips');
@@ -1638,7 +1608,6 @@ function applyFilters() {
     const mOk = !activeDomain || s.domain === activeDomain;
     return dOk && mOk;
   });
-  // Shuffle for variety
   for (let i = filteredSentences.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [filteredSentences[i], filteredSentences[j]] = [filteredSentences[j], filteredSentences[i]];
@@ -1692,7 +1661,7 @@ async function submitTranslation() {
   const romanText = exGetRoman(yapiriText);
   const s   = filteredSentences[currentIdx];
   const btn = document.getElementById('btn-submit');
-  btn.disabled = true; btn.textContent = 'Saving\u2026';
+  btn.disabled = true; btn.textContent = 'Saving…';
 
   const payload = {
     sentence_id:  s.id,
@@ -1717,14 +1686,14 @@ async function submitTranslation() {
     submittedIds.add(s.id);
     submittedCount++;
     updateProgress();
-    showFeedback(consentGiven ? 'Contributed to the Kokborok corpus \u2014 thank you. \u2713' : 'Saved. Enable contributing to add to the corpus.', 'success');
+    showFeedback(consentGiven ? 'Contributed to the Kokborok corpus — thank you. ✓' : 'Saved. Enable contributing to add to the corpus.', 'success');
     setTimeout(() => {
       if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
       else { showFeedback('Level complete! Try another difficulty or domain.', 'success'); }
     }, 1200);
   } catch(err) {
     console.error(err);
-    showFeedback('Could not save \u2014 check your connection and try again.', 'error');
+    showFeedback('Could not save — check your connection and try again.', 'error');
   } finally {
     btn.disabled = false; btn.textContent = 'Submit Translation';
   }
@@ -1742,14 +1711,12 @@ document.getElementById('btn-next').addEventListener('click', () => {
   if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
 });
 
-// ── Load all 880 sentences from Firestore ──
+// Load sentences from Firestore (with improved error handling)
 async function loadSentencesFromFirestore() {
   const loadEl = document.getElementById('ex-loading');
-
-  // ── Cache check: avoid re-fetching on every page load ──
-  // Sentences are stored in localStorage for 24 hours.
   const CACHE_KEY = 'yapiri_sentence_pairs';
-  const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours in ms
+  const CACHE_TTL = 24 * 60 * 60 * 1000;
+
   try {
     const cached = localStorage.getItem(CACHE_KEY);
     if (cached) {
@@ -1758,15 +1725,14 @@ async function loadSentencesFromFirestore() {
         allSentences = data;
         buildDomainChips();
         applyFilters();
-        return; // served from cache — no Firestore call needed
+        return;
       }
     }
-  } catch(_) { /* ignore cache errors */ }
+  } catch(_) {}
 
-  // ── Fetch from Firestore ──
-  if (loadEl) loadEl.classList.add('visible');
+  if (loadEl) loadEl.style.display = 'block';
+
   try {
-    // Fire both batches in parallel for speed
     const q1 = query(collection(db,'sentence_pairs'), orderBy('id'), limit(500));
     const q2 = query(collection(db,'sentence_pairs'), orderBy('id'), startAfter({ id:'SP0500' }), limit(500));
 
@@ -1775,7 +1741,6 @@ async function loadSentencesFromFirestore() {
     const loaded = [];
     snap1.forEach(doc => loaded.push({...doc.data(), id:doc.id}));
     snap2.forEach(doc => {
-      // Avoid duplicates
       if (!loaded.find(x => x.id === doc.id)) loaded.push({...doc.data(), id:doc.id});
     });
 
@@ -1783,28 +1748,23 @@ async function loadSentencesFromFirestore() {
       allSentences = loaded;
       buildDomainChips();
       applyFilters();
-      // Save to cache
       try {
         localStorage.setItem(CACHE_KEY, JSON.stringify({ data: loaded, ts: Date.now() }));
-      } catch(_) { /* storage full — skip cache */ }
+      } catch(_) {}
     } else {
       showFeedback('No sentences found. Please refresh the page.', 'error');
     }
   } catch(err) {
     console.error('Firestore load error:', err);
-    showFeedback('Could not load sentences. Please refresh the page.', 'error');
+    showFeedback('Could not load sentences. Please refresh the page or check your connection.', 'error');
   } finally {
-    if (loadEl) loadEl.classList.remove('visible');
+    if (loadEl) loadEl.style.display = 'none';
   }
 }
 
 loadSentencesFromFirestore();
 
-
-</script>
-
-<script>
-// Hero bg glyphs
+// Hero bg glyphs + scroll reveal + menu (unchanged)
 const sampleGlyphs = [
   '\uDB87\uDCA0','\uDB87\uDCA1','\uDB87\uDCA2','\uDB87\uDCA3','\uDB87\uDCA4','\uDB87\uDCA5',
   '\uDB87\uDCA7','\uDB87\uDCA8','\uDB87\uDCA9','\uDB87\uDCAA','\uDB87\uDCAB','\uDB87\uDCAC',
@@ -1825,7 +1785,6 @@ for (let i = 0; i < 60; i++) {
   grid.appendChild(cell);
 }
 
-// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
@@ -1836,7 +1795,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Nav hamburger
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const burger = document.getElementById('hamburger');
