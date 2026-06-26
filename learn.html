@@ -550,9 +550,9 @@
 
   /* Yapiri output display */
   .ex-output-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--stone); margin-bottom:0.5rem; display:block; }
-  .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:1.1rem 1.2rem 0.8rem; min-height:120px; margin-bottom:0; }
+  .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:1.1rem 1.2rem 0.8rem; min-height:120px; max-height:200px; overflow-y:auto; margin-bottom:0; }
   .yapiri-output-wrap:focus-within { border-color:rgba(201,146,42,0.4); }
-  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); line-height:1.4; min-height:3.5rem; word-break:break-word; }
+  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); line-height:1.4; min-height:3.5rem; word-break:break-word; overflow-wrap:break-word; }
   .yapiri-display:empty::before { content:'Type using the keyboard below'; color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.85rem; }
   .roman-preview { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--gold); letter-spacing:0.06em; margin-top:0.6rem; min-height:1.2em; border-top:1px solid rgba(196,180,154,0.08); padding-top:0.5rem; }
 
@@ -677,6 +677,46 @@
   .qr-roman { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold-light); width: 40px; }
   .qr-ipa   { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--stone); }
 
+
+
+  /* ── PRACTICE LAB ADD-ON (non-destructive) ── */
+  #practice-lab {
+    background: linear-gradient(180deg, var(--ink) 0%, #110c05 100%);
+    padding: 7rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #practice-lab::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .pl-inner { max-width: 1100px; margin: 0 auto; }
+  .pl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+  .pl-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(196,180,154,0.12); padding: 1.5rem; position: relative; min-height: 260px; }
+  .pl-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: rgba(201,146,42,0.6); }
+  .pl-card h3 { font-family:'Teko',sans-serif; font-size:1.7rem; font-weight:400; letter-spacing:0.05em; color:var(--parchment); margin-bottom:.5rem; }
+  .pl-card p { font-size:.98rem; line-height:1.65; color:var(--stone-light); font-weight:300; margin-bottom:1rem; }
+  .pl-prompt { border:1px solid rgba(201,146,42,0.16); background:rgba(201,146,42,0.05); padding:1rem; margin:.9rem 0; min-height:84px; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .pl-glyph { font-family:'Yapiri',serif; font-size:3rem; color:var(--gold-light); line-height:1; }
+  .pl-word { font-family:'Yapiri',serif; font-size:2.2rem; color:var(--gold-light); line-height:1.25; }
+  .pl-options { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.8rem; }
+  .pl-option, .pl-btn { font-family:'DM Mono',monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; background:transparent; color:var(--stone-light); border:1px solid rgba(196,180,154,.2); padding:.65rem .9rem; cursor:pointer; transition:all .2s; }
+  .pl-option:hover, .pl-btn:hover { color:var(--gold-light); border-color:rgba(201,146,42,.45); transform:translateY(-1px); }
+  .pl-option.correct { color:#8fcf8f; border-color:rgba(143,207,143,.45); background:rgba(143,207,143,.08); }
+  .pl-option.wrong { color:var(--terra-light); border-color:rgba(184,92,56,.45); background:rgba(184,92,56,.08); }
+  .pl-controls { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:1rem; }
+  .pl-input { width:100%; background:#0e0b07; border:1px solid rgba(196,180,154,.2); color:var(--parchment); padding:.85rem 1rem; font-family:'DM Mono',monospace; font-size:.85rem; outline:none; }
+  .pl-input:focus { border-color:rgba(201,146,42,.45); }
+  .pl-feedback { font-family:'DM Mono',monospace; font-size:.65rem; color:var(--stone); min-height:1.4rem; margin-top:.7rem; letter-spacing:.04em; }
+  .pl-feedback.good { color:#8fcf8f; }
+  .pl-feedback.bad { color:var(--terra-light); }
+  .pl-build-row { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.7rem; }
+  .pl-chip { font-family:'Yapiri',serif; font-size:1.5rem; color:var(--parchment); min-width:42px; min-height:42px; border:1px solid rgba(196,180,154,.15); background:rgba(255,255,255,.03); cursor:pointer; }
+  .pl-chip:hover { border-color:var(--gold); }
+  .pl-answer { font-family:'Yapiri',serif; font-size:2rem; min-height:54px; padding:.6rem .8rem; border:1px solid rgba(196,180,154,.14); background:#0e0b07; color:var(--gold-light); margin-top:.6rem; }
+  @media (max-width: 1024px) { .pl-grid { grid-template-columns:1fr; } }
+  @media (max-width: 900px) { #practice-lab { padding:5rem 2rem; } }
+
   /* ── FOOTER ── */
   footer {
     background: #080704;
@@ -717,6 +757,9 @@
     .nav-badge { display: none; }
     #hero, #alphabet, #lessons, #exercises, footer { padding: 5rem 2rem; }
     #hero { padding-top: 7rem; }
+    footer { flex-direction: column; text-align: center; padding: 2.5rem 2rem; }
+    .footer-copy { text-align: center; }
+    .footer-social { justify-content: center; }
   }
   @media (max-width: 600px) {
     .lessons-tab-row { flex-direction: column; }
@@ -795,7 +838,8 @@
 <nav class="jump-nav" aria-label="Page sections">
   <a href="#alphabet"><span class="jn-num">01</span> Alphabet</a>
   <a href="#lessons"><span class="jn-num">02</span> Lessons</a>
-  <a href="#exercises"><span class="jn-num">03</span> Exercises</a>
+  <a href="#practice-lab"><span class="jn-num">03</span> Practice Lab</a>
+  <a href="#exercises"><span class="jn-num">04</span> Exercises</a>
 </nav>
 
 <!-- ══ SECTION 01: ALPHABET ══ -->
@@ -868,11 +912,63 @@
   </div>
 </section>
 
-<!-- ══ SECTION 03: EXERCISES ══ -->
+
+
+<!-- ══ SECTION 03: PRACTICE LAB ADD-ON ══ -->
+<section id="practice-lab" style="scroll-margin-top:115px">
+  <div class="pl-inner">
+    <div class="reveal" style="margin-bottom:2rem">
+      <span class="section-label">Section 04</span>
+      <div class="gold-line"></div>
+      <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Practice Lab</h2>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:680px;line-height:1.7;">Extra drills layered on top of the original lessons. This section does not replace the alphabet reference, guided lessons, or translation exercises.</p>
+    </div>
+
+    <div class="pl-grid reveal">
+      <article class="pl-card">
+        <h3>Recognition Drill</h3>
+        <p>Look at the Yapiri character and choose the correct Roman value.</p>
+        <div class="pl-prompt"><span class="pl-glyph" id="pl-rec-glyph">—</span></div>
+        <div class="pl-options" id="pl-rec-options"></div>
+        <div class="pl-feedback" id="pl-rec-feedback"></div>
+        <div class="pl-controls"><button class="pl-btn" id="pl-rec-next">Next Character</button></div>
+      </article>
+
+      <article class="pl-card">
+        <h3>Recall Drill</h3>
+        <p>Type the Roman value for the Yapiri character shown.</p>
+        <div class="pl-prompt"><span class="pl-glyph" id="pl-call-glyph">—</span></div>
+        <input class="pl-input" id="pl-call-input" placeholder="Type roman value, e.g. a, kh, ng" autocomplete="off">
+        <div class="pl-feedback" id="pl-call-feedback"></div>
+        <div class="pl-controls"><button class="pl-btn" id="pl-call-check">Check</button><button class="pl-btn" id="pl-call-next">Next</button></div>
+      </article>
+
+      <article class="pl-card">
+        <h3>Word Builder</h3>
+        <p>Build the Yapiri form from the shuffled character tiles.</p>
+        <div class="pl-prompt"><span id="pl-word-target" style="font-family:'DM Mono',monospace;color:var(--gold-light);font-size:1.1rem;">—</span></div>
+        <div class="pl-answer" id="pl-build-answer"></div>
+        <div class="pl-build-row" id="pl-build-chips"></div>
+        <div class="pl-feedback" id="pl-build-feedback"></div>
+        <div class="pl-controls"><button class="pl-btn" id="pl-build-check">Check</button><button class="pl-btn" id="pl-build-clear">Clear</button><button class="pl-btn" id="pl-build-next">Next</button></div>
+      </article>
+
+      <article class="pl-card">
+        <h3>Minimal Pairs</h3>
+        <p>Compare close sounds and train your eye to notice small differences.</p>
+        <div class="pl-prompt"><span class="pl-word" id="pl-pair-left">—</span><span style="margin:0 1rem;color:var(--stone);font-family:'DM Mono',monospace;">vs</span><span class="pl-word" id="pl-pair-right">—</span></div>
+        <p id="pl-pair-note" style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--stone);font-style:normal;"></p>
+        <div class="pl-controls"><button class="pl-btn" id="pl-pair-next">Show Another Pair</button></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SECTION 04: EXERCISES ══ -->
 <section id="exercises" style="scroll-margin-top:115px">
   <div class="exercises-inner">
     <div class="reveal" style="margin-bottom:2rem">
-      <span class="section-label">Section 03</span>
+      <span class="section-label">Section 04</span>
       <div class="gold-line"></div>
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Translation Exercises</h2>
       <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:640px;line-height:1.7;">Read each English sentence and translate it into Yapiri Script using the keyboard below. Roman Kokborok appears automatically as you type. Both versions are saved to the Kokborok corpus.</p>
@@ -1751,6 +1847,82 @@ function startLoad() {
   }
 }
 startLoad();
+
+
+
+// Practice Lab add-on — uses the existing CHAR_DATA created above, without replacing lessons/exercises
+(function initPracticeLab(){
+  function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
+  ready(function(){
+    const chars = (window.CHAR_DATA || CHAR_DATA || []).filter(c => ['vowels','consonants','loanword'].includes(c.group));
+    if (!chars.length) return;
+    const sample = () => chars[Math.floor(Math.random()*chars.length)];
+    const glyph = c => String.fromCodePoint(c.cp);
+    let recCurrent = sample(), callCurrent = sample();
+
+    function setRec(){
+      recCurrent = sample();
+      document.getElementById('pl-rec-glyph').textContent = glyph(recCurrent);
+      const opts = [recCurrent.roman];
+      while (opts.length < 4) { const r = sample().roman; if (!opts.includes(r)) opts.push(r); }
+      opts.sort(() => Math.random() - .5);
+      const wrap = document.getElementById('pl-rec-options'); wrap.innerHTML = '';
+      document.getElementById('pl-rec-feedback').textContent = '';
+      opts.forEach(o => { const b=document.createElement('button'); b.className='pl-option'; b.textContent=o; b.onclick=()=>{ const ok=o===recCurrent.roman; b.classList.add(ok?'correct':'wrong'); document.getElementById('pl-rec-feedback').className='pl-feedback '+(ok?'good':'bad'); document.getElementById('pl-rec-feedback').textContent= ok?'Correct.':'Not quite — correct answer: '+recCurrent.roman; }; wrap.appendChild(b); });
+    }
+    function setCall(){
+      callCurrent = sample();
+      document.getElementById('pl-call-glyph').textContent = glyph(callCurrent);
+      document.getElementById('pl-call-input').value = '';
+      const fb=document.getElementById('pl-call-feedback'); fb.textContent=''; fb.className='pl-feedback';
+    }
+    function checkCall(){
+      const val=document.getElementById('pl-call-input').value.trim().toLowerCase();
+      const ok=val===String(callCurrent.roman).toLowerCase();
+      const fb=document.getElementById('pl-call-feedback'); fb.className='pl-feedback '+(ok?'good':'bad'); fb.textContent= ok?'Correct.':'Answer: '+callCurrent.roman;
+    }
+
+    const words = [
+      { roman:'kokborok', parts:['k','o','k','b','o','r','o','k'] },
+      { roman:'yapiri', parts:['y','a','p','i','r','i'] },
+      { roman:'borok', parts:['b','o','r','o','k'] },
+      { roman:'tiprasa', parts:['t','i','p','r','a','s','a'] }
+    ];
+    let buildCurrent = words[0], buildParts = [];
+    function byRoman(r){ return chars.find(c => c.roman === r); }
+    function setBuild(){
+      buildCurrent = words[Math.floor(Math.random()*words.length)]; buildParts = [];
+      document.getElementById('pl-word-target').textContent = buildCurrent.roman;
+      document.getElementById('pl-build-answer').textContent = '';
+      document.getElementById('pl-build-feedback').textContent = '';
+      const chips=document.getElementById('pl-build-chips'); chips.innerHTML='';
+      [...buildCurrent.parts].sort(()=>Math.random()-.5).forEach(r=>{ const c=byRoman(r); if(!c) return; const b=document.createElement('button'); b.className='pl-chip'; b.textContent=glyph(c); b.title=r; b.onclick=()=>{ buildParts.push(r); document.getElementById('pl-build-answer').textContent += glyph(c); }; chips.appendChild(b); });
+    }
+    function checkBuild(){
+      const ok=buildParts.join('')===buildCurrent.parts.join('');
+      const fb=document.getElementById('pl-build-feedback'); fb.className='pl-feedback '+(ok?'good':'bad'); fb.textContent= ok?'Correct build.':'Not quite — clear and try again.';
+    }
+    function clearBuild(){ buildParts=[]; document.getElementById('pl-build-answer').textContent=''; }
+
+    const pairs = [
+      ['p','ph','Unaspirated p vs aspirated ph'], ['t','th','Unaspirated t vs aspirated th'], ['k','kh','Unaspirated k vs aspirated kh'], ['n','ng','Dental/alveolar n vs velar ng'], ['b','v','Native b vs loanword v']
+    ];
+    function setPair(){
+      const p=pairs[Math.floor(Math.random()*pairs.length)], a=byRoman(p[0]), b=byRoman(p[1]);
+      if(a&&b){ document.getElementById('pl-pair-left').textContent=glyph(a); document.getElementById('pl-pair-right').textContent=glyph(b); document.getElementById('pl-pair-note').textContent=p[2]; }
+    }
+
+    document.getElementById('pl-rec-next')?.addEventListener('click', setRec);
+    document.getElementById('pl-call-check')?.addEventListener('click', checkCall);
+    document.getElementById('pl-call-next')?.addEventListener('click', setCall);
+    document.getElementById('pl-call-input')?.addEventListener('keydown', e => { if(e.key==='Enter') checkCall(); });
+    document.getElementById('pl-build-check')?.addEventListener('click', checkBuild);
+    document.getElementById('pl-build-clear')?.addEventListener('click', clearBuild);
+    document.getElementById('pl-build-next')?.addEventListener('click', setBuild);
+    document.getElementById('pl-pair-next')?.addEventListener('click', setPair);
+    setRec(); setCall(); setBuild(); setPair();
+  });
+})();
 
 // Hero bg glyphs
 const sampleGlyphs = [
