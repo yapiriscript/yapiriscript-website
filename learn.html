@@ -19,7 +19,7 @@
 <meta name="description" content="Learn Yapiri Script interactively — explore all 45 characters of the Kokborok phonemic alphabet, follow guided lessons from vowels to sentences, and practise translating Kokborok. Your submissions help build the language corpus.">
 <meta name="keywords" content="learn Yapiri script, learn Kokborok script, Kokborok alphabet, Yapiri alphabet, Kokborok writing lessons, Tiprasa script lessons, Yapiri characters, Kokborok phonemic alphabet, how to write Kokborok, Yapiri script tutorial, Kokborok language learning, Tiprasa language script">
 <meta name="author" content="Animesh Debbarma">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://yapiriscript.com/learn.html">
 
 <!-- OPEN GRAPH -->
@@ -390,7 +390,6 @@
     color: var(--stone-light); line-height: 1.6; margin-bottom: 1rem;
   }
   .detail-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
-  .detail-meta-item { }
   .detail-meta-item .meta-label {
     font-family: 'DM Mono', monospace; font-size: 0.55rem;
     letter-spacing: 0.2em; text-transform: uppercase;
@@ -460,7 +459,6 @@
     font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--stone);
   }
 
-  .lesson-right-col { }
   .lesson-examples-title {
     font-family: 'DM Mono', monospace;
     font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
@@ -487,7 +485,7 @@
     font-size: 0.88rem; font-style: italic; color: var(--stone); display: block;
   }
 
-.lesson-path-shell {
+  .lesson-path-shell {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr);
     gap: 2rem;
@@ -796,7 +794,6 @@
     color: var(--warm-white);
   }
 
-
   /* ── EXERCISES SECTION ── */
   #exercises {
     background: linear-gradient(160deg, #130e04 0%, #0e0c06 50%, #17100a 100%);
@@ -810,157 +807,137 @@
   .exercises-inner { max-width: 1100px; margin: 0 auto; }
   .exercises-layout { display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: start; }
 
-  /* Consent */
-  .consent-box {
-    background: rgba(184,92,56,0.08);
-    border: 1px solid rgba(184,92,56,0.25);
-    padding: 1.4rem 1.8rem;
-    margin-bottom: 2.5rem;
-    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
-  }
-  .consent-box p {
-    flex: 1; min-width: 220px;
-    font-size: 0.9rem; font-weight: 300; font-style: italic;
-    color: var(--stone-light); line-height: 1.55;
-  }
-  .consent-box.hidden { display: none; }
-  .consent-btns { display: flex; gap: 0.6rem; flex-shrink: 0; }
-  .btn-consent-accept {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    background: var(--terracotta); color: var(--warm-white);
-    border: none; padding: 0.5rem 1.1rem; cursor: pointer; transition: background 0.2s;
-  }
-  .btn-consent-accept:hover { background: var(--terra-light); }
-  .btn-consent-decline {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    background: transparent; color: var(--stone);
-    border: 1px solid rgba(196,180,154,0.2); padding: 0.5rem 1rem; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .btn-consent-decline:hover { color: var(--stone-light); border-color: rgba(196,180,154,0.4); }
+  /* ── CONSENT BANNER ── */
+  .consent-banner { background:linear-gradient(135deg,rgba(184,92,56,0.08) 0%,rgba(26,18,9,0.6) 100%); border:1px solid rgba(184,92,56,0.3); padding:2rem 2.5rem; margin-bottom:2.5rem; position:relative; }
+  .consent-banner::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--terracotta),var(--gold)); }
+  .consent-banner.hidden { display:none; }
+  .consent-eyebrow { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.8rem; display:block; }
+  .consent-heading { font-family:'Teko',sans-serif; font-size:1.6rem; font-weight:400; color:var(--parchment); margin-bottom:0.8rem; letter-spacing:0.04em; }
+  .consent-body { font-size:1rem; font-weight:300; line-height:1.75; color:var(--stone-light); margin-bottom:1rem; max-width:680px; }
+  .consent-body strong { color:var(--parchment); font-weight:400; }
+  .consent-what { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.05em; color:var(--stone); margin-bottom:1.2rem; line-height:1.9; }
+  .consent-what span { color:var(--gold-light); }
+  .consent-btns { display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; }
+  .btn-consent-accept { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; background:var(--terracotta); color:var(--warm-white); border:none; padding:0.75rem 1.8rem; cursor:pointer; transition:background 0.2s,transform 0.15s; }
+  .btn-consent-accept:hover { background:var(--terra-light); transform:translateY(-1px); }
+  .btn-consent-decline { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:var(--stone); border:1px solid rgba(196,180,154,0.2); padding:0.75rem 1.2rem; cursor:pointer; transition:color 0.2s,border-color 0.2s; }
+  .btn-consent-decline:hover { color:var(--stone-light); border-color:rgba(196,180,154,0.4); }
 
-  /* Sentence card */
-  .ex-counter {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--stone); margin-bottom: 1rem;
-  }
-  .ex-counter strong { color: var(--gold-light); }
-  .sentence-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(196,180,154,0.12);
-    padding: 2rem 2rem 1.6rem;
-    margin-bottom: 1.4rem;
-    position: relative; overflow: hidden;
-  }
-  .sentence-card::before {
-    content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
-    background: var(--terracotta);
-  }
-  .sentence-domain {
-    font-family: 'DM Mono', monospace; font-size: 0.58rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--stone); margin-bottom: 0.7rem;
-  }
-  .sentence-english {
-    font-size: 1.35rem; font-weight: 300; line-height: 1.5;
-    color: var(--parchment);
-  }
+  /* Consent indicator */
+  .consent-indicator { display:flex; align-items:center; gap:0.5rem; font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; padding:0.4rem 0.8rem; border:1px solid rgba(196,180,154,0.15); transition:all 0.2s; background:rgba(0,0,0,0.2); }
+  .consent-indicator .ci-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; transition:background 0.3s; }
+  .consent-indicator.contributing .ci-dot { background:#6db36d; }
+  .consent-indicator.contributing .ci-text { color:#6db36d; }
+  .consent-indicator.not-contributing .ci-dot { background:var(--stone); }
+  .consent-indicator.not-contributing .ci-text { color:var(--stone); }
 
-  .ex-input-label {
-    font-family: 'DM Mono', monospace; font-size: 0.58rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--stone); margin-bottom: 0.5rem;
-  }
-  .ex-input {
-    width: 100%;
-    background: rgba(0,0,0,0.35);
-    border: 1px solid rgba(196,180,154,0.18);
-    color: var(--parchment);
-    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
-    padding: 0.85rem 1rem;
-    resize: vertical; min-height: 90px;
-    outline: none; transition: border-color 0.25s;
-    border-radius: 2px;
-  }
-  .ex-input::placeholder { color: var(--stone); font-style: italic; opacity: 0.6; }
-  .ex-input:focus { border-color: rgba(201,146,42,0.45); }
-  .ex-input-hint {
-    font-family: 'DM Mono', monospace; font-size: 0.58rem;
-    letter-spacing: 0.06em; color: var(--stone);
-    margin-top: 0.4rem; margin-bottom: 1.2rem; line-height: 1.6;
-  }
-  .ex-input-hint a { color: var(--gold); text-decoration: none; }
-  .ex-input-hint a:hover { color: var(--gold-light); }
+  /* Difficulty toggle */
+  .difficulty-row { display:flex; align-items:center; gap:0.8rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+  .difficulty-label { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); flex-shrink:0; }
+  .difficulty-btns { display:flex; gap:0; }
+  .diff-btn { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; background:rgba(255,255,255,0.03); border:1px solid rgba(196,180,154,0.15); color:var(--stone); padding:0.5rem 1.1rem; cursor:pointer; transition:all 0.2s; margin-left:-1px; }
+  .diff-btn:first-child { margin-left:0; }
+  .diff-btn:hover { color:var(--parchment); background:rgba(255,255,255,0.06); }
+  .diff-btn.active { color:var(--ink); border-color:transparent; }
+  .diff-btn[data-diff="all"].active { background:var(--stone); }
+  .diff-btn[data-diff="easy"].active { background:#6db36d; }
+  .diff-btn[data-diff="medium"].active { background:var(--gold); }
+  .diff-btn[data-diff="hard"].active { background:var(--terracotta); }
 
-  .ex-controls { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  .ex-btn-submit {
-    font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
-    background: var(--terracotta); color: var(--warm-white);
-    border: none; padding: 0.8rem 2rem; cursor: pointer;
-    transition: background 0.25s, transform 0.2s;
-  }
-  .ex-btn-submit:hover { background: var(--terra-light); transform: translateY(-2px); }
-  .ex-btn-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-  .ex-btn-nav {
-    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    background: transparent; color: var(--stone);
-    border: 1px solid rgba(196,180,154,0.18); padding: 0.8rem 1.2rem; cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .ex-btn-nav:hover { color: var(--parchment); border-color: rgba(196,180,154,0.35); }
+  /* Sentence card + counter */
+  .ex-counter { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--stone); margin-bottom:1rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+  .ex-counter strong { color:var(--gold-light); }
+  .ex-diff-badge { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase; padding:0.15rem 0.5rem; border-radius:2px; }
+  .ex-diff-badge.easy { background:rgba(109,179,109,0.15); color:#6db36d; }
+  .ex-diff-badge.medium { background:rgba(201,146,42,0.15); color:var(--gold-light); }
+  .ex-diff-badge.hard { background:rgba(184,92,56,0.15); color:var(--terra-light); }
 
-  .ex-feedback {
-    font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.05em;
-    padding: 0.65rem 1rem; display: none; margin-bottom: 0.5rem;
-  }
-  .ex-feedback.success { display: block; color: #8fcf8f; background: rgba(143,207,143,0.08); border: 1px solid rgba(143,207,143,0.2); }
-  .ex-feedback.error   { display: block; color: var(--terra-light); background: rgba(184,92,56,0.08); border: 1px solid rgba(184,92,56,0.25); }
+  .sentence-card { background:rgba(255,255,255,0.03); border:1px solid rgba(196,180,154,0.12); padding:1.8rem 2rem 1.4rem; margin-bottom:1.2rem; position:relative; overflow:hidden; }
+  .sentence-card::before { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--terracotta); }
+  .sentence-domain { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-bottom:0.6rem; }
+  .sentence-english { font-size:1.4rem; font-weight:300; line-height:1.5; color:var(--parchment); }
 
-  /* Sidebar */
-  .ex-sidebar { }
-  .sidebar-block {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(196,180,154,0.1);
-    padding: 1.5rem; margin-bottom: 1.5rem;
-    position: relative;
-  }
-  .sidebar-block-title {
-    font-family: 'DM Mono', monospace; font-size: 0.58rem;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--terracotta); margin-bottom: 1.2rem;
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .sidebar-block-title::after { content: ''; flex: 1; height: 1px; background: rgba(184,92,56,0.25); }
+  /* Yapiri output display */
+  .ex-output-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--stone); margin-bottom:0.5rem; display:block; }
+  .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:1.1rem 1.2rem 0.8rem; min-height:120px; max-height:200px; overflow-y:auto; margin-bottom:0; }
+  .yapiri-output-wrap:focus-within { border-color:rgba(201,146,42,0.4); }
+  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); line-height:1.4; min-height:3.5rem; word-break:break-word; overflow-wrap:break-word; }
+  .yapiri-display:empty::before { content:'Type using the keyboard below'; color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.85rem; }
+  .roman-preview { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--gold); letter-spacing:0.06em; margin-top:0.6rem; min-height:1.2em; border-top:1px solid rgba(196,180,154,0.08); padding-top:0.5rem; }
 
-  /* Progress */
-  .progress-bar-bg {
-    background: rgba(255,255,255,0.06); height: 3px; margin: 0.6rem 0 0.4rem;
+  /* ════════ SHARED KEY STYLE (from try.html) ════════ */
+  .key { background:rgba(255,255,255,0.04); border:1px solid rgba(196,180,154,0.12); color:var(--parchment); cursor:pointer; transition:all 0.12s; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.12rem; user-select:none; font-family:inherit; position:relative; overflow:hidden; }
+  .key::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--stone); opacity:0; transition:opacity 0.15s; }
+  .key:hover { background:rgba(184,92,56,0.18); border-color:var(--terracotta); transform:translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.35); z-index:2; }
+  .key:hover::before { opacity:1; background:var(--terracotta); }
+  .key:active { transform:translateY(0); background:rgba(201,146,42,0.32); border-color:var(--gold); }
+  .key-glyph { font-family:'Yapiri',serif; line-height:1; }
+  .key-label { font-family:'DM Mono',monospace; letter-spacing:0.04em; color:var(--stone-light); text-transform:uppercase; }
+  .key-qwerty { position:absolute; font-family:'DM Mono',monospace; color:var(--gold); opacity:0.55; text-transform:none; letter-spacing:0; line-height:1; pointer-events:none; }
+  .key-qwerty.shifted { color:var(--terra-light); }
+  .key.loanword::before { background:var(--terracotta); }
+  .key.loanword:hover { border-color:var(--terracotta); background:rgba(184,92,56,0.18); }
+  .key.special .key-glyph { color:var(--gold-light); }
+  .kb-key-wide { background:rgba(139,115,85,0.08); border-color:rgba(196,180,154,0.15); cursor:default; }
+  .kb-key-wide:hover { transform:none; box-shadow:none; }
+  .kb-key-wide::before { display:none; }
+  .kb-key-wide.is-active { cursor:pointer; }
+  .kb-key-wide.is-active:hover { background:rgba(184,92,56,0.16); border-color:var(--terracotta); }
+  .kb-key-label-only { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.08em; color:var(--stone); text-transform:uppercase; }
+  .w-15 { flex-grow:1.5 !important; }
+  .w-18 { flex-grow:1.8 !important; }
+  .w-20 { flex-grow:2 !important; }
+  .w-spacebar { flex-grow:7 !important; }
+
+  /* ── EXERCISE KEYBOARD LAYOUT (try.html style) ── */
+  .ex-keyboard { background:rgba(8,6,3,0.7); border:1px solid rgba(196,180,154,0.15); padding:0.75rem; margin-bottom:1rem; }
+  .ex-kb-wrap { background:rgba(8,6,3,0.55); border:1px solid rgba(196,180,154,0.14); padding:0.9rem; display:flex; flex-direction:column; gap:0.45rem; }
+  .ex-kb-row { display:flex; gap:0.45rem; justify-content:flex-start; }
+  .ex-kb-row .key { flex:1 1 0; min-width:0; height:64px; padding:0.3rem 0.2rem; }
+  .ex-kb-row .key .key-qwerty { top:4px; left:6px; font-size:0.6rem; }
+  .ex-kb-row .key .key-glyph { font-family:'Yapiri',serif; font-size:1.6rem; }
+  .ex-kb-row .key .key-label { font-size:0.6rem; margin-top:0.05rem; }
+  .ex-kb-row .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
+  @media(max-width:820px) {
+    .ex-kb-row .key { height:52px; }
+    .ex-kb-row .key .key-glyph { font-size:1.35rem; }
+    .ex-kb-row .key .key-qwerty { font-size:0.52rem; }
+    .ex-kb-row .key .key-label { font-size:0.5rem; }
+    .ex-kb-wrap { padding:0.6rem; }
+    .ex-kb-row { gap:0.3rem; }
   }
-  .progress-bar-fill {
-    height: 100%; background: var(--gold);
-    transition: width 0.5s ease; width: 0%;
-  }
-  .progress-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1rem; }
-  .prog-stat .prog-num {
-    font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 400;
-    color: var(--gold-light); line-height: 1;
-  }
-  .prog-stat .prog-lbl {
-    font-family: 'DM Mono', monospace; font-size: 0.55rem;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone);
+  @media(max-width:480px) {
+    .ex-kb-row .key { height:46px; }
+    .ex-kb-row .key .key-glyph { font-size:1.2rem; }
   }
 
-  /* Domain chips */
-  .domain-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .domain-chip {
-    font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em;
-    padding: 0.25rem 0.6rem;
-    background: rgba(196,180,154,0.06); border: 1px solid rgba(196,180,154,0.12);
-    color: var(--stone); cursor: pointer; transition: all 0.2s;
-  }
-  .domain-chip:hover { color: var(--gold-light); border-color: rgba(201,146,42,0.3); }
-  .domain-chip.active { color: var(--gold-light); border-color: rgba(201,146,42,0.4); background: rgba(201,146,42,0.08); }
+  /* ── EXERCISE CONTROLS ── */
+  .ex-controls { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1rem; margin-top:0.8rem; }
+  .ex-btn-submit { font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; background:var(--terracotta); color:var(--warm-white); border:none; padding:0.8rem 2rem; cursor:pointer; transition:background 0.25s,transform 0.2s; }
+  .ex-btn-submit:hover { background:var(--terra-light); transform:translateY(-2px); }
+  .ex-btn-submit:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+  .ex-btn-nav { font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; background:transparent; color:var(--stone); border:1px solid rgba(196,180,154,0.18); padding:0.8rem 1.2rem; cursor:pointer; transition:color 0.2s,border-color 0.2s; }
+  .ex-btn-nav:hover { color:var(--parchment); border-color:rgba(196,180,154,0.35); }
+
+  .ex-feedback { font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.05em; padding:0.65rem 1rem; display:none; margin-bottom:0.5rem; }
+  .ex-feedback.success { display:block; color:#8fcf8f; background:rgba(143,207,143,0.08); border:1px solid rgba(143,207,143,0.2); }
+  .ex-feedback.error { display:block; color:var(--terra-light); background:rgba(184,92,56,0.08); border:1px solid rgba(184,92,56,0.25); }
+
+  /* ── SIDEBAR ── */
+  .sidebar-block { background:rgba(255,255,255,0.02); border:1px solid rgba(196,180,154,0.1); padding:1.5rem; margin-bottom:1.5rem; position:relative; }
+  .sidebar-block-title { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.6rem; }
+  .sidebar-block-title::after { content:''; flex:1; height:1px; background:rgba(184,92,56,0.25); }
+  .progress-bar-bg { background:rgba(255,255,255,0.06); height:3px; margin:0.6rem 0 0.4rem; }
+  .progress-bar-fill { height:100%; background:var(--gold); transition:width 0.5s ease; width:0%; }
+  .progress-stats { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem; }
+  .prog-stat .prog-num { font-family:'Teko',sans-serif; font-size:2rem; font-weight:400; color:var(--gold-light); line-height:1; }
+  .prog-stat .prog-lbl { font-family:'DM Mono',monospace; font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--stone); }
+  .domain-chips { display:flex; flex-wrap:wrap; gap:0.4rem; }
+  .domain-chip { font-family:'DM Mono',monospace; font-size:0.56rem; letter-spacing:0.06em; padding:0.22rem 0.55rem; background:rgba(196,180,154,0.06); border:1px solid rgba(196,180,154,0.12); color:var(--stone); cursor:pointer; transition:all 0.2s; text-transform:capitalize; }
+  .domain-chip:hover { color:var(--gold-light); border-color:rgba(201,146,42,0.3); }
+  .domain-chip.active { color:var(--gold-light); border-color:rgba(201,146,42,0.4); background:rgba(201,146,42,0.08); }
+  .ex-loading { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--stone); letter-spacing:0.1em; text-align:center; padding:2rem; display:none; }
+  .ex-loading.visible { display:block; }
 
   /* ── QUICK REF FLOATER ── */
   .qr-btn {
@@ -1009,6 +986,8 @@
   .qr-roman { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--gold-light); width: 40px; }
   .qr-ipa   { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--stone); }
 
+
+
   /* ── PRACTICE LAB ADD-ON (non-destructive) ── */
   #practice-lab {
     background: linear-gradient(180deg, var(--ink) 0%, #110c05 100%);
@@ -1046,7 +1025,6 @@
   .pl-answer { font-family:'Yapiri',serif; font-size:2rem; min-height:54px; padding:.6rem .8rem; border:1px solid rgba(196,180,154,.14); background:#0e0b07; color:var(--gold-light); margin-top:.6rem; }
   @media (max-width: 1024px) { .pl-grid { grid-template-columns:1fr; } }
   @media (max-width: 900px) { #practice-lab { padding:5rem 2rem; } }
-
 
   /* ── FOOTER ── */
   footer {
@@ -1324,48 +1302,144 @@
 <!-- ══ SECTION 04: EXERCISES ══ -->
 <section id="exercises" style="scroll-margin-top:115px">
   <div class="exercises-inner">
-    <div class="reveal" style="margin-bottom:3rem">
+    <div class="reveal" style="margin-bottom:2rem">
       <span class="section-label">Section 04</span>
       <div class="gold-line"></div>
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Translation Exercises</h2>
-      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Translate English sentences into Kokborok. Your submissions are anonymously added to the Yapiri Kokborok Corpus — a community-built language dataset.</p>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:640px;line-height:1.7;">Read each English sentence and translate it into Yapiri Script using the keyboard below. Roman Kokborok appears automatically as you type. Both versions are saved to the Kokborok corpus.</p>
     </div>
 
-    <!-- Consent -->
-    <div class="consent-box reveal" id="consent-box">
-      <p>Your translations will be saved anonymously to the <strong style="color:var(--parchment);font-weight:400;">Yapiri Kokborok Corpus</strong>. No name, email, or personal data is ever collected.</p>
+    <!-- Consent Banner -->
+    <div class="consent-banner reveal" id="consent-banner">
+      <span class="consent-eyebrow">Yapiri Kokborok Corpus</span>
+      <h3 class="consent-heading">Your translation helps preserve Kokborok</h3>
+      <p class="consent-body">Every sentence you translate becomes part of the <strong>Yapiri Kokborok Corpus</strong> — a living language archive being built to preserve Kokborok for future generations. Your contributions power the dictionary, translator, and eventually Yapiri AI. This dataset is owned by and held in trust for the <strong>Tiprasa people</strong>.</p>
+      <p class="consent-what">What is collected: <span>your Yapiri translation</span> &nbsp;·&nbsp; <span>auto-generated Roman Kokborok</span> &nbsp;·&nbsp; <span>domain &amp; difficulty tag</span> &nbsp;·&nbsp; <span>anonymous session ID</span><br>What is never collected: <span>your name</span> &nbsp;·&nbsp; <span>email</span> &nbsp;·&nbsp; <span>IP address</span> &nbsp;·&nbsp; <span>any personal data</span></p>
       <div class="consent-btns">
-        <button class="btn-consent-accept" id="btn-consent-accept">Contribute</button>
-        <button class="btn-consent-decline" id="btn-consent-decline">Skip</button>
+        <button class="btn-consent-accept" id="btn-consent-accept">Contribute Anonymously</button>
+        <button class="btn-consent-decline" id="btn-consent-decline">Use Without Contributing</button>
       </div>
     </div>
 
     <div class="exercises-layout">
       <!-- Main exercise area -->
       <div>
-        <p class="ex-counter reveal">
-          Sentence <strong id="ex-current">1</strong> of <strong id="ex-total">20</strong>
-          &ensp;·&ensp; Domain: <strong id="ex-domain">—</strong>
-        </p>
 
-        <div class="sentence-card reveal">
-          <p class="sentence-domain" id="ex-domain-label"></p>
-          <p class="sentence-english" id="ex-sentence">Loading…</p>
+        <!-- Difficulty toggle + consent indicator -->
+        <div class="difficulty-row reveal">
+          <span class="difficulty-label">Level:</span>
+          <div class="difficulty-btns">
+            <button class="diff-btn active" data-diff="all">All</button>
+            <button class="diff-btn" data-diff="easy">Easy</button>
+            <button class="diff-btn" data-diff="medium">Medium</button>
+            <button class="diff-btn" data-diff="hard">Hard</button>
+          </div>
+          <div style="flex:1"></div>
+          <button class="consent-indicator not-contributing" id="consent-indicator">
+            <span class="ci-dot"></span>
+            <span class="ci-text" id="ci-text">Not contributing</span>
+          </button>
         </div>
 
-        <p class="ex-input-label reveal">Your Kokborok translation</p>
-        <textarea class="ex-input reveal" id="ex-input"
-          placeholder="Type in Roman Kokborok, or paste Yapiri glyphs from the virtual keyboard…"
-          rows="3"></textarea>
-        <p class="ex-input-hint reveal">
-          Use Roman Kokborok script, or copy Yapiri glyphs from the <a href="try.html">virtual keyboard →</a>
+        <!-- Loading state -->
+        <div class="ex-loading" id="ex-loading">Loading sentences from corpus&hellip;</div>
+
+        <!-- Counter -->
+        <p class="ex-counter reveal" id="ex-counter-row">
+          Sentence <strong id="ex-current">—</strong> of <strong id="ex-total">—</strong>
+          &ensp;&middot;&ensp;
+          <span class="ex-diff-badge" id="ex-diff-badge"></span>
         </p>
 
+        <!-- Sentence card -->
+        <div class="sentence-card reveal">
+          <p class="sentence-domain" id="ex-domain-label"></p>
+          <p class="sentence-english" id="ex-sentence">Loading sentences&hellip;</p>
+        </div>
+
+        <!-- Yapiri output -->
+        <span class="ex-output-label reveal">Your Yapiri translation</span>
+        <div class="yapiri-output-wrap reveal">
+          <div class="yapiri-display" id="yapiri-display"></div>
+          <div class="roman-preview" id="roman-preview"></div>
+        </div>
+
+        <!-- Inline keyboard — try.html style -->
+        <div class="ex-keyboard reveal">
+          <div class="ex-kb-wrap">
+            <!-- NUMBER ROW -->
+            <div class="ex-kb-row">
+              <button class="key" onclick="exType('1')"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
+              <button class="key" onclick="exType('2')"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
+              <button class="key" onclick="exType('3')"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
+              <button class="key" onclick="exType('4')"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
+              <button class="key" onclick="exType('5')"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
+              <button class="key" onclick="exType('6')"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
+              <button class="key" onclick="exType('7')"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
+              <button class="key" onclick="exType('8')"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
+              <button class="key" onclick="exType('9')"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+              <button class="key" onclick="exType('0')"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+              <button class="key kb-key-wide is-active w-18" onclick="exBackspace()"><span class="kb-key-label-only">&#9003; Bksp</span></button>
+            </div>
+            <!-- TOP ROW: q w e r t y u i o p -->
+            <div class="ex-kb-row">
+              <button class="key" onclick="exType('q')"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
+              <button class="key" onclick="exType('w')"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
+              <button class="key" onclick="exType('e')"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
+              <button class="key" onclick="exType('r')"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+              <button class="key" onclick="exType('t')"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
+              <button class="key" onclick="exType('y')"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
+              <button class="key" onclick="exType('u')"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
+              <button class="key" onclick="exType('i')"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
+              <button class="key" onclick="exType('o')"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
+              <button class="key" onclick="exType('p')"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
+            </div>
+            <!-- HOME ROW: a s d f g h j k l ' -->
+            <div class="ex-kb-row">
+              <button class="key" onclick="exType('a')"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
+              <button class="key" onclick="exType('s')"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
+              <button class="key" onclick="exType('d')"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
+              <button class="key" onclick="exType('f')"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
+              <button class="key" onclick="exType('g')"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
+              <button class="key" onclick="exType('h')"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+              <button class="key" onclick="exType('j')"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+              <button class="key" onclick="exType('k')"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
+              <button class="key" onclick="exType('l')"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
+              <button class="key special" onclick="exTone()"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
+            </div>
+            <!-- BOTTOM ROW: z c v b n m , . ? ! Clear -->
+            <div class="ex-kb-row">
+              <button class="key loanword" onclick="exType('z')"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
+              <button class="key" onclick="exType('c')"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
+              <button class="key loanword" onclick="exType('v')"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
+              <button class="key" onclick="exType('b')"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
+              <button class="key" onclick="exType('n')"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
+              <button class="key" onclick="exType('m')"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
+              <button class="key" onclick="exType(',')"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+              <button class="key" onclick="exType('.')"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+              <button class="key" onclick="exType('?')"><span class="key-qwerty shifted">&#8679;/</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+              <button class="key" onclick="exType('!')"><span class="key-qwerty shifted">&#8679;1</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+              <button class="key kb-key-wide is-active w-20" onclick="exClear()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">Clear</span></button>
+            </div>
+            <!-- SPACE ROW -->
+            <div class="ex-kb-row">
+              <button class="key kb-key-wide w-20" style="cursor:default;background:rgba(139,115,85,0.1);border-color:rgba(139,115,85,0.2);"><span class="kb-key-label-only" style="color:var(--stone);font-size:0.55rem;line-height:1.5;">&#8679; Shift<br><span style="color:rgba(196,180,154,0.4);font-size:0.48rem;">ph &middot; th &middot; kh &middot; n&prime;</span></span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('P')"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAD;</span><span class="key-label" style="font-size:0.55rem;">ph</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('T')"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAE;</span><span class="key-label" style="font-size:0.55rem;">th</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('K')"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CAF;</span><span class="key-label" style="font-size:0.55rem;">kh</span></button>
+              <button class="key kb-key-wide is-active w-spacebar" onclick="exSpace()"><span class="kb-key-label-only">space</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exType('N')"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CB4;</span><span class="key-label" style="font-size:0.55rem;">n&#8242;</span></button>
+              <button class="key kb-key-wide is-active w-15" onclick="exQuote()"><span class="key-qwerty shifted">&#8679;'</span><span class="key-glyph" style="font-size:1.4rem;">&#xF1CCE;</span><span class="key-label" style="font-size:0.55rem;">"</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
         <div class="ex-controls reveal">
           <button class="ex-btn-submit" id="btn-submit">Submit Translation</button>
           <button class="ex-btn-nav" id="btn-skip">Skip</button>
-          <button class="ex-btn-nav" id="btn-prev">← Prev</button>
-          <button class="ex-btn-nav" id="btn-next">Next →</button>
+          <button class="ex-btn-nav" id="btn-prev">&larr; Prev</button>
+          <button class="ex-btn-nav" id="btn-next">Next &rarr;</button>
         </div>
 
         <div class="ex-feedback" id="ex-feedback"></div>
@@ -1375,29 +1449,17 @@
       <div class="ex-sidebar">
         <div class="sidebar-block reveal">
           <p class="sidebar-block-title">Session Progress</p>
-          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--stone);letter-spacing:0.08em;">
-            <span id="progress-pct">0</span>% complete
-          </p>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="progress-fill"></div>
-          </div>
+          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--stone);letter-spacing:0.08em;"><span id="progress-pct">0</span>% of current level</p>
+          <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
           <div class="progress-stats">
-            <div class="prog-stat">
-              <div class="prog-num" id="prog-submitted">0</div>
-              <div class="prog-lbl">Submitted</div>
-            </div>
-            <div class="prog-stat">
-              <div class="prog-num" id="prog-skipped">0</div>
-              <div class="prog-lbl">Skipped</div>
-            </div>
+            <div class="prog-stat"><div class="prog-num" id="prog-submitted">0</div><div class="prog-lbl">Submitted</div></div>
+            <div class="prog-stat"><div class="prog-num" id="prog-skipped">0</div><div class="prog-lbl">Skipped</div></div>
           </div>
         </div>
-
         <div class="sidebar-block reveal">
           <p class="sidebar-block-title">Filter by Domain</p>
           <div class="domain-chips" id="domain-chips"></div>
         </div>
-
         <div class="sidebar-block reveal">
           <p class="sidebar-block-title">About this Corpus</p>
           <p style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);line-height:1.9;letter-spacing:0.04em;margin-bottom:0.8rem;">
@@ -1456,7 +1518,7 @@
   <div id="qr-content"></div>
 </div>
 
-<!-- Firebase -->
+<!-- Firebase Module Script -->
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs }
@@ -1474,10 +1536,10 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
+window._db = db;
+window._fs = { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs };
 
-// ────────────────────────────────────────────────
-// CHARACTER DATA — codepoints verified against try.html KEYMAP (ground truth)
-// ────────────────────────────────────────────────
+// CHARACTER DATA
 const VOWELS = [
   { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.' },
   { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.' },
@@ -1891,10 +1953,7 @@ function buildGuidedLessons() {
 }
 buildGuidedLessons();
 
-
-// ────────────────────────────────────────────────
 // QUICK REFERENCE
-// ────────────────────────────────────────────────
 function buildQR() {
   const container = document.getElementById('qr-content');
   const groups = [
@@ -1917,155 +1976,342 @@ buildQR();
 
 document.getElementById('qr-btn').addEventListener('click', () => document.getElementById('qr-drawer').classList.toggle('open'));
 document.getElementById('qr-close').addEventListener('click', () => document.getElementById('qr-drawer').classList.remove('open'));
+</script>
 
-// ────────────────────────────────────────────────
-// SENTENCE EXERCISES
-// ────────────────────────────────────────────────
-const SENTENCES = [
-  { id:'s001', english:'Good morning.',                    domain:'Greetings' },
-  { id:'s002', english:'What is your name?',               domain:'Greetings' },
-  { id:'s003', english:'How are you?',                     domain:'Greetings' },
-  { id:'s004', english:'Thank you very much.',             domain:'Greetings' },
-  { id:'s005', english:'Where is the market?',             domain:'Directions' },
-  { id:'s006', english:'Turn left at the river.',          domain:'Directions' },
-  { id:'s007', english:'How far is the village?',          domain:'Directions' },
-  { id:'s008', english:'I am hungry.',                     domain:'Food' },
-  { id:'s009', english:'This food is delicious.',          domain:'Food' },
-  { id:'s010', english:'Can I have some water?',           domain:'Food' },
-  { id:'s011', english:'My mother is cooking rice.',       domain:'Family' },
-  { id:'s012', english:'He is my elder brother.',          domain:'Family' },
-  { id:'s013', english:'We have three children.',          domain:'Family' },
-  { id:'s014', english:'I need to see a doctor.',          domain:'Health' },
-  { id:'s015', english:'My head is aching.',               domain:'Health' },
-  { id:'s016', english:'The rain is coming.',              domain:'Nature' },
-  { id:'s017', english:'The river is rising.',             domain:'Nature' },
-  { id:'s018', english:'How much does this cost?',         domain:'Shopping' },
-  { id:'s019', english:'I will come tomorrow.',            domain:'Everyday Life' },
-  { id:'s020', english:'Please speak slowly.',             domain:'Everyday Life' },
-];
+<!-- Global Keyboard Handlers + Exercise Engine -->
+<script>
+// Keyboard buffer and handlers (global so onclick works)
+let exBuffer = '';
 
-const DOMAINS = [...new Set(SENTENCES.map(s => s.domain))];
-let activeDomain = null;
-let filteredSentences = [...SENTENCES];
-let currentIdx = 0;
-let submittedCount = 0;
-let skippedCount = 0;
-let submittedIds = new Set();
+const exCp = hex => String.fromCodePoint(parseInt(hex, 16));
 
-// Build domain chips
-const chipsEl = document.getElementById('domain-chips');
-DOMAINS.forEach(d => {
-  const chip = document.createElement('button');
-  chip.className = 'domain-chip';
-  chip.textContent = d;
-  chip.addEventListener('click', () => {
-    if (activeDomain === d) {
-      activeDomain = null;
-      filteredSentences = [...SENTENCES];
-      chip.classList.remove('active');
-    } else {
-      activeDomain = d;
-      filteredSentences = SENTENCES.filter(s => s.domain === d);
-      document.querySelectorAll('.domain-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-    }
-    currentIdx = 0;
-    loadSentence(0);
-    document.getElementById('ex-total').textContent = filteredSentences.length;
-  });
-  chipsEl.appendChild(chip);
-});
+const EX_KEYMAP = {
+  'a':exCp('F1CA0'),'e':exCp('F1CA1'),'i':exCp('F1CA2'),'u':exCp('F1CA3'),'o':exCp('F1CA4'),'q':exCp('F1CA5'),
+  'p':exCp('F1CA7'),'t':exCp('F1CA8'),'k':exCp('F1CA9'),'b':exCp('F1CAA'),'d':exCp('F1CAB'),'g':exCp('F1CAC'),
+  'P':exCp('F1CAD'),'T':exCp('F1CAE'),'K':exCp('F1CAF'),'c':exCp('F1CB0'),'j':exCp('F1CB1'),
+  'm':exCp('F1CB2'),'n':exCp('F1CB3'),'N':exCp('F1CB4'),'f':exCp('F1CB5'),
+  's':exCp('F1CB6'),'r':exCp('F1CB7'),'l':exCp('F1CB8'),'h':exCp('F1CB9'),'y':exCp('F1CBA'),'w':exCp('F1CBB'),
+  'v':exCp('F1CBC'),'z':exCp('F1CBD'),
+  '1':exCp('F1CC1'),'2':exCp('F1CC2'),'3':exCp('F1CC3'),'4':exCp('F1CC4'),'5':exCp('F1CC5'),
+  '6':exCp('F1CC6'),'7':exCp('F1CC7'),'8':exCp('F1CC8'),'9':exCp('F1CC9'),'0':exCp('F1CC0'),
+  ',':exCp('F1CCB'),'.':exCp('F1CCC'),'!':exCp('F1CCD'),'?':exCp('F1CCF')
+};
 
-// Consent
-let consentGiven = localStorage.getItem('yapiri_learn_consent') === 'accept';
-const consentBox = document.getElementById('consent-box');
-function updateConsentUI() {
-  const stored = localStorage.getItem('yapiri_learn_consent');
-  if (stored) consentBox.classList.add('hidden');
+const EX_ROMAN_MAP = {
+  [exCp('F1CA0')]:'a',[exCp('F1CA1')]:'e',[exCp('F1CA2')]:'i',[exCp('F1CA3')]:'u',[exCp('F1CA4')]:'o',[exCp('F1CA5')]:'\u0259',
+  [exCp('F1CA7')]:'p',[exCp('F1CA8')]:'t',[exCp('F1CA9')]:'k',[exCp('F1CAA')]:'b',[exCp('F1CAB')]:'d',[exCp('F1CAC')]:'g',
+  [exCp('F1CAD')]:'ph',[exCp('F1CAE')]:'th',[exCp('F1CAF')]:'kh',[exCp('F1CB0')]:'ch',[exCp('F1CB1')]:'j',
+  [exCp('F1CB2')]:'m',[exCp('F1CB3')]:'n',[exCp('F1CB4')]:"n'",[exCp('F1CB5')]:'ng',
+  [exCp('F1CB6')]:'s',[exCp('F1CB7')]:'r',[exCp('F1CB8')]:'l',[exCp('F1CB9')]:'h',[exCp('F1CBA')]:'y',[exCp('F1CBB')]:'w',
+  [exCp('F1CBC')]:'v',[exCp('F1CBD')]:'z',
+  [exCp('F1CC0')]:'0',[exCp('F1CC1')]:'1',[exCp('F1CC2')]:'2',[exCp('F1CC3')]:'3',[exCp('F1CC4')]:'4',[exCp('F1CC5')]:'5',
+  [exCp('F1CC6')]:'6',[exCp('F1CC7')]:'7',[exCp('F1CC8')]:'8',[exCp('F1CC9')]:'9',
+  [exCp('F1CCB')]:',',[exCp('F1CCC')]:'.',[exCp('F1CCD')]:'!',[exCp('F1CCE')]:'"',[exCp('F1CCF')]:'?',[exCp('F1CD1')]:'\u0301'
+};
+
+window.exType = function(key) {
+  const glyph = EX_KEYMAP[key];
+  if (!glyph) return;
+  exBuffer += glyph;
+  exRender();
+};
+window.exTone  = function()     { exBuffer += exCp('F1CD1'); exRender(); };
+window.exQuote = function()     { exBuffer += exCp('F1CCE'); exRender(); };
+window.exSpace = function()     { exBuffer += ' '; exRender(); };
+window.exBackspace = function() { const a=[...exBuffer]; a.pop(); exBuffer=a.join(''); exRender(); };
+window.exClear = function()     { exBuffer = ''; exRender(); };
+
+function exGetRoman(text) {
+  return [...text].map(ch => EX_ROMAN_MAP[ch] || ch).join('');
 }
-updateConsentUI();
-document.getElementById('btn-consent-accept').addEventListener('click', () => {
-  localStorage.setItem('yapiri_learn_consent', 'accept');
-  consentGiven = true; consentBox.classList.add('hidden');
-});
-document.getElementById('btn-consent-decline').addEventListener('click', () => {
-  localStorage.setItem('yapiri_learn_consent', 'decline');
-  consentBox.classList.add('hidden');
+
+function exRender() {
+  const disp   = document.getElementById('yapiri-display');
+  const roman  = document.getElementById('roman-preview');
+  if (disp)  disp.textContent  = exBuffer;
+  if (roman) roman.textContent = exGetRoman(exBuffer) || '';
+}
+
+document.addEventListener('keydown', e => {
+  const target = e.target;
+  if (target && target.closest && target.closest('input, textarea, select, [contenteditable="true"]')) return;
+  if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+  if (e.key === 'Backspace') {
+    e.preventDefault();
+    exBackspace();
+    return;
+  }
+  if (e.key === ' ') {
+    e.preventDefault();
+    exSpace();
+    return;
+  }
+  if (e.key === "'") {
+    e.preventDefault();
+    exTone();
+    return;
+  }
+  if (e.key === '"') {
+    e.preventDefault();
+    exQuote();
+    return;
+  }
+  if (EX_KEYMAP[e.key]) {
+    e.preventDefault();
+    exType(e.key);
+  }
 });
 
-// Session ID
+// Exercise state
+const FALLBACK_SENTENCES = [
+  { id:'starter_001', english:'I am learning Yapiri script.', domain:'starter_practice', difficulty:'easy' },
+  { id:'starter_002', english:'We speak Kokborok at home.', domain:'starter_practice', difficulty:'easy' },
+  { id:'starter_003', english:'This water is clean.', domain:'daily_life', difficulty:'easy' },
+  { id:'starter_004', english:'The child goes to school.', domain:'daily_life', difficulty:'medium' },
+  { id:'starter_005', english:'Our language carries our memory.', domain:'culture', difficulty:'medium' },
+  { id:'starter_006', english:'Write the sentence carefully in Yapiri.', domain:'learning', difficulty:'medium' },
+  { id:'starter_007', english:'The community is building a verified corpus.', domain:'learning', difficulty:'hard' },
+  { id:'starter_008', english:'Every careful translation helps future learners.', domain:'culture', difficulty:'hard' },
+];
+let allSentences      = [];
+let filteredSentences = [];
+let currentIdx        = 0;
+let submittedCount    = 0;
+let skippedCount      = 0;
+let submittedIds      = new Set();
+let activeDifficulty  = 'all';
+let activeDomain      = null;
+let usingFallbackSentences = false;
+let consentGiven = localStorage.getItem('yapiri_learn_consent') === 'accept';
 let sessionId = sessionStorage.getItem('yapiri_learn_session');
 if (!sessionId) {
   sessionId = 'learn_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
   sessionStorage.setItem('yapiri_learn_session', sessionId);
 }
 
+function updateConsentIndicator() {
+  const ind = document.getElementById('consent-indicator');
+  const txt = document.getElementById('ci-text');
+  if (!ind || !txt) return;
+  ind.className = 'consent-indicator ' + (consentGiven ? 'contributing' : 'not-contributing');
+  txt.textContent = consentGiven ? 'Contributing to corpus' : 'Not contributing';
+}
+
+const consentBanner = document.getElementById('consent-banner');
+function initConsentUI() {
+  if (localStorage.getItem('yapiri_learn_consent')) consentBanner.classList.add('hidden');
+  updateConsentIndicator();
+}
+initConsentUI();
+
+document.getElementById('btn-consent-accept').addEventListener('click', () => {
+  localStorage.setItem('yapiri_learn_consent', 'accept');
+  consentGiven = true; consentBanner.classList.add('hidden'); updateConsentIndicator();
+});
+document.getElementById('btn-consent-decline').addEventListener('click', () => {
+  localStorage.setItem('yapiri_learn_consent', 'decline');
+  consentBanner.classList.add('hidden'); updateConsentIndicator();
+});
+document.getElementById('consent-indicator').addEventListener('click', () => {
+  consentGiven = !consentGiven;
+  localStorage.setItem('yapiri_learn_consent', consentGiven ? 'accept' : 'decline');
+  updateConsentIndicator();
+});
+
+// Difficulty buttons
+document.querySelectorAll('.diff-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeDifficulty = btn.dataset.diff;
+    activeDomain = null;
+    document.querySelectorAll('.domain-chip').forEach(c => c.classList.remove('active'));
+    applyFilters();
+  });
+});
+
+function buildDomainChips() {
+  const domains = [...new Set(allSentences.map(s => s.domain))].sort();
+  const el = document.getElementById('domain-chips');
+  if (!el) return;
+  el.innerHTML = '';
+  domains.forEach(d => {
+    const chip = document.createElement('button');
+    chip.className = 'domain-chip';
+    chip.textContent = d.replace(/_/g,' ');
+    chip.dataset.domain = d;
+    chip.addEventListener('click', () => {
+      if (activeDomain === d) {
+        activeDomain = null; chip.classList.remove('active');
+      } else {
+        activeDomain = d;
+        document.querySelectorAll('.domain-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      }
+      applyFilters();
+    });
+    el.appendChild(chip);
+  });
+}
+
+function applyFilters() {
+  filteredSentences = allSentences.filter(s => {
+    const dOk = activeDifficulty === 'all' || s.difficulty === activeDifficulty;
+    const mOk = !activeDomain || s.domain === activeDomain;
+    return dOk && mOk;
+  });
+  if (filteredSentences.length === 0 && allSentences.length > 0) {
+    activeDifficulty = 'all';
+    activeDomain = null;
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.toggle('active', b.dataset.diff === 'all'));
+    document.querySelectorAll('.domain-chip').forEach(c => c.classList.remove('active'));
+    filteredSentences = [...allSentences];
+  }
+  for (let i = filteredSentences.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filteredSentences[i], filteredSentences[j]] = [filteredSentences[j], filteredSentences[i]];
+  }
+  currentIdx = 0; submittedCount = 0; skippedCount = 0;
+  updateProgress();
+  const tot = document.getElementById('ex-total');
+  if (tot) tot.textContent = filteredSentences.length;
+  loadSentence(0);
+}
+
 function loadSentence(idx) {
   const s = filteredSentences[idx];
-  if (!s) return;
-  document.getElementById('ex-sentence').textContent = s.english;
-  document.getElementById('ex-domain').textContent = s.domain;
-  document.getElementById('ex-domain-label').textContent = s.domain;
-  document.getElementById('ex-current').textContent = idx + 1;
-  document.getElementById('ex-total').textContent = filteredSentences.length;
-  const fb = document.getElementById('ex-feedback');
-  fb.className = 'ex-feedback'; fb.textContent = '';
-  const input = document.getElementById('ex-input');
-  input.value = '';
-  input.placeholder = submittedIds.has(s.id)
-    ? '✓ Already contributed — type again to add another version'
-    : 'Type in Roman Kokborok, or paste Yapiri glyphs from the virtual keyboard…';
+  const sentEl  = document.getElementById('ex-sentence');
+  const domEl   = document.getElementById('ex-domain-label');
+  const curEl   = document.getElementById('ex-current');
+  const totEl   = document.getElementById('ex-total');
+  const badge   = document.getElementById('ex-diff-badge');
+  const fbEl    = document.getElementById('ex-feedback');
+  const hasSentence = !!s;
+  document.querySelectorAll('#btn-submit,#btn-skip,#btn-prev,#btn-next,.diff-btn,.domain-chip')
+    .forEach(el => { el.disabled = !hasSentence; });
+  if (!hasSentence) {
+    if (sentEl) sentEl.textContent = 'No practice sentences are available right now.';
+    if (domEl)  domEl.textContent = '';
+    if (curEl)  curEl.textContent = '0';
+    if (totEl)  totEl.textContent = '0';
+    if (badge)  { badge.textContent = ''; badge.className = 'ex-diff-badge'; }
+    if (fbEl)   { fbEl.className = 'ex-feedback error'; fbEl.textContent = 'Could not load practice sentences.'; }
+    exBuffer = ''; exRender();
+    return;
+  }
+  if (sentEl) sentEl.textContent  = s.english;
+  if (domEl)  domEl.textContent   = (s.domain||'').replace(/_/g,' ');
+  if (curEl)  curEl.textContent   = idx + 1;
+  if (totEl)  totEl.textContent   = filteredSentences.length;
+  if (badge)  { badge.textContent = s.difficulty||''; badge.className = 'ex-diff-badge '+(s.difficulty||''); }
+  if (fbEl)   { fbEl.className = 'ex-feedback'; fbEl.textContent = ''; }
+  exBuffer = ''; exRender();
 }
 
 function updateProgress() {
-  const total = SENTENCES.length;
-  const pct = Math.round((submittedCount / total) * 100);
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-pct').textContent = pct;
-  document.getElementById('prog-submitted').textContent = submittedCount;
-  document.getElementById('prog-skipped').textContent = skippedCount;
+  const total = filteredSentences.length || 1;
+  const pct   = Math.round((submittedCount/total)*100);
+  const fill  = document.getElementById('progress-fill');
+  const pEl   = document.getElementById('progress-pct');
+  const sEl   = document.getElementById('prog-submitted');
+  const kEl   = document.getElementById('prog-skipped');
+  if (fill) fill.style.width  = pct+'%';
+  if (pEl)  pEl.textContent   = pct;
+  if (sEl)  sEl.textContent   = submittedCount;
+  if (kEl)  kEl.textContent   = skippedCount;
 }
 
 function showFeedback(msg, type) {
   const fb = document.getElementById('ex-feedback');
-  fb.textContent = msg; fb.className = 'ex-feedback ' + type;
+  if (fb) { fb.textContent = msg; fb.className = 'ex-feedback '+type; }
+}
+
+function useFallbackSentences(reason) {
+  usingFallbackSentences = true;
+  allSentences = FALLBACK_SENTENCES.map(s => ({ ...s }));
+  buildDomainChips();
+  applyFilters();
+  showFeedback(reason || 'The live corpus is unavailable, so a starter practice set is loaded.', 'error');
+}
+
+function queuePendingSubmission(payload) {
+  try {
+    const key = 'yapiri_pending_submissions';
+    const pending = JSON.parse(localStorage.getItem(key) || '[]');
+    pending.push({
+      ...payload,
+      timestamp: new Date().toISOString(),
+      server_timestamp_requested: true,
+      queued_at: new Date().toISOString()
+    });
+    localStorage.setItem(key, JSON.stringify(pending.slice(-50)));
+    return true;
+  } catch(_) {
+    return false;
+  }
 }
 
 async function submitTranslation() {
-  const text = document.getElementById('ex-input').value.trim();
-  if (!text) { showFeedback('Type your translation before submitting.', 'error'); return; }
-  const s = filteredSentences[currentIdx];
+  const yapiriText = exBuffer.trim();
+  if (!yapiriText) { showFeedback('Type your Yapiri translation using the keyboard above.', 'error'); return; }
+  const romanText = exGetRoman(yapiriText);
+  const s   = filteredSentences[currentIdx];
+  if (!s) { showFeedback('No practice sentence is loaded yet. Please refresh and try again.', 'error'); return; }
   const btn = document.getElementById('btn-submit');
   btn.disabled = true; btn.textContent = 'Saving…';
 
   const payload = {
-    sentence_id: s.id,
-    english: s.english,
-    domain: s.domain,
-    learner_text: text,
-    timestamp: serverTimestamp(),
-    session_id: sessionId,
-    consent: consentGiven,
-    word_count: text.split(/\s+/).filter(Boolean).length,
-    char_count: text.length,
-    device_type: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+    sentence_id:  s.id,
+    english:      s.english,
+    domain:       s.domain,
+    difficulty:   s.difficulty || '',
+    yapiri_text:  yapiriText,
+    roman_text:   romanText,
+    timestamp:    window._fs.serverTimestamp(),
+    session_id:   sessionId,
+    consent:      consentGiven,
+    yapiri_chars: [...yapiriText].length,
+    roman_chars:  romanText.length,
+    word_count:   yapiriText.trim().split(/\s+/).filter(Boolean).length,
+    device_type:  /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
     browser_lang: navigator.language || '',
+    verified:     false,
   };
 
+  let contributed = false;
+  let queued = false;
   try {
-    if (consentGiven) await addDoc(collection(db, 'learner_submissions'), payload);
+    if (consentGiven && window._fs && window._db && !usingFallbackSentences) {
+      await window._fs.addDoc(window._fs.collection(window._db, 'learner_submissions'), payload);
+      contributed = true;
+    } else if (consentGiven) {
+      queued = queuePendingSubmission(payload);
+    }
+  } catch(err) {
+    console.warn('Could not contribute submission; keeping practice progress local.', err);
+    queued = queuePendingSubmission(payload);
+  }
+
+  try {
     submittedIds.add(s.id);
     submittedCount++;
     updateProgress();
-    // Increment corpus counter if this sentence hasn't been submitted this session
-    if (consentGiven && !sessionStorage.getItem('corpus_sent_' + s.id)) {
+    if (contributed && !sessionStorage.getItem('corpus_sent_' + s.id)) {
       sessionStorage.setItem('corpus_sent_' + s.id, '1');
       incrementCorpusCounter();
     }
-    showFeedback('Contributed to the Kokborok corpus — thank you.', 'success');
+    showFeedback(
+      contributed ? 'Contributed to the Kokborok corpus — thank you. ✓' :
+      queued ? 'Saved locally. Corpus contribution will need a retry.' :
+      consentGiven ? 'Saved for this session. Corpus contribution is unavailable right now.' :
+      'Saved. Enable contributing to add to the corpus.',
+      'success'
+    );
     setTimeout(() => {
       if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
-    }, 1100);
+      else { showFeedback('Level complete! Try another difficulty or domain.', 'success'); }
+    }, 1200);
   } catch(err) {
     console.error(err);
     showFeedback('Could not save — check your connection and try again.', 'error');
@@ -2076,7 +2322,7 @@ async function submitTranslation() {
 
 // ── CORPUS COUNTER ──
 // Reads stats/corpus doc (sentences_covered field) and displays it in the sidebar.
-// incrementCorpusCounter() atomically increments it on each new unique sentence submission.
+// incrementCorpusCounter() atomically increments it once per contributed sentence per session.
 async function loadCorpusCounter() {
   try {
     if (!window._db || !window._fs) return;
@@ -2086,7 +2332,8 @@ async function loadCorpusCounter() {
     updateCorpusCounterUI(covered);
   } catch(e) {
     console.warn('Corpus counter fetch failed:', e);
-    document.getElementById('corpus-pct-label').textContent = '';
+    const label = document.getElementById('corpus-pct-label');
+    if (label) label.textContent = '';
   }
 }
 
@@ -2115,13 +2362,13 @@ function updateCorpusCounterUI(covered) {
   const label = document.getElementById('corpus-pct-label');
   if (!el) return;
   const total = 880;
-  const pct = Math.min(Math.round((covered / total) * 100), 100);
-  el.textContent = covered;
+  const safeCovered = Math.max(0, Number(covered) || 0);
+  const pct = Math.min(Math.round((safeCovered / total) * 100), 100);
+  el.textContent = safeCovered;
   if (bar) bar.style.width = pct + '%';
   if (label) label.textContent = pct + '% of seed sentences covered';
 }
 
-// Load counter once Firebase is ready
 function startCounterLoad() {
   if (window._db && window._fs) loadCorpusCounter();
   else setTimeout(startCounterLoad, 100);
@@ -2140,35 +2387,72 @@ document.getElementById('btn-next').addEventListener('click', () => {
   if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
 });
 
-// Keyboard shortcut: Ctrl+Enter to submit
-document.getElementById('ex-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) submitTranslation();
-});
+// Load sentences from Firestore — single query, all 880 docs
+async function loadSentencesFromFirestore() {
+  const loadEl = document.getElementById('ex-loading');
+  const CACHE_KEY = 'yapiri_sentence_pairs';
+  const CACHE_TTL = 24 * 60 * 60 * 1000;
 
-loadSentence(0);
-updateProgress();
-document.getElementById('ex-total').textContent = filteredSentences.length;
-
-// ── Future: pull sentence_pairs from Firestore when populated ──
-try {
-  const q = query(collection(db, 'sentence_pairs'), orderBy('id'), limit(50));
-  const snap = await getDocs(q);
-  if (!snap.empty) {
-    const remote = [];
-    snap.forEach(doc => remote.push({ ...doc.data(), id: doc.id }));
-    if (remote.length >= 5) {
-      SENTENCES.length = 0;
-      remote.forEach(r => SENTENCES.push({ id: r.id, english: r.english || '', domain: r.domain || 'General' }));
-      filteredSentences = [...SENTENCES];
-      document.getElementById('ex-total').textContent = SENTENCES.length;
-      loadSentence(0);
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { data, ts } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL && data.length > 0) {
+        allSentences = data;
+        buildDomainChips();
+        applyFilters();
+        return;
+      }
     }
+  } catch(_) {}
+
+  if (loadEl) loadEl.classList.add('visible');
+
+  try {
+    if (!window._fs || !window._db) throw new Error('Firebase is not ready.');
+    const { collection, query, orderBy, limit, getDocs } = window._fs;
+    let snap;
+    try {
+      snap = await getDocs(query(collection(window._db,'sentence_pairs'), orderBy('id'), limit(1000)));
+    } catch (orderedErr) {
+      console.warn('Ordered Firestore query failed; retrying without orderBy.', orderedErr);
+      snap = await getDocs(query(collection(window._db,'sentence_pairs'), limit(1000)));
+    }
+
+    const loaded = [];
+    snap.forEach(doc => loaded.push({ ...doc.data(), id: doc.id }));
+
+    if (loaded.length > 0) {
+      usingFallbackSentences = false;
+      allSentences = loaded;
+      buildDomainChips();
+      applyFilters();
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ data: loaded, ts: Date.now() }));
+      } catch(_) {}
+    } else {
+      useFallbackSentences('The live corpus returned no sentences, so a starter practice set is loaded.');
+    }
+  } catch(err) {
+    console.warn('Firestore load error:', err);
+    useFallbackSentences('The live corpus could not be reached, so a starter practice set is loaded.');
+  } finally {
+    if (loadEl) loadEl.classList.remove('visible');
   }
-} catch(_) { /* no sentence_pairs yet */ }
+}
 
-</script>
+// Wait for Firebase module to attach window._fs / window._db before loading
+function startLoad() {
+  if (window._db && window._fs) {
+    loadSentencesFromFirestore();
+  } else {
+    setTimeout(startLoad, 60);
+  }
+}
+startLoad();
 
-<script>
+
+
 // Practice Lab add-on — uses the existing CHAR_DATA created above, without replacing lessons/exercises
 (function initPracticeLab(){
   function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
@@ -2251,7 +2535,6 @@ try {
   });
 })();
 
-
 // Hero bg glyphs
 const sampleGlyphs = [
   '\uDB87\uDCA0','\uDB87\uDCA1','\uDB87\uDCA2','\uDB87\uDCA3','\uDB87\uDCA4','\uDB87\uDCA5',
@@ -2273,7 +2556,6 @@ for (let i = 0; i < 60; i++) {
   grid.appendChild(cell);
 }
 
-// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
@@ -2284,7 +2566,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Nav hamburger
 function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   const burger = document.getElementById('hamburger');
@@ -2297,6 +2578,8 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
   document.body.style.overflow = '';
 }
+window.toggleMenu = toggleMenu;
+window.closeMenu = closeMenu;
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 </script>
 </body>
