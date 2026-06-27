@@ -1804,7 +1804,19 @@
         </div>
         <div class="sidebar-block reveal">
           <p class="sidebar-block-title">About this Corpus</p>
-          <p style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);line-height:1.8;letter-spacing:0.04em;">880 seed sentences across 10 domains. Target: <span style="color:var(--gold-light);">1,000 verified pairs</span> for the first Kokborok transliterator model.</p>
+          <p style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);line-height:1.9;letter-spacing:0.04em;margin-bottom:0.8rem;">
+            880 seed sentences across 10 domains.<br>
+            Target: <span style="color:var(--gold-light);">1,000 verified pairs</span> for the first Kokborok transliterator model.
+          </p>
+          <p style="font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.35rem;">Sentences Covered</p>
+          <p style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--stone);letter-spacing:0.06em;margin-bottom:0.4rem;">
+            <span id="corpus-covered" style="color:var(--gold-light);font-size:0.95rem;">—</span>
+            <span style="color:var(--stone);"> / 880</span>
+          </p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="corpus-bar" style="background:var(--terracotta);"></div>
+          </div>
+          <p style="font-family:'DM Mono',monospace;font-size:0.52rem;color:var(--stone);letter-spacing:0.06em;margin-top:0.35rem;" id="corpus-pct-label">Loading…</p>
         </div>
       </div>
     </div>
