@@ -705,116 +705,6 @@
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 0.8rem;
   }
-  .vocab-source-note {
-    font-size: 0.9rem;
-    line-height: 1.65;
-    color: var(--stone-light);
-    border-left: 2px solid var(--gold);
-    background: rgba(201,146,42,0.045);
-    padding: 0.85rem 1rem;
-    margin-bottom: 0.8rem;
-  }
-  .vocab-reference-stack { display: grid; gap: 0.65rem; }
-  .vocab-details {
-    border: 1px solid rgba(196,180,154,0.13);
-    background: rgba(255,255,255,0.02);
-  }
-  .vocab-details summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem 1rem;
-    cursor: pointer;
-    list-style: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--parchment);
-  }
-  .vocab-details summary::-webkit-details-marker { display: none; }
-  .vocab-details summary::before {
-    content: '+';
-    color: var(--gold);
-    font-size: 1rem;
-    margin-right: 0.25rem;
-  }
-  .vocab-details[open] summary::before { content: '−'; }
-  .vocab-details summary span {
-    margin-left: auto;
-    font-size: 0.55rem;
-    color: var(--stone);
-    letter-spacing: 0.08em;
-  }
-  .vocab-table-wrap {
-    overflow-x: auto;
-    border-top: 1px solid rgba(196,180,154,0.1);
-  }
-  .vocab-table {
-    width: 100%;
-    min-width: 560px;
-    border-collapse: collapse;
-    font-size: 0.82rem;
-    color: var(--stone-light);
-  }
-  .vocab-table th,
-  .vocab-table td {
-    padding: 0.65rem 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid rgba(196,180,154,0.07);
-    vertical-align: top;
-  }
-  .vocab-table th {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.54rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    background: rgba(8,6,3,0.28);
-  }
-  .vocab-table tr:last-child td { border-bottom: none; }
-  .vocab-table tr:hover td { background: rgba(201,146,42,0.035); }
-  .vocab-roman {
-    font-family: 'DM Mono', monospace;
-    color: var(--gold-light);
-    font-weight: 500;
-  }
-  .guided-pair-lab {
-    border: 1px solid rgba(201,146,42,0.18);
-    background: rgba(201,146,42,0.045);
-    padding: 1.1rem;
-  }
-  .guided-pair-prompt {
-    min-height: 92px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    border: 1px solid rgba(196,180,154,0.12);
-    background: rgba(8,6,3,0.32);
-    margin-bottom: 0.75rem;
-  }
-  .guided-pair-glyph {
-    font-family: 'Yapiri', serif;
-    font-size: 2.8rem;
-    line-height: 1;
-    color: var(--gold-light);
-  }
-  .guided-pair-vs {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--stone);
-  }
-  .guided-pair-note {
-    min-height: 1.4rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--stone-light);
-    margin-bottom: 0.8rem;
-  }
   .guided-checks {
     display: grid;
     gap: 0.8rem;
@@ -1063,7 +953,7 @@
   .qr-btn:hover { background: rgba(44,36,22,0.98); transform: translateY(-2px); }
   .qr-drawer {
     position: fixed; bottom: 0; right: 0; z-index: 199;
-    width: min(480px, 100vw);
+    width: min(420px, 100vw);
     max-height: 70vh; overflow-y: auto;
     background: var(--charcoal);
     border-top: 1px solid rgba(201,146,42,0.2);
@@ -1081,13 +971,6 @@
     font-family: 'DM Mono', monospace; font-size: 0.6rem;
     letter-spacing: 0.1em; text-transform: uppercase;
     background: none; border: none; color: var(--stone); cursor: pointer;
-  }
-  .qr-help {
-    font-family: 'DM Mono', monospace; font-size: 0.6rem;
-    color: var(--stone-light); line-height: 1.65;
-    padding: 0.65rem 0.75rem; margin-bottom: 0.75rem;
-    border: 1px solid rgba(201,146,42,0.15);
-    background: rgba(201,146,42,0.05);
   }
   .qr-group-title {
     font-family: 'DM Mono', monospace; font-size: 0.55rem;
@@ -1112,6 +995,13 @@
     border: 1px solid rgba(196,180,154,0.28);
     border-bottom-width: 2px; border-radius: 3px;
     box-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  }
+  .qr-help {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem;
+    color: var(--stone-light); line-height: 1.65;
+    padding: 0.65rem 0.75rem; margin-bottom: 0.75rem;
+    border: 1px solid rgba(201,146,42,0.15);
+    background: rgba(201,146,42,0.05);
   }
 
 
@@ -1151,7 +1041,6 @@
   .pl-chip { font-family:'Yapiri',serif; font-size:1.5rem; color:var(--parchment); min-width:42px; min-height:42px; border:1px solid rgba(196,180,154,.15); background:rgba(255,255,255,.03); cursor:pointer; }
   .pl-chip:hover { border-color:var(--gold); }
   .pl-answer { font-family:'Yapiri',serif; font-size:2rem; min-height:54px; padding:.6rem .8rem; border:1px solid rgba(196,180,154,.14); background:#0e0b07; color:var(--gold-light); margin-top:.6rem; }
-  .pl-name-roman { font-family:'DM Mono',monospace; font-size:.68rem; color:var(--stone); text-align:center; letter-spacing:.05em; }
   @media (max-width: 1024px) { .pl-grid { grid-template-columns:1fr; } }
   @media (max-width: 900px) { #practice-lab { padding:5rem 2rem; } }
 
@@ -1197,6 +1086,12 @@
     .exercises-layout { grid-template-columns: 1fr; }
     .ex-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   }
+  #page-intro { padding: 3rem 2rem !important; }
+  #page-intro > div { grid-template-columns: 1fr 1fr !important; }
+  @media (max-width: 600px) {
+    #page-intro > div { grid-template-columns: 1fr !important; }
+  }
+
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     .nav-badge { display: none; }
@@ -1276,7 +1171,7 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Yapiri Script · Interactive Reference &amp; Corpus</p>
     <h1 class="hero-title">
-      Learn the<br><em>Script</em>
+      Learn the<br><em>Kokborok Script</em>
     </h1>
     <p class="hero-subtitle">Explore all 45 characters, follow a step-by-step path from first sounds to full sentences — and practise translating Kokborok. Every submission helps build the language corpus.</p>
     <div class="hero-cta">
@@ -1295,17 +1190,39 @@
   <a href="#exercises"><span class="jn-num">04</span> Exercises</a>
 </nav>
 
+<!-- ══ PAGE INTRO ══ -->
+<section id="page-intro" style="background:var(--charcoal);padding:3rem 5rem;border-bottom:1px solid rgba(201,146,42,0.12);">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1.5rem;">
+    <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
+      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">01 · Alphabet</p>
+      <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Browse all 45 characters. Click any card to expand its romanization, IPA value, codepoint, and description. Use it as a reference throughout your learning.</p>
+    </div>
+    <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
+      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">02 · Guided Path</p>
+      <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Ten short lessons from first sounds to full sentences. Work through them in order, answer the quick checks, and mark each complete before moving on.</p>
+    </div>
+    <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
+      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">03 · Practice Lab</p>
+      <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Character drills, word building with real Kokborok vocabulary, and a name transliterator. Use this section to consolidate what the lessons teach.</p>
+    </div>
+    <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
+      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">04 · Exercises</p>
+      <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Translate English sentences into Yapiri using the on-page keyboard. Your anonymous submissions help build the Kokborok corpus. The Quick Ref floater keeps characters close.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══ SECTION 01: ALPHABET ══ -->
 <section id="alphabet" style="scroll-margin-top:115px">
   <div class="alphabet-inner">
-    <div class="reveal visible" style="margin-bottom:3rem">
+    <div class="reveal" style="margin-bottom:3rem">
       <span class="section-label">Section 01</span>
       <div class="gold-line"></div>
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Alphabet Reference</h2>
       <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Click any character to expand its detail — romanization, IPA value, codepoint, and description.</p>
     </div>
 
-    <div class="char-group reveal visible">
+    <div class="char-group reveal">
       <p class="char-group-title">Vowels <span>6</span></p>
       <div class="char-grid" id="grid-vowels">
         <div class="char-card" role="button" tabindex="0" data-char-index="0"><span class="char-glyph">&#xF1CA0;</span><span class="char-roman">a</span><span class="char-ipa">/a/</span></div>
@@ -1313,10 +1230,10 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="2"><span class="char-glyph">&#xF1CA2;</span><span class="char-roman">i</span><span class="char-ipa">/i/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="3"><span class="char-glyph">&#xF1CA3;</span><span class="char-roman">u</span><span class="char-ipa">/u/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="4"><span class="char-glyph">&#xF1CA4;</span><span class="char-roman">o</span><span class="char-ipa">/o/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="5"><span class="char-glyph">&#xF1CA5;</span><span class="char-roman">ə</span><span class="char-ipa">/ə/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="5"><span class="char-glyph">&#xF1CA5;</span><span class="char-roman">&#x259;</span><span class="char-ipa">/&#x259;/</span></div>
       </div>
     </div>
-    <div class="char-group reveal visible">
+    <div class="char-group reveal">
       <p class="char-group-title">Native Consonants <span>21</span></p>
       <div class="char-grid" id="grid-consonants">
         <div class="char-card" role="button" tabindex="0" data-char-index="6"><span class="char-glyph">&#xF1CA7;</span><span class="char-roman">p</span><span class="char-ipa">/p/</span></div>
@@ -1325,15 +1242,15 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="9"><span class="char-glyph">&#xF1CAA;</span><span class="char-roman">b</span><span class="char-ipa">/b/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="10"><span class="char-glyph">&#xF1CAB;</span><span class="char-roman">d</span><span class="char-ipa">/d/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="11"><span class="char-glyph">&#xF1CAC;</span><span class="char-roman">g</span><span class="char-ipa">/g/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="12"><span class="char-glyph">&#xF1CAD;</span><span class="char-roman">ph</span><span class="char-ipa">/pʰ/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="13"><span class="char-glyph">&#xF1CAE;</span><span class="char-roman">th</span><span class="char-ipa">/tʰ/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="14"><span class="char-glyph">&#xF1CAF;</span><span class="char-roman">kh</span><span class="char-ipa">/kʰ/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="15"><span class="char-glyph">&#xF1CB0;</span><span class="char-roman">ch</span><span class="char-ipa">/tɕ/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="16"><span class="char-glyph">&#xF1CB1;</span><span class="char-roman">j</span><span class="char-ipa">/dʑ/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="12"><span class="char-glyph">&#xF1CAD;</span><span class="char-roman">ph</span><span class="char-ipa">/p&#x2B0;/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="13"><span class="char-glyph">&#xF1CAE;</span><span class="char-roman">th</span><span class="char-ipa">/t&#x2B0;/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="14"><span class="char-glyph">&#xF1CAF;</span><span class="char-roman">kh</span><span class="char-ipa">/k&#x2B0;/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="15"><span class="char-glyph">&#xF1CB0;</span><span class="char-roman">ch</span><span class="char-ipa">/t&#x255;/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="16"><span class="char-glyph">&#xF1CB1;</span><span class="char-roman">j</span><span class="char-ipa">/d&#x291;/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="17"><span class="char-glyph">&#xF1CB2;</span><span class="char-roman">m</span><span class="char-ipa">/m/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="18"><span class="char-glyph">&#xF1CB3;</span><span class="char-roman">n</span><span class="char-ipa">/n/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="19"><span class="char-glyph">&#xF1CB4;</span><span class="char-roman">n'</span><span class="char-ipa">/n/</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="20"><span class="char-glyph">&#xF1CB5;</span><span class="char-roman">ng</span><span class="char-ipa">/ŋ/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="19"><span class="char-glyph">&#xF1CB4;</span><span class="char-roman">n&#x2019;</span><span class="char-ipa">/n/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="20"><span class="char-glyph">&#xF1CB5;</span><span class="char-roman">ng</span><span class="char-ipa">/&#x14B;/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="21"><span class="char-glyph">&#xF1CB6;</span><span class="char-roman">s</span><span class="char-ipa">/s/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="22"><span class="char-glyph">&#xF1CB7;</span><span class="char-roman">r</span><span class="char-ipa">/r/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="23"><span class="char-glyph">&#xF1CB8;</span><span class="char-roman">l</span><span class="char-ipa">/l/</span></div>
@@ -1342,14 +1259,14 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="26"><span class="char-glyph">&#xF1CBB;</span><span class="char-roman">w</span><span class="char-ipa">/w/</span></div>
       </div>
     </div>
-    <div class="char-group reveal visible">
+    <div class="char-group reveal">
       <p class="char-group-title">Loanword Consonants <span>2</span></p>
       <div class="char-grid" id="grid-loanword">
         <div class="char-card" role="button" tabindex="0" data-char-index="27"><span class="char-glyph">&#xF1CBC;</span><span class="char-roman">v</span><span class="char-ipa">/v/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="28"><span class="char-glyph">&#xF1CBD;</span><span class="char-roman">z</span><span class="char-ipa">/z/</span></div>
       </div>
     </div>
-    <div class="char-group reveal visible">
+    <div class="char-group reveal">
       <p class="char-group-title">Numerals <span>10</span></p>
       <div class="char-grid" id="grid-numerals">
         <div class="char-card" role="button" tabindex="0" data-char-index="29"><span class="char-glyph">&#xF1CC0;</span><span class="char-roman">0</span></div>
@@ -1364,7 +1281,7 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="38"><span class="char-glyph">&#xF1CC9;</span><span class="char-roman">9</span></div>
       </div>
     </div>
-    <div class="char-group reveal visible">
+    <div class="char-group reveal">
       <p class="char-group-title">Punctuation &amp; Diacritics <span>6</span></p>
       <div class="char-grid" id="grid-punct">
         <div class="char-card" role="button" tabindex="0" data-char-index="39"><span class="char-glyph">&#xF1CCB;</span><span class="char-roman">,</span></div>
@@ -1372,7 +1289,7 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="41"><span class="char-glyph">&#xF1CCD;</span><span class="char-roman">!</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="42"><span class="char-glyph">&#xF1CCE;</span><span class="char-roman">&quot;</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="43"><span class="char-glyph">&#xF1CCF;</span><span class="char-roman">?</span></div>
-        <div class="char-card" role="button" tabindex="0" data-char-index="44"><span class="char-glyph">&#xF1CD1;</span><span class="char-roman">◌́</span><span class="char-ipa">/◌́/</span></div>
+        <div class="char-card" role="button" tabindex="0" data-char-index="44"><span class="char-glyph">&#xF1CD1;</span><span class="char-roman">&#x25CC;&#x301;</span><span class="char-ipa">/&#x25CC;&#x301;/</span></div>
       </div>
     </div>
 
@@ -1410,6 +1327,33 @@
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Guided Learning Path</h2>
       <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:680px;line-height:1.7;">Ten short lessons move from how Yapiri works to your first sentence. Each lesson gives you a focus, worked examples, and quick checks before you continue.</p>
     </div>
+    <div class="reveal" style="margin-bottom:2rem;">
+      <details style="border:1px solid rgba(196,180,154,0.12);background:rgba(10,7,3,0.28);">
+        <summary style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;list-style:none;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--parchment);">
+          <span>&#9432; Linguistic Terms Glossary</span>
+          <span style="color:var(--stone);font-size:0.55rem;letter-spacing:0.08em;">expand for definitions used in these lessons</span>
+        </summary>
+        <div style="padding:1.2rem 1.5rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;border-top:1px solid rgba(196,180,154,0.1);">
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Phoneme</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">The smallest unit of sound that changes meaning. In Kokborok, <em>k</em> and <em>kh</em> are separate phonemes: swapping one for the other changes the word.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Phonemic script</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A writing system where each symbol represents one sound (phoneme), not a syllable or a concept. Yapiri Script is phonemic — one character, one sound.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Vowel</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A sound produced with an open vocal tract, no obstruction. Yapiri has six vowels: a, e, i, u, o, and schwa (ə).</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Schwa /ə/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mid-central vowel. In Kokborok it is a full phoneme with its own meaning-changing role — not a reduced or unstressed vowel as in English.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Stop / plosive</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by briefly blocking air completely, then releasing it. Examples: p, t, k, b, d, g. In Kokborok, stops come in plain and aspirated pairs.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Aspirated stop</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A stop followed by a puff of air: ph, th, kh. In Kokborok, aspiration is contrastive — <em>p</em> and <em>ph</em> are different sounds that distinguish words.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Nasal</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant where air flows through the nose. Yapiri has m (bilabial), n (dental), and ng (velar nasal), each written with a distinct character.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Velar nasal /ŋ/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">The ng sound (as in "sing"). In Kokborok it appears freely at the start, middle, or end of words — unlike in English where it never starts a word.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Fricative</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by forcing air through a narrow gap, creating friction. Examples in Yapiri: s, h, v, z.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Affricate</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant that starts as a stop and releases as a fricative. Kokborok has ch /tɕ/ and j /dʑ/ — each written as a single Yapiri character.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Approximant / glide</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Consonants where the vocal tract is narrowed but not enough to cause friction: y /j/, w /w/, r, l. They behave like consonants but sound close to vowels.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Diphthong</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A vowel that glides from one position to another within a single syllable. Kokborok has two phonemic diphthongs: ai and əi, written as two separate vowel characters.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Combining diacritic</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mark that attaches to a base character to modify it. The Yapiri high tone mark (U+F1CD1) is a combining character — it always follows the base letter it marks.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Tone</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A pitch pattern on a syllable that changes word meaning. Kokborok has a contrastive high tone, marked in Yapiri with the combining high tone mark above a base character.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Romanization</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Writing a language in Latin script to represent its sounds. Roman Kokborok is used alongside Yapiri Script throughout this page to help you check pronunciation.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">IPA</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">International Phonetic Alphabet — a standardized set of symbols for sounds in any language. IPA values appear in the Alphabet Reference to give you a language-neutral pronunciation guide.</p></div>
+        </div>
+      </details>
+    </div>
+
     <div class="lesson-path-shell reveal">
       <aside class="lesson-roadmap" id="lesson-roadmap" aria-label="Guided lesson roadmap">
       <button class="roadmap-step" type="button" data-lesson="0" aria-label="Lesson 01: Start Here: How Yapiri Works">
@@ -1502,11 +1446,11 @@
           <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Characters represent sounds, not English letters.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Roman Kokborok helps you check pronunciation while learning.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>The same symbols will reappear in the keyboard and translation exercises.</p></div></div>
           <div>
             <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div></div>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">the script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes / affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;phai&quot;</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">the script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in’</span><span class="ex-meaning">yes / affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
@@ -1533,7 +1477,7 @@
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲢󱲠</span><span class="ex-roman">ia</span><span class="ex-meaning">yes / affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div><div class="lesson-example"><span class="ex-yapiri">󱲣󱲩󱲳󱲤</span><span class="ex-roman">ukno</span><span class="ex-meaning">sky</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in’</span><span class="ex-meaning">yes / affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div><div class="lesson-example"><span class="ex-yapiri">󱲣󱲩󱲳󱲤</span><span class="ex-roman">ukno</span><span class="ex-meaning">sky</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
@@ -1590,14 +1534,6 @@
             <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠󱲳󱲠</span><span class="ex-roman">kana</span><span class="ex-meaning">ear</span></div><div class="lesson-example"><span class="ex-yapiri">󱲨󱲢󱲳󱲠</span><span class="ex-roman">tina</span><span class="ex-meaning">mother</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲣󱲳󱲠</span><span class="ex-roman">bana</span><span class="ex-meaning">forest / jungle</span></div></div>
           </div>
           <div>
-            <p class="lesson-section-title">Minimal Pairs &amp; Close Sounds</p>
-            <div class="guided-pair-lab">
-              <div class="guided-pair-prompt"><span class="guided-pair-glyph" id="pl-pair-left">&#xF1CA7;</span><span class="guided-pair-vs">vs</span><span class="guided-pair-glyph" id="pl-pair-right">&#xF1CAD;</span></div>
-              <p class="guided-pair-note" id="pl-pair-note">Unaspirated p vs aspirated ph</p>
-              <button class="lesson-action" type="button" id="pl-pair-next">Show Another Pair</button>
-            </div>
-          </div>
-          <div>
             <p class="lesson-section-title">Quick Checks</p>
             <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which pair shows plain vs aspirated k?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / kh</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / g</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">p / b</button></div><div class="quick-check-feedback" id="check-stops-0"></div></div><div class="quick-check"><p class="quick-check-question">Does aspiration change meaning in Kokborok?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Yes</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">No</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Only in English words</button></div><div class="quick-check-feedback" id="check-stops-1"></div></div></div>
           </div>
@@ -1618,171 +1554,15 @@
           <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Use known vowels and consonants to read familiar words.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Read the Yapiri form first, then check Roman Kokborok.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Keep short daily words in memory as anchors.</p></div></div>
           <div>
             <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲨</span><span class="roman">t</span></div><div class="guided-char"><span class="glyph">󱲥</span><span class="roman">w (ə)</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div></div>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲻</span><span class="roman">w</span></div><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲠󱲵</span><span class="ex-roman">ang</span><span class="ex-meaning">I / me</span></div><div class="lesson-example"><span class="ex-yapiri">󱲨󱲥󱲢</span><span class="ex-roman">twi</span><span class="ex-meaning">water</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲤󱲷󱲤󱲩</span><span class="ex-roman">borok</span><span class="ex-meaning">person / people</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Everyday Pronoun Reference</p>
-            <p class="vocab-source-note">These forms come from the supplied pronouns workbook. Open a group to compare English, Roman Kokborok, and the provided syllable guide. Rows without a supplied Kokborok form are omitted; intensive forms are retained separately even where they match reflexive forms.</p>
-            <div class="vocab-reference-stack">
-              <details class="vocab-details" open><summary>Subject pronouns<span>6 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>I</td><td class="vocab-roman">ang</td><td>aa + ng</td><td></td></tr>
-                <tr><td>You</td><td class="vocab-roman">nwng</td><td>no + w + ng</td><td></td></tr>
-                <tr><td>He/She</td><td class="vocab-roman">bo</td><td>bo</td><td></td></tr>
-                <tr><td>It</td><td class="vocab-roman">imo</td><td>aa + bo</td><td></td></tr>
-                <tr><td>We</td><td class="vocab-roman">chwng</td><td>cho + w + ng</td><td></td></tr>
-                <tr><td>They</td><td class="vocab-roman">borok</td><td>bo + ro + ko</td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Object pronouns<span>6 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>Me</td><td class="vocab-roman">ano</td><td>aa + no</td><td></td></tr>
-                <tr><td>You</td><td class="vocab-roman">nono</td><td>no + no</td><td></td></tr>
-                <tr><td>Him/Her</td><td class="vocab-roman">bono</td><td>bo + no</td><td></td></tr>
-                <tr><td>It</td><td class="vocab-roman">imono</td><td>i + mo + no</td><td></td></tr>
-                <tr><td>Us</td><td class="vocab-roman">chwngno</td><td>cho + w + ng + no</td><td></td></tr>
-                <tr><td>Them</td><td class="vocab-roman">borokno</td><td>bo + ro + ko + no</td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Possessive determiners<span>6 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>My</td><td class="vocab-roman">ani</td><td>aa + no + i</td><td></td></tr>
-                <tr><td>Your</td><td class="vocab-roman">nini</td><td>no + i + no + i</td><td></td></tr>
-                <tr><td>His/Her</td><td class="vocab-roman">bini</td><td>bi + ni</td><td></td></tr>
-                <tr><td>Its</td><td class="vocab-roman">imoni</td><td>i + mo + no + i</td><td></td></tr>
-                <tr><td>Our</td><td class="vocab-roman">chini</td><td>cho + i + no + i</td><td></td></tr>
-                <tr><td>Their</td><td class="vocab-roman">borokni</td><td>bo + ro + ko + no + i</td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Possessive pronouns<span>6 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>Mine</td><td class="vocab-roman">anise</td><td>aa + no + i + so + e</td><td></td></tr>
-                <tr><td>Yours</td><td class="vocab-roman">ninise</td><td>no + i + no + i + so + e</td><td></td></tr>
-                <tr><td>His/Hers</td><td class="vocab-roman">binise</td><td>bi + ni + so + e</td><td></td></tr>
-                <tr><td>Its</td><td class="vocab-roman">imonise</td><td>i + mo + no + i + so + e</td><td></td></tr>
-                <tr><td>Ours</td><td class="vocab-roman">chinise</td><td>cho + i + no + i + so + e</td><td></td></tr>
-                <tr><td>Theirs</td><td class="vocab-roman">boroknise</td><td>bo + ro + ko + no + i + so + e</td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Reflexive pronouns<span>7 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>Myself</td><td class="vocab-roman">angno</td><td>aa + ng + no</td><td>high tone</td></tr>
-                <tr><td>Yourself</td><td class="vocab-roman">nwngno</td><td>no + w + ng + no</td><td>high tone</td></tr>
-                <tr><td>Himself/Herself</td><td class="vocab-roman">bono</td><td>bo + no</td><td>high tone</td></tr>
-                <tr><td>Itself</td><td class="vocab-roman">imono</td><td>i + mo + no</td><td>high tone</td></tr>
-                <tr><td>Ourselves</td><td class="vocab-roman">chwngno</td><td>cho + w + ng + no</td><td>high tone</td></tr>
-                <tr><td>Yourselves</td><td class="vocab-roman">norokno</td><td>no + ro + ko + no</td><td>high tone</td></tr>
-                <tr><td>Themselves</td><td class="vocab-roman">borokno</td><td>bo + ro + ko + no</td><td>high tone</td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Demonstrative pronouns<span>4 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>This</td><td class="vocab-roman">amo</td><td>a + mo</td><td></td></tr>
-                <tr><td>That</td><td class="vocab-roman">abo</td><td>aa + bo</td><td></td></tr>
-                <tr><td>These</td><td class="vocab-roman">morok</td><td>mo + ro + ko</td><td></td></tr>
-                <tr><td>Those</td><td class="vocab-roman">umorok</td><td>u + mo + ro + ko</td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Interrogative pronouns<span>5 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>Who</td><td class="vocab-roman">sabo/swba</td><td>so + a + bo / so + w + bo + a</td><td></td></tr>
-                <tr><td>Whom</td><td class="vocab-roman">sabono/swbano</td><td>so + a + bo + no / so + w + bo + a + no</td><td></td></tr>
-                <tr><td>Whose</td><td class="vocab-roman">saboni/swbani</td><td>so + a + bo + no + i / so + w + bo + a + no + i</td><td></td></tr>
-                <tr><td>Which</td><td class="vocab-roman">bomo</td><td>bo + mo</td><td></td></tr>
-                <tr><td>What</td><td class="vocab-roman">tamo</td><td>to + a + mo</td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Indefinite pronouns<span>27 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>All</td><td class="vocab-roman">bebak</td><td></td><td></td></tr>
-                <tr><td>Another</td><td class="vocab-roman">tai kaisa</td><td></td><td></td></tr>
-                <tr><td>Any</td><td class="vocab-roman">jesa</td><td></td><td></td></tr>
-                <tr><td>Anybody</td><td class="vocab-roman">jesakfano</td><td></td><td></td></tr>
-                <tr><td>Anyone</td><td class="vocab-roman">jemasa</td><td></td><td></td></tr>
-                <tr><td>Anything</td><td class="vocab-roman">jesafano</td><td></td><td></td></tr>
-                <tr><td>Both</td><td class="vocab-roman">kainwi</td><td></td><td></td></tr>
-                <tr><td>Each</td><td class="vocab-roman">kaisa kaisa</td><td></td><td></td></tr>
-                <tr><td>Either</td><td class="vocab-roman">jeba kaisa</td><td></td><td></td></tr>
-                <tr><td>Everybody</td><td class="vocab-roman">jotosak</td><td></td><td></td></tr>
-                <tr><td>Everyone</td><td class="vocab-roman">jotono</td><td></td><td></td></tr>
-                <tr><td>Everything</td><td class="vocab-roman">joto</td><td></td><td></td></tr>
-                <tr><td>Few</td><td class="vocab-roman">kicha</td><td></td><td></td></tr>
-                <tr><td>Many</td><td class="vocab-roman">kwbang</td><td></td><td></td></tr>
-                <tr><td>Most</td><td class="vocab-roman">mang</td><td></td><td></td></tr>
-                <tr><td>Neither</td><td class="vocab-roman">masabuya</td><td></td><td></td></tr>
-                <tr><td>Nobody</td><td class="vocab-roman">keboya</td><td></td><td></td></tr>
-                <tr><td>No one</td><td class="vocab-roman">kebofanoya</td><td></td><td></td></tr>
-                <tr><td>None</td><td class="vocab-roman">kebo</td><td></td><td></td></tr>
-                <tr><td>Nothing</td><td class="vocab-roman">kunuya</td><td></td><td></td></tr>
-                <tr><td>One</td><td class="vocab-roman">mungsa</td><td></td><td></td></tr>
-                <tr><td>Other</td><td class="vocab-roman">omorok</td><td></td><td></td></tr>
-                <tr><td>Several</td><td class="vocab-roman">koiekjon</td><td></td><td></td></tr>
-                <tr><td>Some</td><td class="vocab-roman">masamusu</td><td></td><td></td></tr>
-                <tr><td>Somebody</td><td class="vocab-roman">masaswk</td><td></td><td></td></tr>
-                <tr><td>Someone</td><td class="vocab-roman">masaswk</td><td></td><td></td></tr>
-                <tr><td>Something</td><td class="vocab-roman">mungsaswk</td><td></td><td></td></tr>
-              </tbody></table></div></details>
-              <details class="vocab-details"><summary>Intensive pronouns<span>7 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>English</th><th>Roman Kokborok</th><th>Syllable guide</th><th>Notes</th></tr></thead><tbody>
-                <tr><td>Myself</td><td class="vocab-roman">angno</td><td>aa + ng + no</td><td>high tone</td></tr>
-                <tr><td>Yourself</td><td class="vocab-roman">nwngno</td><td>no + w + ng + no</td><td>high tone</td></tr>
-                <tr><td>Himself/Herself</td><td class="vocab-roman">bono</td><td>bo + no</td><td>high tone</td></tr>
-                <tr><td>Itself</td><td class="vocab-roman">imono</td><td>i + mo + no</td><td>high tone</td></tr>
-                <tr><td>Ourselves</td><td class="vocab-roman">chwngno</td><td>cho + w + ng + no</td><td>high tone</td></tr>
-                <tr><td>Yourselves</td><td class="vocab-roman">norokno</td><td>no + ro + ko + no</td><td>high tone</td></tr>
-                <tr><td>Themselves</td><td class="vocab-roman">borokno</td><td>bo + ro + ko + no</td><td>high tone</td></tr>
-              </tbody></table></div></details>
-            </div>
-          </div>
-          <div>
-            <p class="lesson-section-title">50 Corrected Core Words</p>
-            <p class="vocab-source-note">This is the corrected core-word list supplied for the lesson. Internal Roman <strong>w</strong> represents schwa; word-initial <strong>w</strong> represents the consonant w.</p>
-            <div class="vocab-reference-stack">
-              <details class="vocab-details"><summary>Open the complete core-word list<span>50 entries</span></summary><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Category</th><th>Roman Kokborok</th><th>English</th></tr></thead><tbody>
-                <tr><td>People &amp; identity</td><td class="vocab-roman">ang</td><td>I / me</td></tr>
-                <tr><td>People &amp; identity</td><td class="vocab-roman">borok</td><td>person / people</td></tr>
-                <tr><td>People &amp; identity</td><td class="vocab-roman">kokborok</td><td>Kokborok language</td></tr>
-                <tr><td>People &amp; identity</td><td class="vocab-roman">buma</td><td>mother</td></tr>
-                <tr><td>People &amp; identity</td><td class="vocab-roman">bupha</td><td>father</td></tr>
-                <tr><td>People &amp; identity</td><td class="vocab-roman">bwsa</td><td>child</td></tr>
-                <tr><td>Basic communication</td><td class="vocab-roman">in&#39;</td><td>yes</td></tr>
-                <tr><td>Basic communication</td><td class="vocab-roman">in&#39;he</td><td>no</td></tr>
-                <tr><td>Basic communication</td><td class="vocab-roman">tamo</td><td>what</td></tr>
-                <tr><td>Basic communication</td><td class="vocab-roman">tangwi</td><td>why</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">nok</td><td>house</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">gantinok</td><td>kitchen</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">phalnok</td><td>shop</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">kami</td><td>village</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">phwrwngnok</td><td>school</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">twi</td><td>water</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">mai</td><td>rice</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">rang</td><td>money</td></tr>
-                <tr><td>Places &amp; daily life</td><td class="vocab-roman">bumung</td><td>name</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">mwkhang</td><td>face</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">bokhrok</td><td>head</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">mokol</td><td>eye</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">khunju</td><td>ear</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">bukung</td><td>nose</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">bukhuk</td><td>mouth</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">yak</td><td>hand</td></tr>
-                <tr><td>Body</td><td class="vocab-roman">yakung</td><td>leg</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">ha</td><td>soil / earth</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">hathai</td><td>mountain</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">buphang</td><td>tree</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">khum</td><td>flower</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">watwi</td><td>rain</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">nokbar</td><td>wind</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">twima</td><td>river</td></tr>
-                <tr><td>Nature</td><td class="vocab-roman">nokha</td><td>sky</td></tr>
-                <tr><td>Time</td><td class="vocab-roman">jora</td><td>time</td></tr>
-                <tr><td>Time</td><td class="vocab-roman">sal</td><td>day</td></tr>
-                <tr><td>Time</td><td class="vocab-roman">sairik</td><td>evening</td></tr>
-                <tr><td>Time</td><td class="vocab-roman">sanja</td><td>night</td></tr>
-                <tr><td>Time</td><td class="vocab-roman">bisi</td><td>year</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">swrwngdi</td><td>to learn</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">rikdi</td><td>to write / sketch</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">himdi</td><td>to walk</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">achukdi</td><td>to sit</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">bwchadi</td><td>to stand</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">hordi</td><td>to give / send</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">tamdi</td><td>to play</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">khardi</td><td>run/move</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">hamjakma</td><td>love / affection</td></tr>
-                <tr><td>Actions &amp; feelings</td><td class="vocab-roman">chaya</td><td>incorrect</td></tr>
-              </tbody></table></div></details>
-            </div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">I / me</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲷󱲠</span><span class="ex-roman">nora</span><span class="ex-meaning">water</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲤󱲷󱲤󱲩</span><span class="ex-roman">borok</span><span class="ex-meaning">people / Borok</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman form means I / me in the examples?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ang" data-feedback="Correct. ang is the first-person singular subject pronoun.">ang</button><button class="quick-check-option" type="button" data-answer="ang" data-feedback="Correct. ang is the first-person singular subject pronoun.">bo</button><button class="quick-check-option" type="button" data-answer="ang" data-feedback="Correct. ang is the first-person singular subject pronoun.">borok</button></div><div class="quick-check-feedback" id="check-core-words-0"></div></div><div class="quick-check"><p class="quick-check-question">Which core word means water?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="twi" data-feedback="Yes. twi means water, and its internal w is written with the schwa character.">twi</button><button class="quick-check-option" type="button" data-answer="twi" data-feedback="Yes. twi means water, and its internal w is written with the schwa character.">mai</button><button class="quick-check-option" type="button" data-answer="twi" data-feedback="Yes. twi means water, and its internal w is written with the schwa character.">nok</button></div><div class="quick-check-feedback" id="check-core-words-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman form means I / me in the examples?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Correct. nga is a strong anchor word.">nga</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Correct. nga is a strong anchor word.">nora</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Correct. nga is a strong anchor word.">borok</button></div><div class="quick-check-feedback" id="check-core-words-0"></div></div><div class="quick-check"><p class="quick-check-question">Which example is water?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nora" data-feedback="Yes. nora is shown as water.">nora</button><button class="quick-check-option" type="button" data-answer="nora" data-feedback="Yes. nora is shown as water.">kana</button><button class="quick-check-option" type="button" data-answer="nora" data-feedback="Yes. nora is shown as water.">saka</button></div><div class="quick-check-feedback" id="check-core-words-1"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
@@ -1805,7 +1585,7 @@
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">I / me</span></div><div class="lesson-example"><span class="ex-yapiri">󱲲󱲠󱲳󱲢</span><span class="ex-roman">mani</span><span class="ex-meaning">money / bead</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲷󱲠</span><span class="ex-roman">nora</span><span class="ex-meaning">water</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable: ng + a</span></div><div class="lesson-example"><span class="ex-yapiri">󱲲󱲠󱲢</span><span class="ex-roman">mai</span><span class="ex-meaning">rice</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲩</span><span class="ex-roman">nok</span><span class="ex-meaning">house</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
@@ -1937,14 +1717,14 @@
 <!-- ══ SECTION 03: PRACTICE LAB ADD-ON ══ -->
 <section id="practice-lab" style="scroll-margin-top:115px">
   <div class="pl-inner">
-    <div class="reveal visible" style="margin-bottom:2rem">
+    <div class="reveal" style="margin-bottom:2rem">
       <span class="section-label">Section 03</span>
       <div class="gold-line"></div>
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Practice Lab</h2>
       <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:680px;line-height:1.7;">Extra drills layered on top of the original lessons. This section does not replace the alphabet reference, guided lessons, or translation exercises.</p>
     </div>
 
-    <div class="pl-grid reveal visible">
+    <div class="pl-grid reveal">
       <article class="pl-card">
         <h3>Recognition Drill</h3>
         <p>Look at the Yapiri character and choose the correct Roman value.</p>
@@ -1958,7 +1738,7 @@
         <h3>Recall Drill</h3>
         <p>Type the Roman value for the Yapiri character shown.</p>
         <div class="pl-prompt"><span class="pl-glyph" id="pl-call-glyph">&#xF1CA9;</span></div>
-        <input class="pl-input" id="pl-call-input" placeholder="Type value, e.g. a, kh, 4, ?, tone" autocomplete="off">
+        <input class="pl-input" id="pl-call-input" placeholder="Type roman value, e.g. a, kh, ng" autocomplete="off">
         <div class="pl-feedback" id="pl-call-feedback"></div>
         <div class="pl-controls"><button class="pl-btn" id="pl-call-check">Check</button><button class="pl-btn" id="pl-call-next">Next</button></div>
       </article>
@@ -1966,7 +1746,7 @@
       <article class="pl-card">
         <h3>Word Builder</h3>
         <p>Build the Yapiri form from the shuffled character tiles.</p>
-        <div class="pl-prompt"><span id="pl-word-target" style="font-family:'DM Mono',monospace;color:var(--gold-light);font-size:1.1rem;">kokborok</span></div>
+        <div class="pl-prompt"><span id="pl-word-target" style="font-family:'DM Mono',monospace;color:var(--gold-light);font-size:1.1rem;">—</span></div>
         <div class="pl-answer" id="pl-build-answer"></div>
         <div class="pl-build-row" id="pl-build-chips"></div>
         <div class="pl-feedback" id="pl-build-feedback"></div>
@@ -1975,10 +1755,10 @@
 
       <article class="pl-card">
         <h3>Write Your Name in Yapiri</h3>
-        <p>Type your name in Roman letters to see a sound-by-sound Yapiri rendering. Unsupported English sounds may need a closer Kokborok spelling. Nothing is saved or submitted.</p>
+        <p>Type your name in Roman letters to see a sound-by-sound Yapiri rendering. Nothing is saved or submitted.</p>
         <input class="pl-input" id="pl-name-input" placeholder="Type your name, e.g. Animesh" autocomplete="name">
         <div class="pl-prompt"><span class="pl-word" id="pl-name-output" aria-live="polite">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2;</span></div>
-        <div class="pl-name-roman" id="pl-name-roman">Example: yapiri</div>
+        <p class="pl-name-roman" id="pl-name-roman" style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--stone);text-align:center;letter-spacing:.05em;">Example: yapiri</p>
         <div class="pl-feedback" id="pl-name-feedback">Your name is converted locally in this page.</div>
         <div class="pl-controls"><button class="pl-btn" type="button" id="pl-name-clear">Clear</button></div>
       </article>
@@ -2202,7 +1982,7 @@
     <h3>Quick Reference</h3>
     <button class="qr-close" id="qr-close">Close ✕</button>
   </div>
-  <p class="qr-help">The keycap at right shows the matching physical keyboard key. “Shift +” means hold Shift while pressing the key. In Yapiri Script, the consonant <strong>w</strong> is only a word initiator: it is used at the beginning of a word and never within one. The vowel <strong>schwa</strong> is not a word initiator and is used only within a word. Therefore, any <strong>w</strong> written inside a Roman Kokborok word represents schwa, not the consonant w. Use <strong>W</strong> for word-initial consonant w and <strong>Q</strong> for word-internal schwa.</p>
+  <p class="qr-help">The keycap at right shows the matching keyboard key for the exercise section. In Roman Kokborok, word-initial <strong>w</strong> is the consonant w; mid-word <strong>w</strong> represents the schwa vowel ə. Use <strong>W</strong> (keyboard) for word-initial w and <strong>Q</strong> for schwa.</p>
   <div id="qr-content"></div>
 </div>
 
@@ -2251,7 +2031,7 @@ const CONSONANTS = [
   { cp:'F1CB2', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.' },
   { cp:'F1CB3', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.' },
   { cp:'F1CB4', roman:"n'", ipa:'/n/',  name:"N-prime", desc:"Orthographic n-prime — used exclusively in in' (yes) and in'he (no) per TTAADC convention." },
-  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as the first-person singular pronoun nga.' },
+  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a common syllable in many Kokborok words.' },
   { cp:'F1CB6', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.' },
   { cp:'F1CB7', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.' },
   { cp:'F1CB8', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.' },
@@ -2295,6 +2075,10 @@ window.CHAR_DATA = [
 function cp(hex) { return String.fromCodePoint(parseInt(hex, 16)); }
 function cps(...hexes) { return hexes.map(cp).join(''); }
 
+// ── ALPHABET: static cards, JS only for click-to-expand detail panel ──
+// All 45 char-cards are hardcoded in HTML. This block just wires click handlers.
+const REFERENCE_CHARS = [...VOWELS, ...CONSONANTS, ...LOANWORD, ...NUMERALS, ...PUNCT];
+
 let activeCard = null;
 function showDetail(ch, card) {
   const panel = document.getElementById('char-detail');
@@ -2317,16 +2101,12 @@ function showDetail(ch, card) {
   setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
 }
 
-const REFERENCE_CHARS = [...VOWELS, ...CONSONANTS, ...LOANWORD, ...NUMERALS, ...PUNCT];
 document.querySelectorAll('#alphabet .char-card[data-char-index]').forEach(card => {
   const ch = REFERENCE_CHARS[Number(card.dataset.charIndex)];
   if (!ch) return;
   card.addEventListener('click', () => showDetail(ch, card));
-  card.addEventListener('keydown', event => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      showDetail(ch, card);
-    }
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showDetail(ch, card); }
   });
 });
 
@@ -2441,17 +2221,17 @@ updateGuidedProgress();
 // QUICK REFERENCE
 function buildQR() {
   const container = document.getElementById('qr-content');
-  const keyByCodepoint = {
+  const keyByCP = {
     F1CA0:'A', F1CA1:'E', F1CA2:'I', F1CA3:'U', F1CA4:'O', F1CA5:'Q',
     F1CA7:'P', F1CA8:'T', F1CA9:'K', F1CAA:'B', F1CAB:'D', F1CAC:'G',
-    F1CAD:'Shift + P', F1CAE:'Shift + T', F1CAF:'Shift + K',
-    F1CB0:'C', F1CB1:'J', F1CB2:'M', F1CB3:'N', F1CB4:'Shift + N',
+    F1CAD:'Shift+P', F1CAE:'Shift+T', F1CAF:'Shift+K',
+    F1CB0:'C', F1CB1:'J', F1CB2:'M', F1CB3:'N', F1CB4:'Shift+N',
     F1CB5:'F', F1CB6:'S', F1CB7:'R', F1CB8:'L', F1CB9:'H',
     F1CBA:'Y', F1CBB:'W', F1CBC:'V', F1CBD:'Z',
     F1CC0:'0', F1CC1:'1', F1CC2:'2', F1CC3:'3', F1CC4:'4',
     F1CC5:'5', F1CC6:'6', F1CC7:'7', F1CC8:'8', F1CC9:'9',
-    F1CCB:',', F1CCC:'.', F1CCD:'Shift + 1', F1CCE:"Shift + '",
-    F1CCF:'Shift + /', F1CD1:"'"
+    F1CCB:',', F1CCC:'.', F1CCD:'Shift+1', F1CCE:"Shift+'",
+    F1CCF:'Shift+/', F1CD1:"'"
   };
   const groups = [
     { label: 'Vowels', chars: VOWELS },
@@ -2465,7 +2245,7 @@ function buildQR() {
     container.appendChild(t);
     g.chars.forEach(ch => {
       const row = document.createElement('div'); row.className = 'qr-row';
-      const key = keyByCodepoint[String(ch.cp).toUpperCase()] || '—';
+      const key = keyByCP[String(ch.cp).toUpperCase()] || '—';
       row.innerHTML = `<span class="qr-glyph">${cp(ch.cp)}</span><span class="qr-roman">${ch.roman}</span><span class="qr-ipa">${ch.ipa}</span><span class="qr-key"><kbd>${key}</kbd></span>`;
       container.appendChild(row);
     });
@@ -2948,7 +2728,7 @@ startLoad();
   ready(function(){
     let attempts = 0;
     function bootPracticeLab(){
-    const chars = (window.CHAR_DATA || []).filter(c => ['vowels','consonants','loanword','numerals','punctuation'].includes(c.group));
+    const chars = (window.CHAR_DATA || []).filter(c => ['vowels','consonants','loanword'].includes(c.group));
     if (!chars.length) {
       attempts++;
       if (attempts < 60) setTimeout(bootPracticeLab, 100);
@@ -2976,173 +2756,108 @@ startLoad();
     }
     function checkCall(){
       const val=document.getElementById('pl-call-input').value.trim().toLowerCase();
-      const isTone=callCurrent.name==='High tone mark';
-      const accepted=isTone
-        ? [String(callCurrent.roman).toLowerCase(),'tone','high tone',"'"]
-        : [String(callCurrent.roman).toLowerCase()];
-      const ok=accepted.includes(val);
-      const answer=isTone ? "high tone mark (')" : callCurrent.roman;
-      const fb=document.getElementById('pl-call-feedback'); fb.className='pl-feedback '+(ok?'good':'bad'); fb.textContent= ok?'Correct.':'Answer: '+answer;
+      const ok=val===String(callCurrent.roman).toLowerCase();
+      const fb=document.getElementById('pl-call-feedback'); fb.className='pl-feedback '+(ok?'good':'bad'); fb.textContent= ok?'Correct.':'Answer: '+callCurrent.roman;
     }
 
-    const KOKBOROK_WORD_BANK = `
-mwtai phan kwplai subrai thansa dopha hamkrai hamjakma jora mwchang kwsrang mwkhang
-naithok isri bugra nok huk phalnok gantinok nokhla twi twisa twima twirukung kami
-bodol buma bupha bosong bwsa chwla bwrwi cherai chalai chakrak sikla okra nuai hayung
-haphang bolong panthor thaipung thaichuk thaichrem thaichumu thailik damra daborok hakor
-hathai pamtwi siyari phwrwngnok swrwngnok swrang kuphur kosom kwchak kormo nokha chumui
-richum risa rignai kwtwi swmai kwtal kwcham buphang bubar khum khumulwng watwi nokbar
-boyar kwchang sibchao ochai bekreng bokhrok yak yasi yakung khwnai bukung kunju mokol
-keram kuphung kereng-kurung rimi mijil milik enduwa harpek habuk ha hadul hasing haching
-khangrai aah khebuk chibuk mwsa mwswi mwkhra mosok musuk khorang kebel kwbai thepadi
-thepnwi thepjak lepadi swrwngdi yapiri kandi kondi kutuldi yachakdi phiyokdi sengkari
-sengkrak chengra ereng phemlok chengkhru chwngkhrub chwngbak chengdi hakchal gana
-gana-gini khairokma nangma khakchangma umai omthai romo thunok achukthai-nok lelama-nok
-phiring khiklaima yakardi moso mairung mai sakphang swkal chaya kubui kothok achukdi
-bwchadi himdi mwsadi rwchabdi rwchabmung majar sinimung chubadi sanja sairik tulung
-kutung nokbraisa thamchi pokma gila kwbang kwchar bisi mol sal washung wah wacheng
-bwskang sichadi yak-ulo mayung sui bara kolok kisip sibdi gosidi amchai baih-baksa
-chikon baksa tokay tongkhe tongkwchang tongmung naikolmung tisadi gwdaldi buchuk bedek
-banta chukya kuchuk chuknai kwpal kapma kwbakdi khwbdi kerang kothoma waijama kobor
-koklob kokbwthai kok-bokhorok kok-kwrwng kok-bataimung kok-kwbang jolima koklam pherang
-pherema sichamung selengmung chaitokmung suari jeba-kaisa kaisa-kainwi yasima bothor
-toling duldi dulnwi budul buduk dumdi yaphang kuwa kuwar yapha tola saka sao kwsa sano
-khakdi bumung pirkha barsa holong twikhor rumu kwkrwk som kwprap wansukma wanama
-kengkha kadulma hokdi hordi hama hama-kolok kusubdi gerebdi cherdi tamdi tamo tangwi
-rijak rang rang-gwnang manwi mangpili thwi thujak khoroksa naharmung chalmung omohai
-twiduldi masaswk awang hola bahai twrwk rikdi masa-musu madaman borom hilik heleng
-wanamasingcha naithokmabara swnchargwnang joto in' in'he kolompa kolomtwi bomtom bwkrang
-totra hamari kuplung khardi laithangwi hamachokha twijwlang twimuk manjadi pepladi khuk
-angkhe motom motok bising amtwi
-    `.trim().split(/\s+/);
-    const buildTokens = [...new Set(chars.map(c => String(c.roman)))].sort((a, b) => b.length - a.length);
-    const BUILD_SCHWA = '__kokborok_internal_w_schwa__';
-    function tokenizeWord(roman){
-      const source = String(roman).trim().toLowerCase();
+    // ── WORD BUILDER: Full Kokborok word bank (326 words, deduplicated) ──
+    const KOKBOROK_WORD_BANK = `mwtai phan kwplai subrai thansa dopha hamkrai hamjakma jora mwchang kwsrang mwkhang naithok isri bugra nok huk phalnok gantinok nokhla twi twisa twima twirukung kami bodol buma bupha bosong bwsa chwla bwrwi cherai chalai chakrak sikla okra nuai hayung haphang bolong panthor thaipung thaichuk thaichrem thaichumu thailik damra daborok hakor hathai pamtwi siyari phwrwngnok swrwngnok swrang kuphur kosom kwchak kormo nokha chumui richum risa rignai kwtwi swmai kwtal kwcham buphang bubar khum khumulwng watwi nokbar boyar kwchang sibchao ochai bekreng bokhrok yak yasi yakung khwnai bukung kunju mokol keram kuphung kereng-kurung rimi mijil milik enduwa harpek habuk ha hadul hasing haching khangrai aah khebuk chibuk mwsa mwswi mwkhra mosok musuk khorang kebel kwbai thepadi thepnwi thepjak lepadi swrwngdi yapiri kandi kondi kutuldi yachakdi phiyokdi sengkari sengkrak chengra ereng phemlok chengkhru chwngkhrub chwngbak chengdi hakchal gana gana-gini khairokma nangma khakchangma umai omthai romo thunok achukthai-nok lelama-nok phiring khiklaima yakardi moso mairung mai sakphang swkal chaya kubui kothok achukdi bwchadi himdi mwsadi rwchabdi rwchabmung majar sinimung chubadi sanja sairik tulung kutung nokbraisa thamchi pokma gila kwbang kwchar bisi mol sal washung wah wacheng bwskang sichadi yak-ulo mayung sui bara kolok kisip sibdi gosidi amchai baih-baksa chikon baksa tokay tongkhe tongkwchang tongmung naikolmung tisadi gwdaldi buchuk bedek banta chukya kuchuk chuknai kwpal kapma kwbakdi khwbdi kerang kothoma waijama kobor koklob kokbwthai kok-bokhorok kok-kwrwng kok-bataimung kok-kwbang jolima koklam pherang pherema sichamung selengmung chaitokmung suari jeba-kaisa kaisa-kainwi yasima bothor toling duldi dulnwi budul buduk dumdi yaphang kuwa kuwar yapha tola saka sao kwsa sano Khakdi bumung pirkha barsa holong twikhor rumu kwkrwk som kwprap wansukma wanama kengkha kadulma hokdi hordi hama hama-kolok kusubdi gerebdi cherdi tamdi tamo tangwi rijak rang rang-gwnang manwi mangpili thwi thujak khoroksa naharmung chalmung omohai twiduldi masaswk awang hola bahai twrwk rikdi masa-musu madaman borom hilik heleng wanamasingcha naithokmabara swnchargwnang joto in' in'he kolompa kolomtwi bomtom bwkrang totra hamari kuplung khardi laithangwi hamachokha twijwlang twimuk manjadi pepladi khuk angkhe motom motok bising amtwi ang borok kokborok tiprasa`.trim().split(/\s+/);
+    // Token list sorted longest-first for greedy matching
+    const BUILD_TOKENS = [...new Set(chars.map(c => String(c.roman)))].sort((a, b) => b.length - a.length);
+    const BUILD_SCHWA = '__schwa__'; // internal schwa marker (roman "w" inside a word)
+    function tokenizeKok(roman) {
+      const src = String(roman).trim().toLowerCase();
       const parts = [];
-      for (let i = 0; i < source.length;) {
-        if (source[i] === '-') {
-          parts.push('-');
-          i += 1;
-          continue;
+      for (let i = 0; i < src.length;) {
+        if (src[i] === '-') { parts.push('-'); i++; continue; }
+        // In Roman Kokborok: word-initial w = consonant w; mid-word w = schwa
+        if (src[i] === 'w') {
+          const isStart = i === 0 || src[i-1] === '-';
+          parts.push(isStart ? 'w' : BUILD_SCHWA);
+          i++; continue;
         }
-        // Roman Kokborok writes both sounds as “w”: at the start of a word
-        // it is the consonant w; everywhere else it is the schwa vowel.
-        if (source[i] === 'w') {
-          const isWordStart = i === 0 || source[i - 1] === '-';
-          parts.push(isWordStart ? 'w' : BUILD_SCHWA);
-          i += 1;
-          continue;
-        }
-        const token = buildTokens.find(candidate => source.startsWith(candidate, i));
-        if (!token) return null;
-        parts.push(token);
-        i += token.length;
+        const tok = BUILD_TOKENS.find(t => src.startsWith(t, i));
+        if (!tok) return null; // can't tokenize — skip word
+        parts.push(tok); i += tok.length;
       }
       return parts;
     }
-    const words = [...new Set(['kokborok', 'yapiri', 'borok', 'tiprasa', ...KOKBOROK_WORD_BANK])]
-      .map(roman => ({ roman, parts: tokenizeWord(roman) }))
-      .filter(word => word.parts && word.parts.length);
-    let buildCurrent = words.find(word => word.roman === 'kokborok') || words[0], buildParts = [];
-    function byRoman(r){ return chars.find(c => c.roman === r); }
-    function glyphForPart(r){
-      if (r === '-') return '−';
-      if (r === BUILD_SCHWA) return String.fromCodePoint(0xF1CA5);
-      const c = byRoman(r);
+    function glyphForPart(r) {
+      if (r === '-') return '\u2212';
+      if (r === BUILD_SCHWA) return String.fromCodePoint(0xF1CA5); // schwa
+      const c = chars.find(x => x.roman === r);
       return c ? glyph(c) : '';
     }
+    // Pre-tokenize word bank (filter words that can be fully tokenized)
+    const words = [...new Set(['kokborok','yapiri','borok','tiprasa', ...KOKBOROK_WORD_BANK])]
+      .map(roman => ({ roman, parts: tokenizeKok(roman) }))
+      .filter(w => w.parts && w.parts.length > 0 && w.parts.length <= 10);
+    let buildCurrent = words.find(w => w.roman === 'kokborok') || words[0], buildParts = [];
+    function byRoman(r){ return chars.find(c => c.roman === r); }
     function setBuild(){
       buildCurrent = words[Math.floor(Math.random()*words.length)]; buildParts = [];
       document.getElementById('pl-word-target').textContent = buildCurrent.roman;
       document.getElementById('pl-build-answer').textContent = '';
       document.getElementById('pl-build-feedback').textContent = '';
-      const chips=document.getElementById('pl-build-chips'); chips.innerHTML='';
-      [...buildCurrent.parts].sort(()=>Math.random()-.5).forEach(r=>{ const rendered=glyphForPart(r); if(!rendered) return; const b=document.createElement('button'); b.className='pl-chip'; b.textContent=rendered; b.title=r==='-'?'hyphen':r===BUILD_SCHWA?'w (schwa)':r; b.onclick=()=>{ buildParts.push(r); document.getElementById('pl-build-answer').textContent += rendered; }; chips.appendChild(b); });
+      const chips = document.getElementById('pl-build-chips'); chips.innerHTML = '';
+      [...buildCurrent.parts].sort(() => Math.random() - .5).forEach(r => {
+        const rendered = glyphForPart(r);
+        if (!rendered) return;
+        const b = document.createElement('button');
+        b.className = 'pl-chip'; b.textContent = rendered;
+        b.title = r === '-' ? 'hyphen' : r === BUILD_SCHWA ? 'w (schwa)' : r;
+        b.onclick = () => { buildParts.push(r); document.getElementById('pl-build-answer').textContent += rendered; };
+        chips.appendChild(b);
+      });
     }
     function checkBuild(){
-      const ok=buildParts.join('')===buildCurrent.parts.join('');
-      const fb=document.getElementById('pl-build-feedback'); fb.className='pl-feedback '+(ok?'good':'bad'); fb.textContent= ok?'Correct build.':'Not quite — clear and try again.';
+      const ok = buildParts.join('') === buildCurrent.parts.join('');
+      const fb = document.getElementById('pl-build-feedback');
+      fb.className = 'pl-feedback ' + (ok ? 'good' : 'bad');
+      fb.textContent = ok ? 'Correct build.' : 'Not quite — clear and try again.';
     }
-    function clearBuild(){ buildParts=[]; document.getElementById('pl-build-answer').textContent=''; }
+    function clearBuild(){ buildParts = []; document.getElementById('pl-build-answer').textContent = ''; }
 
-    const pairs = [
-      ['p','ph','Unaspirated p vs aspirated ph'], ['t','th','Unaspirated t vs aspirated th'], ['k','kh','Unaspirated k vs aspirated kh'], ['n','ng','Dental/alveolar n vs velar ng'], ['b','v','Native b vs loanword v']
-    ];
-    function setPair(){
-      const p=pairs[Math.floor(Math.random()*pairs.length)], a=byRoman(p[0]), b=byRoman(p[1]);
-      if(a&&b){ document.getElementById('pl-pair-left').textContent=glyph(a); document.getElementById('pl-pair-right').textContent=glyph(b); document.getElementById('pl-pair-note').textContent=p[2]; }
-    }
-
+    // ── NAME TRANSLITERATOR ──
     const nameExample = 'yapiri';
-    const nameExampleGlyphs = tokenizeWord(nameExample).map(glyphForPart).join('');
-    function transliterateName(value){
-      const source = String(value).trim().toLowerCase();
-      let output = '';
-      let atWordStart = true;
+    const nameExGlyphs = tokenizeKok(nameExample).map(glyphForPart).join('');
+    function transliterateName(value) {
+      const src = String(value).trim().toLowerCase();
+      let output = '', atStart = true;
       const unsupported = [];
-      for (let i = 0; i < source.length;) {
-        if (/\s/.test(source[i])) {
-          if (output && !output.endsWith(' ')) output += ' ';
-          atWordStart = true;
-          i += 1;
-          continue;
-        }
-        if (source[i] === '-') {
-          output += '−';
-          atWordStart = true;
-          i += 1;
-          continue;
-        }
-        if (source[i] === 'w') {
-          output += glyphForPart(atWordStart ? 'w' : BUILD_SCHWA);
-          atWordStart = false;
-          i += 1;
-          continue;
-        }
-        const token = buildTokens.find(candidate => source.startsWith(candidate, i));
-        if (!token) {
-          unsupported.push(source[i]);
-          output += '□';
-          atWordStart = false;
-          i += 1;
-          continue;
-        }
-        output += glyphForPart(token);
-        atWordStart = false;
-        i += token.length;
+      for (let i = 0; i < src.length;) {
+        if (/\s/.test(src[i])) { if (output && !output.endsWith(' ')) output += ' '; atStart = true; i++; continue; }
+        if (src[i] === '-') { output += '\u2212'; atStart = true; i++; continue; }
+        if (src[i] === 'w') { output += glyphForPart(atStart ? 'w' : BUILD_SCHWA); atStart = false; i++; continue; }
+        const tok = BUILD_TOKENS.find(t => src.startsWith(t, i));
+        if (!tok) { unsupported.push(src[i]); output += '\u25a1'; atStart = false; i++; continue; }
+        output += glyphForPart(tok); atStart = false; i += tok.length;
       }
       return { output, unsupported: [...new Set(unsupported)] };
     }
-    function renderName(){
+    function renderName() {
       const input = document.getElementById('pl-name-input');
-      const output = document.getElementById('pl-name-output');
+      const out = document.getElementById('pl-name-output');
       const roman = document.getElementById('pl-name-roman');
-      const feedback = document.getElementById('pl-name-feedback');
-      if (!input || !output || !roman || !feedback) return;
-      const value = input.value.trim();
-      if (!value) {
-        output.textContent = nameExampleGlyphs;
+      const fb = document.getElementById('pl-name-feedback');
+      if (!input || !out || !roman || !fb) return;
+      const val = input.value.trim();
+      if (!val) {
+        out.textContent = nameExGlyphs;
         roman.textContent = 'Example: ' + nameExample;
-        feedback.className = 'pl-feedback';
-        feedback.textContent = 'Your name is converted locally in this page.';
+        fb.className = 'pl-feedback'; fb.textContent = 'Your name is converted locally in this page.';
         return;
       }
-      const result = transliterateName(value);
-      output.textContent = result.output;
-      roman.textContent = 'Roman spelling: ' + value;
+      const result = transliterateName(val);
+      out.textContent = result.output;
+      roman.textContent = 'Roman spelling: ' + val;
       if (result.unsupported.length) {
-        feedback.className = 'pl-feedback bad';
-        feedback.textContent = 'No direct Yapiri character for: ' + result.unsupported.join(', ') + '. Try a closer Kokborok sound spelling.';
+        fb.className = 'pl-feedback bad';
+        fb.textContent = 'No direct character for: ' + result.unsupported.join(', ') + '. Try a closer Kokborok sound spelling.';
       } else {
-        feedback.className = 'pl-feedback good';
-        feedback.textContent = 'Yapiri sound rendering complete. Internal Roman w is rendered as schwa.';
+        fb.className = 'pl-feedback good';
+        fb.textContent = 'Yapiri sound rendering complete. Mid-word w is rendered as schwa.';
       }
-    }
-    function clearName(){
-      const input = document.getElementById('pl-name-input');
-      if (input) input.value = '';
-      renderName();
     }
 
     document.getElementById('pl-rec-next')?.addEventListener('click', setRec);
@@ -3152,10 +2867,11 @@ angkhe motom motok bising amtwi
     document.getElementById('pl-build-check')?.addEventListener('click', checkBuild);
     document.getElementById('pl-build-clear')?.addEventListener('click', clearBuild);
     document.getElementById('pl-build-next')?.addEventListener('click', setBuild);
-    document.getElementById('pl-pair-next')?.addEventListener('click', setPair);
     document.getElementById('pl-name-input')?.addEventListener('input', renderName);
-    document.getElementById('pl-name-clear')?.addEventListener('click', clearName);
-    setRec(); setCall(); setBuild(); setPair(); renderName();
+    document.getElementById('pl-name-clear')?.addEventListener('click', () => {
+      const inp = document.getElementById('pl-name-input'); if (inp) inp.value = ''; renderName();
+    });
+    setRec(); setCall(); setBuild(); renderName();
     }
     bootPracticeLab();
   });
