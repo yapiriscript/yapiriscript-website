@@ -399,6 +399,35 @@
     font-family: 'DM Mono', monospace; font-size: 0.8rem;
     color: var(--gold-light);
   }
+  .detail-audio-row { display: flex; align-items: center; gap: 0.8rem; margin: 1.1rem 0; }
+  .detail-audio-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace; font-size: 0.66rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(201,146,42,0.08); color: var(--gold-light);
+    border: 1px solid rgba(201,146,42,0.3);
+    padding: 0.55rem 1rem; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .detail-audio-btn:hover { background: rgba(201,146,42,0.16); border-color: rgba(201,146,42,0.5); transform: translateY(-1px); }
+  .detail-audio-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+  .detail-audio-btn .audio-icon { font-size: 0.85rem; line-height: 1; }
+  .detail-audio-note { font-family: 'DM Mono', monospace; font-size: 0.56rem; color: var(--stone); letter-spacing: 0.04em; }
+  .detail-numeral-name {
+    font-family: 'DM Mono', monospace; font-size: 0.85rem;
+    color: var(--gold-light); margin-top: 0.3rem;
+  }
+  .detail-examples { display: grid; gap: 0.7rem; margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(196,180,154,0.1); }
+  .detail-example-block .ex-label {
+    font-family: 'DM Mono', monospace; font-size: 0.54rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terracotta); display: block; margin-bottom: 0.4rem;
+  }
+  .detail-example-block .ex-row { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
+  .detail-example-block .ex-glyphs { font-family: 'Yapiri', serif; font-size: 1.6rem; color: var(--parchment); }
+  .detail-example-block .ex-roman-val { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--gold-light); }
+  .detail-example-block .ex-gloss { font-size: 0.85rem; font-style: italic; color: var(--stone); }
+  .detail-example-empty { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--stone); letter-spacing: 0.04em; font-style: normal; }
 
   /* ── LESSONS SECTION ── */
   #lessons {
@@ -857,13 +886,19 @@
   .sentence-domain { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--stone); margin-bottom:0.6rem; }
   .sentence-english { font-size:1.4rem; font-weight:300; line-height:1.5; color:var(--parchment); }
 
-  /* Yapiri output display */
+  /* Yapiri output display — Yapiri and Roman areas each scroll independently (try.html pattern) */
   .ex-output-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--stone); margin-bottom:0.5rem; display:block; }
-  .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:1.1rem 1.2rem 0.8rem; min-height:120px; max-height:200px; overflow-y:auto; margin-bottom:0; }
+  .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:1.1rem 1.2rem 0.8rem; margin-bottom:0; }
   .yapiri-output-wrap:focus-within { border-color:rgba(201,146,42,0.4); }
-  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); line-height:1.4; min-height:3.5rem; word-break:break-word; overflow-wrap:break-word; }
+  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); line-height:1.4; height:90px; overflow-y:auto; word-break:break-word; overflow-wrap:break-word; white-space:pre-wrap; padding-right:0.2rem; }
   .yapiri-display:empty::before { content:'Type using the keyboard below'; color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.85rem; }
-  .roman-preview { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--gold); letter-spacing:0.06em; margin-top:0.6rem; min-height:1.2em; border-top:1px solid rgba(196,180,154,0.08); padding-top:0.5rem; }
+  .yapiri-display::-webkit-scrollbar { width:4px; }
+  .yapiri-display::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); }
+  .yapiri-display::-webkit-scrollbar-track { background:transparent; }
+  .roman-preview { font-family:'DM Mono',monospace; font-size:0.78rem; color:var(--gold); letter-spacing:0.06em; margin-top:0.6rem; height:48px; overflow-y:auto; word-break:break-word; overflow-wrap:break-word; white-space:pre-wrap; border-top:1px solid rgba(196,180,154,0.08); padding-top:0.5rem; }
+  .roman-preview::-webkit-scrollbar { width:4px; }
+  .roman-preview::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); }
+  .roman-preview::-webkit-scrollbar-track { background:transparent; }
 
   /* ════════ SHARED KEY STYLE (from try.html) ════════ */
   .key { background:rgba(255,255,255,0.04); border:1px solid rgba(196,180,154,0.12); color:var(--parchment); cursor:pointer; transition:all 0.12s; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.12rem; user-select:none; font-family:inherit; position:relative; overflow:hidden; }
@@ -905,6 +940,37 @@
     .ex-kb-row .key .key-label { font-size:0.5rem; }
     .ex-kb-wrap { padding:0.6rem; }
     .ex-kb-row { gap:0.3rem; }
+  }
+
+  /* ── MOBILE TAP GRID (try.html dual-layout pattern) ── */
+  .kb-mobile { display:none; }
+  .ex-kb-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:0.4rem; background:rgba(8,6,3,0.55); border:1px solid rgba(196,180,154,0.14); padding:0.9rem; }
+  .ex-kb-grid .key { aspect-ratio:1 / 1; padding:0.3rem; }
+  .ex-kb-grid .key .key-qwerty { top:3px; right:4px; font-size:0.5rem; }
+  .ex-kb-grid .key .key-glyph { font-family:'Yapiri',serif; font-size:1.55rem; }
+  .ex-kb-grid .key .key-label { font-size:0.58rem; }
+  .ex-kb-grid .key.special .key-glyph { font-size:1.9rem; color:var(--gold-light); }
+  .ex-kb-grid .key.span3 { grid-column:span 3; aspect-ratio:auto; min-height:54px; }
+
+  @media(max-width:640px) {
+    .kb-desktop.ex-keyboard { display:none; }
+    .kb-mobile { display:block; }
+
+    /* Sticky output area on mobile so it stays visible above the tap grid while scrolling */
+    .sticky-output-anchor {
+      position:sticky;
+      top:70px;
+      z-index:50;
+      background:var(--ink);
+      padding-top:0.5rem;
+    }
+
+    .yapiri-display { height:72px; font-size:1.4rem; }
+    .roman-preview { height:34px; font-size:0.7rem; margin-top:0.4rem; padding-top:0.4rem; }
+  }
+  @media(max-width:380px) {
+    .ex-kb-grid { gap:0.3rem; }
+    .ex-kb-grid .key .key-glyph { font-size:1.35rem; }
   }
   @media(max-width:480px) {
     .ex-kb-row .key { height:46px; }
@@ -1087,6 +1153,7 @@
     .ex-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   }
   #page-intro { padding: 3rem 2rem !important; }
+  #glossary { padding: 0 2rem 2.5rem !important; }
   #page-intro > div { grid-template-columns: 1fr 1fr !important; }
   @media (max-width: 600px) {
     #page-intro > div { grid-template-columns: 1fr !important; }
@@ -1212,6 +1279,39 @@
   </div>
 </section>
 
+<!-- ══ SOUND & SCRIPT GLOSSARY ══ -->
+<section id="glossary" style="background:var(--charcoal);padding:0 5rem 3.5rem;border-bottom:1px solid rgba(201,146,42,0.12);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <details class="reveal" style="border:1px solid rgba(196,180,154,0.12);background:rgba(10,7,3,0.28);">
+      <summary style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;list-style:none;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--parchment);">
+        <span>&#9432; Sound &amp; Script Glossary</span>
+        <span style="color:var(--stone);font-size:0.55rem;letter-spacing:0.08em;">expand for terms used throughout this page</span>
+      </summary>
+      <div style="padding:1.2rem 1.5rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;border-top:1px solid rgba(196,180,154,0.1);">
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Phoneme</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">The smallest unit of sound that changes meaning. In Kokborok, <em>k</em> and <em>kh</em> are separate phonemes: swapping one for the other changes the word.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Phonemic script</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A writing system where each symbol represents one sound (phoneme), not a syllable or a concept. Yapiri Script is phonemic — one character, one sound.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Contrastive</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Describes a sound difference that changes word meaning. If swapping one sound for another always changes the word, the two sounds are contrastive — as with k and kh, or a and schwa.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Vowel</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A sound produced with an open vocal tract, no obstruction. Yapiri has six vowels: a, e, i, u, o, and schwa (ə).</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Schwa /ə/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mid-central vowel. In Kokborok it is a full phoneme with its own meaning-changing role — not a reduced or unstressed vowel as in English.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Diphthong</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A vowel that glides from one position to another within a single syllable. Kokborok has two phonemic diphthongs: ai and əi, written as two separate vowel characters.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Stop / plosive</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by briefly blocking air completely, then releasing it. Examples: p, t, k, b, d, g. In Kokborok, stops come in plain and aspirated pairs.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Aspirated stop</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A stop followed by a puff of air: ph, th, kh. In Kokborok, aspiration is contrastive — <em>p</em> and <em>ph</em> are different sounds that distinguish words.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Nasal</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant where air flows through the nose. Yapiri has m (bilabial), n (dental), and ng (velar nasal), each written with a distinct character.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Velar nasal /ŋ/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">The ng sound (as in "sing"). In Kokborok it appears freely at the start, middle, or end of words — unlike in English where it never starts a word.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Fricative</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by forcing air through a narrow gap, creating friction. Examples in Yapiri: s, h, v, z.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Affricate</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant that starts as a stop and releases as a fricative. Kokborok has ch /tɕ/ and j /dʑ/ — each written as a single Yapiri character.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Approximant / glide</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Consonants where the vocal tract is narrowed but not enough to cause friction: y /j/, w /w/, r, l. They behave like consonants but sound close to vowels.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Trill / tap</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A sound made by rapid or single contact of the tongue against the roof of the mouth. The Yapiri r character covers both pronunciations heard across Kokborok speakers.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Place of articulation</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Where in the mouth a consonant is made. Bilabial uses both lips (p, b, m); dental and alveolar use the tongue near the teeth or ridge behind them (t, d, n, s); palatal uses the tongue against the hard palate (ch, j, y); velar uses the back of the tongue (k, g, ng); glottal is made in the throat (h); labiodental uses lip against teeth (v).</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Combining diacritic</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mark that attaches to a base character to modify it. The Yapiri high tone mark (U+F1CD1) is a combining character — it always follows the base letter it marks.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Tone</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A pitch pattern on a syllable that changes word meaning. Kokborok has a contrastive high tone, marked in Yapiri with the combining high tone mark above a base character.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Romanization</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Writing a language in Latin script to represent its sounds. Roman Kokborok is used alongside Yapiri Script throughout this page to help you check pronunciation.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">IPA</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">International Phonetic Alphabet — a standardized set of symbols for sounds in any language. IPA values appear in the Alphabet Reference to give you a language-neutral pronunciation guide.</p></div>
+      </div>
+    </details>
+  </div>
+</section>
+
 <!-- ══ SECTION 01: ALPHABET ══ -->
 <section id="alphabet" style="scroll-margin-top:115px">
   <div class="alphabet-inner">
@@ -1299,6 +1399,14 @@
       <div class="detail-info">
         <h4 id="detail-name"></h4>
         <p id="detail-desc"></p>
+        <div class="detail-numeral-name" id="detail-numeral-name" style="display:none;"></div>
+        <div class="detail-audio-row">
+          <button class="detail-audio-btn" id="detail-audio-btn" type="button">
+            <span class="audio-icon" aria-hidden="true">&#9658;</span>
+            <span id="detail-audio-label">Play Pronunciation</span>
+          </button>
+          <span class="detail-audio-note" id="detail-audio-note"></span>
+        </div>
         <div class="detail-meta">
           <div class="detail-meta-item">
             <span class="meta-label">Romanization</span>
@@ -1311,6 +1419,16 @@
           <div class="detail-meta-item">
             <span class="meta-label">Codepoint</span>
             <span class="meta-val" id="detail-cp"></span>
+          </div>
+        </div>
+        <div class="detail-examples" id="detail-examples">
+          <div class="detail-example-block">
+            <span class="ex-label">Word Example</span>
+            <div class="ex-row" id="detail-word-row"></div>
+          </div>
+          <div class="detail-example-block" id="detail-sentence-block" style="display:none;">
+            <span class="ex-label">Sentence Example</span>
+            <div class="ex-row" id="detail-sentence-row"></div>
           </div>
         </div>
       </div>
@@ -1327,33 +1445,6 @@
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Guided Learning Path</h2>
       <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:680px;line-height:1.7;">Ten short lessons move from how Yapiri works to your first sentence. Each lesson gives you a focus, worked examples, and quick checks before you continue.</p>
     </div>
-    <div class="reveal" style="margin-bottom:2rem;">
-      <details style="border:1px solid rgba(196,180,154,0.12);background:rgba(10,7,3,0.28);">
-        <summary style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;list-style:none;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--parchment);">
-          <span>&#9432; Linguistic Terms Glossary</span>
-          <span style="color:var(--stone);font-size:0.55rem;letter-spacing:0.08em;">expand for definitions used in these lessons</span>
-        </summary>
-        <div style="padding:1.2rem 1.5rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;border-top:1px solid rgba(196,180,154,0.1);">
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Phoneme</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">The smallest unit of sound that changes meaning. In Kokborok, <em>k</em> and <em>kh</em> are separate phonemes: swapping one for the other changes the word.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Phonemic script</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A writing system where each symbol represents one sound (phoneme), not a syllable or a concept. Yapiri Script is phonemic — one character, one sound.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Vowel</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A sound produced with an open vocal tract, no obstruction. Yapiri has six vowels: a, e, i, u, o, and schwa (ə).</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Schwa /ə/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mid-central vowel. In Kokborok it is a full phoneme with its own meaning-changing role — not a reduced or unstressed vowel as in English.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Stop / plosive</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by briefly blocking air completely, then releasing it. Examples: p, t, k, b, d, g. In Kokborok, stops come in plain and aspirated pairs.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Aspirated stop</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A stop followed by a puff of air: ph, th, kh. In Kokborok, aspiration is contrastive — <em>p</em> and <em>ph</em> are different sounds that distinguish words.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Nasal</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant where air flows through the nose. Yapiri has m (bilabial), n (dental), and ng (velar nasal), each written with a distinct character.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Velar nasal /ŋ/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">The ng sound (as in "sing"). In Kokborok it appears freely at the start, middle, or end of words — unlike in English where it never starts a word.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Fricative</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by forcing air through a narrow gap, creating friction. Examples in Yapiri: s, h, v, z.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Affricate</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant that starts as a stop and releases as a fricative. Kokborok has ch /tɕ/ and j /dʑ/ — each written as a single Yapiri character.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Approximant / glide</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Consonants where the vocal tract is narrowed but not enough to cause friction: y /j/, w /w/, r, l. They behave like consonants but sound close to vowels.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Diphthong</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A vowel that glides from one position to another within a single syllable. Kokborok has two phonemic diphthongs: ai and əi, written as two separate vowel characters.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Combining diacritic</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mark that attaches to a base character to modify it. The Yapiri high tone mark (U+F1CD1) is a combining character — it always follows the base letter it marks.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Tone</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A pitch pattern on a syllable that changes word meaning. Kokborok has a contrastive high tone, marked in Yapiri with the combining high tone mark above a base character.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Romanization</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Writing a language in Latin script to represent its sounds. Roman Kokborok is used alongside Yapiri Script throughout this page to help you check pronunciation.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">IPA</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">International Phonetic Alphabet — a standardized set of symbols for sounds in any language. IPA values appear in the Alphabet Reference to give you a language-neutral pronunciation guide.</p></div>
-        </div>
-      </details>
-    </div>
-
     <div class="lesson-path-shell reveal">
       <aside class="lesson-roadmap" id="lesson-roadmap" aria-label="Guided lesson roadmap">
       <button class="roadmap-step" type="button" data-lesson="0" aria-label="Lesson 01: Start Here: How Yapiri Works">
@@ -1370,39 +1461,39 @@
           <span class="roadmap-meta">Core sounds</span>
         </span>
       </button>
-      <button class="roadmap-step" type="button" data-lesson="2" aria-label="Lesson 03: Build Your First Syllables">
+      <button class="roadmap-step" type="button" data-lesson="2" aria-label="Lesson 03: Diphthongs in Kokborok">
         <span class="roadmap-index">03</span>
         <span>
-          <span class="roadmap-title">Build Your First Syllables</span>
-          <span class="roadmap-meta">Combining</span>
+          <span class="roadmap-title">Diphthongs in Kokborok</span>
+          <span class="roadmap-meta">Vowel glides</span>
         </span>
       </button>
-      <button class="roadmap-step" type="button" data-lesson="3" aria-label="Lesson 04: Plain and Aspirated Stops">
+      <button class="roadmap-step" type="button" data-lesson="3" aria-label="Lesson 04: Consonants">
         <span class="roadmap-index">04</span>
         <span>
-          <span class="roadmap-title">Plain and Aspirated Stops</span>
-          <span class="roadmap-meta">Contrast</span>
-        </span>
-      </button>
-      <button class="roadmap-step" type="button" data-lesson="4" aria-label="Lesson 05: Everyday Pronouns and Core Words">
-        <span class="roadmap-index">05</span>
-        <span>
-          <span class="roadmap-title">Everyday Pronouns and Core Words</span>
-          <span class="roadmap-meta">Useful words</span>
-        </span>
-      </button>
-      <button class="roadmap-step" type="button" data-lesson="5" aria-label="Lesson 06: Nasals and Close Sounds">
-        <span class="roadmap-index">06</span>
-        <span>
-          <span class="roadmap-title">Nasals and Close Sounds</span>
+          <span class="roadmap-title">Consonants</span>
           <span class="roadmap-meta">Sound families</span>
         </span>
       </button>
-      <button class="roadmap-step" type="button" data-lesson="6" aria-label="Lesson 07: Fricatives and Affricates">
+      <button class="roadmap-step" type="button" data-lesson="4" aria-label="Lesson 05: Digraphs">
+        <span class="roadmap-index">05</span>
+        <span>
+          <span class="roadmap-title">Digraphs</span>
+          <span class="roadmap-meta">Two letters, one sound</span>
+        </span>
+      </button>
+      <button class="roadmap-step" type="button" data-lesson="5" aria-label="Lesson 06: Pairs Recognition">
+        <span class="roadmap-index">06</span>
+        <span>
+          <span class="roadmap-title">Pairs Recognition</span>
+          <span class="roadmap-meta">Contrast drills</span>
+        </span>
+      </button>
+      <button class="roadmap-step" type="button" data-lesson="6" aria-label="Lesson 07: Build Your Syllables">
         <span class="roadmap-index">07</span>
         <span>
-          <span class="roadmap-title">Fricatives and Affricates</span>
-          <span class="roadmap-meta">More consonants</span>
+          <span class="roadmap-title">Build Your Syllables</span>
+          <span class="roadmap-meta">Combining</span>
         </span>
       </button>
       <button class="roadmap-step" type="button" data-lesson="7" aria-label="Lesson 08: Tone Mark">
@@ -1419,11 +1510,11 @@
           <span class="roadmap-meta">Numbers</span>
         </span>
       </button>
-      <button class="roadmap-step" type="button" data-lesson="9" aria-label="Lesson 10: Write Your First Sentence">
+      <button class="roadmap-step" type="button" data-lesson="9" aria-label="Lesson 10: Everyday Pronouns and Core Words">
         <span class="roadmap-index">10</span>
         <span>
-          <span class="roadmap-title">Write Your First Sentence</span>
-          <span class="roadmap-meta">Sentence bridge</span>
+          <span class="roadmap-title">Everyday Pronouns and Core Words</span>
+          <span class="roadmap-meta">Useful words</span>
         </span>
       </button>
       </aside>
@@ -1449,12 +1540,16 @@
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div></div>
           </div>
           <div>
+            <p class="lesson-section-title">The Shape of the Script</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;">Yapiri has <strong style="color:var(--parchment);font-weight:400;">45 characters</strong> in total: 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks and diacritics. It reads <strong style="color:var(--parchment);font-weight:400;">left to right</strong>, the same direction as Roman Kokborok. Throughout every lesson on this page, each worked example follows one format: the Yapiri glyphs, then the Roman Kokborok spelling, then the English meaning — in that order, every time.</p>
+          </div>
+          <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">the script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in’</span><span class="ex-meaning">yes / affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">the script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">What should you learn first in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">The sound value of each character</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">English spelling rules</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">Only the keyboard layout</button></div><div class="quick-check-feedback" id="check-start-0"></div></div><div class="quick-check"><p class="quick-check-question">Which Roman form matches the script name shown above?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="yapiri" data-feedback="Yes. This word reuses y, a, p, i, and r.">yapiri</button><button class="quick-check-option" type="button" data-answer="yapiri" data-feedback="Yes. This word reuses y, a, p, i, and r.">tiprasa</button><button class="quick-check-option" type="button" data-answer="yapiri" data-feedback="Yes. This word reuses y, a, p, i, and r.">kokborok</button></div><div class="quick-check-feedback" id="check-start-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">What should you learn first in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">The sound value of each character</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">English spelling rules</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">Only the keyboard layout</button></div><div class="quick-check-feedback" id="check-start-0"></div></div><div class="quick-check"><p class="quick-check-question">How many characters does Yapiri have in total?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">45</button><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">26</button><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">60</button></div><div class="quick-check-feedback" id="check-start-1"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev" disabled>Previous</button>
@@ -1475,9 +1570,10 @@
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲡</span><span class="roman">e</span></div><div class="guided-char"><span class="glyph">󱲥</span><span class="roman">ə</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲣</span><span class="roman">u</span></div></div>
           </div>
+          
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in’</span><span class="ex-meaning">yes / affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div><div class="lesson-example"><span class="ex-yapiri">󱲣󱲩󱲳󱲤</span><span class="ex-roman">ukno</span><span class="ex-meaning">sky</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div><div class="lesson-example"><span class="ex-yapiri">󱲣󱲩󱲳󱲤</span><span class="ex-roman">ukno</span><span class="ex-meaning">sky</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
@@ -1490,11 +1586,163 @@
           </div>
         </div>
       </article>
-      <article class="guided-lesson" id="guided-syllables" data-lesson-index="2">
+      <article class="guided-lesson" id="guided-diphthongs" data-lesson-index="2">
         <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 03 &middot; Combining</p>
-          <h3>Build Your First Syllables</h3>
-          <p class="guided-lesson-intro">After vowels, combine one consonant and one vowel. Short syllables such as ka, na, ma, and nga make the script feel readable quickly.</p>
+          <p class="lesson-kicker">Lesson 03 &middot; Vowel glides</p>
+          <h3>Diphthongs in Kokborok</h3>
+          <p class="guided-lesson-intro">Beyond the six single vowels, Kokborok also has vowel glides — two vowel sounds blending within a single syllable. Yapiri writes these as two vowel characters in sequence, keeping the one-sound-one-character principle intact.</p>
+        </div>
+        <div class="guided-lesson-body">
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>A diphthong glides between two vowel qualities in one syllable.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Kokborok has three primary diphthongs: ai, oi, and ui.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Each is written as two separate vowel characters — one sound, one character, every time.</p></div></div>
+          <div>
+            <p class="lesson-section-title">Characters</p>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲣</span><span class="roman">u</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Diphthongs &amp; Triphthongs</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;margin-bottom:0.8rem;">Kokborok’s vowel system has three layers: <strong style="color:var(--parchment);font-weight:400;">monophthongs</strong> (the 6 single vowels from Lesson 02), <strong style="color:var(--parchment);font-weight:400;">diphthongs</strong> (two vowel qualities gliding within one syllable), and a rare <strong style="color:var(--parchment);font-weight:400;">triphthong</strong>. The three primary diphthongs are <em>ai</em>, <em>oi</em>, and <em>ui</em>. Academic sources also note one attested triphthong, <em>awi</em>, occurring in certain word-final contexts — described as rare even within Kokborok phonology, so it is included here for completeness rather than as a core drill.</p>
+          </div>
+          <div>
+            <p class="lesson-section-title">Worked Examples</p>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong: a + i</span></div><div class="lesson-example"><span class="ex-yapiri">󱲤󱲢</span><span class="ex-roman">oi</span><span class="ex-meaning">diphthong: o + i</span></div><div class="lesson-example"><span class="ex-yapiri">󱲣󱲢</span><span class="ex-roman">ui</span><span class="ex-meaning">diphthong: u + i</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Quick Checks</p>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many primary diphthongs does Kokborok have?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Three" data-feedback="Correct. The three primary diphthongs are ai, oi, and ui.">Two</button><button class="quick-check-option" type="button" data-answer="Three" data-feedback="Correct. The three primary diphthongs are ai, oi, and ui.">Three</button><button class="quick-check-option" type="button" data-answer="Three" data-feedback="Correct. The three primary diphthongs are ai, oi, and ui.">Five</button></div><div class="quick-check-feedback" id="check-diphthongs-0"></div></div><div class="quick-check"><p class="quick-check-question">How is a diphthong written in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="As two separate vowel characters" data-feedback="Yes. Yapiri keeps the one-sound-one-character principle, so diphthongs use two vowel glyphs in sequence.">As two separate vowel characters</button><button class="quick-check-option" type="button" data-answer="As two separate vowel characters" data-feedback="Yes. Yapiri keeps the one-sound-one-character principle, so diphthongs use two vowel glyphs in sequence.">As one new combined character</button><button class="quick-check-option" type="button" data-answer="As two separate vowel characters" data-feedback="Yes. Yapiri keeps the one-sound-one-character principle, so diphthongs use two vowel glyphs in sequence.">With a tone mark</button></div><div class="quick-check-feedback" id="check-diphthongs-1"></div></div></div>
+          </div>
+          <div class="lesson-actions">
+            <button class="lesson-action" type="button" data-action="prev">Previous</button>
+            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+          </div>
+        </div>
+      </article>
+      <article class="guided-lesson" id="guided-consonants" data-lesson-index="3">
+        <div class="guided-lesson-head">
+          <p class="lesson-kicker">Lesson 04 &middot; Sound families</p>
+          <h3>Consonants</h3>
+          <p class="guided-lesson-intro">Kokborok’s native consonants divide into three families: stops (plain and aspirated), nasals, and fricatives/affricates. This lesson covers all three — open each group to work through its characters, examples, and checks.</p>
+        </div>
+        <div class="guided-lesson-body">
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Consonants group into stops, nasals, and fricatives/affricates by how they’re made.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Plain and aspirated stops are separate phonemes — the h is not decoration.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Open each group below to work through its characters and checks.</p></div></div>
+          <div>
+            <p class="lesson-section-title">Characters</p>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲲</span><span class="roman">m</span></div><div class="guided-char"><span class="glyph">󱲶</span><span class="roman">s</span></div><div class="guided-char"><span class="glyph">󱲰</span><span class="roman">ch</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Consonant Groups</p>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">Kokborok’s 21 native consonants fall into three families by how they’re made. Open each group below.</p>
+            <div class="vocab-reference-stack">
+              <details class="vocab-details" open><summary>Stops: Plain &amp; Aspirated<span>9 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>Plain and aspirated stops are different phonemes.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>k, t, p are not the same as kh, th, ph.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Train the pairs side by side before reading longer words.</p></div></div>
+<p class="lesson-section-title">Characters</p>
+<div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲯</span><span class="roman">kh</span></div><div class="guided-char"><span class="glyph">󱲬</span><span class="roman">g</span></div><div class="guided-char"><span class="glyph">󱲨</span><span class="roman">t</span></div><div class="guided-char"><span class="glyph">󱲮</span><span class="roman">th</span></div><div class="guided-char"><span class="glyph">󱲫</span><span class="roman">d</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲭</span><span class="roman">ph</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div></div>
+<p class="lesson-section-title">Worked Examples</p>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠󱲳󱲠</span><span class="ex-roman">kana</span><span class="ex-meaning">ear</span></div><div class="lesson-example"><span class="ex-yapiri">󱲨󱲢󱲳󱲠</span><span class="ex-roman">tina</span><span class="ex-meaning">mother</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲣󱲲󱲣󱲵</span><span class="ex-roman">bumung</span><span class="ex-meaning">name</span></div></div>
+<p class="lesson-section-title">Quick Checks</p>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which pair shows plain vs aspirated k?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / kh</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / g</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">p / b</button></div><div class="quick-check-feedback" id="check-stops-0"></div></div><div class="quick-check"><p class="quick-check-question">Does aspiration change meaning in Kokborok?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Yes</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">No</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Only in English words</button></div><div class="quick-check-feedback" id="check-stops-1"></div></div></div></div></details>
+              <details class="vocab-details"><summary>Nasals<span>4 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>m, n, and ng are separate characters.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>ng is common and should be read as one sound.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>n‑prime is used in specific conventional forms such as in’ and in’he.</p></div></div>
+<p class="lesson-section-title">Characters</p>
+<div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲲</span><span class="roman">m</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲴</span><span class="roman">n'</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div></div>
+<p class="lesson-section-title">Worked Examples</p>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲲󱲠󱲢</span><span class="ex-roman">mai</span><span class="ex-meaning">rice</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲩</span><span class="ex-roman">nok</span><span class="ex-meaning">house</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable: ng + a</span></div></div>
+<p class="lesson-section-title">Quick Checks</p>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman value is written as one velar nasal character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">ng</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">n</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">m</button></div><div class="quick-check-feedback" id="check-nasals-0"></div></div><div class="quick-check"><p class="quick-check-question">Which sound is reserved for in’ and in’he?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms.">n'</button><button class="quick-check-option" type="button" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms.">ng</button><button class="quick-check-option" type="button" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms.">m</button></div><div class="quick-check-feedback" id="check-nasals-1"></div></div></div></div></details>
+              <details class="vocab-details"><summary>Fricatives &amp; Affricates<span>6 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>ch and j are affricates.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>s and h are common in everyday Kokborok.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>z and v are useful for contact-language words.</p></div></div>
+<p class="lesson-section-title">Characters</p>
+<div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲶</span><span class="roman">s</span></div><div class="guided-char"><span class="glyph">󱲹</span><span class="roman">h</span></div><div class="guided-char"><span class="glyph">󱲰</span><span class="roman">ch</span></div><div class="guided-char"><span class="glyph">󱲱</span><span class="roman">j</span></div><div class="guided-char"><span class="glyph">󱲽</span><span class="roman">z</span></div><div class="guided-char"><span class="glyph">󱲼</span><span class="roman">v</span></div></div>
+<p class="lesson-section-title">Worked Examples</p>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲩󱲠</span><span class="ex-roman">saka</span><span class="ex-meaning">vegetable</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know</span></div><div class="lesson-example"><span class="ex-yapiri">󱲱󱲠󱲻󱲠</span><span class="ex-roman">jawa</span><span class="ex-meaning">to go</span></div></div>
+<p class="lesson-section-title">Quick Checks</p>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which sounds are mostly loanword consonants?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">z and v</button><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">s and h</button><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">ch and j</button></div><div class="quick-check-feedback" id="check-fricatives-0"></div></div><div class="quick-check"><p class="quick-check-question">Which Roman form starts with the ch character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">chana</button><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">jawa</button><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">saka</button></div><div class="quick-check-feedback" id="check-fricatives-1"></div></div></div></div></details>
+            </div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Worked Examples</p>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠󱲳󱲠</span><span class="ex-roman">kana</span><span class="ex-meaning">ear (stop)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable (nasal)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know (affricate)</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Quick Checks</p>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many native consonant characters does Kokborok use?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants.">21</button><button class="quick-check-option" type="button" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants.">15</button><button class="quick-check-option" type="button" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants.">30</button></div><div class="quick-check-feedback" id="check-consonants-0"></div></div><div class="quick-check"><p class="quick-check-question">Which three families organize the consonants in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Stops, nasals, fricatives/affricates" data-feedback="Yes — these are the three groups covered in this lesson.">Stops, nasals, fricatives/affricates</button><button class="quick-check-option" type="button" data-answer="Stops, nasals, fricatives/affricates" data-feedback="Yes — these are the three groups covered in this lesson.">Vowels, diphthongs, triphthongs</button><button class="quick-check-option" type="button" data-answer="Stops, nasals, fricatives/affricates" data-feedback="Yes — these are the three groups covered in this lesson.">Numerals, punctuation, diacritics</button></div><div class="quick-check-feedback" id="check-consonants-1"></div></div></div>
+          </div>
+          <div class="lesson-actions">
+            <button class="lesson-action" type="button" data-action="prev">Previous</button>
+            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+          </div>
+        </div>
+      </article>
+      <article class="guided-lesson" id="guided-digraphs" data-lesson-index="4">
+        <div class="guided-lesson-head">
+          <p class="lesson-kicker">Lesson 05 &middot; Two letters, one sound</p>
+          <h3>Digraphs</h3>
+          <p class="guided-lesson-intro">Some Yapiri sounds are spelled with two Roman letters but written with a single character. ph, th, kh, ch, and ng are all digraphs — each one phoneme, one glyph.</p>
+        </div>
+        <div class="guided-lesson-body">
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>A digraph is two Roman letters spelling one Yapiri sound.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>ph, th, kh, ch, and ng are each a single character, not two.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Never split a digraph when typing or reading — it represents exactly one phoneme.</p></div></div>
+          <div>
+            <p class="lesson-section-title">Characters</p>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲭</span><span class="roman">ph</span></div><div class="guided-char"><span class="glyph">󱲮</span><span class="roman">th</span></div><div class="guided-char"><span class="glyph">󱲯</span><span class="roman">kh</span></div><div class="guided-char"><span class="glyph">󱲰</span><span class="roman">ch</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Why Digraphs Exist</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;">Roman Kokborok sometimes needs two letters to spell a sound that Yapiri writes with a single character. <em>ph</em>, <em>th</em>, and <em>kh</em> mark aspiration; <em>ch</em> marks the palatal affricate; <em>ng</em> marks the velar nasal. Even though each is typed as two Roman letters, each maps to exactly <strong style="color:var(--parchment);font-weight:400;">one</strong> Yapiri glyph — the one-sound-one-character principle holds even when the Roman spelling looks like two sounds.</p>
+          </div>
+          <div>
+            <p class="lesson-section-title">Worked Examples</p>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲯󱲣󱲲</span><span class="ex-roman">khum</span><span class="ex-meaning">flower (kh)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know (ch)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable (ng)</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Quick Checks</p>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri characters does the digraph &quot;kh&quot; represent?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">One</button><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">Two</button><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">Zero</button></div><div class="quick-check-feedback" id="check-digraphs-0"></div></div><div class="quick-check"><p class="quick-check-question">Which of these is a digraph covered in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">ng</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">a</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">s</button></div><div class="quick-check-feedback" id="check-digraphs-1"></div></div></div>
+          </div>
+          <div class="lesson-actions">
+            <button class="lesson-action" type="button" data-action="prev">Previous</button>
+            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+          </div>
+        </div>
+      </article>
+      <article class="guided-lesson" id="guided-pairs" data-lesson-index="5">
+        <div class="guided-lesson-head">
+          <p class="lesson-kicker">Lesson 06 &middot; Contrast drills</p>
+          <h3>Pairs Recognition</h3>
+          <p class="guided-lesson-intro">Some characters are easy to confuse at a glance but represent different, meaning-changing sounds. This lesson drills the pairs that trip learners up most: aspirated vs plain stops, and n vs n-prime.</p>
+        </div>
+        <div class="guided-lesson-body">
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Some Yapiri characters look or sound close to each other.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Train your eye and ear to tell contrastive pairs apart.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>n vs n' is a written distinction reserved for specific conventional words.</p></div></div>
+          <div>
+            <p class="lesson-section-title">Characters</p>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲯</span><span class="roman">kh</span></div><div class="guided-char"><span class="glyph">󱲨</span><span class="roman">t</span></div><div class="guided-char"><span class="glyph">󱲮</span><span class="roman">th</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲴</span><span class="roman">n'</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Pairs to Watch</p>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">These pairs are the ones learners most often confuse early on. Each pair is contrastive — mixing them up changes the word.</p>
+            <div class="guided-pair-lab">
+              <div class="guided-pair-prompt"><span class="guided-pair-glyph" id="lesson-pairs-left">&#xF1CA9;</span><span class="guided-pair-vs">vs</span><span class="guided-pair-glyph" id="lesson-pairs-right">&#xF1CAF;</span></div>
+              <p class="guided-pair-note" id="lesson-pairs-note">Unaspirated k vs aspirated kh</p>
+              <button class="lesson-action" type="button" id="lesson-pairs-next">Show Another Pair</button>
+            </div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Worked Examples</p>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠</span><span class="ex-roman">ka</span><span class="ex-meaning">plain k</span></div><div class="lesson-example"><span class="ex-yapiri">󱲯󱲠</span><span class="ex-roman">kha</span><span class="ex-meaning">aspirated kh</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲳󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — uses n-prime</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Quick Checks</p>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">When is n' (n-prime) used, compared to plain n?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Only in specific conventional forms like in' and in'he" data-feedback="Correct. N-prime is reserved for these specific words, not a general substitute for n.">Only in specific conventional forms like in' and in'he</button><button class="quick-check-option" type="button" data-answer="Only in specific conventional forms like in' and in'he" data-feedback="Correct. N-prime is reserved for these specific words, not a general substitute for n.">Anywhere n could go</button><button class="quick-check-option" type="button" data-answer="Only in specific conventional forms like in' and in'he" data-feedback="Correct. N-prime is reserved for these specific words, not a general substitute for n.">Never in writing</button></div><div class="quick-check-feedback" id="check-pairs-0"></div></div><div class="quick-check"><p class="quick-check-question">Why does pairs practice matter in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Because contrastive pairs change word meaning if confused" data-feedback="Yes — that’s exactly why these pairs are contrastive.">Because contrastive pairs change word meaning if confused</button><button class="quick-check-option" type="button" data-answer="Because contrastive pairs change word meaning if confused" data-feedback="Yes — that’s exactly why these pairs are contrastive.">Because the characters look identical</button><button class="quick-check-option" type="button" data-answer="Because contrastive pairs change word meaning if confused" data-feedback="Yes — that’s exactly why these pairs are contrastive.">Because pairs are only used in punctuation</button></div><div class="quick-check-feedback" id="check-pairs-1"></div></div></div>
+          </div>
+          <div class="lesson-actions">
+            <button class="lesson-action" type="button" data-action="prev">Previous</button>
+            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+          </div>
+        </div>
+      </article>
+      <article class="guided-lesson" id="guided-syllables" data-lesson-index="6">
+        <div class="guided-lesson-head">
+          <p class="lesson-kicker">Lesson 07 &middot; Combining</p>
+          <h3>Build Your Syllables</h3>
+          <p class="guided-lesson-intro">Now combine what you’ve learned: one consonant plus one vowel makes a syllable. Short syllables such as ka, na, and nga make the script feel readable quickly.</p>
         </div>
         <div class="guided-lesson-body">
           <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Read from left to right.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Say the consonant, then the vowel.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Build tiny syllables before full words.</p></div></div>
@@ -1502,121 +1750,14 @@
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲲</span><span class="roman">m</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div></div>
           </div>
+          
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠</span><span class="ex-roman">ka</span><span class="ex-meaning">k + a</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲠</span><span class="ex-roman">na</span><span class="ex-meaning">n + a</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">I / me</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠</span><span class="ex-roman">ka</span><span class="ex-meaning">k + a</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲠</span><span class="ex-roman">na</span><span class="ex-meaning">n + a</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable: ng + a</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
             <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which syllable is made by k + a?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ka" data-feedback="Correct. Consonant first, then vowel.">ka</button><button class="quick-check-option" type="button" data-answer="ka" data-feedback="Correct. Consonant first, then vowel.">na</button><button class="quick-check-option" type="button" data-answer="ka" data-feedback="Correct. Consonant first, then vowel.">ma</button></div><div class="quick-check-feedback" id="check-syllables-0"></div></div><div class="quick-check"><p class="quick-check-question">Which Roman value uses the velar nasal character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Yes. ng is one character in Yapiri.">na</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Yes. ng is one character in Yapiri.">nga</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Yes. ng is one character in Yapiri.">ma</button></div><div class="quick-check-feedback" id="check-syllables-1"></div></div></div>
-          </div>
-          <div class="lesson-actions">
-            <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
-          </div>
-        </div>
-      </article>
-      <article class="guided-lesson" id="guided-stops" data-lesson-index="3">
-        <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 04 &middot; Contrast</p>
-          <h3>Plain and Aspirated Stops</h3>
-          <p class="guided-lesson-intro">Kokborok distinguishes plain and aspirated stops. The pairs k/kh, t/th, and p/ph are separate sound values, so do not treat the h as decoration.</p>
-        </div>
-        <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Plain and aspirated stops are different phonemes.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>k, t, p are not the same as kh, th, ph.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Train the pairs side by side before reading longer words.</p></div></div>
-          <div>
-            <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲯</span><span class="roman">kh</span></div><div class="guided-char"><span class="glyph">󱲬</span><span class="roman">g</span></div><div class="guided-char"><span class="glyph">󱲨</span><span class="roman">t</span></div><div class="guided-char"><span class="glyph">󱲮</span><span class="roman">th</span></div><div class="guided-char"><span class="glyph">󱲫</span><span class="roman">d</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲭</span><span class="roman">ph</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠󱲳󱲠</span><span class="ex-roman">kana</span><span class="ex-meaning">ear</span></div><div class="lesson-example"><span class="ex-yapiri">󱲨󱲢󱲳󱲠</span><span class="ex-roman">tina</span><span class="ex-meaning">mother</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲣󱲳󱲠</span><span class="ex-roman">bana</span><span class="ex-meaning">forest / jungle</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which pair shows plain vs aspirated k?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / kh</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / g</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">p / b</button></div><div class="quick-check-feedback" id="check-stops-0"></div></div><div class="quick-check"><p class="quick-check-question">Does aspiration change meaning in Kokborok?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Yes</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">No</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Only in English words</button></div><div class="quick-check-feedback" id="check-stops-1"></div></div></div>
-          </div>
-          <div class="lesson-actions">
-            <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
-          </div>
-        </div>
-      </article>
-      <article class="guided-lesson" id="guided-core-words" data-lesson-index="4">
-        <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 05 &middot; Useful words</p>
-          <h3>Everyday Pronouns and Core Words</h3>
-          <p class="guided-lesson-intro">This lesson turns characters into useful words. Start with high-frequency forms so reading begins to feel practical, not abstract.</p>
-        </div>
-        <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Use known vowels and consonants to read familiar words.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Read the Yapiri form first, then check Roman Kokborok.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Keep short daily words in memory as anchors.</p></div></div>
-          <div>
-            <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲻</span><span class="roman">w</span></div><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">I / me</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲷󱲠</span><span class="ex-roman">nora</span><span class="ex-meaning">water</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲤󱲷󱲤󱲩</span><span class="ex-roman">borok</span><span class="ex-meaning">people / Borok</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman form means I / me in the examples?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Correct. nga is a strong anchor word.">nga</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Correct. nga is a strong anchor word.">nora</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Correct. nga is a strong anchor word.">borok</button></div><div class="quick-check-feedback" id="check-core-words-0"></div></div><div class="quick-check"><p class="quick-check-question">Which example is water?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nora" data-feedback="Yes. nora is shown as water.">nora</button><button class="quick-check-option" type="button" data-answer="nora" data-feedback="Yes. nora is shown as water.">kana</button><button class="quick-check-option" type="button" data-answer="nora" data-feedback="Yes. nora is shown as water.">saka</button></div><div class="quick-check-feedback" id="check-core-words-1"></div></div></div>
-          </div>
-          <div class="lesson-actions">
-            <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
-          </div>
-        </div>
-      </article>
-      <article class="guided-lesson" id="guided-nasals" data-lesson-index="5">
-        <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 06 &middot; Sound families</p>
-          <h3>Nasals and Close Sounds</h3>
-          <p class="guided-lesson-intro">Kokborok uses several nasal sounds. Pay special attention to n, ng, and n‑prime because they look and behave as separate writing choices.</p>
-        </div>
-        <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>m, n, and ng are separate characters.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>ng is common and should be read as one sound.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>n‑prime is used in specific conventional forms such as in’ and in’he.</p></div></div>
-          <div>
-            <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲲</span><span class="roman">m</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲴</span><span class="roman">n'</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲸</span><span class="roman">l</span></div><div class="guided-char"><span class="glyph">󱲻</span><span class="roman">w</span></div><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable: ng + a</span></div><div class="lesson-example"><span class="ex-yapiri">󱲲󱲠󱲢</span><span class="ex-roman">mai</span><span class="ex-meaning">rice</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲩</span><span class="ex-roman">nok</span><span class="ex-meaning">house</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman value is written as one velar nasal character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">ng</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">n</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">m</button></div><div class="quick-check-feedback" id="check-nasals-0"></div></div><div class="quick-check"><p class="quick-check-question">Which word from this lesson means I / me?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Yes. It starts with the ng character.">nga</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Yes. It starts with the ng character.">mani</button><button class="quick-check-option" type="button" data-answer="nga" data-feedback="Yes. It starts with the ng character.">nora</button></div><div class="quick-check-feedback" id="check-nasals-1"></div></div></div>
-          </div>
-          <div class="lesson-actions">
-            <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
-          </div>
-        </div>
-      </article>
-      <article class="guided-lesson" id="guided-fricatives" data-lesson-index="6">
-        <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 07 &middot; More consonants</p>
-          <h3>Fricatives and Affricates</h3>
-          <p class="guided-lesson-intro">Add the frequent sounds s, h, ch, and j. Then notice that z and v are extended letters used mainly for loanwords.</p>
-        </div>
-        <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>ch and j are affricates.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>s and h are common in everyday Kokborok.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>z and v are useful for contact-language words.</p></div></div>
-          <div>
-            <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲶</span><span class="roman">s</span></div><div class="guided-char"><span class="glyph">󱲹</span><span class="roman">h</span></div><div class="guided-char"><span class="glyph">󱲰</span><span class="roman">ch</span></div><div class="guided-char"><span class="glyph">󱲱</span><span class="roman">j</span></div><div class="guided-char"><span class="glyph">󱲽</span><span class="roman">z</span></div><div class="guided-char"><span class="glyph">󱲼</span><span class="roman">v</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲩󱲠</span><span class="ex-roman">saka</span><span class="ex-meaning">vegetable</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know</span></div><div class="lesson-example"><span class="ex-yapiri">󱲱󱲠󱲻󱲠</span><span class="ex-roman">jawa</span><span class="ex-meaning">to go</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which sounds are mostly loanword consonants?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">z and v</button><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">s and h</button><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">ch and j</button></div><div class="quick-check-feedback" id="check-fricatives-0"></div></div><div class="quick-check"><p class="quick-check-question">Which Roman form starts with the ch character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">chana</button><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">jawa</button><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">saka</button></div><div class="quick-check-feedback" id="check-fricatives-1"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
@@ -1637,6 +1778,7 @@
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱳑</span><span class="roman">◌́</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲣</span><span class="roman">u</span></div></div>
           </div>
+          
           <div>
             <p class="lesson-section-title">Worked Examples</p>
             <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲠󱳑</span><span class="ex-roman">á</span><span class="ex-meaning">a with high tone mark</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱳑</span><span class="ex-roman">í</span><span class="ex-meaning">i with high tone mark</span></div><div class="lesson-example"><span class="ex-yapiri">󱲤󱳑</span><span class="ex-roman">ó</span><span class="ex-meaning">o with high tone mark</span></div></div>
@@ -1656,21 +1798,37 @@
         <div class="guided-lesson-head">
           <p class="lesson-kicker">Lesson 09 &middot; Numbers</p>
           <h3>Numerals</h3>
-          <p class="guided-lesson-intro">Yapiri has its own numeral shapes from 0 to 9. Learn them as a separate set, then use the quick reference whenever you need a reminder.</p>
+          <p class="guided-lesson-intro">Yapiri has its own numeral shapes from 0 to 9, and each digit also has its own Kokborok name. Learn both the written form and the spoken word.</p>
         </div>
         <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Numerals are visually matched to the script.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>0-9 have dedicated Yapiri forms.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Numbers are best learned through repeated recognition.</p></div></div>
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Numerals are visually matched to the script.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>0-9 have dedicated Yapiri forms.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Each digit also has its own Kokborok name — not just a written shape.</p></div></div>
           <div>
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱳀</span><span class="roman">0</span></div><div class="guided-char"><span class="glyph">󱳁</span><span class="roman">1</span></div><div class="guided-char"><span class="glyph">󱳂</span><span class="roman">2</span></div><div class="guided-char"><span class="glyph">󱳃</span><span class="roman">3</span></div><div class="guided-char"><span class="glyph">󱳄</span><span class="roman">4</span></div><div class="guided-char"><span class="glyph">󱳅</span><span class="roman">5</span></div><div class="guided-char"><span class="glyph">󱳆</span><span class="roman">6</span></div><div class="guided-char"><span class="glyph">󱳇</span><span class="roman">7</span></div><div class="guided-char"><span class="glyph">󱳈</span><span class="roman">8</span></div><div class="guided-char"><span class="glyph">󱳉</span><span class="roman">9</span></div></div>
           </div>
           <div>
+            <p class="lesson-section-title">Kokborok Numeral Names</p>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">Each numeral has its own spoken Kokborok name, separate from its written digit shape.</p>
+            <div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Digit</th><th>Yapiri</th><th>Kokborok Name</th></tr></thead><tbody>
+              <tr><td>0</td><td class="vocab-roman">&#xF1CC0;</td><td class="vocab-roman">bukcha</td></tr>
+              <tr><td>1</td><td class="vocab-roman">&#xF1CC1;</td><td class="vocab-roman">sa</td></tr>
+              <tr><td>2</td><td class="vocab-roman">&#xF1CC2;</td><td class="vocab-roman">nwi</td></tr>
+              <tr><td>3</td><td class="vocab-roman">&#xF1CC3;</td><td class="vocab-roman">tham</td></tr>
+              <tr><td>4</td><td class="vocab-roman">&#xF1CC4;</td><td class="vocab-roman">brwi</td></tr>
+              <tr><td>5</td><td class="vocab-roman">&#xF1CC5;</td><td class="vocab-roman">ba</td></tr>
+              <tr><td>6</td><td class="vocab-roman">&#xF1CC6;</td><td class="vocab-roman">dok</td></tr>
+              <tr><td>7</td><td class="vocab-roman">&#xF1CC7;</td><td class="vocab-roman">sni</td></tr>
+              <tr><td>8</td><td class="vocab-roman">&#xF1CC8;</td><td class="vocab-roman">char</td></tr>
+              <tr><td>9</td><td class="vocab-roman">&#xF1CC9;</td><td class="vocab-roman">chuku</td></tr>
+            </tbody></table></div>
+          </div>
+          <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱳁󱳂󱳃</span><span class="ex-roman">1-2-3</span><span class="ex-meaning">one, two, three</span></div><div class="lesson-example"><span class="ex-yapiri">󱳄󱳅󱳆</span><span class="ex-roman">4-5-6</span><span class="ex-meaning">four, five, six</span></div><div class="lesson-example"><span class="ex-yapiri">󱳇󱳈󱳉</span><span class="ex-roman">7-8-9</span><span class="ex-meaning">seven, eight, nine</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱳁󱳂󱳃</span><span class="ex-roman">1-2-3</span><span class="ex-meaning">sa, nwi, tham</span></div><div class="lesson-example"><span class="ex-yapiri">󱳄󱳅󱳆</span><span class="ex-roman">4-5-6</span><span class="ex-meaning">brwi, ba, dok</span></div><div class="lesson-example"><span class="ex-yapiri">󱳇󱳈󱳉</span><span class="ex-roman">7-8-9</span><span class="ex-meaning">sni, char, chuku</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri numeral characters are taught here?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">10</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">6</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">21</button></div><div class="quick-check-feedback" id="check-numerals-0"></div></div><div class="quick-check"><p class="quick-check-question">Where can you quickly review all numerals later?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Quick Reference" data-feedback="Yes. The Quick Reference keeps them close while practising.">Quick Reference</button><button class="quick-check-option" type="button" data-answer="Quick Reference" data-feedback="Yes. The Quick Reference keeps them close while practising.">Consent banner</button><button class="quick-check-option" type="button" data-answer="Quick Reference" data-feedback="Yes. The Quick Reference keeps them close while practising.">Footer links</button></div><div class="quick-check-feedback" id="check-numerals-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri numeral characters are taught here?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">10</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">6</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">21</button></div><div class="quick-check-feedback" id="check-numerals-0"></div></div><div class="quick-check"><p class="quick-check-question">What is the Kokborok name for the digit 1?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">sa</button><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">nwi</button><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">bukcha</button></div><div class="quick-check-feedback" id="check-numerals-1"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
@@ -1679,29 +1837,33 @@
           </div>
         </div>
       </article>
-      <article class="guided-lesson" id="guided-sentence" data-lesson-index="9">
+      <article class="guided-lesson" id="guided-core-words" data-lesson-index="9">
         <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 10 &middot; Sentence bridge</p>
-          <h3>Write Your First Sentence</h3>
-          <p class="guided-lesson-intro">Now move from reading words to writing a sentence. Use the keyboard below the exercises, check the Roman preview, and keep the first attempts short and careful.</p>
+          <p class="lesson-kicker">Lesson 10 &middot; Useful words</p>
+          <h3>Everyday Pronouns and Core Words</h3>
+          <p class="guided-lesson-intro">This lesson will turn the characters and rules you’ve learned into everyday, practical Kokborok — pronouns first, then a core vocabulary set. Content for this lesson is being compiled.</p>
         </div>
         <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Read the English prompt.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Type the Yapiri form with the on-page keyboard.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Use the Roman preview to catch slips before submitting.</p></div></div>
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>This lesson is being prepared with a confirmed pronoun and vocabulary set.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>It will turn the characters and rules from earlier lessons into real words.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Check back soon — content is in progress.</p></div></div>
           <div>
             <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div></div>
+            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div></div>
+          </div>
+          <div>
+            <p class="lesson-section-title">Pronoun &amp; Vocabulary Tables</p>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;">This section will hold reference tables for Kokborok pronouns (subject, object, possessive, reflexive, demonstrative, interrogative, indefinite) and a core everyday-word list, in the same expandable format used elsewhere on this page. Content is being compiled and will be added here.</p>
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠 󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">nga yapiri</span><span class="ex-meaning">I + Yapiri</span></div><div class="lesson-example"><span class="ex-yapiri">󱲩󱲤󱲩󱲪󱲤󱲷󱲤󱲩</span><span class="ex-roman">kokborok</span><span class="ex-meaning">Kokborok</span></div><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢 󱲩󱲤󱲩󱲪󱲤󱲷󱲤󱲩</span><span class="ex-roman">yapiri kokborok</span><span class="ex-meaning">Yapiri Kokborok</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-meaning detail-example-empty" style="font-style:normal;">Examples coming soon — word list in progress.</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Before submitting a translation, what should you check?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="The Roman preview" data-feedback="Correct. The preview helps catch typing mistakes.">The Roman preview</button><button class="quick-check-option" type="button" data-answer="The Roman preview" data-feedback="Correct. The preview helps catch typing mistakes.">Only the footer</button><button class="quick-check-option" type="button" data-answer="The Roman preview" data-feedback="Correct. The preview helps catch typing mistakes.">The browser title</button></div><div class="quick-check-feedback" id="check-sentence-0"></div></div><div class="quick-check"><p class="quick-check-question">Where should you go after this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Translation Exercises" data-feedback="Yes. You are ready for guided sentence practice.">Translation Exercises</button><button class="quick-check-option" type="button" data-answer="Translation Exercises" data-feedback="Yes. You are ready for guided sentence practice.">Alphabet only</button><button class="quick-check-option" type="button" data-answer="Translation Exercises" data-feedback="Yes. You are ready for guided sentence practice.">Navigation menu only</button></div><div class="quick-check-feedback" id="check-sentence-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question detail-example-empty" style="font-style:normal;">Quick checks for this lesson will be added once the vocabulary set is finalized.</p></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
+            <button class="lesson-action primary" type="button" data-action="complete">Complete Path</button>
             <button class="lesson-action" type="button" data-action="practice">Go to Exercises</button>
           </div>
         </div>
@@ -1825,14 +1987,16 @@
         </div>
 
         <!-- Yapiri output -->
-        <span class="ex-output-label reveal">Your Yapiri translation</span>
-        <div class="yapiri-output-wrap reveal">
-          <div class="yapiri-display" id="yapiri-display"></div>
-          <div class="roman-preview" id="roman-preview"></div>
+        <div class="sticky-output-anchor">
+          <span class="ex-output-label reveal">Your Yapiri translation</span>
+          <div class="yapiri-output-wrap reveal">
+            <div class="yapiri-display" id="yapiri-display"></div>
+            <div class="roman-preview" id="roman-preview"></div>
+          </div>
         </div>
 
-        <!-- Inline keyboard — try.html style -->
-        <div class="ex-keyboard reveal">
+        <!-- Inline keyboard — desktop QWERTY (≤640px hidden, mobile tap grid shown instead) -->
+        <div class="ex-keyboard kb-desktop reveal">
           <div class="ex-kb-wrap">
             <!-- NUMBER ROW -->
             <div class="ex-kb-row">
@@ -1901,13 +2065,76 @@
           </div>
         </div>
 
+        <!-- Mobile tap grid — shown only at narrow widths, replaces the QWERTY board -->
+        <div class="ex-keyboard kb-mobile reveal">
+          <div class="ex-kb-grid">
+            <button class="key" onclick="exType('a')"><span class="key-qwerty">A</span><span class="key-glyph">&#xF1CA0;</span><span class="key-label">a</span></button>
+            <button class="key" onclick="exType('e')"><span class="key-qwerty">E</span><span class="key-glyph">&#xF1CA1;</span><span class="key-label">e</span></button>
+            <button class="key" onclick="exType('i')"><span class="key-qwerty">I</span><span class="key-glyph">&#xF1CA2;</span><span class="key-label">i</span></button>
+            <button class="key" onclick="exType('u')"><span class="key-qwerty">U</span><span class="key-glyph">&#xF1CA3;</span><span class="key-label">u</span></button>
+            <button class="key" onclick="exType('o')"><span class="key-qwerty">O</span><span class="key-glyph">&#xF1CA4;</span><span class="key-label">o</span></button>
+            <button class="key" onclick="exType('q')"><span class="key-qwerty">Q</span><span class="key-glyph">&#xF1CA5;</span><span class="key-label">&#601;</span></button>
+
+            <button class="key" onclick="exType('p')"><span class="key-qwerty">P</span><span class="key-glyph">&#xF1CA7;</span><span class="key-label">p</span></button>
+            <button class="key" onclick="exType('t')"><span class="key-qwerty">T</span><span class="key-glyph">&#xF1CA8;</span><span class="key-label">t</span></button>
+            <button class="key" onclick="exType('k')"><span class="key-qwerty">K</span><span class="key-glyph">&#xF1CA9;</span><span class="key-label">k</span></button>
+            <button class="key" onclick="exType('b')"><span class="key-qwerty">B</span><span class="key-glyph">&#xF1CAA;</span><span class="key-label">b</span></button>
+            <button class="key" onclick="exType('d')"><span class="key-qwerty">D</span><span class="key-glyph">&#xF1CAB;</span><span class="key-label">d</span></button>
+            <button class="key" onclick="exType('g')"><span class="key-qwerty">G</span><span class="key-glyph">&#xF1CAC;</span><span class="key-label">g</span></button>
+
+            <button class="key" onclick="exType('P')"><span class="key-qwerty shifted">&#8679;P</span><span class="key-glyph">&#xF1CAD;</span><span class="key-label">ph</span></button>
+            <button class="key" onclick="exType('T')"><span class="key-qwerty shifted">&#8679;T</span><span class="key-glyph">&#xF1CAE;</span><span class="key-label">th</span></button>
+            <button class="key" onclick="exType('K')"><span class="key-qwerty shifted">&#8679;K</span><span class="key-glyph">&#xF1CAF;</span><span class="key-label">kh</span></button>
+            <button class="key" onclick="exType('c')"><span class="key-qwerty">C</span><span class="key-glyph">&#xF1CB0;</span><span class="key-label">ch</span></button>
+            <button class="key" onclick="exType('j')"><span class="key-qwerty">J</span><span class="key-glyph">&#xF1CB1;</span><span class="key-label">j</span></button>
+            <button class="key" onclick="exType('h')"><span class="key-qwerty">H</span><span class="key-glyph">&#xF1CB9;</span><span class="key-label">h</span></button>
+
+            <button class="key" onclick="exType('m')"><span class="key-qwerty">M</span><span class="key-glyph">&#xF1CB2;</span><span class="key-label">m</span></button>
+            <button class="key" onclick="exType('n')"><span class="key-qwerty">N</span><span class="key-glyph">&#xF1CB3;</span><span class="key-label">n</span></button>
+            <button class="key" onclick="exType('N')"><span class="key-qwerty shifted">&#8679;N</span><span class="key-glyph">&#xF1CB4;</span><span class="key-label">n&#8242;</span></button>
+            <button class="key" onclick="exType('f')"><span class="key-qwerty">F</span><span class="key-glyph">&#xF1CB5;</span><span class="key-label">ng</span></button>
+            <button class="key" onclick="exType('s')"><span class="key-qwerty">S</span><span class="key-glyph">&#xF1CB6;</span><span class="key-label">s</span></button>
+            <button class="key" onclick="exType('r')"><span class="key-qwerty">R</span><span class="key-glyph">&#xF1CB7;</span><span class="key-label">r</span></button>
+
+            <button class="key" onclick="exType('l')"><span class="key-qwerty">L</span><span class="key-glyph">&#xF1CB8;</span><span class="key-label">l</span></button>
+            <button class="key" onclick="exType('y')"><span class="key-qwerty">Y</span><span class="key-glyph">&#xF1CBA;</span><span class="key-label">y</span></button>
+            <button class="key" onclick="exType('w')"><span class="key-qwerty">W</span><span class="key-glyph">&#xF1CBB;</span><span class="key-label">w</span></button>
+            <button class="key loanword" onclick="exType('v')"><span class="key-qwerty">V</span><span class="key-glyph">&#xF1CBC;</span><span class="key-label">v</span></button>
+            <button class="key loanword" onclick="exType('z')"><span class="key-qwerty">Z</span><span class="key-glyph">&#xF1CBD;</span><span class="key-label">z</span></button>
+            <button class="key special" onclick="exTone()"><span class="key-qwerty">'</span><span class="key-glyph">&#xF1CD1;</span><span class="key-label">tone</span></button>
+
+            <button class="key" onclick="exType('1')"><span class="key-qwerty">1</span><span class="key-glyph">&#xF1CC1;</span><span class="key-label">1</span></button>
+            <button class="key" onclick="exType('2')"><span class="key-qwerty">2</span><span class="key-glyph">&#xF1CC2;</span><span class="key-label">2</span></button>
+            <button class="key" onclick="exType('3')"><span class="key-qwerty">3</span><span class="key-glyph">&#xF1CC3;</span><span class="key-label">3</span></button>
+            <button class="key" onclick="exType('4')"><span class="key-qwerty">4</span><span class="key-glyph">&#xF1CC4;</span><span class="key-label">4</span></button>
+            <button class="key" onclick="exType('5')"><span class="key-qwerty">5</span><span class="key-glyph">&#xF1CC5;</span><span class="key-label">5</span></button>
+            <button class="key" onclick="exType('6')"><span class="key-qwerty">6</span><span class="key-glyph">&#xF1CC6;</span><span class="key-label">6</span></button>
+
+            <button class="key" onclick="exType('7')"><span class="key-qwerty">7</span><span class="key-glyph">&#xF1CC7;</span><span class="key-label">7</span></button>
+            <button class="key" onclick="exType('8')"><span class="key-qwerty">8</span><span class="key-glyph">&#xF1CC8;</span><span class="key-label">8</span></button>
+            <button class="key" onclick="exType('9')"><span class="key-qwerty">9</span><span class="key-glyph">&#xF1CC9;</span><span class="key-label">9</span></button>
+            <button class="key" onclick="exType('0')"><span class="key-qwerty">0</span><span class="key-glyph">&#xF1CC0;</span><span class="key-label">0</span></button>
+            <button class="key" onclick="exType(',')"><span class="key-qwerty">,</span><span class="key-glyph">&#xF1CCB;</span><span class="key-label">,</span></button>
+            <button class="key" onclick="exType('.')"><span class="key-qwerty">.</span><span class="key-glyph">&#xF1CCC;</span><span class="key-label">.</span></button>
+
+            <button class="key" onclick="exType('!')"><span class="key-qwerty shifted">!</span><span class="key-glyph">&#xF1CCD;</span><span class="key-label">!</span></button>
+            <button class="key" onclick="exType('?')"><span class="key-qwerty shifted">?</span><span class="key-glyph">&#xF1CCF;</span><span class="key-label">?</span></button>
+            <button class="key" onclick="exQuote()"><span class="key-qwerty shifted">"</span><span class="key-glyph">&#xF1CCE;</span><span class="key-label">"</span></button>
+            <button class="key kb-key-wide is-active span3" onclick="exSpace()"><span class="kb-key-label-only">space</span></button>
+            <button class="key kb-key-wide is-active" onclick="exBackspace()"><span class="kb-key-label-only">&#9003;</span></button>
+            <button class="key kb-key-wide is-active" onclick="exClear()" style="background:rgba(184,92,56,0.08);border-color:rgba(184,92,56,0.25);"><span class="kb-key-label-only" style="color:var(--terra-light);">Clear</span></button>
+          </div>
+        </div>
+
         <!-- Controls -->
         <div class="ex-controls reveal">
-          <button class="ex-btn-submit" id="btn-submit">Submit Translation</button>
+          <button class="ex-btn-submit" id="btn-submit"><span id="btn-submit-label">Submit Translation</span></button>
           <button class="ex-btn-nav" id="btn-skip">Skip</button>
           <button class="ex-btn-nav" id="btn-prev">&larr; Prev</button>
           <button class="ex-btn-nav" id="btn-next">Next &rarr;</button>
         </div>
+
+        <p class="detail-audio-note" id="consent-state-note" style="margin-top:0.5rem;"></p>
 
         <div class="ex-feedback" id="ex-feedback"></div>
       </div>
@@ -2008,60 +2235,65 @@ window._db = db;
 window._fs = { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs };
 
 // CHARACTER DATA
+// Word examples use only vocabulary already confirmed elsewhere on this page
+// (guided lessons / word bank). word: [yapiriGlyphs, roman, englishGloss] or null.
+// audioId is a stable key for future recorded audio files (assets/audio/{audioId}.mp3).
+// Until recordings exist, the Play button falls back to browser text-to-speech.
 const VOWELS = [
-  { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.' },
-  { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.' },
-  { cp:'F1CA2', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.' },
-  { cp:'F1CA3', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.' },
-  { cp:'F1CA4', roman:'o',  ipa:'/o/',  name:'O',     desc:'Mid back rounded vowel.' },
-  { cp:'F1CA5', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.' },
+  { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.', audioId:'a', word:['\u{F1CA0}\u{F1CB3}\u{F1CC2}','ang','I / me'] },
+  { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.', audioId:'e', word:null },
+  { cp:'F1CA2', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.', audioId:'i', word:['\u{F1CA2}\u{F1CB3}\u{F1CB4}',"in'",'yes'] },
+  { cp:'F1CA3', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.', audioId:'u', word:['\u{F1CA3}\u{F1CA9}\u{F1CB3}\u{F1CA4}','ukno','sky'] },
+  { cp:'F1CA4', roman:'o',  ipa:'/o/',  name:'O',     desc:'Mid back rounded vowel.', audioId:'o', word:['\u{F1CAA}\u{F1CA4}\u{F1CB7}\u{F1CA4}\u{F1CA9}','borok','people / Borok'] },
+  { cp:'F1CA5', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.', audioId:'schwa', word:['\u{F1CA8}\u{F1CA5}\u{F1CA2}','twi','water'] },
 ];
 const CONSONANTS = [
-  { cp:'F1CA7', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.' },
-  { cp:'F1CA8', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.' },
-  { cp:'F1CA9', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.' },
-  { cp:'F1CAA', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.' },
-  { cp:'F1CAB', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.' },
-  { cp:'F1CAC', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.' },
-  { cp:'F1CAD', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop. Aspiration is phonemically contrastive.' },
-  { cp:'F1CAE', roman:'th', ipa:'/tʰ/', name:'Tha', desc:'Aspirated voiceless dental stop.' },
-  { cp:'F1CAF', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop.' },
-  { cp:'F1CB0', roman:'ch', ipa:'/tɕ/', name:'Cha', desc:'Voiceless palatal affricate.' },
-  { cp:'F1CB1', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.' },
-  { cp:'F1CB2', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.' },
-  { cp:'F1CB3', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.' },
-  { cp:'F1CB4', roman:"n'", ipa:'/n/',  name:"N-prime", desc:"Orthographic n-prime — used exclusively in in' (yes) and in'he (no) per TTAADC convention." },
-  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a common syllable in many Kokborok words.' },
-  { cp:'F1CB6', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.' },
-  { cp:'F1CB7', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.' },
-  { cp:'F1CB8', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.' },
-  { cp:'F1CB9', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.' },
-  { cp:'F1CBA', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.' },
-  { cp:'F1CBB', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.' },
+  { cp:'F1CA7', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.', audioId:'p', word:null },
+  { cp:'F1CA8', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.', audioId:'t', word:['\u{F1CA8}\u{F1CA2}\u{F1CB3}\u{F1CA0}','tina','mother'] },
+  { cp:'F1CA9', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.', audioId:'k', word:['\u{F1CA9}\u{F1CA0}\u{F1CB3}\u{F1CA0}','kana','ear'] },
+  { cp:'F1CAA', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.', audioId:'b', word:['\u{F1CAA}\u{F1CA3}\u{F1CB2}\u{F1CA3}\u{F1CB5}','bumung','name'] },
+  { cp:'F1CAB', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.', audioId:'d', word:null },
+  { cp:'F1CAC', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.', audioId:'g', word:null },
+  { cp:'F1CAD', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop. Aspiration is phonemically contrastive.', audioId:'ph', word:null },
+  { cp:'F1CAE', roman:'th', ipa:'/tʰ/', name:'Tha', desc:'Aspirated voiceless dental stop.', audioId:'th', word:null },
+  { cp:'F1CAF', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop.', audioId:'kh', word:['\u{F1CAF}\u{F1CA3}\u{F1CB2}','khum','flower'] },
+  { cp:'F1CB0', roman:'ch', ipa:'/tɕ/', name:'Cha', desc:'Voiceless palatal affricate.', audioId:'ch', word:['\u{F1CB0}\u{F1CA0}\u{F1CB3}\u{F1CA0}','chana','to know'] },
+  { cp:'F1CB1', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.', audioId:'j', word:['\u{F1CB1}\u{F1CA0}\u{F1CBB}\u{F1CA0}','jawa','to go'] },
+  { cp:'F1CB2', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.', audioId:'m', word:['\u{F1CB2}\u{F1CA0}\u{F1CA2}','mai','rice'] },
+  { cp:'F1CB3', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.', audioId:'n', word:['\u{F1CB3}\u{F1CA4}\u{F1CA9}','nok','house'] },
+  { cp:'F1CB4', roman:"n'", ipa:'/n/',  name:"N-prime", desc:"Orthographic n-prime — used exclusively in in' (yes) and in'he (no) per TTAADC convention.", audioId:'nprime', word:['\u{F1CA2}\u{F1CB3}\u{F1CB4}\u{F1CB9}\u{F1CA1}',"in'he",'no'] },
+  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a common syllable in many Kokborok words.', audioId:'ng', word:['\u{F1CB5}\u{F1CA0}','nga','velar nasal syllable: ng + a'] },
+  { cp:'F1CB6', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.', audioId:'s', word:['\u{F1CB6}\u{F1CA0}\u{F1CA9}\u{F1CA0}','saka','vegetable'] },
+  { cp:'F1CB7', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.', audioId:'r', word:['\u{F1CB7}\u{F1CA0}\u{F1CB5}','rang','money'] },
+  { cp:'F1CB8', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.', audioId:'l', word:null },
+  { cp:'F1CB9', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.', audioId:'h', word:['\u{F1CB9}\u{F1CA0}\u{F1CB2}\u{F1CA0}','hama','love / affection'] },
+  { cp:'F1CBA', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.', audioId:'y', word:['\u{F1CBA}\u{F1CA0}\u{F1CA7}\u{F1CA2}\u{F1CB7}\u{F1CA2}','yapiri','the script name'] },
+  { cp:'F1CBB', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.', audioId:'w', word:['\u{F1CBB}\u{F1CA0}\u{F1CB9}','wah','bamboo'] },
 ];
 const LOANWORD = [
-  { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.' },
-  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.' },
+  { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.', audioId:'v', word:null },
+  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:null },
 ];
+// kokname = the Kokborok word for the number itself (confirmed source: Animesh Debbarma).
 const NUMERALS = [
-  { cp:'F1CC0', roman:'0', ipa:'', name:'Zero',  desc:'Yapiri numeral zero.' },
-  { cp:'F1CC1', roman:'1', ipa:'', name:'One',   desc:'Yapiri numeral one.' },
-  { cp:'F1CC2', roman:'2', ipa:'', name:'Two',   desc:'Yapiri numeral two.' },
-  { cp:'F1CC3', roman:'3', ipa:'', name:'Three', desc:'Yapiri numeral three.' },
-  { cp:'F1CC4', roman:'4', ipa:'', name:'Four',  desc:'Yapiri numeral four.' },
-  { cp:'F1CC5', roman:'5', ipa:'', name:'Five',  desc:'Yapiri numeral five.' },
-  { cp:'F1CC6', roman:'6', ipa:'', name:'Six',   desc:'Yapiri numeral six.' },
-  { cp:'F1CC7', roman:'7', ipa:'', name:'Seven', desc:'Yapiri numeral seven.' },
-  { cp:'F1CC8', roman:'8', ipa:'', name:'Eight', desc:'Yapiri numeral eight.' },
-  { cp:'F1CC9', roman:'9', ipa:'', name:'Nine',  desc:'Yapiri numeral nine.' },
+  { cp:'F1CC0', roman:'0', ipa:'', name:'Zero',  desc:'Yapiri numeral zero.',  audioId:'num0', kokname:'bukcha' },
+  { cp:'F1CC1', roman:'1', ipa:'', name:'One',   desc:'Yapiri numeral one.',   audioId:'num1', kokname:'sa' },
+  { cp:'F1CC2', roman:'2', ipa:'', name:'Two',   desc:'Yapiri numeral two.',   audioId:'num2', kokname:'nwi' },
+  { cp:'F1CC3', roman:'3', ipa:'', name:'Three', desc:'Yapiri numeral three.', audioId:'num3', kokname:'tham' },
+  { cp:'F1CC4', roman:'4', ipa:'', name:'Four',  desc:'Yapiri numeral four.',  audioId:'num4', kokname:'brwi' },
+  { cp:'F1CC5', roman:'5', ipa:'', name:'Five',  desc:'Yapiri numeral five.',  audioId:'num5', kokname:'ba' },
+  { cp:'F1CC6', roman:'6', ipa:'', name:'Six',   desc:'Yapiri numeral six.',   audioId:'num6', kokname:'dok' },
+  { cp:'F1CC7', roman:'7', ipa:'', name:'Seven', desc:'Yapiri numeral seven.', audioId:'num7', kokname:'sni' },
+  { cp:'F1CC8', roman:'8', ipa:'', name:'Eight', desc:'Yapiri numeral eight.', audioId:'num8', kokname:'char' },
+  { cp:'F1CC9', roman:'9', ipa:'', name:'Nine',  desc:'Yapiri numeral nine.',  audioId:'num9', kokname:'chuku' },
 ];
 const PUNCT = [
-  { cp:'F1CCB', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.' },
-  { cp:'F1CCC', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.' },
-  { cp:'F1CCD', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.' },
-  { cp:'F1CCE', roman:'"',  ipa:'', name:'Quotation mark',desc:'Marks quoted speech.' },
-  { cp:'F1CCF', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.' },
-  { cp:'F1CD1', roman:'◌́', ipa:'/◌́/', name:'High tone mark', desc:'Combining diacritic — sits above a base character to mark high tone, which is phonemically contrastive in Kokborok. U+F1CD1.' },
+  { cp:'F1CCB', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.', audioId:null },
+  { cp:'F1CCC', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.', audioId:null },
+  { cp:'F1CCD', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.', audioId:null },
+  { cp:'F1CCE', roman:'"',  ipa:'', name:'Quotation mark',desc:'Marks quoted speech.', audioId:null },
+  { cp:'F1CCF', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.', audioId:null },
+  { cp:'F1CD1', roman:'◌́', ipa:'/◌́/', name:'High tone mark', desc:'Combining diacritic — sits above a base character to mark high tone, which is phonemically contrastive in Kokborok. U+F1CD1.', audioId:null },
 ];
 
 window.CHAR_DATA = [
@@ -2080,6 +2312,48 @@ function cps(...hexes) { return hexes.map(cp).join(''); }
 const REFERENCE_CHARS = [...VOWELS, ...CONSONANTS, ...LOANWORD, ...NUMERALS, ...PUNCT];
 
 let activeCard = null;
+
+// ── AUDIO: file-first, TTS fallback ──
+// audioId maps to assets/audio/{audioId}.mp3 (not yet recorded for any character).
+// Until a file exists at that path, the button uses browser speech synthesis as a
+// rough approximation only — flagged clearly in the UI so users don't mistake it
+// for verified pronunciation.
+function playCharAudio(ch, btn, labelEl, noteEl) {
+  if (!ch.audioId) return;
+  const src = 'assets/audio/' + ch.audioId + '.mp3';
+  const audio = new Audio(src);
+  btn.disabled = true;
+  const original = labelEl.textContent;
+  labelEl.textContent = 'Playing…';
+  audio.addEventListener('ended', () => { btn.disabled = false; labelEl.textContent = original; });
+  audio.addEventListener('error', () => {
+    // No recorded file yet — fall back to browser TTS.
+    btn.disabled = false;
+    labelEl.textContent = original;
+    if (window.speechSynthesis) {
+      const utter = new SpeechSynthesisUtterance(ch.roman || ch.name);
+      utter.rate = 0.8;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+      if (noteEl) noteEl.textContent = 'Approximate voice (recording not yet available)';
+    } else if (noteEl) {
+      noteEl.textContent = 'Audio not available in this browser';
+    }
+  });
+  audio.play().catch(() => { /* error listener above handles fallback */ });
+}
+
+function renderExampleRow(containerId, example) {
+  const row = document.getElementById(containerId);
+  if (!row) return;
+  if (!example) {
+    row.innerHTML = '<span class="ex-gloss detail-example-empty">Example coming soon.</span>';
+    return;
+  }
+  const [yap, rom, eng] = example;
+  row.innerHTML = `<span class="ex-glyphs">${yap}</span><span class="ex-roman-val">${rom}</span><span class="ex-gloss">${eng}</span>`;
+}
+
 function showDetail(ch, card) {
   const panel = document.getElementById('char-detail');
   if (activeCard === card && panel.classList.contains('visible')) {
@@ -2097,6 +2371,41 @@ function showDetail(ch, card) {
   document.getElementById('detail-roman').textContent = ch.roman;
   document.getElementById('detail-ipa').textContent = ch.ipa || '—';
   document.getElementById('detail-cp').textContent = 'U+' + ch.cp;
+
+  // Numeral Kokborok name (only for the Numerals group)
+  const numeralNameEl = document.getElementById('detail-numeral-name');
+  if (ch.kokname) {
+    numeralNameEl.textContent = 'Kokborok: ' + ch.kokname;
+    numeralNameEl.style.display = 'block';
+  } else {
+    numeralNameEl.style.display = 'none';
+  }
+
+  // Audio button
+  const audioBtn = document.getElementById('detail-audio-btn');
+  const audioLabel = document.getElementById('detail-audio-label');
+  const audioNote = document.getElementById('detail-audio-note');
+  audioNote.textContent = '';
+  if (ch.audioId) {
+    audioBtn.disabled = false;
+    audioLabel.textContent = 'Play Pronunciation';
+    audioBtn.onclick = () => playCharAudio(ch, audioBtn, audioLabel, audioNote);
+  } else {
+    audioBtn.disabled = true;
+    audioLabel.textContent = 'No Audio for This Mark';
+    audioBtn.onclick = null;
+  }
+
+  // Word / sentence examples
+  renderExampleRow('detail-word-row', ch.word || null);
+  const sentenceBlock = document.getElementById('detail-sentence-block');
+  if (ch.sentence) {
+    sentenceBlock.style.display = 'block';
+    renderExampleRow('detail-sentence-row', ch.sentence);
+  } else {
+    sentenceBlock.style.display = 'none';
+  }
+
   panel.classList.add('visible');
   setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
 }
@@ -2215,6 +2524,35 @@ document.querySelectorAll('.guided-lesson').forEach((panel, idx) => {
 // Restore saved lesson position on load (clamp to valid range)
 if (activeGuidedLesson >= TOTAL_LESSONS) activeGuidedLesson = 0;
 updateGuidedProgress();
+
+// ── LESSON 06: Pairs Recognition drill ──
+// Static fallback glyphs are already in the HTML (k vs kh). JS only rotates pairs on click.
+(function initPairsDrill() {
+  const LESSON_PAIRS = [
+    ['k', 'kh', 'Unaspirated k vs aspirated kh'],
+    ['t', 'th', 'Unaspirated t vs aspirated th'],
+    ['p', 'ph', 'Unaspirated p vs aspirated ph'],
+    ['n', "n'", "Plain n vs n-prime (used only in in' and in'he)"],
+    ['n', 'ng', 'Dental n vs velar nasal ng'],
+  ];
+  const ALL_CHARS = (window.CHAR_DATA || []);
+  function findByRoman(r) { return ALL_CHARS.find(c => c.roman === r); }
+  function glyphOf(c) { return c ? String.fromCodePoint(typeof c.cp === 'number' ? c.cp : parseInt(c.cp, 16)) : ''; }
+
+  function setPairsDrill() {
+    const left = document.getElementById('lesson-pairs-left');
+    const right = document.getElementById('lesson-pairs-right');
+    const note = document.getElementById('lesson-pairs-note');
+    if (!left || !right || !note) return;
+    const p = LESSON_PAIRS[Math.floor(Math.random() * LESSON_PAIRS.length)];
+    const a = findByRoman(p[0]), b = findByRoman(p[1]);
+    if (a) left.textContent = glyphOf(a);
+    if (b) right.textContent = glyphOf(b);
+    note.textContent = p[2];
+  }
+
+  document.getElementById('lesson-pairs-next')?.addEventListener('click', setPairsDrill);
+})();
 
 
 
@@ -2372,9 +2710,20 @@ if (!sessionId) {
 function updateConsentIndicator() {
   const ind = document.getElementById('consent-indicator');
   const txt = document.getElementById('ci-text');
-  if (!ind || !txt) return;
-  ind.className = 'consent-indicator ' + (consentGiven ? 'contributing' : 'not-contributing');
-  txt.textContent = consentGiven ? 'Contributing to corpus' : 'Not contributing';
+  const submitLabel = document.getElementById('btn-submit-label');
+  const stateNote = document.getElementById('consent-state-note');
+  if (ind && txt) {
+    ind.className = 'consent-indicator ' + (consentGiven ? 'contributing' : 'not-contributing');
+    txt.textContent = consentGiven ? 'Contributing to corpus' : 'Not contributing';
+  }
+  if (submitLabel) {
+    submitLabel.textContent = consentGiven ? 'Submit & Contribute' : 'Submit (Not Contributing)';
+  }
+  if (stateNote) {
+    stateNote.textContent = consentGiven
+      ? 'This translation will be saved anonymously to the Kokborok corpus.'
+      : 'This translation will only be saved for this session, not added to the corpus.';
+  }
 }
 
 const consentBanner = document.getElementById('consent-banner');
@@ -2576,6 +2925,10 @@ async function submitTranslation() {
     submittedIds.add(s.id);
     submittedCount++;
     updateProgress();
+    if (contributed && !sessionStorage.getItem('corpus_sent_' + s.id)) {
+      sessionStorage.setItem('corpus_sent_' + s.id, '1');
+      incrementCorpusCounter();
+    }
     showFeedback(
       contributed ? 'Contributed to the Kokborok corpus — thank you. ✓' :
       queued ? 'Saved locally. Corpus contribution will need a retry.' :
