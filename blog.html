@@ -125,9 +125,30 @@
   /* FEATURED POST */
   .featured-post { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(196,180,154,0.12); margin-bottom:3rem; background:rgba(44,36,22,0.3); transition:border-color 0.3s; }
   .featured-post:hover { border-color:rgba(201,146,42,0.3); }
-  .featured-visual { background-image:linear-gradient(to right, rgba(26,18,9,0.2), rgba(26,18,9,0.55)), url('assets/images/tripura-hills-hero.jpg'); background-size:cover; background-position:center 40%; display:flex; align-items:center; justify-content:center; min-height:320px; position:relative; overflow:hidden; border-right:1px solid rgba(196,180,154,0.08); }
-  .featured-visual::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 50%,rgba(201,146,42,0.08) 0%,transparent 70%); }
-  .featured-glyph { font-family:'Yapiri',serif; font-size:8rem; color:rgba(201,146,42,0.15); line-height:1; position:relative; z-index:1; }
+ 
+  .featured-visual {
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:320px;
+  position:relative;
+  overflow:hidden;
+  border-right:1px solid rgba(196,180,154,0.08);
+}
+
+.featured-visual.milestones-image {
+  background-image:
+    linear-gradient(to right, rgba(26,18,9,0.05), rgba(26,18,9,0.18)),
+    url('assets/images/blog/two-milestones-yapiri.jpg');
+}
+
+.featured-visual.ucsur-image {
+  background-image:
+    linear-gradient(to right, rgba(26,18,9,0.05), rgba(26,18,9,0.18)),
+    url('assets/images/blog/yapiri-v2-ucsur-registration.jpg');
+}
   .featured-body { padding:3rem; display:flex; flex-direction:column; justify-content:space-between; }
   .post-tag { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--terracotta); margin-bottom:1rem; display:inline-block; }
   .featured-tag { margin-bottom:0.5rem; }
@@ -244,9 +265,7 @@
 
   <!-- FEATURED POST -->
   <article class="featured-post reveal" data-category="community">
-      <div class="featured-visual">
-        <span class="featured-glyph">&#xF1CA0;&#xF1CB6;</span>
-      </div>
+      <div class="featured-visual milestones-image"></div>
       <div class="featured-body">
         <div>
           <span class="post-tag featured-tag">Community</span>
@@ -263,9 +282,7 @@ in One Month</h2>
     </article>
    
   <article class="featured-post reveal" data-category="community">
-    <div class="featured-visual">
-      <span class="featured-glyph">&#xF1CA0;&#xF1CB6;</span>
-    </div>
+    <div class="featured-visual ucsur-image"></div>
     <div class="featured-body">
       <div>
         <span class="post-tag featured-tag">Community</span>
