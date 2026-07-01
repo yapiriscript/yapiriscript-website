@@ -1210,6 +1210,103 @@
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .reveal { opacity: 1; transform: none; }
   }
+
+  /* ── SENTENCE SLIDESHOW (Lesson 10) ── */
+  .sentence-slide-wrap {
+    border: 1px solid rgba(196,180,154,0.14);
+    background: rgba(8,6,3,0.32);
+    position: relative;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .sentence-slide-body {
+    padding: 1.4rem 1.5rem 1rem;
+    flex: 1;
+  }
+  .sentence-slide-word-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .sentence-slide-word-badge .badge-word {
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    font-size: 0.65rem;
+    text-transform: none;
+  }
+  .sentence-slide-yapiri {
+    font-family: 'Yapiri', serif;
+    font-size: 1.6rem;
+    color: var(--parchment);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+  }
+  .sentence-slide-roman {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+  .sentence-slide-english {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--stone);
+    line-height: 1.55;
+  }
+  .sentence-slide-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1.5rem;
+    border-top: 1px solid rgba(196,180,154,0.1);
+    background: rgba(0,0,0,0.15);
+  }
+  .sentence-slide-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--stone);
+  }
+  .sentence-slide-counter strong {
+    color: var(--gold-light);
+  }
+  .sentence-slide-nav {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .slide-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(196,180,154,0.2);
+    color: var(--stone-light);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    line-height: 1;
+  }
+  .slide-btn:hover {
+    border-color: rgba(201,146,42,0.45);
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.06);
+  }
+  .slide-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 </style>
 </head>
 <body>
@@ -1857,25 +1954,53 @@
         <div class="guided-lesson-head">
           <p class="lesson-kicker">Lesson 10 &middot; Useful words</p>
           <h3>Everyday Pronouns and Core Words</h3>
-          <p class="guided-lesson-intro">This lesson will turn the characters and rules you’ve learned into everyday, practical Kokborok — pronouns first, then a core vocabulary set. Content for this lesson is being compiled.</p>
+          <p class="guided-lesson-intro">Everyday Kokborok in 51 words — greetings, food, actions, movement, and descriptors. Use these as your daily anchors while everything from Lessons 01–9 falls into place.</p>
         </div>
         <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>This lesson is being prepared with a confirmed pronoun and vocabulary set.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>It will turn the characters and rules from earlier lessons into real words.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Check back soon — content is in progress.</p></div></div>
+          <div class="lesson-focus-grid">
+            <div class="lesson-focus-card"><span>Focus 1</span><p>Use these words in daily situations — greetings first, then actions, then descriptors.</p></div>
+            <div class="lesson-focus-card"><span>Focus 2</span><p>Read the Yapiri form, check the Roman spelling, then use it in a sentence.</p></div>
+            <div class="lesson-focus-card"><span>Focus 3</span><p>The sentence column shows each word in real Kokborok context.</p></div>
+          </div>
           <div>
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div></div>
           </div>
           <div>
-            <p class="lesson-section-title">Pronoun &amp; Vocabulary Tables</p>
-            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;">This section will hold reference tables for Kokborok pronouns (subject, object, possessive, reflexive, demonstrative, interrogative, indefinite) and a core everyday-word list, in the same expandable format used elsewhere on this page. Content is being compiled and will be added here.</p>
+            <p class="lesson-section-title">Core Word List</p>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">51 everyday Kokborok words across four categories. Open each group to study the words and their meanings.</p>
+            <div class="vocab-reference-stack">
+              <details class="vocab-details" open><summary>Greetings &amp; Daily Phrases<span>6 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Khulumkha</td><td class="vocab-roman" style="color:var(--parchment);">Hello</td></tr><tr><td class="vocab-roman">Hambai</td><td class="vocab-roman" style="color:var(--parchment);">Thanks</td></tr><tr><td class="vocab-roman">Phung Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good morning</td></tr><tr><td class="vocab-roman">Dibor Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good afternoon</td></tr><tr><td class="vocab-roman">Sairik Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good eveving</td></tr><tr><td class="vocab-roman">Hor Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good night</td></tr></tbody></table></div></div></details>
+<details class="vocab-details"><summary>Food &amp; Everyday Words<span>11 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Mai</td><td class="vocab-roman" style="color:var(--parchment);">Rice</td></tr><tr><td class="vocab-roman">Mairung</td><td class="vocab-roman" style="color:var(--parchment);">Rice grains</td></tr><tr><td class="vocab-roman">Chahdi</td><td class="vocab-roman" style="color:var(--parchment);">Eat</td></tr><tr><td class="vocab-roman">Nungdi</td><td class="vocab-roman" style="color:var(--parchment);">Drink</td></tr><tr><td class="vocab-roman">Khibdi</td><td class="vocab-roman" style="color:var(--parchment);">Throw/Leave</td></tr><tr><td class="vocab-roman">Tisadi</td><td class="vocab-roman" style="color:var(--parchment);">Lift</td></tr><tr><td class="vocab-roman">Tubdi</td><td class="vocab-roman" style="color:var(--parchment);">Bring</td></tr><tr><td class="vocab-roman">Romdi</td><td class="vocab-roman" style="color:var(--parchment);">Hold</td></tr><tr><td class="vocab-roman">Yachakdi</td><td class="vocab-roman" style="color:var(--parchment);">Catch</td></tr><tr><td class="vocab-roman">Kandi</td><td class="vocab-roman" style="color:var(--parchment);">Wear</td></tr><tr><td class="vocab-roman">Richum</td><td class="vocab-roman" style="color:var(--parchment);">Clothes/Wearables</td></tr></tbody></table></div></div></details>
+<details class="vocab-details"><summary>Actions &amp; Movement<span>22 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Risa</td><td class="vocab-roman" style="color:var(--parchment);">Traditional attire</td></tr><tr><td class="vocab-roman">Rignai</td><td class="vocab-roman" style="color:var(--parchment);">Traditional attire</td></tr><tr><td class="vocab-roman">Ri</td><td class="vocab-roman" style="color:var(--parchment);">Cloth</td></tr><tr><td class="vocab-roman">Ridi</td><td class="vocab-roman" style="color:var(--parchment);">Give</td></tr><tr><td class="vocab-roman">Hordi</td><td class="vocab-roman" style="color:var(--parchment);">Send/Pass</td></tr><tr><td class="vocab-roman">Nahardi</td><td class="vocab-roman" style="color:var(--parchment);">Look</td></tr><tr><td class="vocab-roman">Himdi</td><td class="vocab-roman" style="color:var(--parchment);">Walk</td></tr><tr><td class="vocab-roman">Rwchabdi</td><td class="vocab-roman" style="color:var(--parchment);">Sing</td></tr><tr><td class="vocab-roman">Mwsadi</td><td class="vocab-roman" style="color:var(--parchment);">Dance</td></tr><tr><td class="vocab-roman">Mwnwidi</td><td class="vocab-roman" style="color:var(--parchment);">Smile</td></tr><tr><td class="vocab-roman">Kapdi</td><td class="vocab-roman" style="color:var(--parchment);">Cry</td></tr><tr><td class="vocab-roman">Wansukdi</td><td class="vocab-roman" style="color:var(--parchment);">Think</td></tr><tr><td class="vocab-roman">Karidi</td><td class="vocab-roman" style="color:var(--parchment);">Take out</td></tr><tr><td class="vocab-roman">Kaidi</td><td class="vocab-roman" style="color:var(--parchment);">To plant</td></tr><tr><td class="vocab-roman">Tungphlakha</td><td class="vocab-roman" style="color:var(--parchment);">feeling hot</td></tr><tr><td class="vocab-roman">Mai ok khwikha</td><td class="vocab-roman" style="color:var(--parchment);">feeling hungry</td></tr><tr><td class="vocab-roman">Twi Kangkha</td><td class="vocab-roman" style="color:var(--parchment);">feeling thirsty</td></tr><tr><td class="vocab-roman">Bisi Kwtal</td><td class="vocab-roman" style="color:var(--parchment);">new year</td></tr><tr><td class="vocab-roman">Ta Jolidi</td><td class="vocab-roman" style="color:var(--parchment);">don’t be angry</td></tr><tr><td class="vocab-roman">Phaidi</td><td class="vocab-roman" style="color:var(--parchment);">come</td></tr><tr><td class="vocab-roman">Thangdi</td><td class="vocab-roman" style="color:var(--parchment);">go</td></tr><tr><td class="vocab-roman">Thudi</td><td class="vocab-roman" style="color:var(--parchment);">sleep</td></tr></tbody></table></div></div></details>
+<details class="vocab-details"><summary>States &amp; Descriptors<span>12 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Khorang</td><td class="vocab-roman" style="color:var(--parchment);">sound</td></tr><tr><td class="vocab-roman">Mwchang</td><td class="vocab-roman" style="color:var(--parchment);">suit</td></tr><tr><td class="vocab-roman">Kwsrang</td><td class="vocab-roman" style="color:var(--parchment);">energetic</td></tr><tr><td class="vocab-roman">Sal Kwchang</td><td class="vocab-roman" style="color:var(--parchment);">cool weather</td></tr><tr><td class="vocab-roman">Lachio</td><td class="vocab-roman" style="color:var(--parchment);">shy</td></tr><tr><td class="vocab-roman">Kaham</td><td class="vocab-roman" style="color:var(--parchment);">good</td></tr><tr><td class="vocab-roman">Hamya</td><td class="vocab-roman" style="color:var(--parchment);">bad</td></tr><tr><td class="vocab-roman">Chaya</td><td class="vocab-roman" style="color:var(--parchment);">wrong</td></tr><tr><td class="vocab-roman">Chahya</td><td class="vocab-roman" style="color:var(--parchment);">won’t eat</td></tr><tr><td class="vocab-roman">Bwskang</td><td class="vocab-roman" style="color:var(--parchment);">forward</td></tr><tr><td class="vocab-roman">Ukolok</td><td class="vocab-roman" style="color:var(--parchment);">back/behind</td></tr><tr><td class="vocab-roman">Hainohai</td><td class="vocab-roman" style="color:var(--parchment);">again</td></tr></tbody></table></div></div></details>
+            </div>
           </div>
-          <div>
-            <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-meaning detail-example-empty" style="font-style:normal;">Examples coming soon — word list in progress.</span></div></div>
+                    <div>
+            <p class="lesson-section-title">Sentence Examples <span style="font-family:'DM Mono',monospace;font-size:0.5rem;color:var(--terracotta);border:1px solid rgba(184,92,56,0.4);padding:0.15rem 0.4rem;margin-left:0.5rem;font-weight:400;font-style:normal;letter-spacing:0.1em;">51 sentences</span></p>
+            <div class="sentence-slide-wrap" id="l10-slide-wrap">
+              <div class="sentence-slide-body">
+                <p class="sentence-slide-word-badge">Word &nbsp;<span class="badge-word" id="l10-slide-word"></span></p>
+                <p class="sentence-slide-yapiri" id="l10-slide-yapiri"></p>
+                <p class="sentence-slide-roman" id="l10-slide-roman"></p>
+                <p class="sentence-slide-english" id="l10-slide-english"></p>
+              </div>
+              <div class="sentence-slide-footer">
+                <span class="sentence-slide-counter"><strong id="l10-slide-num">1</strong> / 51</span>
+                <div class="sentence-slide-nav">
+                  <button class="slide-btn" id="l10-slide-prev" title="Previous sentence" disabled>&#8592;</button>
+                  <button class="slide-btn" id="l10-slide-next" title="Next sentence">&#8594;</button>
+                </div>
+              </div>
+            </div>
+          </div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲹󱲫󱲢󱳋 󱲨󱲠 󱲸󱲠󱲰󱲢󱲫󱲢󱳌</span><span class="ex-roman">Chahdi, ta lachidi.</span><span class="ex-meaning">Eat, don’t feel shy.</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲤󱲷󱲤󱲩 󱲩󱲠󱲹󱲠󱲲 󱲳󱲥󱲵󱳌</span><span class="ex-roman">Borok kaham nwng.</span><span class="ex-meaning">You’re a good person.</span></div>
+            </div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question detail-example-empty" style="font-style:normal;">Quick checks for this lesson will be added once the vocabulary set is finalized.</p></div></div>
+            <div class="guided-checks">
+              <div class="quick-check"><p class="quick-check-question">Which Kokborok word means Thanks?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Hambai</button><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Khulumkha</button><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Kaham</button></div><div class="quick-check-feedback" id="check-core-words-0"></div></div><div class="quick-check"><p class="quick-check-question">What does Kaham mean?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Good</button><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Rice</button><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Go</button></div><div class="quick-check-feedback" id="check-core-words-1"></div></div>
+            </div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
@@ -2256,39 +2381,39 @@ window._fs = { collection, addDoc, serverTimestamp, query, orderBy, limit, getDo
 // audioId is a stable key for future recorded audio files (assets/audio/{audioId}.mp3).
 // Until recordings exist, the Play button falls back to browser text-to-speech.
 const VOWELS = [
-  { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.', audioId:'a', word:['\u{F1CA0}\u{F1CB3}\u{F1CC2}','ang','I / me'] },
-  { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.', audioId:'e', word:null },
-  { cp:'F1CA2', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.', audioId:'i', word:['\u{F1CA2}\u{F1CB3}\u{F1CB4}',"in'",'yes'] },
-  { cp:'F1CA3', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.', audioId:'u', word:['\u{F1CA3}\u{F1CA9}\u{F1CB3}\u{F1CA4}','ukno','sky'] },
-  { cp:'F1CA4', roman:'o',  ipa:'/o/',  name:'O',     desc:'Mid back rounded vowel.', audioId:'o', word:['\u{F1CAA}\u{F1CA4}\u{F1CB7}\u{F1CA4}\u{F1CA9}','borok','people / Borok'] },
-  { cp:'F1CA5', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.', audioId:'schwa', word:['\u{F1CA8}\u{F1CA5}\u{F1CA2}','twi','water'] },
+  { cp:'F1CA0', roman:'a',  ipa:'/a/',  name:'A',     desc:'Open central vowel, the most common in Kokborok vocabulary.', audioId:'a', word:['󱲠󱲵','Ang','I am'], sentence:['󱲠󱲵 󱲨󱲢󱲧󱲷󱲠󱲶󱲠󱳌','Ang Tiprasa.','I am Tiprasa.'] },
+  { cp:'F1CA1', roman:'e',  ipa:'/e/',  name:'E',     desc:'Mid front vowel.', audioId:'e', word:['󱲡󱲲󱲠󱲵','Emang','Dream'], sentence:['󱲠󱲳󱲢 󱲡󱲲󱲠󱲵 󱲩󱲣󱲪󱲣󱲢 󱲻󱲵󱲮󱲣󱲳󱳌','Ani emang kubui wngthun.','Let my dream come true.'] },
+  { cp:'F1CA2', roman:'i',  ipa:'/i/',  name:'I',     desc:'High front vowel.', audioId:'i', word:['󱲢󱲶󱲷󱲢','Isri','Queen'], sentence:['󱲳󱲥󱲵 󱲠󱲳󱲢 󱲢󱲶󱲷󱲢󱳌','Nwng ani Isri.','You’re my queen.'] },
+  { cp:'F1CA3', roman:'u',  ipa:'/u/',  name:'U',     desc:'High back rounded vowel.', audioId:'u', word:['󱲣󱲭󱲢󱲸','Uphil','Turn'], sentence:['󱲺󱲠󱲵 󱲣󱲭󱲢󱲸 󱲫󱲢󱳌','Yang uphil di.','Turn this side.'] },
+  { cp:'F1CA4', roman:'o',  ipa:'/o/',  name:'O',     desc:'Mid back rounded vowel.', audioId:'o', word:['󱲤󱲵󱲯󱲤󱲷󱲫󱲢','Ongkhordi','Come out'], sentence:['󱲫󱲠󱲩󱲨󱲢 󱲤󱲵󱲯󱲤󱲷󱲫󱲢󱳌','Dakti ongkhordi.','Come out fast.'] },
+  { cp:'F1CA5', roman:'ə',  ipa:'/ə/',  name:'Schwa', desc:'Mid central vowel — phonemically distinct in Kokborok, not a reduced vowel.', audioId:'schwa', word:['󱲻󱲠󱲨󱲥󱲢','Watəi','Rain'], sentence:['󱲨󱲢󱲳󱲢 󱲻󱲠󱲨󱲥󱲢 󱲻󱲠󱲳󱲠󱲢󱳌','Tini watəi wanai.','Today it will rain.'] },
 ];
 const CONSONANTS = [
-  { cp:'F1CA7', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.', audioId:'p', word:null },
-  { cp:'F1CA8', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.', audioId:'t', word:['\u{F1CA8}\u{F1CA2}\u{F1CB3}\u{F1CA0}','tina','mother'] },
-  { cp:'F1CA9', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.', audioId:'k', word:['\u{F1CA9}\u{F1CA0}\u{F1CB3}\u{F1CA0}','kana','ear'] },
-  { cp:'F1CAA', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.', audioId:'b', word:['\u{F1CAA}\u{F1CA3}\u{F1CB2}\u{F1CA3}\u{F1CB5}','bumung','name'] },
-  { cp:'F1CAB', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.', audioId:'d', word:null },
-  { cp:'F1CAC', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.', audioId:'g', word:null },
-  { cp:'F1CAD', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop. Aspiration is phonemically contrastive.', audioId:'ph', word:null },
-  { cp:'F1CAE', roman:'th', ipa:'/tʰ/', name:'Tha', desc:'Aspirated voiceless dental stop.', audioId:'th', word:null },
-  { cp:'F1CAF', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop.', audioId:'kh', word:['\u{F1CAF}\u{F1CA3}\u{F1CB2}','khum','flower'] },
-  { cp:'F1CB0', roman:'ch', ipa:'/tɕ/', name:'Cha', desc:'Voiceless palatal affricate.', audioId:'ch', word:['\u{F1CB0}\u{F1CA0}\u{F1CB3}\u{F1CA0}','chana','to know'] },
-  { cp:'F1CB1', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.', audioId:'j', word:['\u{F1CB1}\u{F1CA0}\u{F1CBB}\u{F1CA0}','jawa','to go'] },
-  { cp:'F1CB2', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.', audioId:'m', word:['\u{F1CB2}\u{F1CA0}\u{F1CA2}','mai','rice'] },
-  { cp:'F1CB3', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.', audioId:'n', word:['\u{F1CB3}\u{F1CA4}\u{F1CA9}','nok','house'] },
-  { cp:'F1CB4', roman:"n'", ipa:'/n/',  name:"N-prime", desc:"Orthographic n-prime — used exclusively in in' (yes) and in'he (no) per TTAADC convention.", audioId:'nprime', word:['\u{F1CA2}\u{F1CB3}\u{F1CB4}\u{F1CB9}\u{F1CA1}',"in'he",'no'] },
-  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a common syllable in many Kokborok words.', audioId:'ng', word:['\u{F1CB5}\u{F1CA0}','nga','velar nasal syllable: ng + a'] },
-  { cp:'F1CB6', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.', audioId:'s', word:['\u{F1CB6}\u{F1CA0}\u{F1CA9}\u{F1CA0}','saka','vegetable'] },
-  { cp:'F1CB7', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.', audioId:'r', word:['\u{F1CB7}\u{F1CA0}\u{F1CB5}','rang','money'] },
-  { cp:'F1CB8', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.', audioId:'l', word:null },
-  { cp:'F1CB9', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.', audioId:'h', word:['\u{F1CB9}\u{F1CA0}\u{F1CB2}\u{F1CA0}','hama','love / affection'] },
-  { cp:'F1CBA', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.', audioId:'y', word:['\u{F1CBA}\u{F1CA0}\u{F1CA7}\u{F1CA2}\u{F1CB7}\u{F1CA2}','yapiri','the script name'] },
-  { cp:'F1CBB', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.', audioId:'w', word:['\u{F1CBB}\u{F1CA0}\u{F1CB9}','wah','bamboo'] },
+  { cp:'F1CA7', roman:'p',  ipa:'/p/',  name:'Pa',  desc:'Voiceless bilabial stop.', audioId:'p', word:['󱲧󱲤󱲩󱲶󱲣󱲯󱲠','Poksukha','Completely Forgot'], sentence:['󱲳󱲥󱲵 󱲶󱲠󱲲󱲠󱲳󱲢 󱲩󱲤󱲩 󱲧󱲤󱲩󱲶󱲣󱲯󱲠 󱲠󱲵󱳌','Nwng samani kok poksukha ang.','I completely forgot what you said.'] },
+  { cp:'F1CA8', roman:'t',  ipa:'/t/',  name:'Ta',  desc:'Voiceless dental stop.', audioId:'t', word:['󱲨󱲠󱲪󱲣󱲩','Tabuk','Now'], sentence:['󱲨󱲠󱲪󱲣󱲩 󱲪󱲤󱲷󱲤 󱲳󱲥󱲵󱳏','Tabuk boro nwng?','Where are you now?'] },
+  { cp:'F1CA9', roman:'k',  ipa:'/k/',  name:'Ka',  desc:'Voiceless velar stop.', audioId:'k', word:['󱲩󱲢󱲭󱲢󱲸󱲫󱲢','Kiphildi','Return'], sentence:['󱲨󱲢󱲳󱲢󱲳󱲤 󱲩󱲢󱲭󱲢󱲸󱲫󱲢󱳌','Tinino kiphildi.','Return today itself.'] },
+  { cp:'F1CAA', roman:'b',  ipa:'/b/',  name:'Ba',  desc:'Voiced bilabial stop.', audioId:'b', word:['󱲪󱲤󱲸󱲤󱲵','Bolong','Jungle'], sentence:['󱲪󱲤󱲸󱲤󱲵 󱲩󱲣󱲮󱲣󱲩󱲬󱲤 󱲶󱲠󱲢󱲰󱲣󱲵 󱲨󱲠 󱲮󱲠󱲵󱲫󱲢󱳌','Bolong kuthukgo saichung ta thangdi.','Don’t go alone into the deep jungle.'] },
+  { cp:'F1CAB', roman:'d',  ipa:'/d/',  name:'Da',  desc:'Voiced dental stop.', audioId:'d', word:['󱲫󱲤󱲹󱲫󱲢','Dohdi','Hurry up'], sentence:['󱲫󱲤󱲹󱲫󱲢󱳍 󱲲󱲠󱲸󱲯󱲣󱲵 󱲶󱲥󱲸󱲠󱲧󱲳󱲠 󱲳󱲠󱲵󱲤 󱲰󱲥󱲵󱳌','Dohdi! malkhung swlapna nango chwng.','Hurry up! We need to catch up with the vehicle.'] },
+  { cp:'F1CAC', roman:'g',  ipa:'/g/',  name:'Ga',  desc:'Voiced velar stop.', audioId:'g', word:['󱲬󱲠󱲳󱲨󱲢󱲳󱲤󱲩','Gantinok','Kitchen'], sentence:['󱲬󱲠󱲳󱲨󱲢󱲳󱲤󱲩 󱲳󱲠󱲢󱲮󱲤󱲩 󱲯󱲠 󱲳󱲤󱲷󱲤󱲩󱲳󱲢󱳌','Gantinok naithok kha norokni.','Your kitchen is beautiful.'] },
+  { cp:'F1CAD', roman:'ph', ipa:'/pʰ/', name:'Pha', desc:'Aspirated voiceless bilabial stop. Aspiration is phonemically contrastive.', audioId:'ph', word:['󱲭󱲠󱲢󱲫󱲢','Phaidi','Come'], sentence:['󱲭󱲠󱲢󱲫󱲢 󱲠󱲵󱲪󱲠󱲢󱳌','Phaidi angbai.','Come with me.'] },
+  { cp:'F1CAE', roman:'th', ipa:'/tʰ/', name:'Tha', desc:'Aspirated voiceless dental stop.', audioId:'th', word:['󱲮󱲠󱲵󱲳󱲠󱲢','Thangnai','Will go'], sentence:['󱲠󱲵󱲪󱲤 󱲮󱲠󱲵󱲳󱲠󱲢󱳌','Angbo thangnai.','I will also go.'] },
+  { cp:'F1CAF', roman:'kh', ipa:'/kʰ/', name:'Kha', desc:'Aspirated voiceless velar stop.', audioId:'kh', word:['󱲯󱲠󱲢󱲷󱲤󱲩','Khairok','Pity/Sympathy'], sentence:['󱲯󱲠󱲢󱲷󱲤󱲩 󱲫󱲢󱳌','Khairok di.','Have pity.'] },
+  { cp:'F1CB0', roman:'ch', ipa:'/tɕ/', name:'Cha', desc:'Voiceless palatal affricate.', audioId:'ch', word:['󱲰󱲠󱲢󱲨󱲤󱲩','Chaitok','Try'], sentence:['󱲠󱲵 󱲰󱲠󱲢󱲨󱲤󱲩 󱲨󱲤󱲵󱲤󱳌','Ang chaitok tongo.','I am trying.'] },
+  { cp:'F1CB1', roman:'j',  ipa:'/dʑ/', name:'Ja',  desc:'Voiced palatal affricate.', audioId:'j', word:['󱲱󱲥󱲵󱲱󱲠󱲸','Jwngjal','Problem/Trouble'], sentence:['󱲱󱲥󱲵󱲱󱲠󱲸󱲤 󱲨󱲠 󱲩󱲥󱲸󱲠󱲢󱲫󱲢󱳌','Jwngjalo ta kwlaidi.','Don’t get into trouble.'] },
+  { cp:'F1CB2', roman:'m',  ipa:'/m/',  name:'Ma',  desc:'Bilabial nasal.', audioId:'m', word:['󱲲󱲣󱲢󱲨󱲤','Muito','Remember'], sentence:['󱲳󱲥󱲵 󱲠󱲳󱲤 󱲶󱲠󱲲󱲠󱲳󱲢 󱲩󱲤󱲩󱲷󱲤󱲩 󱲨󱲠󱲪󱲣󱲩󱲪󱲤 󱲲󱲣󱲢󱲨󱲤 󱲨󱲤󱲵󱲤󱳌','Nwng ano samani kokrok tabukbo muito tongo.','I still remember what you told me.'] },
+  { cp:'F1CB3', roman:'n',  ipa:'/n/',  name:'Na',  desc:'Dental nasal.', audioId:'n', word:['󱲳󱲠󱲵󱲺󱲠','Nangya','No need'], sentence:['󱲷󱲠󱲵 󱲷󱲢󱲳󱲠 󱲳󱲠󱲵󱲺󱲠󱳌','Rang rina nangya.','No need to pay money.'] },
+  { cp:'F1CB4', roman:"n'", ipa:'/n/',  name:"N-prime", desc:"Orthographic n-prime — used exclusively in in’ (yes) and in’he (no) per TTAADC convention.", audioId:'nprime', word:['󱲢󱲴','In’','yes'], sentence:['󱲢󱲴󱳋 󱲨󱲢󱲳󱲢 󱲭󱲠󱲢󱲳󱲠󱲢󱳌','In’, tini phainai.','Yes, will come today.'] },
+  { cp:'F1CB5', roman:'ng', ipa:'/ŋ/',  name:'Nga', desc:'Velar nasal — very common in Kokborok, including as a common syllable in many Kokborok words.', audioId:'ng', word:['󱲳󱲥󱲵','Nwng','You'], sentence:['󱲳󱲥󱲵 󱲠󱲳󱲢󱳌','Nwng ani.','You’re mine.'] },
+  { cp:'F1CB6', roman:'s',  ipa:'/s/',  name:'Sa',  desc:'Voiceless alveolar fricative.', audioId:'s', word:['󱲶󱲠󱲲󱲣󱲵','Samung','Work'], sentence:['󱲠󱲳󱲢 󱲶󱲠󱲲󱲣󱲵 󱲬󱲢󱲸󱲠󱳌','Ani samung gila.','I’ve lots of work.'] },
+  { cp:'F1CB7', roman:'r',  ipa:'/r/',  name:'Ra',  desc:'Trill or tap, common in native vocabulary.', audioId:'r', word:['󱲷󱲠󱲵󱲰󱲠󱲩','Rangchak','Gold'], sentence:['󱲷󱲠󱲵󱲰󱲠󱲩 󱲪󱲠󱲢󱲹 󱲶󱲠󱲱󱲤󱲩󱲱󱲠󱲩󱳌','Rangchak baih sajokjak.','Decorated with gold.'] },
+  { cp:'F1CB8', roman:'l',  ipa:'/l/',  name:'La',  desc:'Lateral approximant.', audioId:'l', word:['󱲸󱲠󱲢󱲪󱲣󱲲󱲠','Laibuma','Past/History'], sentence:['󱲰󱲢󱲳󱲢 󱲸󱲠󱲢󱲪󱲣󱲲󱲠 󱲨󱲠 󱲧󱲤󱲩󱲫󱲢󱳌','Chini laibuma ta pokdi.','Don’t forget our past.'] },
+  { cp:'F1CB9', roman:'h',  ipa:'/h/',  name:'Ha',  desc:'Voiceless glottal fricative — common as a suffix.', audioId:'h', word:['󱲹󱲠󱲲󱲪󱲠󱲢','Hambai','Thanks'], sentence:['󱲹󱲠󱲲󱲪󱲠󱲢 󱲳󱲤󱲳󱲤󱳍','Hambai nono!','Thank you!'] },
+  { cp:'F1CBA', roman:'y',  ipa:'/j/',  name:'Ya',  desc:'Palatal approximant. Also the initial letter of the word yapiri.', audioId:'y', word:['󱲺󱲠󱲭󱲠󱲵','Yaphang','Base'], sentence:['󱲺󱲠󱲭󱲠󱲵 󱲩󱲥󱲷󱲠󱲩 󱲹󱲢󱲳󱲯󱲡 󱲩󱲡󱲪󱲤 󱲳󱲤󱲷󱲥󱲢 󱲲󱲠󱲳󱲺󱲠󱳌','Yaphang kwrak hinkhe kebo norwi manya.','If the base is strong, nobody can remove.'] },
+  { cp:'F1CBB', roman:'w',  ipa:'/w/',  name:'Wa',  desc:'Labio-velar approximant.', audioId:'w', word:['󱲻󱲠󱲳󱲶󱲣󱲩','Wansuk','Think'], sentence:['󱲨󱲠󱲲󱲤 󱲻󱲠󱲳󱲶󱲣󱲩 󱲳󱲥󱲵󱳏','Tamo wansuk nwng?','What do you think?'] },
 ];
 const LOANWORD = [
-  { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.', audioId:'v', word:null },
-  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:null },
+  { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.', audioId:'v', word:['󱲼󱲢󱲷󱲣󱲶','Virus','Virus'], sentence:['󱲼󱲢󱲷󱲣󱲶 󱲳󱲤 󱲼󱲢󱲷󱲣󱲶 󱲹󱲥󱲳󱲥󱲢 󱲳󱲤 󱲶󱲥󱲢󱲫󱲢󱳌','Virus no virus hwnwi no swidi.','Write virus as virus only.'] },
+  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:['󱲽󱲡󱲠 󱲲󱲠󱲺󱲶','Zea Mays','Zea Mays'], sentence:['󱲲󱲤󱲬󱲤󱲫󱲠󱲲󱲳󱲢 󱲶c󱲢󱲡󱲳󱲨󱲢f󱲢c 󱲪󱲣󱲲󱲣󱲵 󱲻󱲵󱲯󱲠 󱲽󱲡󱲠 󱲲󱲠󱲺󱲶󱳌','Mogodamni scientific bumung wngkha Zea Mays.','The scientific name of corn is Zea Mays.'] },
 ];
 // kokname = the Kokborok word for the number itself (confirmed source: Animesh Debbarma).
 const NUMERALS = [
@@ -2304,11 +2429,11 @@ const NUMERALS = [
   { cp:'F1CC9', roman:'9', ipa:'', name:'Nine',  desc:'Yapiri numeral nine.',  audioId:'num9', kokname:'chuku' },
 ];
 const PUNCT = [
-  { cp:'F1CCB', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.', audioId:null },
-  { cp:'F1CCC', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.', audioId:null },
-  { cp:'F1CCD', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.', audioId:null },
-  { cp:'F1CCE', roman:'"',  ipa:'', name:'Quotation mark',desc:'Marks quoted speech.', audioId:null },
-  { cp:'F1CCF', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.', audioId:null },
+  { cp:'F1CCB', roman:',',  ipa:'', name:'Comma',         desc:'Clause and list separator.', audioId:null, sentence:['󱲩󱲥󱲶󱲷󱲠󱲵󱳋 󱲶󱲥󱲲󱲠󱲢 󱲨󱲡󱲢 󱲪󱲤󱲺󱲠󱲷 󱲮󱲠󱲵󱲳󱲠󱲢󱳌','Kəsrang, Səmai tei Boyar thangnai.','Kwsrang, Swmai and Boyar will go.'] },
+  { cp:'F1CCC', roman:'.',  ipa:'', name:'Full stop',     desc:'Sentence-final punctuation.', audioId:null, sentence:['󱲠󱲶󱲥󱲩󱲳󱲤󱳌','Aswkno.','That’s all.'] },
+  { cp:'F1CCD', roman:'!',  ipa:'', name:'Exclamation',   desc:'Marks exclamatory sentences.', audioId:null, sentence:['󱲯󱲣󱲸󱲣󱲲󱲯󱲠󱳍','Khulumkha!','Hello!'] },
+  { cp:'F1CCE', roman:'"',  ipa:'', name:'Quotation mark',desc:'Marks quoted speech.', audioId:null, sentence:['󱲩󱲤󱲩󱲲󱲣󱲵 󱲶󱲡 󱲨󱲤󱲵󱲤 “󱲱󱲤󱲷󱲠 󱲨󱲤󱲵󱲶󱲠󱲳󱲢 󱲯󱲠󱲶󱲢󱲺󱲠 󱲹󱲢󱲳󱲯󱲡 󱲲󱲥󱲳󱲠󱲩󱲬󱲤 󱲹󱲠󱲪󱲠󱲳󱲤 󱲪󱲤󱲸󱲡”󱳌','Kokmung se tongo “Jora tongsani khasiya hinkhe mwnakgo habano bole”.','There is a saying “within time if you don’t become responsible in life, you will enter darkness”.'] },
+  { cp:'F1CCF', roman:'?',  ipa:'', name:'Question mark', desc:'Marks interrogative sentences.', audioId:null, sentence:['󱲱󱲤󱲷󱲠 󱲫󱲡 󱲲󱲠󱲳󱲤 󱲳󱲥󱲵󱳏','Jora de mano nwng?','Will you have time?'] },
   { cp:'F1CD1', roman:'◌́', ipa:'/◌́/', name:'High tone mark', desc:'Combining diacritic — sits above a base character to mark high tone, which is phonemically contrastive in Kokborok. U+F1CD1.', audioId:null },
 ];
 
@@ -3292,6 +3417,105 @@ function closeMenu() {
 window.toggleMenu = toggleMenu;
 window.closeMenu = closeMenu;
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+
+// ── LESSON 10: Sentence Slideshow ──
+const CORE_WORDS_SENTENCES = [
+  {num:1,kok:'Khulumkha',eng:'Hello',sentKok:'Khulumkha takhuk bukhuk song.',sentYap:'󱲯󱲣󱲸󱲣󱲲󱲯󱲠 󱲨󱲠󱲯󱲣󱲩 󱲪󱲣󱲯󱲣󱲩 󱲶󱲤󱲵󱳌',sentEng:'Hello ladies and gentlemen'},
+  {num:2,kok:'Hambai',eng:'Thanks',sentKok:'Nono ang khabai khukbai hambai rijao.',sentYap:'󱲳󱲤󱲳󱲤 󱲠󱲵 󱲯󱲠󱲪󱲠󱲢 󱲯󱲣󱲩󱲪󱲠󱲢 󱲹󱲠󱲲󱲪󱲠󱲢 󱲷󱲢󱲱󱲠󱲤󱳌',sentEng:'My heartfelt thanks to you.'},
+  {num:3,kok:'Phung Kaham',eng:'Good morning',sentKok:'Phung kaham jotono.',sentYap:'󱲭󱲣󱲵 󱲩󱲠󱲹󱲠󱲲 󱲱󱲤󱲨󱲤󱲳󱲤󱳌',sentEng:'Good morning everyone.'},
+  {num:4,kok:'Dibor Kaham',eng:'Good afternoon',sentKok:'Dibor kaham! Kha khaio kahamno tongbaina hinwi.',sentYap:'󱲫󱲢󱲪󱲤󱲷 󱲩󱲠󱲹󱲠󱲲󱳍 󱲯󱲠 󱲯󱲠󱲢󱲤 󱲩󱲠󱲹󱲠󱲲󱲳󱲤 󱲨󱲤󱲵󱲪󱲠󱲢󱲳󱲠 󱲹󱲢󱲳󱲥󱲢󱳌',sentEng:'Good afternoon! Hope all are doing good.'},
+  {num:5,kok:'Sairik Kaham',eng:'Good eveving',sentKok:'Sairik kaham tei hambai chini nogo phaima bagwi.',sentYap:'󱲶󱲠󱲢󱲷󱲢󱲩 󱲩󱲠󱲹󱲠󱲲 󱲨󱲡󱲢 󱲹󱲠󱲲󱲪󱲠󱲢 󱲰󱲢󱲳󱲢 󱲳󱲤󱲬󱲤 󱲭󱲠󱲢󱲲󱲠 󱲪󱲠󱲬󱲥󱲢󱳌',sentEng:'Good evening and thanks for coming to our house.'},
+  {num:6,kok:'Hor Kaham',eng:'Good night',sentKok:'Hor kaham! Emang kaham nukjadi nwng.',sentYap:'󱲹󱲤󱲷 󱲩󱲠󱲹󱲠󱲲󱳍 󱲡󱲲󱲠󱲵 󱲩󱲠󱲹󱲠󱲲 󱲳󱲣󱲩󱲱󱲠󱲫󱲢 󱲳󱲥󱲵󱳌',sentEng:'Good night! May you have good dreams.'},
+  {num:7,kok:'Mai',eng:'Rice',sentKok:'Mai chahgana.',sentYap:'󱲲󱲠󱲢 󱲰󱲠󱲹󱲬󱲠󱲳󱲠󱳌',sentEng:'Let me eat rice.'},
+  {num:8,kok:'Mairung',eng:'Rice grains',sentKok:'Chini mairung da tongkho?',sentYap:'󱲰󱲢󱲳󱲢 󱲲󱲠󱲢󱲷󱲣󱲵 󱲫󱲠 󱲨󱲤󱲵󱲯󱲤󱳏',sentEng:'Do we still have our rice grains?'},
+  {num:9,kok:'Chahdi',eng:'Eat',sentKok:'Chahdi, ta lachidi.',sentYap:'󱲰󱲠󱲹󱲫󱲢󱳋 󱲨󱲠 󱲸󱲠󱲰󱲢󱲫󱲢󱳌',sentEng:'Eat, don’t feel shy.'},
+  {num:10,kok:'Nungdi',eng:'Drink',sentKok:'Twi nungdi swkang.',sentYap:'󱲨󱲥󱲢 󱲳󱲣󱲵󱲫󱲢 󱲶󱲥󱲩󱲠󱲵󱳌',sentEng:'Drink water first.'},
+  {num:11,kok:'Khibdi',eng:'Throw/Leave',sentKok:'Nokhla o manwi hamya ta khibdi.',sentYap:'󱲳󱲤󱲯󱲸󱲠 󱲤 󱲲󱲠󱲳󱲥󱲢 󱲹󱲠󱲲󱲺󱲠 󱲨󱲠 󱲯󱲢󱲪󱲫󱲢󱳌',sentEng:'Don’t throw trash on the yard.'},
+  {num:12,kok:'Tisadi',eng:'Lift',sentKok:'Nwng gosikhe nini yak tisadi.',sentYap:'󱲳󱲥󱲵 󱲬󱲤󱲶󱲢󱲯󱲡 󱲳󱲢󱲳󱲢 󱲺󱲠󱲩 󱲨󱲢󱲶󱲠󱲫󱲢󱳌',sentEng:'If you agree raise your hand.'},
+  {num:13,kok:'Tubdi',eng:'Bring',sentKok:'Ah manwi no oro tubdi.',sentYap:'󱲠󱲹 󱲲󱲠󱲳󱲥󱲢 󱲳󱲤 󱲤󱲷󱲤 󱲨󱲣󱲪󱲫󱲢󱳌',sentEng:'Bring that thing here.'},
+  {num:14,kok:'Romdi',eng:'Hold',sentKok:'Kwrak khe romdi ano.',sentYap:'󱲩󱲥󱲷󱲠󱲩 󱲯󱲡 󱲷󱲤󱲲󱲫󱲢 󱲠󱲳󱲤󱳌',sentEng:'Hold me tight.'},
+  {num:15,kok:'Yachakdi',eng:'Catch',sentKok:'Iko yachakdi.',sentYap:'󱲢󱲩󱲤 󱲺󱲠󱲰󱲠󱲩󱲫󱲢󱳌',sentEng:'Here catch.'},
+  {num:16,kok:'Kandi',eng:'Wear',sentKok:'Ri kwtal kandi.',sentYap:'󱲷󱲢 󱲩󱲥󱲨󱲠󱲸 󱲩󱲠󱲳󱲫󱲢󱳌',sentEng:'Wear new dress.'},
+  {num:17,kok:'Richum',eng:'Clothes/Wearables',sentKok:'Richum kwchwng khe sudi.',sentYap:'󱲷󱲢󱲰󱲣󱲲 󱲩󱲥󱲰󱲥󱲵 󱲯󱲡 󱲶󱲣󱲫󱲢󱳌',sentEng:'Wash the clothes clean.'},
+  {num:18,kok:'Risa',eng:'Traditional attire',sentKok:'Nini risa naithokha.',sentYap:'󱲳󱲢󱲳󱲢 󱲷󱲢󱲶󱲠 󱲳󱲠󱲢󱲮󱲤󱲯󱲠󱳌',sentEng:'Your risa is beautiful.'},
+  {num:19,kok:'Rignai',eng:'Traditional attire',sentKok:'Rignai kanna da rwng nwng?',sentYap:'󱲷󱲢󱲬󱲳󱲠󱲢 󱲩󱲠󱲳󱲳󱲠 󱲫󱲠 󱲷󱲥󱲵 󱲳󱲥󱲵󱳏',sentEng:'Do you know how to wear rignai?'},
+  {num:20,kok:'Ri',eng:'Cloth',sentKok:'Ano ri kwtal pairidi.',sentYap:'󱲠󱲳󱲤 󱲷󱲢 󱲩󱲥󱲨󱲠󱲸 󱲧󱲠󱲢󱲷󱲢󱲫󱲢󱳌',sentEng:'Buy me a new dress.'},
+  {num:21,kok:'Ridi',eng:'Give',sentKok:'Ano nini yak ridi.',sentYap:'󱲠󱲳󱲤 󱲳󱲢󱲳󱲢 󱲺󱲠󱲩 󱲷󱲢󱲫󱲢󱳌',sentEng:'Give me your hand.'},
+  {num:22,kok:'Hordi',eng:'Send/Pass',sentKok:'Bono bini rang hordi.',sentYap:'󱲪󱲤󱲳󱲤 󱲪󱲢󱲳󱲢 󱲷󱲠󱲵 󱲹󱲤󱲷󱲫󱲢󱳌',sentEng:'Send him his money.'},
+  {num:23,kok:'Nahardi',eng:'Look',sentKok:'Yango nahardi.',sentYap:'󱲺󱲠󱲵󱲤 󱲳󱲠󱲹󱲠󱲷󱲫󱲢󱳌',sentEng:'Look this side.'},
+  {num:24,kok:'Himdi',eng:'Walk',sentKok:'Sairikgo lamao himdi.',sentYap:'󱲶󱲠󱲢󱲷󱲢󱲩󱲬󱲤 󱲸󱲠󱲲󱲠󱲤 󱲹󱲢󱲲󱲫󱲢󱳌',sentEng:'Walk on the road in the evening.'},
+  {num:25,kok:'Rwchabdi',eng:'Sing',sentKok:'Khwnatok khe kaisa rwchabmung rwchabdi.',sentYap:'󱲯󱲥󱲳󱲠󱲨󱲤󱲩 󱲯󱲡 󱲩󱲠󱲢󱲶󱲠 󱲷󱲥󱲰󱲠󱲪󱲲󱲣󱲵 󱲷󱲥󱲰󱲠󱲪󱲫󱲢󱳌',sentEng:'Sing one song beautifully.'},
+  {num:26,kok:'Mwsadi',eng:'Dance',sentKok:'Ani kailaipandao mwsadi nwng.',sentYap:'󱲠󱲳󱲢 󱲩󱲠󱲢󱲸󱲠󱲢󱲧󱲠󱲳󱲫󱲠󱲤 󱲲󱲥󱲶󱲠󱲫󱲢 󱲳󱲥󱲵󱳌',sentEng:'You dance at my wedding.'},
+  {num:27,kok:'Mwnwidi',eng:'Smile',sentKok:'Mwnwidi ta kicha.',sentYap:'󱲲󱲥󱲳󱲥󱲢󱲫󱲢 󱲨󱲠 󱲩󱲢󱲰󱲠󱳌',sentEng:'Smile a bit.'},
+  {num:28,kok:'Kapdi',eng:'Cry',sentKok:'Ta kapdi dw.',sentYap:'󱲨󱲠 󱲩󱲠󱲧󱲫󱲢 󱲫󱲥󱳌',sentEng:'Don’t cry okay.'},
+  {num:29,kok:'Wansukdi',eng:'Think',sentKok:'Kaham khe wansukdi.',sentYap:'󱲩󱲠󱲹󱲠󱲲 󱲯󱲡 󱲻󱲠󱲳󱲶󱲣󱲩󱲫󱲢󱳌',sentEng:'Think nicely.'},
+  {num:30,kok:'Karidi',eng:'Take out',sentKok:'Omono karidi.',sentYap:'󱲤󱲲󱲤󱲳󱲤 󱲩󱲠󱲷󱲢󱲫󱲢󱳌',sentEng:'Take out this one.'},
+  {num:31,kok:'Kaidi',eng:'To plant',sentKok:'Buphang gila khe kaidi.',sentYap:'󱲪󱲣󱲭󱲠󱲵 󱲬󱲢󱲸󱲠 󱲯󱲡 󱲩󱲠󱲢󱲫󱲢󱳌',sentEng:'Plant lots of trees.'},
+  {num:32,kok:'Tungphlakha',eng:'feeling hot',sentKok:'Tini belaino tungphlakha.',sentYap:'󱲨󱲢󱲳󱲢 󱲪󱲡󱲸󱲠󱲢󱲳󱲤 󱲨󱲣󱲵󱲭󱲸󱲠󱲯󱲠󱳌',sentEng:'It’s very hot today.'},
+  {num:33,kok:'Mai ok khwikha',eng:'feeling hungry',sentKok:'Ang mai ok khwikha.',sentYap:'󱲠󱲵 󱲲󱲠󱲢 󱲤󱲩 󱲯󱲥󱲢󱲯󱲠󱳌',sentEng:'I am feeling hungry.'},
+  {num:34,kok:'Twi Kangkha',eng:'feeling thirsty',sentKok:'Tabukle twi kangkha.',sentYap:'󱲨󱲠󱲪󱲣󱲩󱲸󱲡 󱲨󱲥󱲢 󱲩󱲠󱲵󱲯󱲠󱳌',sentEng:'Now I am feeling thirsty.'},
+  {num:35,kok:'Bisi Kwtal',eng:'new year',sentKok:'Bisi kwtal phaiphinai.',sentYap:'󱲪󱲢󱲶󱲢 󱲩󱲥󱲨󱲠󱲸 󱲭󱲠󱲢󱲭󱲢󱲳󱲠󱲢󱳌',sentEng:'New year will come again.'},
+  {num:36,kok:'Ta Jolidi',eng:'don’t be angry',sentKok:'Ano ta jolidi.',sentYap:'󱲠󱲳󱲤 󱲨󱲠 󱲱󱲤󱲸󱲢󱲫󱲢󱳌',sentEng:'Don’t be angry with me.'},
+  {num:37,kok:'Phaidi',eng:'come',sentKok:'Ani nogo phaidi.',sentYap:'󱲠󱲳󱲢 󱲳󱲤󱲬󱲤 󱲭󱲠󱲢󱲫󱲢󱳌',sentEng:'Come to my house.'},
+  {num:38,kok:'Thangdi',eng:'go',sentKok:'Dakti thangdi aro.',sentYap:'󱲫󱲠󱲩󱲨󱲢 󱲮󱲠󱲵󱲫󱲢 󱲠󱲷󱲤󱳌',sentEng:'Go there soon.'},
+  {num:39,kok:'Thudi',eng:'sleep',sentKok:'Kaham khe thudi.',sentYap:'󱲩󱲠󱲹󱲠󱲲 󱲯󱲡 󱲮󱲣󱲫󱲢󱳌',sentEng:'Sleep well.'},
+  {num:40,kok:'Khorang',eng:'sound',sentKok:'Tamoni khorang wngkha abo?',sentYap:'󱲨󱲠󱲲󱲤󱲳󱲢 󱲯󱲤󱲷󱲠󱲵 󱲻󱲵󱲯󱲠 󱲠󱲪󱲤󱳏',sentEng:'What sound was that?'},
+  {num:41,kok:'Mwchang',eng:'suit',sentKok:'Tamo baih mwchang nwng?',sentYap:'󱲨󱲠󱲲󱲤 󱲪󱲠󱲢󱲹 󱲲󱲥󱲰󱲠󱲵 󱲳󱲥󱲵󱳏',sentEng:'what do you suit with?'},
+  {num:42,kok:'Kwsrang',eng:'energetic',sentKok:'Bo belaino kwsrang.',sentYap:'󱲪󱲤 󱲪󱲡󱲸󱲠󱲢󱲳󱲤 󱲩󱲥󱲶󱲷󱲠󱲵󱳌',sentEng:'He is too energetic.'},
+  {num:43,kok:'Sal Kwchang',eng:'cool weather',sentKok:'Tini sal kwchang.',sentYap:'󱲨󱲢󱲳󱲢 󱲶󱲠󱲸 󱲩󱲥󱲰󱲠󱲵󱳌',sentEng:'Today weather is cool.'},
+  {num:44,kok:'Lachio',eng:'shy',sentKok:'Ang lachio borokno.',sentYap:'󱲠󱲵 󱲸󱲠󱲰󱲢󱲤 󱲪󱲤󱲷󱲤󱲩󱲳󱲤󱳌',sentEng:'I am shy around them.'},
+  {num:45,kok:'Kaham',eng:'good',sentKok:'Borok kaham nwng.',sentYap:'󱲪󱲤󱲷󱲤󱲩 󱲩󱲠󱲹󱲠󱲲 󱲳󱲥󱲵󱳌',sentEng:'You’re a good person.'},
+  {num:46,kok:'Hamya',eng:'bad',sentKok:'Mungsa hamya ta khaidi.',sentYap:'󱲲󱲣󱲵󱲶󱲠 󱲹󱲠󱲲󱲺󱲠 󱲨󱲠 󱲯󱲠󱲢󱲫󱲢󱳌',sentEng:'Don’t do anything bad.'},
+  {num:47,kok:'Chaya',eng:'wrong',sentKok:'Ani chaya wngkha, ano nakardi.',sentYap:'󱲠󱲳󱲢 󱲰󱲠󱲺󱲠 󱲻󱲵󱲯󱲠󱳋 󱲠󱲳󱲤 󱲳󱲠󱲩󱲠󱲷󱲫󱲢󱳌',sentEng:'I did wrong, have mercy on me.'},
+  {num:48,kok:'Chahya',eng:'won’t eat',sentKok:'Ang chahya kho.',sentYap:'󱲠󱲵 󱲰󱲠󱲹󱲺󱲠 󱲯󱲤󱳌',sentEng:'I didn’t eat yet.'},
+  {num:49,kok:'Bwskang',eng:'forward',sentKok:'Bwskang naisikdi.',sentYap:'󱲪󱲥󱲶󱲩󱲠󱲵 󱲳󱲠󱲢󱲶󱲢󱲩󱲫󱲢󱳌',sentEng:'Look forward.'},
+  {num:50,kok:'Ukolok',eng:'back/behind',sentKok:'Ani ukolok twih malkhung kaisa lai thangka tabukno.',sentYap:'󱲠󱲳󱲢 󱲣󱲩󱲤󱲸󱲤󱲩 󱲨󱲥󱲢󱲹 󱲲󱲠󱲸󱲯󱲣󱲵 󱲩󱲠󱲢󱲶󱲠 󱲸󱲠󱲢 󱲮󱲠󱲵󱲩󱲠 󱲨󱲠󱲪󱲣󱲩󱲳󱲤󱳌',sentEng:'One vehicle went past behind me just now.'},
+  {num:51,kok:'Hainohai',eng:'again',sentKok:'Hainohai ma khainai ang abo.',sentYap:'󱲹󱲠󱲢󱲳󱲤󱲹󱲠󱲢 󱲲󱲠 󱲯󱲠󱲢󱲳󱲠󱲢 󱲠󱲵 󱲠󱲪󱲤󱳌',sentEng:'I have to do it again.'}
+];
+
+(function initL10Slideshow() {
+  let idx = 0;
+  const total = CORE_WORDS_SENTENCES.length;
+
+  function render() {
+    const s = CORE_WORDS_SENTENCES[idx];
+    const word  = document.getElementById('l10-slide-word');
+    const yap   = document.getElementById('l10-slide-yapiri');
+    const rom   = document.getElementById('l10-slide-roman');
+    const eng   = document.getElementById('l10-slide-english');
+    const num   = document.getElementById('l10-slide-num');
+    const prev  = document.getElementById('l10-slide-prev');
+    const next  = document.getElementById('l10-slide-next');
+    if (!word || !yap || !rom || !eng) return;
+    word.textContent = s.kok + ' — ' + s.eng;
+    yap.textContent  = s.sentYap;
+    rom.textContent  = s.sentKok;
+    eng.textContent  = s.sentEng;
+    if (num)  num.textContent  = idx + 1;
+    if (prev) prev.disabled = idx === 0;
+    if (next) next.disabled = idx === total - 1;
+  }
+
+  function go(dir) {
+    idx = Math.max(0, Math.min(total - 1, idx + dir));
+    render();
+  }
+
+  // Wire up after DOM is ready
+  function boot() {
+    const prev = document.getElementById('l10-slide-prev');
+    const next = document.getElementById('l10-slide-next');
+    if (!prev || !next) { setTimeout(boot, 100); return; }
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+    render();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+
 </script>
-</body>
-</html>
