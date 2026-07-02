@@ -283,15 +283,14 @@
   .jump-nav {
     background: var(--charcoal);
     border-bottom: 1px solid rgba(201,146,42,0.15);
-    display: flex; gap: 0;
-    position: sticky; top: 70px; z-index: 90;
+    display: flex; justify-content: center; gap: 0;
     overflow-x: auto; -webkit-overflow-scrolling: touch;
   }
   .jump-nav a {
     font-family: 'DM Mono', monospace;
     font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--stone); text-decoration: none;
-    padding: 1rem 2rem; border-right: 1px solid rgba(201,146,42,0.1);
+    padding: 1rem 3rem; border-right: none;
     transition: color 0.2s, background 0.2s; white-space: nowrap;
     display: flex; align-items: center; gap: 0.6rem;
   }
@@ -1443,12 +1442,12 @@
 </section>
 
 <!-- JUMP NAV -->
-<nav class="jump-nav" aria-label="Page sections">
+<div class="jump-nav" aria-label="Page sections">
   <a href="#alphabet"><span class="jn-num">01</span> Alphabet</a>
   <a href="#lessons"><span class="jn-num">02</span> Guided Path</a>
   <a href="#practice-lab"><span class="jn-num">03</span> Practice Lab</a>
   <a href="#exercises"><span class="jn-num">04</span> Exercises</a>
-</nav>
+</div>
 
 <!-- ══ PAGE INTRO ══ -->
 <section id="page-intro" style="background:var(--charcoal);padding:3rem 5rem;border-bottom:1px solid rgba(201,146,42,0.12);">
