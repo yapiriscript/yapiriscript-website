@@ -361,34 +361,67 @@
     color: var(--stone); display: block;
   }
 
-  /* Detail panel */
+  /* ── ALPHABET TABS ── */
+  .alpha-tabs {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border: 1px solid rgba(196,180,154,0.12);
+    margin-bottom: 1.5rem; overflow: hidden;
+  }
+  .alpha-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: none; border: none; border-right: 1px solid rgba(196,180,154,0.1);
+    color: var(--stone); padding: 0.85rem 1.2rem;
+    cursor: pointer; transition: color 0.2s, background 0.2s;
+    flex: 1; min-width: 130px; text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .alpha-tab:last-child { border-right: none; }
+  .alpha-tab:hover { color: var(--parchment); background: rgba(255,255,255,0.03); }
+  .alpha-tab.active { color: var(--gold-light); background: rgba(201,146,42,0.08); border-bottom: 2px solid var(--gold); }
+  .alpha-tab span {
+    font-size: 0.5rem; color: var(--terracotta);
+    border: 1px solid rgba(184,92,56,0.4); padding: 0.1rem 0.35rem;
+  }
+
+  /* ── ALPHABET LAYOUT: grid (left) + sticky detail sidebar (right) ── */
+  .alphabet-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 2rem;
+    align-items: start;
+  }
+  .char-group { display: none; margin-bottom: 0; }
+  .char-group.active-panel { display: block; }
+
+  /* Detail panel — now a sticky sidebar, always populated, never blank */
   .char-detail {
-    display: none;
+    display: block;
     background: var(--charcoal);
     border: 1px solid rgba(201,146,42,0.2);
-    padding: 2rem 2.5rem;
-    margin-top: 1rem;
-    position: relative;
+    border-top: 2px solid var(--gold);
+    padding: 1.8rem 1.6rem;
+    position: sticky;
+    top: 108px;
+    max-height: calc(100vh - 132px);
+    overflow-y: auto;
   }
-  .char-detail::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--gold);
-  }
-  .char-detail.visible { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center; }
+  .char-detail.visible { display: block; }
   .detail-glyph-wrap {
-    font-family: 'Yapiri', serif; font-size: 6rem; line-height: 1;
+    font-family: 'Yapiri', serif; font-size: 4.5rem; line-height: 1;
     color: var(--gold-light); flex-shrink: 0;
     text-shadow: 0 0 60px rgba(232,184,75,0.2);
+    margin-bottom: 0.8rem;
   }
   .detail-info h4 {
-    font-family: 'Teko', sans-serif; font-size: 2rem; font-weight: 400;
+    font-family: 'Teko', sans-serif; font-size: 1.7rem; font-weight: 400;
     color: var(--parchment); margin-bottom: 0.4rem; letter-spacing: 0.05em;
   }
   .detail-info p {
-    font-size: 1rem; font-weight: 300; font-style: italic;
+    font-size: 0.92rem; font-weight: 300; font-style: italic;
     color: var(--stone-light); line-height: 1.6; margin-bottom: 1rem;
   }
-  .detail-meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .detail-meta { display: flex; gap: 1.4rem; flex-wrap: wrap; }
   .detail-meta-item .meta-label {
     font-family: 'DM Mono', monospace; font-size: 0.55rem;
     letter-spacing: 0.2em; text-transform: uppercase;
@@ -1246,6 +1279,8 @@
     }
     .exercises-layout { grid-template-columns: 1fr; }
     .ex-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .alphabet-layout { grid-template-columns: 1fr; }
+    .char-detail { position: static; max-height: none; margin-top: 1.5rem; }
   }
   #page-intro { padding: 3rem 2rem !important; }
   #glossary { padding: 0 2rem 2.5rem !important; }
@@ -1276,7 +1311,6 @@
     .lesson-actions .lesson-action { flex: 1 1 100%; }
     .ex-sidebar { grid-template-columns: 1fr; }
     .char-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
-    .char-detail.visible { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-copy { text-align: center; }
     .footer-social { justify-content: center; }
@@ -1511,10 +1545,20 @@
       <span class="section-label">Section 01</span>
       <div class="gold-line"></div>
       <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Alphabet Reference</h2>
-      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Click any character to expand its detail — romanization, IPA value, codepoint, and description.</p>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:560px;line-height:1.7;">Switch between categories with the tabs below, then click any character for its full detail — romanization, IPA value, codepoint, and description.</p>
     </div>
 
-    <div class="char-group reveal">
+    <div class="alpha-tabs reveal" role="tablist" aria-label="Character categories">
+      <button class="alpha-tab active" type="button" data-alpha-tab="0">Vowels <span>6</span></button>
+      <button class="alpha-tab" type="button" data-alpha-tab="1">Native Consonants <span>21</span></button>
+      <button class="alpha-tab" type="button" data-alpha-tab="2">Loanword Consonants <span>2</span></button>
+      <button class="alpha-tab" type="button" data-alpha-tab="3">Numerals <span>10</span></button>
+      <button class="alpha-tab" type="button" data-alpha-tab="4">Punctuation &amp; Diacritics <span>6</span></button>
+    </div>
+
+    <div class="alphabet-layout">
+    <div>
+    <div class="char-group reveal active-panel" data-alpha-panel="0">
       <p class="char-group-title">Vowels <span>6</span></p>
       <div class="char-grid" id="grid-vowels">
         <div class="char-card" role="button" tabindex="0" data-char-index="0"><span class="char-glyph">&#xF1CA0;</span><span class="char-roman">a</span><span class="char-ipa">/a/</span></div>
@@ -1525,7 +1569,7 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="5"><span class="char-glyph">&#xF1CA5;</span><span class="char-roman">&#x259;</span><span class="char-ipa">/&#x259;/</span></div>
       </div>
     </div>
-    <div class="char-group reveal">
+    <div class="char-group reveal" data-alpha-panel="1">
       <p class="char-group-title">Native Consonants <span>21</span></p>
       <div class="char-grid" id="grid-consonants">
         <div class="char-card" role="button" tabindex="0" data-char-index="6"><span class="char-glyph">&#xF1CA7;</span><span class="char-roman">p</span><span class="char-ipa">/p/</span></div>
@@ -1551,14 +1595,14 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="26"><span class="char-glyph">&#xF1CBB;</span><span class="char-roman">w</span><span class="char-ipa">/w/</span></div>
       </div>
     </div>
-    <div class="char-group reveal">
+    <div class="char-group reveal" data-alpha-panel="2">
       <p class="char-group-title">Loanword Consonants <span>2</span></p>
       <div class="char-grid" id="grid-loanword">
         <div class="char-card" role="button" tabindex="0" data-char-index="27"><span class="char-glyph">&#xF1CBC;</span><span class="char-roman">v</span><span class="char-ipa">/v/</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="28"><span class="char-glyph">&#xF1CBD;</span><span class="char-roman">z</span><span class="char-ipa">/z/</span></div>
       </div>
     </div>
-    <div class="char-group reveal">
+    <div class="char-group reveal" data-alpha-panel="3">
       <p class="char-group-title">Numerals <span>10</span></p>
       <div class="char-grid" id="grid-numerals">
         <div class="char-card" role="button" tabindex="0" data-char-index="29"><span class="char-glyph">&#xF1CC0;</span><span class="char-roman">0</span></div>
@@ -1573,7 +1617,7 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="38"><span class="char-glyph">&#xF1CC9;</span><span class="char-roman">9</span></div>
       </div>
     </div>
-    <div class="char-group reveal">
+    <div class="char-group reveal" data-alpha-panel="4">
       <p class="char-group-title">Punctuation &amp; Diacritics <span>6</span></p>
       <div class="char-grid" id="grid-punct">
         <div class="char-card" role="button" tabindex="0" data-char-index="39"><span class="char-glyph">&#xF1CCB;</span><span class="char-roman">,</span></div>
@@ -1584,9 +1628,10 @@
         <div class="char-card" role="button" tabindex="0" data-char-index="44"><span class="char-glyph">&#xF1CD1;</span><span class="char-roman">&#x25CC;&#x301;</span><span class="char-ipa">/&#x25CC;&#x301;/</span></div>
       </div>
     </div>
+    </div>
 
-    <!-- Detail panel -->
-    <div class="char-detail" id="char-detail">
+    <!-- Detail panel — sticky sidebar, always visible, auto-loads first character -->
+    <div class="char-detail visible" id="char-detail">
       <div class="detail-glyph-wrap" id="detail-glyph"></div>
       <div class="detail-info">
         <h4 id="detail-name"></h4>
@@ -1624,6 +1669,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -2585,15 +2631,9 @@ function renderExampleRow(containerId, example) {
 
 function showDetail(ch, card) {
   const panel = document.getElementById('char-detail');
-  if (activeCard === card && panel.classList.contains('visible')) {
-    panel.classList.remove('visible');
-    card.classList.remove('active');
-    activeCard = null;
-    return;
-  }
   if (activeCard) activeCard.classList.remove('active');
   activeCard = card;
-  card.classList.add('active');
+  if (card) card.classList.add('active');
   document.getElementById('detail-glyph').textContent = cp(ch.cp);
   document.getElementById('detail-name').textContent = ch.name;
   document.getElementById('detail-desc').textContent = ch.desc;
@@ -2636,7 +2676,6 @@ function showDetail(ch, card) {
   }
 
   panel.classList.add('visible');
-  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
 }
 
 document.querySelectorAll('#alphabet .char-card[data-char-index]').forEach(card => {
@@ -2645,6 +2684,24 @@ document.querySelectorAll('#alphabet .char-card[data-char-index]').forEach(card 
   card.addEventListener('click', () => showDetail(ch, card));
   card.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showDetail(ch, card); }
+  });
+});
+
+// Auto-load the first character (a) so the detail sidebar is never blank
+if (REFERENCE_CHARS[0]) {
+  const firstCard = document.querySelector('#alphabet .char-card[data-char-index="0"]');
+  showDetail(REFERENCE_CHARS[0], firstCard);
+}
+
+// ── ALPHABET TABS: filter which char-group is visible ──
+document.querySelectorAll('.alpha-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.alpha-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.alphaTab;
+    document.querySelectorAll('.char-group[data-alpha-panel]').forEach(panel => {
+      panel.classList.toggle('active-panel', panel.dataset.alphaPanel === target);
+    });
   });
 });
 
