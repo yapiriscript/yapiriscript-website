@@ -423,6 +423,7 @@
     color: var(--stone-light); line-height: 1.6; margin-bottom: 1rem;
   }
   .detail-meta { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+  .detail-meta-item { text-align: center; }
   .detail-meta-item .meta-label {
     font-family: 'DM Mono', monospace; font-size: 0.55rem;
     letter-spacing: 0.2em; text-transform: uppercase;
@@ -451,6 +452,7 @@
     color: var(--gold-light); margin-top: 0.3rem;
   }
   .detail-examples { display: grid; gap: 0.7rem; margin-top: 1.1rem; padding-top: 1.1rem; border-top: 1px solid rgba(196,180,154,0.1); }
+  #detail-sentence-block.with-divider { border-top: 1px solid rgba(196,180,154,0.1); padding-top: 0.7rem; }
   .detail-example-block .ex-label {
     font-family: 'DM Mono', monospace; font-size: 0.54rem;
     letter-spacing: 0.18em; text-transform: uppercase;
@@ -1645,7 +1647,6 @@
     <div class="char-detail visible" id="char-detail">
       <div class="detail-glyph-wrap" id="detail-glyph"></div>
       <div class="detail-info">
-        <h4 id="detail-name"></h4>
         <p id="detail-desc"></p>
         <div class="detail-numeral-name" id="detail-numeral-name" style="display:none;"></div>
         <div class="detail-audio-row">
@@ -2562,7 +2563,7 @@ const CONSONANTS = [
 ];
 const LOANWORD = [
   { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.', audioId:'v', word:['󱲼󱲢󱲷󱲣󱲶','Virus','Virus'], sentence:['󱲼󱲢󱲷󱲣󱲶 󱲳󱲤 󱲼󱲢󱲷󱲣󱲶 󱲹󱲥󱲳󱲥󱲢 󱲳󱲤 󱲶󱲥󱲢󱲫󱲢󱳌','Virus no virus hwnwi no swidi.','Write virus as virus only.'] },
-  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:['󱲽󱲡󱲠 󱲲󱲠󱲺󱲶','Zea Mays','Zea Mays'], sentence:['󱲲󱲤󱲬󱲤󱲫󱲠󱲲󱲳󱲢 󱲶c󱲢󱲡󱲳󱲨󱲢f󱲢c 󱲪󱲣󱲲󱲣󱲵 󱲻󱲵󱲯󱲠 󱲽󱲡󱲠 󱲲󱲠󱲺󱲶󱳌','Mogodamni scientific bumung wngkha Zea Mays.','The scientific name of corn is Zea Mays.'] },
+  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:['󱲽󱲡󱲠 󱲲󱲠󱲺󱲶','Zea Mays','Zea Mays'], sentence:['󱲲󱲤󱲬󱲤󱲫󱲠󱲲󱲳󱲢 󱲶󱲠󱲢󱲳󱲨󱲢󱲭󱲢󱲩 󱲪󱲣󱲲󱲣󱲵 󱲻󱲵󱲯󱲠 󱲽󱲡󱲠 󱲲󱲠󱲺󱲶󱳌','Mogodamni saintiphic bumung wngkha Zea Mays.','The scientific name of corn is Zea Mays.'] },
 ];
 // kokname = the Kokborok word for the number itself (confirmed source: Animesh Debbarma).
 const NUMERALS = [
@@ -2650,7 +2651,6 @@ function showDetail(ch, card) {
   activeCard = card;
   if (card) card.classList.add('active');
   document.getElementById('detail-glyph').textContent = cp(ch.cp);
-  document.getElementById('detail-name').textContent = ch.name;
   document.getElementById('detail-desc').textContent = ch.desc;
   document.getElementById('detail-roman').textContent = ch.roman;
   document.getElementById('detail-ipa').textContent = ch.ipa || '—';
@@ -2703,6 +2703,7 @@ function showDetail(ch, card) {
     }
     if (ch.sentence) {
       sentenceBlock.style.display = 'block';
+      sentenceBlock.classList.toggle('with-divider', !isPunct);
       renderExampleRow('detail-sentence-row', ch.sentence);
     } else {
       sentenceBlock.style.display = 'none';
