@@ -630,7 +630,7 @@
     text-transform: uppercase;
     color: var(--stone);
   }
-  .lesson-workspace { min-width: 0; }
+  .lesson-workspace { min-width: 0; scroll-margin-top: 108px; }
   .lesson-progress-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 210px;
@@ -757,6 +757,12 @@
   .vocab-table tr:hover td { background: rgba(201,146,42,0.04); }
   /* Roman/Kokborok text cells — DM Mono, not the Yapiri font */
   .vocab-roman { font-family: 'DM Mono', monospace; color: var(--gold-light); letter-spacing: 0.04em; }
+  /* Lesson 10 word-list cells use the page's normal reading font, not the mono helper class. */
+  #guided-core-words .vocab-table td,
+  #guided-core-words .vocab-table td.vocab-roman {
+    font-family: 'Cormorant Garamond', Georgia, serif !important;
+    letter-spacing: normal !important;
+  }
   /* Yapiri glyph cells — must use the Yapiri font or PUA codepoints render as fallback boxes */
   .vocab-glyph { font-family: 'Yapiri', serif; color: var(--parchment); font-size: 1.4rem; }
   .lesson-section-title::after {
@@ -1016,16 +1022,21 @@
   @media(max-width:640px) {
     .kb-desktop.ex-keyboard { display:none; }
     .kb-mobile { display:block; }
+    #exercises { overflow:visible; }
 
     /* Sticky output area on mobile so it stays visible above the tap grid while scrolling */
     .sticky-output-anchor {
       position:sticky;
-      top:70px;
-      z-index:50;
-      background:var(--ink);
-      padding-top:0.5rem;
+      top:64px;
+      z-index:90;
+      background:linear-gradient(180deg,#130e04 0%,#0e0c06 100%);
+      padding:0.55rem 0 0.65rem;
+      margin-bottom:0.75rem;
+      box-shadow:0 10px 22px rgba(0,0,0,0.28);
     }
 
+    .sticky-output-anchor .ex-output-label { display:block; margin-bottom:0.45rem; }
+    .yapiri-output-wrap { border-bottom:1px solid rgba(196,180,154,0.2); }
     .yapiri-display { height:72px; font-size:1.4rem; }
     .roman-preview { height:34px; font-size:0.7rem; margin-top:0.4rem; padding-top:0.4rem; }
   }
@@ -1168,6 +1179,62 @@
   .pl-chip { font-family:'Yapiri',serif; font-size:1.5rem; color:var(--parchment); min-width:42px; min-height:42px; border:1px solid rgba(196,180,154,.15); background:rgba(255,255,255,.03); cursor:pointer; }
   .pl-chip:hover { border-color:var(--gold); }
   .pl-answer { font-family:'Yapiri',serif; font-size:2rem; min-height:54px; padding:.6rem .8rem; border:1px solid rgba(196,180,154,.14); background:#0e0b07; color:var(--gold-light); margin-top:.6rem; }
+  .pl-num-target { font-family:'DM Mono',monospace; font-size:3rem; color:var(--gold-light); letter-spacing:0.04em; line-height:1; }
+  .pl-num-input { font-family:'Yapiri',serif; font-size:2rem; line-height:1.2; text-align:center; color:var(--gold-light); letter-spacing:0.08em; }
+  .pl-num-input::placeholder { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--stone); letter-spacing:0.08em; text-transform:uppercase; }
+  .pl-num-keypad { display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:.4rem; margin-top:.75rem; }
+  .pl-num-key { font-family:'Yapiri',serif; font-size:1.55rem; color:var(--parchment); min-height:44px; border:1px solid rgba(196,180,154,.15); background:rgba(255,255,255,.03); cursor:pointer; transition:all .2s; }
+  .pl-num-key:hover { color:var(--gold-light); border-color:rgba(201,146,42,.45); transform:translateY(-1px); }
+  .pl-num-name-prompt { border:1px solid rgba(201,146,42,.22); background:rgba(201,146,42,.06); padding:.8rem .9rem; margin-top:.75rem; }
+  .pl-num-name-prompt[hidden], .pl-num-name-panel[hidden] { display:none; }
+  .pl-num-name-question { font-size:.95rem; line-height:1.55; color:var(--stone-light); margin-bottom:.7rem; }
+  .pl-num-name-panel { font-family:'DM Mono',monospace; font-size:.72rem; letter-spacing:.06em; color:var(--gold-light); border:1px solid rgba(201,146,42,.18); background:rgba(8,6,3,.34); padding:.8rem .9rem; margin-top:.65rem; }
+  #core-word-list-anchor, #core-word-list, #pl-num-name-card { scroll-margin-top: 120px; }
+  .pl-num-name-display {
+    border: 1px solid rgba(201,146,42,.16);
+    background: rgba(201,146,42,.045);
+    padding: 1rem;
+    display: grid;
+    gap: .65rem;
+    margin: .9rem 0;
+  }
+  .pl-name-label {
+    font-family: 'DM Mono', monospace;
+    font-size: .55rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+  }
+  .pl-num-name-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 2rem;
+    color: var(--gold-light);
+    letter-spacing: .04em;
+    line-height: 1;
+  }
+  .pl-num-name-glyph {
+    font-family: 'Yapiri', serif;
+    font-size: 2.2rem;
+    color: var(--parchment);
+    letter-spacing: .08em;
+    line-height: 1.1;
+  }
+  .pl-num-name-value {
+    font-family: 'DM Mono', monospace;
+    font-size: .82rem;
+    color: var(--parchment);
+    letter-spacing: .05em;
+    line-height: 1.6;
+  }
+  .pl-num-name-value.pending { color: var(--stone-light); font-style: italic; }
+  .pl-num-name-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: .62rem;
+    color: var(--stone);
+    letter-spacing: .05em;
+    line-height: 1.65;
+  }
+  .pl-name-roman { font-family:'DM Mono',monospace; font-size:.68rem; color:var(--stone); text-align:center; letter-spacing:.05em; margin-bottom:.9rem; }
 
   /* ── PAIRS RECOGNITION DRILL (Lesson 06) ── */
   .guided-pair-lab {
@@ -1247,6 +1314,38 @@
     text-transform: uppercase;
     margin-right: auto;
     margin-left: 0.8rem;
+  }
+  .vocab-collapse-btn {
+    margin: 0.85rem 0 0;
+    width: 100%;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.025);
+    color: var(--stone-light);
+    border: 1px solid rgba(196,180,154,0.18);
+    padding: 0.68rem 1rem;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .vocab-collapse-btn:hover,
+  .vocab-collapse-btn:focus-visible {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.42);
+    background: rgba(201,146,42,0.06);
+    transform: translateY(-1px);
+    outline: none;
+  }
+  .lesson-complete-note {
+    flex-basis: 100%;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: #8fcf8f;
+    background: rgba(143,207,143,0.08);
+    border: 1px solid rgba(143,207,143,0.2);
+    padding: 0.65rem 0.8rem;
   }
   @media (max-width: 1024px) { .pl-grid { grid-template-columns:1fr; } }
   @media (max-width: 900px) { #practice-lab { padding:5rem 2rem; } }
@@ -1342,15 +1441,27 @@
     border: 1px solid rgba(196,180,154,0.14);
     background: rgba(8,6,3,0.32);
     position: relative;
-    min-height: 180px;
+    height: 330px;
+    min-height: 330px;
+    max-height: 330px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
   }
   .sentence-slide-body {
     padding: 1.4rem 1.5rem 1rem;
-    flex: 1;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    padding-right: 1.75rem;
   }
+  .sentence-slide-body::-webkit-scrollbar { width: 4px; }
+  .sentence-slide-body::-webkit-scrollbar-track { background: rgba(8,6,3,0.35); }
+  .sentence-slide-body::-webkit-scrollbar-thumb { background: rgba(201,146,42,0.35); }
   .sentence-slide-word-badge {
     font-family: 'DM Mono', monospace;
     font-size: 0.56rem;
@@ -1382,12 +1493,14 @@
     color: var(--gold-light);
     letter-spacing: 0.04em;
     margin-bottom: 0.3rem;
+    overflow-wrap: anywhere;
   }
   .sentence-slide-english {
     font-size: 0.9rem;
     font-style: italic;
     color: var(--stone);
     line-height: 1.55;
+    overflow-wrap: anywhere;
   }
   .sentence-slide-footer {
     display: flex;
@@ -1396,6 +1509,7 @@
     padding: 0.65rem 1.5rem;
     border-top: 1px solid rgba(196,180,154,0.1);
     background: rgba(0,0,0,0.15);
+    flex: 0 0 auto;
   }
   .sentence-slide-counter {
     font-family: 'DM Mono', monospace;
@@ -1432,6 +1546,17 @@
   .slide-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
+  }
+  @media (max-width: 640px) {
+    .sentence-slide-wrap {
+      height: 300px;
+      min-height: 300px;
+      max-height: 300px;
+    }
+    .sentence-slide-body {
+      max-height: none;
+      padding-right: 1.5rem;
+    }
   }
 </style>
 </head>
@@ -1492,7 +1617,7 @@
 <div class="jump-nav" aria-label="Page sections">
   <a href="#alphabet"><span class="jn-num">01</span> Alphabet</a>
   <a href="#lessons"><span class="jn-num">02</span> Guided Path</a>
-  <a href="#practice-lab"><span class="jn-num">03</span> Practice Lab</a>
+  <a href="#practice-lab"><span class="jn-num">03</span> Practice Hub</a>
   <a href="#exercises"><span class="jn-num">04</span> Exercises</a>
 </div>
 
@@ -1508,8 +1633,8 @@
       <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Ten short lessons from first sounds to full sentences. Work through them in order, answer the quick checks, and mark each complete before moving on.</p>
     </div>
     <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
-      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">03 · Practice Lab</p>
-      <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Character drills, word building with real Kokborok vocabulary, and a name transliterator. Use this section to consolidate what the lessons teach.</p>
+      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">03 · Practice Hub</p>
+      <p style="font-size:0.95rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Character drills, numeral practice, word building with real Kokborok vocabulary, and a name transliterator. Use this hub to consolidate what the lessons teach.</p>
     </div>
     <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
       <p style="font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);margin-bottom:0.5rem;">04 · Exercises</p>
@@ -1566,7 +1691,7 @@
       <button class="alpha-tab" type="button" data-alpha-tab="1">Native Consonants <span>21</span></button>
       <button class="alpha-tab" type="button" data-alpha-tab="2">Loanword Consonants <span>2</span></button>
       <button class="alpha-tab" type="button" data-alpha-tab="3">Numerals <span>10</span></button>
-      <button class="alpha-tab" type="button" data-alpha-tab="4">Punctuation &amp; Diacritic <span>6</span></button>
+      <button class="alpha-tab" type="button" data-alpha-tab="4">Punctuation &amp; Diacritics <span>6</span></button>
     </div>
 
     <div class="alphabet-layout">
@@ -1631,7 +1756,7 @@
       </div>
     </div>
     <div class="char-group reveal" data-alpha-panel="4">
-      <p class="char-group-title">Punctuation &amp; Diacritic <span>6</span></p>
+      <p class="char-group-title">Punctuation &amp; Diacritics <span>6</span></p>
       <div class="char-grid" id="grid-punct">
         <div class="char-card" role="button" tabindex="0" data-char-index="39"><span class="char-glyph">&#xF1CCB;</span><span class="char-roman">,</span></div>
         <div class="char-card" role="button" tabindex="0" data-char-index="40"><span class="char-glyph">&#xF1CCC;</span><span class="char-roman">.</span></div>
@@ -1764,15 +1889,15 @@
           <span class="roadmap-meta">Numbers</span>
         </span>
       </button>
-      <button class="roadmap-step" type="button" data-lesson="9" aria-label="Lesson 10: Everyday Pronouns and Core Words">
+      <button class="roadmap-step" type="button" data-lesson="9" aria-label="Lesson 10: Everyday Kokborok Pronouns and Core Words">
         <span class="roadmap-index">10</span>
         <span>
-          <span class="roadmap-title">Everyday Pronouns and Core Words</span>
+          <span class="roadmap-title">Everyday Kokborok Pronouns and Core Words</span>
           <span class="roadmap-meta">Useful words</span>
         </span>
       </button>
       </aside>
-      <div class="lesson-workspace">
+      <div class="lesson-workspace" id="lesson-workspace">
         <div class="lesson-progress-card">
           <div>
             <p class="lesson-progress-label">Path Progress</p>
@@ -1785,7 +1910,7 @@
         <div class="guided-lesson-head">
           <p class="lesson-kicker">Lesson 01 &middot; Orientation</p>
           <h3>Start Here: How Yapiri Works</h3>
-          <p class="guided-lesson-intro">Yapiri is a phonemic script: each core character points to a sound in Kokborok. Start by noticing that the script is learned through sound values first, then words, then sentences.</p>
+          <p class="guided-lesson-intro">Yapiri is a phonemic script — a writing system built entirely around Kokborok sound. Two characters (v and z) are the exception: they aren't native Kokborok sounds, but are included specifically to spell loanwords. Before anything else, let's make sure the phonemic idea actually makes sense, then start learning the sounds themselves.</p>
         </div>
         <div class="guided-lesson-body">
           <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Characters represent sounds, not English letters.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Roman Kokborok helps you check pronunciation while learning.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>The same symbols will reappear in the keyboard and translation exercises.</p></div></div>
@@ -1794,21 +1919,29 @@
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div></div>
           </div>
           <div>
+            <p class="lesson-section-title">What &quot;Phonemic&quot; Actually Means</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">In a phonemic script, <strong style="color:var(--parchment);font-weight:400;">one character always represents one sound — no exceptions, ever.</strong> Once you know what a character sounds like, it sounds like that in every single word, forever. That's the whole rule.</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">English is a good example of a script that <em>isn't</em> phonemic, and it shows why this matters. The letter <strong style="color:var(--gold-light);font-weight:400;">c</strong> sounds different in <em>cat</em> and <em>city</em>. The sound <em>sh</em> is spelled three different ways in <em>shoe</em>, <em>sugar</em>, and <em>nation</em>. You can't just look at an English word and know how to say it — you have to have already memorized it, exceptions and all.</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">Yapiri has none of that. Learn the sound of each of the 45 characters once, and you can sound out <strong style="color:var(--parchment);font-weight:400;">any</strong> word written in Yapiri — even one you've never seen before — because the character never lies to you about its sound.</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;">Even loanwords get respelled to fit this rule. English <em>science</em> is written in Kokborok as it actually sounds — <strong style="color:var(--gold-light);font-weight:400;">sains</strong> — and <em>scientific</em> becomes <strong style="color:var(--gold-light);font-weight:400;">saintiphik</strong>. Every letter in each spelling maps to a real Yapiri sound, with nothing silent and nothing borrowed from English spelling habits.</p>
+            <div class="worked-examples-grid" style="margin-top:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲢󱲳󱲶</span><span class="ex-roman">sains</span><span class="ex-meaning">science</span></div><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲢󱲳󱲨󱲢󱲭󱲢󱲩</span><span class="ex-roman">saintiphik</span><span class="ex-meaning">scientific</span></div></div>
+          </div>
+          <div>
             <p class="lesson-section-title">The Shape of the Script</p>
             <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;">Yapiri has <strong style="color:var(--parchment);font-weight:400;">45 characters</strong> in total: 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks and diacritics. It reads <strong style="color:var(--parchment);font-weight:400;">left to right</strong>, the same direction as Roman Kokborok. Throughout every lesson on this page, each worked example follows one format: the Yapiri glyphs, then the Roman Kokborok spelling, then the English meaning — in that order, every time.</p>
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">the script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">the script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;phai&quot;</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">What should you learn first in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">The sound value of each character</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">English spelling rules</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">Only the keyboard layout</button></div><div class="quick-check-feedback" id="check-start-0"></div></div><div class="quick-check"><p class="quick-check-question">How many characters does Yapiri have in total?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">45</button><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">26</button><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">60</button></div><div class="quick-check-feedback" id="check-start-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">What should you learn first in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">The sound value of each character</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">English spelling rules</button><button class="quick-check-option" type="button" data-answer="The sound value of each character" data-feedback="Right. The path starts with sounds, then words, then sentences.">Only the keyboard layout</button></div><div class="quick-check-feedback" id="check-start-0"></div></div><div class="quick-check"><p class="quick-check-question">How many characters does Yapiri have in total?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">45</button><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">26</button><button class="quick-check-option" type="button" data-answer="45" data-feedback="Correct. 6 vowels, 21 native consonants, 2 loanword consonants, 10 numerals, and 6 punctuation marks.">60</button></div><div class="quick-check-feedback" id="check-start-1"></div></div><div class="quick-check"><p class="quick-check-question">In a phonemic script, how many sounds can one character represent?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Always exactly one" data-feedback="Right. That consistency is the entire point of a phonemic script — no exceptions to memorize.">Always exactly one</button><button class="quick-check-option" type="button" data-answer="Always exactly one" data-feedback="Right. That consistency is the entire point of a phonemic script — no exceptions to memorize.">It depends on the word, like in English</button><button class="quick-check-option" type="button" data-answer="Always exactly one" data-feedback="Right. That consistency is the entire point of a phonemic script — no exceptions to memorize.">Two or three, depending on context</button></div><div class="quick-check-feedback" id="check-start-2"></div></div><div class="quick-check"><p class="quick-check-question">Which two Yapiri characters exist only to spell loanwords, not native Kokborok sounds?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="v and z" data-feedback="Correct. Every other character represents a native Kokborok sound — v and z are the only exceptions.">v and z</button><button class="quick-check-option" type="button" data-answer="v and z" data-feedback="Correct. Every other character represents a native Kokborok sound — v and z are the only exceptions.">ph and th</button><button class="quick-check-option" type="button" data-answer="v and z" data-feedback="Correct. Every other character represents a native Kokborok sound — v and z are the only exceptions.">n' and ng</button></div><div class="quick-check-feedback" id="check-start-3"></div></div><div class="quick-check"><p class="quick-check-question">How is the English word "science" spelled in Kokborok?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="sains" data-feedback="Correct. It's respelled to match how it actually sounds, using only real Yapiri sound values.">sains</button><button class="quick-check-option" type="button" data-answer="sains" data-feedback="Correct. It's respelled to match how it actually sounds, using only real Yapiri sound values.">science</button><button class="quick-check-option" type="button" data-answer="sains" data-feedback="Correct. It's respelled to match how it actually sounds, using only real Yapiri sound values.">sciens</button></div><div class="quick-check-feedback" id="check-start-4"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev" disabled>Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -1816,27 +1949,31 @@
         <div class="guided-lesson-head">
           <p class="lesson-kicker">Lesson 02 &middot; Core sounds</p>
           <h3>Vowels First</h3>
-          <p class="guided-lesson-intro">Learn the six vowel characters first: /a e ə i o u/. The schwa /ə/ is a real Kokborok vowel here, not a weak filler sound, so treat it as its own character.</p>
+          <p class="guided-lesson-intro">Learn the six vowel characters first: /a e ə i o u/. In Roman Kokborok spelling, the schwa-equivalent sound is commonly written with <em>w</em>, but Yapiri gives this sound its own dedicated schwa character. Treat it as a full Kokborok vowel, not a weak filler sound.</p>
         </div>
         <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Read every vowel as a full sound.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Keep a and ə separate.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Use vowel pairs to train your eye before adding consonants.</p></div></div>
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Read every vowel as a full sound.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Roman <em>w</em> can represent the schwa-equivalent sound, but Yapiri uses a dedicated schwa character.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Use the Yapiri schwa only in the middle of words — never at the beginning.</p></div></div>
           <div>
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲡</span><span class="roman">e</span></div><div class="guided-char"><span class="glyph">󱲥</span><span class="roman">ə</span></div><div class="guided-char"><span class="glyph">󱲢</span><span class="roman">i</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲣</span><span class="roman">u</span></div></div>
           </div>
-          
+          <div>
+            <p class="lesson-section-title">Schwa Rule</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;margin-bottom:0.8rem;">When Kokborok is written in Roman script, the schwa-equivalent sound is often represented by <strong style="color:var(--gold-light);font-weight:400;">w</strong>. In Yapiri, that sound does not borrow the Roman <em>w</em>; it has its own dedicated schwa character, shown here as <strong style="color:var(--gold-light);font-weight:400;">ə</strong> in the lesson labels.</p>
+            <p style="font-size:0.98rem;line-height:1.7;color:var(--stone-light);font-weight:300;">The Yapiri schwa character is used <strong style="color:var(--parchment);font-weight:400;">only in the middle of words</strong>. It never starts a word. If a word begins with the Roman letter <em>w</em>, that is the consonant/glide <em>w</em>, not the schwa vowel.</p>
+          </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;now&quot;</span></div><div class="lesson-example"><span class="ex-yapiri">󱲣󱲩󱲳󱲤</span><span class="ex-roman">ukno</span><span class="ex-meaning">sky</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲢󱲴</span><span class="ex-roman">in'</span><span class="ex-meaning">yes — affirmative particle</span></div><div class="lesson-example"><span class="ex-yapiri">󱲠󱲢</span><span class="ex-roman">ai</span><span class="ex-meaning">diphthong, as in &quot;phai&quot;</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲯󱲠</span><span class="ex-roman">nokha</span><span class="ex-meaning">sky</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman value marks the schwa vowel?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ə" data-feedback="Correct. Schwa has its own character and sound value.">a</button><button class="quick-check-option" type="button" data-answer="ə" data-feedback="Correct. Schwa has its own character and sound value.">ə</button><button class="quick-check-option" type="button" data-answer="ə" data-feedback="Correct. Schwa has its own character and sound value.">o</button></div><div class="quick-check-feedback" id="check-vowels-0"></div></div><div class="quick-check"><p class="quick-check-question">How many vowel characters are taught in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="6" data-feedback="Yes. Yapiri has six core vowel characters.">5</button><button class="quick-check-option" type="button" data-answer="6" data-feedback="Yes. Yapiri has six core vowel characters.">6</button><button class="quick-check-option" type="button" data-answer="6" data-feedback="Yes. Yapiri has six core vowel characters.">10</button></div><div class="quick-check-feedback" id="check-vowels-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">In Roman Kokborok spelling, which letter often represents the schwa-equivalent sound?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="w" data-feedback="Correct. Roman Kokborok commonly uses w for the schwa-equivalent sound.">w</button><button class="quick-check-option" type="button" data-answer="w" data-feedback="Correct. Roman Kokborok commonly uses w for the schwa-equivalent sound.">a</button><button class="quick-check-option" type="button" data-answer="w" data-feedback="Correct. Roman Kokborok commonly uses w for the schwa-equivalent sound.">o</button></div><div class="quick-check-feedback" id="check-vowels-0"></div></div><div class="quick-check"><p class="quick-check-question">How is that schwa sound written in Yapiri?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="With a dedicated schwa character" data-feedback="Yes. Yapiri does not borrow the Roman w for schwa; it has its own vowel character.">With a dedicated schwa character</button><button class="quick-check-option" type="button" data-answer="With a dedicated schwa character" data-feedback="Yes. Yapiri does not borrow the Roman w for schwa; it has its own vowel character.">With the consonant w</button><button class="quick-check-option" type="button" data-answer="With a dedicated schwa character" data-feedback="Yes. Yapiri does not borrow the Roman w for schwa; it has its own vowel character.">With a tone mark</button></div><div class="quick-check-feedback" id="check-vowels-1"></div></div><div class="quick-check"><p class="quick-check-question">Where can the Yapiri schwa character be used?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Only in the middle of words" data-feedback="Correct. The Yapiri schwa is used only in the middle of words and never starts a word.">Only in the middle of words</button><button class="quick-check-option" type="button" data-answer="Only in the middle of words" data-feedback="Correct. The Yapiri schwa is used only in the middle of words and never starts a word.">At the start of any word</button><button class="quick-check-option" type="button" data-answer="Only in the middle of words" data-feedback="Correct. The Yapiri schwa is used only in the middle of words and never starts a word.">Only after punctuation</button></div><div class="quick-check-feedback" id="check-vowels-2"></div></div><div class="quick-check"><p class="quick-check-question">How many vowel characters are taught in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="6" data-feedback="Yes. Yapiri has six core vowel characters.">5</button><button class="quick-check-option" type="button" data-answer="6" data-feedback="Yes. Yapiri has six core vowel characters.">6</button><button class="quick-check-option" type="button" data-answer="6" data-feedback="Yes. Yapiri has six core vowel characters.">10</button></div><div class="quick-check-feedback" id="check-vowels-3"></div></div><div class="quick-check"><p class="quick-check-question">Which worked example means sky?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="nokha" data-feedback="Correct. Nokha means sky.">nokha</button><button class="quick-check-option" type="button" data-answer="nokha" data-feedback="Correct. Nokha means sky.">in'</button><button class="quick-check-option" type="button" data-answer="nokha" data-feedback="Correct. Nokha means sky.">ai</button></div><div class="quick-check-feedback" id="check-vowels-4"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -1867,64 +2004,67 @@
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
-      <article class="guided-lesson" id="guided-consonants" data-lesson-index="3">
-        <div class="guided-lesson-head">
-          <p class="lesson-kicker">Lesson 04 &middot; Sound families</p>
-          <h3>Consonants</h3>
-          <p class="guided-lesson-intro">Kokborok’s native consonants divide into three families: stops (plain and aspirated), nasals, and fricatives/affricates. This lesson covers all three — open each group to work through its characters, examples, and checks.</p>
-        </div>
-        <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Consonants group into stops, nasals, and fricatives/affricates by how they’re made.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Plain and aspirated stops are separate phonemes — the h is not decoration.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Open each group below to work through its characters and checks.</p></div></div>
-          <div>
-            <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲲</span><span class="roman">m</span></div><div class="guided-char"><span class="glyph">󱲶</span><span class="roman">s</span></div><div class="guided-char"><span class="glyph">󱲰</span><span class="roman">ch</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Consonant Groups</p>
-            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">Kokborok’s 21 native consonants fall into three families by how they’re made. Open each group below.</p>
-            <div class="vocab-reference-stack">
-              <details class="vocab-details" open><summary>Stops: Plain &amp; Aspirated<span>9 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>Plain and aspirated stops are different phonemes.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>k, t, p are not the same as kh, th, ph.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Train the pairs side by side before reading longer words.</p></div></div>
+      <article class="guided-lesson" data-lesson-index="3" id="guided-consonants">
+<div class="guided-lesson-head">
+<p class="lesson-kicker">Lesson 04 · Sound families</p>
+<h3>Consonants</h3>
+<p class="guided-lesson-intro">Kokborok’s native consonants divide into four families: stops (plain and aspirated), nasals, fricatives/affricates, and liquids/glides. This lesson covers all four — open each group to work through its characters, examples, and checks.</p>
+</div>
+<div class="guided-lesson-body">
+<div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Consonants group into stops, nasals, fricatives/affricates, and liquids/glides by how they’re made.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>Plain and aspirated stops are separate phonemes — the h is not decoration.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Open each group below to work through its characters and checks.</p></div></div>
+
+<div>
+<p class="lesson-section-title">Consonant Groups</p>
+<p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">The core consonant path is arranged into four categories below. The fricatives/affricates group also notes z and v as loanword extensions.</p>
+<div class="vocab-reference-stack">
+<details class="vocab-details" open=""><summary>Stops: Plain &amp; Aspirated<span>9 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>Plain and aspirated stops are different phonemes.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>k, t, p are not the same as kh, th, ph.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Train the pairs side by side before reading longer words.</p></div></div>
 <p class="lesson-section-title">Characters</p>
 <div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲩</span><span class="roman">k</span></div><div class="guided-char"><span class="glyph">󱲯</span><span class="roman">kh</span></div><div class="guided-char"><span class="glyph">󱲬</span><span class="roman">g</span></div><div class="guided-char"><span class="glyph">󱲨</span><span class="roman">t</span></div><div class="guided-char"><span class="glyph">󱲮</span><span class="roman">th</span></div><div class="guided-char"><span class="glyph">󱲫</span><span class="roman">d</span></div><div class="guided-char"><span class="glyph">󱲧</span><span class="roman">p</span></div><div class="guided-char"><span class="glyph">󱲭</span><span class="roman">ph</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div></div>
 <p class="lesson-section-title">Worked Examples</p>
-<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠󱲳󱲠</span><span class="ex-roman">kana</span><span class="ex-meaning">ear</span></div><div class="lesson-example"><span class="ex-yapiri">󱲨󱲢󱲳󱲠</span><span class="ex-roman">tina</span><span class="ex-meaning">mother</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲣󱲲󱲣󱲵</span><span class="ex-roman">bumung</span><span class="ex-meaning">name</span></div></div>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲯󱲣󱲳󱲱󱲣</span><span class="ex-roman">khunju</span><span class="ex-meaning">aspirated stop practice</span></div><div class="lesson-example"><span class="ex-yapiri">󱲨󱲢󱲳󱲠</span><span class="ex-roman">tina</span><span class="ex-meaning">mother</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲣󱲲󱲣󱲵</span><span class="ex-roman">bumung</span><span class="ex-meaning">name</span></div></div>
 <p class="lesson-section-title">Quick Checks</p>
-<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which pair shows plain vs aspirated k?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / kh</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">k / g</button><button class="quick-check-option" type="button" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k.">p / b</button></div><div class="quick-check-feedback" id="check-stops-0"></div></div><div class="quick-check"><p class="quick-check-question">Does aspiration change meaning in Kokborok?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Yes</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">No</button><button class="quick-check-option" type="button" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive.">Only in English words</button></div><div class="quick-check-feedback" id="check-stops-1"></div></div></div></div></details>
-              <details class="vocab-details"><summary>Nasals<span>4 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>m, n, and ng are separate characters.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>ng is common and should be read as one sound.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>n‑prime is used in specific conventional forms such as in’ and in’he.</p></div></div>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which pair shows plain vs aspirated k?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k." type="button">k / kh</button><button class="quick-check-option" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k." type="button">k / g</button><button class="quick-check-option" data-answer="k / kh" data-feedback="Right. kh is the aspirated partner of k." type="button">p / b</button></div><div class="quick-check-feedback" id="check-stops-0"></div></div><div class="quick-check"><p class="quick-check-question">Does aspiration change meaning in Kokborok?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive." type="button">Yes</button><button class="quick-check-option" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive." type="button">No</button><button class="quick-check-option" data-answer="Yes" data-feedback="Correct. Aspiration is contrastive." type="button">Only in English words</button></div><div class="quick-check-feedback" id="check-stops-1"></div></div></div></div></details>
+<details class="vocab-details"><summary>Nasals<span>4 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>m, n, and ng are separate characters.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>ng is common and should be read as one sound.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>n‑prime is used in specific conventional forms such as in’ and in’he.</p></div></div>
 <p class="lesson-section-title">Characters</p>
 <div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲲</span><span class="roman">m</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲴</span><span class="roman">n'</span></div><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div></div>
 <p class="lesson-section-title">Worked Examples</p>
-<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲲󱲠󱲢</span><span class="ex-roman">mai</span><span class="ex-meaning">rice</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲩</span><span class="ex-roman">nok</span><span class="ex-meaning">house</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable: ng + a</span></div></div>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲲󱲠󱲢</span><span class="ex-roman">mai</span><span class="ex-meaning">rice</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲤󱲩</span><span class="ex-roman">nok</span><span class="ex-meaning">house</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵</span><span class="ex-roman">ng</span><span class="ex-meaning">velar nasal character</span></div></div>
 <p class="lesson-section-title">Quick Checks</p>
-<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman value is written as one velar nasal character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">ng</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">n</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Correct. ng is one Yapiri character.">m</button></div><div class="quick-check-feedback" id="check-nasals-0"></div></div><div class="quick-check"><p class="quick-check-question">Which sound is reserved for in’ and in’he?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms.">n'</button><button class="quick-check-option" type="button" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms.">ng</button><button class="quick-check-option" type="button" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms.">m</button></div><div class="quick-check-feedback" id="check-nasals-1"></div></div></div></div></details>
-              <details class="vocab-details"><summary>Fricatives &amp; Affricates<span>6 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>ch and j are affricates.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>s and h are common in everyday Kokborok.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>z and v are useful for contact-language words.</p></div></div>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which Roman value is written as one velar nasal character?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="ng" data-feedback="Correct. ng is one Yapiri character." type="button">ng</button><button class="quick-check-option" data-answer="ng" data-feedback="Correct. ng is one Yapiri character." type="button">n</button><button class="quick-check-option" data-answer="ng" data-feedback="Correct. ng is one Yapiri character." type="button">m</button></div><div class="quick-check-feedback" id="check-nasals-0"></div></div><div class="quick-check"><p class="quick-check-question">Which sound is reserved for in’ and in’he?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms." type="button">n'</button><button class="quick-check-option" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms." type="button">ng</button><button class="quick-check-option" data-answer="n'" data-feedback="Yes. N-prime appears only in these conventional forms." type="button">m</button></div><div class="quick-check-feedback" id="check-nasals-1"></div></div></div></div></details>
+<details class="vocab-details"><summary>Fricatives &amp; Affricates<span>6 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>ch and j are affricates.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>s and h are common in everyday Kokborok.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>z and v are useful for contact-language words.</p></div></div>
 <p class="lesson-section-title">Characters</p>
 <div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲶</span><span class="roman">s</span></div><div class="guided-char"><span class="glyph">󱲹</span><span class="roman">h</span></div><div class="guided-char"><span class="glyph">󱲰</span><span class="roman">ch</span></div><div class="guided-char"><span class="glyph">󱲱</span><span class="roman">j</span></div><div class="guided-char"><span class="glyph">󱲽</span><span class="roman">z</span></div><div class="guided-char"><span class="glyph">󱲼</span><span class="roman">v</span></div></div>
 <p class="lesson-section-title">Worked Examples</p>
-<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲩󱲠</span><span class="ex-roman">saka</span><span class="ex-meaning">vegetable</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know</span></div><div class="lesson-example"><span class="ex-yapiri">󱲱󱲠󱲻󱲠</span><span class="ex-roman">jawa</span><span class="ex-meaning">to go</span></div></div>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲩󱲠</span><span class="ex-roman">saka</span><span class="ex-meaning">vegetable</span></div><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲢󱲲󱲠󱲳󱲤</span><span class="ex-roman">saimano</span><span class="ex-meaning">to know</span></div><div class="lesson-example"><span class="ex-yapiri">󱲱󱲠󱲻󱲠</span><span class="ex-roman">jawa</span><span class="ex-meaning">to go</span></div></div>
 <p class="lesson-section-title">Quick Checks</p>
-<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which sounds are mostly loanword consonants?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">z and v</button><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">s and h</button><button class="quick-check-option" type="button" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants.">ch and j</button></div><div class="quick-check-feedback" id="check-fricatives-0"></div></div><div class="quick-check"><p class="quick-check-question">Which Roman form starts with the ch character?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">chana</button><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">jawa</button><button class="quick-check-option" type="button" data-answer="chana" data-feedback="Yes. chana begins with ch.">saka</button></div><div class="quick-check-feedback" id="check-fricatives-1"></div></div></div></div></details>
-            </div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲩󱲠󱲳󱲠</span><span class="ex-roman">kana</span><span class="ex-meaning">ear (stop)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable (nasal)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know (affricate)</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many native consonant characters does Kokborok use?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants.">21</button><button class="quick-check-option" type="button" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants.">15</button><button class="quick-check-option" type="button" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants.">30</button></div><div class="quick-check-feedback" id="check-consonants-0"></div></div><div class="quick-check"><p class="quick-check-question">Which three families organize the consonants in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Stops, nasals, fricatives/affricates" data-feedback="Yes — these are the three groups covered in this lesson.">Stops, nasals, fricatives/affricates</button><button class="quick-check-option" type="button" data-answer="Stops, nasals, fricatives/affricates" data-feedback="Yes — these are the three groups covered in this lesson.">Vowels, diphthongs, triphthongs</button><button class="quick-check-option" type="button" data-answer="Stops, nasals, fricatives/affricates" data-feedback="Yes — these are the three groups covered in this lesson.">Numerals, punctuation, diacritics</button></div><div class="quick-check-feedback" id="check-consonants-1"></div></div></div>
-          </div>
-          <div class="lesson-actions">
-            <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
-          </div>
-        </div>
-      </article>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which sounds are mostly loanword consonants?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants." type="button">z and v</button><button class="quick-check-option" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants." type="button">s and h</button><button class="quick-check-option" data-answer="z and v" data-feedback="Correct. z and v are marked as loanword consonants." type="button">ch and j</button></div><div class="quick-check-feedback" id="check-fricatives-0"></div></div><div class="quick-check"><p class="quick-check-question">Which Roman form means “to know” in the worked examples?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="saimano" data-feedback="Yes. saimano means “to know” in this example set." type="button">saimano</button><button class="quick-check-option" data-answer="saimano" data-feedback="Yes. saimano means “to know” in this example set." type="button">jawa</button><button class="quick-check-option" data-answer="saimano" data-feedback="Yes. saimano means “to know” in this example set." type="button">saka</button></div><div class="quick-check-feedback" id="check-fricatives-1"></div></div></div></div></details>
+<details class="vocab-details"><summary>Liquids &amp; Glides<span>4 characters</span></summary><div style="padding:1rem 1.2rem 1.3rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="lesson-focus-grid" style="margin-bottom:1rem;"><div class="lesson-focus-card"><span>Focus 1</span><p>r and l are liquid consonants.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>y and w are glides: consonant-like sounds close to vowels.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Read each as a separate Yapiri character, not as part of a vowel spelling.</p></div></div>
+<p class="lesson-section-title">Characters</p>
+<div class="guided-char-strip" style="margin-bottom:1rem;"><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div><div class="guided-char"><span class="glyph">󱲸</span><span class="roman">l</span></div><div class="guided-char"><span class="glyph">󱲺</span><span class="roman">y</span></div><div class="guided-char"><span class="glyph">󱲻</span><span class="roman">w</span></div></div>
+<p class="lesson-section-title">Worked Examples</p>
+<div class="worked-examples-grid" style="margin-bottom:1rem;"><div class="lesson-example"><span class="ex-yapiri">󱲷󱲢󱲶󱲠</span><span class="ex-roman">risa</span><span class="ex-meaning">cloth</span></div><div class="lesson-example"><span class="ex-yapiri">󱲸󱲠󱲲󱲶󱲤󱲩</span><span class="ex-roman">lamsok</span><span class="ex-meaning">to welcome</span></div><div class="lesson-example"><span class="ex-yapiri">󱲺󱲠󱲧󱲢󱲷󱲢</span><span class="ex-roman">yapiri</span><span class="ex-meaning">script name</span></div><div class="lesson-example"><span class="ex-yapiri">󱲻</span><span class="ex-roman">w</span><span class="ex-meaning">glide consonant</span></div></div>
+<p class="lesson-section-title">Quick Checks</p>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">Which two characters are liquids?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="r and l" data-feedback="Correct. r and l are the liquid consonants in this group." type="button">r and l</button><button class="quick-check-option" data-answer="r and l" data-feedback="Correct. r and l are the liquid consonants in this group." type="button">m and n</button><button class="quick-check-option" data-answer="r and l" data-feedback="Correct. r and l are the liquid consonants in this group." type="button">s and h</button></div><div class="quick-check-feedback" id="check-liquids-0"></div></div><div class="quick-check"><p class="quick-check-question">Which two characters are glides?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="y and w" data-feedback="Yes. y and w behave like consonants but sound close to vowels." type="button">y and w</button><button class="quick-check-option" data-answer="y and w" data-feedback="Yes. y and w behave like consonants but sound close to vowels." type="button">r and l</button><button class="quick-check-option" data-answer="y and w" data-feedback="Yes. y and w behave like consonants but sound close to vowels." type="button">ch and j</button></div><div class="quick-check-feedback" id="check-liquids-1"></div></div></div></div></details></div>
+</div>
+<div>
+<p class="lesson-section-title">Worked Examples</p>
+<div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲯󱲣󱲳󱲱󱲣</span><span class="ex-roman">khunju</span><span class="ex-meaning">aspirated stop example</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵</span><span class="ex-roman">ng</span><span class="ex-meaning">velar nasal character</span></div><div class="lesson-example"><span class="ex-yapiri">󱲶󱲠󱲢󱲲󱲠󱲳󱲤</span><span class="ex-roman">saimano</span><span class="ex-meaning">to know</span></div></div>
+</div>
+<div>
+<p class="lesson-section-title">Quick Checks</p>
+<div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many native consonant characters does Kokborok use?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants." type="button">21</button><button class="quick-check-option" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants." type="button">15</button><button class="quick-check-option" data-answer="21" data-feedback="Correct. 21 native consonants, plus 2 extended loanword consonants." type="button">30</button></div><div class="quick-check-feedback" id="check-consonants-0"></div></div><div class="quick-check"><p class="quick-check-question">Which four categories organize the consonants in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" data-answer="Stops, nasals, fricatives/affricates, liquids/glides" data-feedback="Yes — these are the four categories covered in this consonant lesson." type="button">Stops, nasals, fricatives/affricates, liquids/glides</button><button class="quick-check-option" data-answer="Stops, nasals, fricatives/affricates, liquids/glides" data-feedback="Yes — these are the four categories covered in this consonant lesson." type="button">Vowels, diphthongs, triphthongs, tone marks</button><button class="quick-check-option" data-answer="Stops, nasals, fricatives/affricates, liquids/glides" data-feedback="Yes — these are the four categories covered in this consonant lesson." type="button">Numerals, punctuation, diacritics, loanwords</button></div><div class="quick-check-feedback" id="check-consonants-1"></div></div></div>
+</div>
+<div class="lesson-actions">
+<button class="lesson-action" data-action="prev" type="button">Previous</button>
+<button class="lesson-action primary" data-action="complete" type="button">Mark Complete &amp; Continue</button>
+<button class="lesson-action" data-action="practice" type="button">Practice Hub</button>
+</div>
+</div>
+</article>
       <article class="guided-lesson" id="guided-digraphs" data-lesson-index="4">
         <div class="guided-lesson-head">
           <p class="lesson-kicker">Lesson 05 &middot; Two letters, one sound</p>
@@ -1943,16 +2083,16 @@
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲯󱲣󱲲</span><span class="ex-roman">khum</span><span class="ex-meaning">flower (kh)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲳󱲠</span><span class="ex-roman">chana</span><span class="ex-meaning">to know (ch)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲵󱲠</span><span class="ex-roman">nga</span><span class="ex-meaning">velar nasal syllable (ng)</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱲯󱲣󱲲</span><span class="ex-roman">khum</span><span class="ex-meaning">flower (kh)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲮󱲠󱲢󱲰󱲣󱲩</span><span class="ex-roman">thaichuk</span><span class="ex-meaning">mango (th)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲭󱲠󱲳󱲨󱲤󱲩</span><span class="ex-roman">phantok</span><span class="ex-meaning">brinjal (ph)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲤󱲯󱲷󱲡󱲵</span><span class="ex-roman">chokhreng</span><span class="ex-meaning">rainbow (ch)</span></div><div class="lesson-example"><span class="ex-yapiri">󱲳󱲥󱲵</span><span class="ex-roman">Nwng</span><span class="ex-meaning">you (ng)</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri characters does the digraph &quot;kh&quot; represent?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">One</button><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">Two</button><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">Zero</button></div><div class="quick-check-feedback" id="check-digraphs-0"></div></div><div class="quick-check"><p class="quick-check-question">Which of these is a digraph covered in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">ng</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">a</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">s</button></div><div class="quick-check-feedback" id="check-digraphs-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri characters does the digraph &quot;kh&quot; represent?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">One</button><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">Two</button><button class="quick-check-option" type="button" data-answer="One" data-feedback="Correct. kh is one Yapiri character, even though it is two Roman letters.">Zero</button></div><div class="quick-check-feedback" id="check-digraphs-0"></div></div><div class="quick-check"><p class="quick-check-question">Which of these is a digraph covered in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">ng</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">a</button><button class="quick-check-option" type="button" data-answer="ng" data-feedback="Yes. ng is a single Yapiri character for the velar nasal.">s</button></div><div class="quick-check-feedback" id="check-digraphs-1"></div></div><div class="quick-check"><p class="quick-check-question">Which worked example means flower?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="khum" data-feedback="Correct. khum means flower and uses the kh digraph.">khum</button><button class="quick-check-option" type="button" data-answer="khum" data-feedback="Correct. khum means flower and uses the kh digraph.">thaichuk</button><button class="quick-check-option" type="button" data-answer="khum" data-feedback="Correct. khum means flower and uses the kh digraph.">phantok</button></div><div class="quick-check-feedback" id="check-digraphs-2"></div></div><div class="quick-check"><p class="quick-check-question">Which digraph begins thaichuk, meaning mango?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="th" data-feedback="Correct. thaichuk begins with the th digraph.">th</button><button class="quick-check-option" type="button" data-answer="th" data-feedback="Correct. thaichuk begins with the th digraph.">kh</button><button class="quick-check-option" type="button" data-answer="th" data-feedback="Correct. thaichuk begins with the th digraph.">ng</button></div><div class="quick-check-feedback" id="check-digraphs-3"></div></div><div class="quick-check"><p class="quick-check-question">Which worked example means brinjal?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="phantok" data-feedback="Yes. phantok means brinjal and begins with ph.">phantok</button><button class="quick-check-option" type="button" data-answer="phantok" data-feedback="Yes. phantok means brinjal and begins with ph.">chokhreng</button><button class="quick-check-option" type="button" data-answer="phantok" data-feedback="Yes. phantok means brinjal and begins with ph.">khum</button></div><div class="quick-check-feedback" id="check-digraphs-4"></div></div><div class="quick-check"><p class="quick-check-question">Which worked example contains ch and means rainbow?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="chokhreng" data-feedback="Correct. chokhreng means rainbow and begins with ch.">chokhreng</button><button class="quick-check-option" type="button" data-answer="chokhreng" data-feedback="Correct. chokhreng means rainbow and begins with ch.">Nwng</button><button class="quick-check-option" type="button" data-answer="chokhreng" data-feedback="Correct. chokhreng means rainbow and begins with ch.">thaichuk</button></div><div class="quick-check-feedback" id="check-digraphs-5"></div></div><div class="quick-check"><p class="quick-check-question">Which worked example means you and ends with ng?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Nwng" data-feedback="Correct. Nwng means you and ends with the ng digraph.">Nwng</button><button class="quick-check-option" type="button" data-answer="Nwng" data-feedback="Correct. Nwng means you and ends with the ng digraph.">khum</button><button class="quick-check-option" type="button" data-answer="Nwng" data-feedback="Correct. Nwng means you and ends with the ng digraph.">phantok</button></div><div class="quick-check-feedback" id="check-digraphs-6"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -1988,7 +2128,7 @@
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -2016,7 +2156,7 @@
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -2044,7 +2184,7 @@
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -2064,16 +2204,16 @@
             <p class="lesson-section-title">Kokborok Numeral Names</p>
             <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">Each numeral has its own spoken Kokborok name, separate from its written digit shape.</p>
             <div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Digit</th><th>Yapiri</th><th>Kokborok Name</th></tr></thead><tbody>
-              <tr><td>0</td><td class="vocab-glyph">&#xF1CC0;</td><td class="vocab-roman">bukcha</td></tr>
-              <tr><td>1</td><td class="vocab-glyph">&#xF1CC1;</td><td class="vocab-roman">sa</td></tr>
-              <tr><td>2</td><td class="vocab-glyph">&#xF1CC2;</td><td class="vocab-roman">nwi</td></tr>
-              <tr><td>3</td><td class="vocab-glyph">&#xF1CC3;</td><td class="vocab-roman">tham</td></tr>
-              <tr><td>4</td><td class="vocab-glyph">&#xF1CC4;</td><td class="vocab-roman">brwi</td></tr>
-              <tr><td>5</td><td class="vocab-glyph">&#xF1CC5;</td><td class="vocab-roman">ba</td></tr>
-              <tr><td>6</td><td class="vocab-glyph">&#xF1CC6;</td><td class="vocab-roman">dok</td></tr>
-              <tr><td>7</td><td class="vocab-glyph">&#xF1CC7;</td><td class="vocab-roman">sni</td></tr>
-              <tr><td>8</td><td class="vocab-glyph">&#xF1CC8;</td><td class="vocab-roman">char</td></tr>
-              <tr><td>9</td><td class="vocab-glyph">&#xF1CC9;</td><td class="vocab-roman">chuku</td></tr>
+              <tr><td>0</td><td class="vocab-glyph">&#xF1CC0;</td><td>bukcha</td></tr>
+              <tr><td>1</td><td class="vocab-glyph">&#xF1CC1;</td><td>sa</td></tr>
+              <tr><td>2</td><td class="vocab-glyph">&#xF1CC2;</td><td>nwi</td></tr>
+              <tr><td>3</td><td class="vocab-glyph">&#xF1CC3;</td><td>tham</td></tr>
+              <tr><td>4</td><td class="vocab-glyph">&#xF1CC4;</td><td>brwi</td></tr>
+              <tr><td>5</td><td class="vocab-glyph">&#xF1CC5;</td><td>ba</td></tr>
+              <tr><td>6</td><td class="vocab-glyph">&#xF1CC6;</td><td>dok</td></tr>
+              <tr><td>7</td><td class="vocab-glyph">&#xF1CC7;</td><td>sni</td></tr>
+              <tr><td>8</td><td class="vocab-glyph">&#xF1CC8;</td><td>char</td></tr>
+              <tr><td>9</td><td class="vocab-glyph">&#xF1CC9;</td><td>chuku</td></tr>
             </tbody></table></div>
           </div>
           <div>
@@ -2082,48 +2222,44 @@
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
-            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri numeral characters are taught here?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">10</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">6</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">21</button></div><div class="quick-check-feedback" id="check-numerals-0"></div></div><div class="quick-check"><p class="quick-check-question">What is the Kokborok name for the digit 1?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">sa</button><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">nwi</button><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">bukcha</button></div><div class="quick-check-feedback" id="check-numerals-1"></div></div></div>
+            <div class="guided-checks"><div class="quick-check"><p class="quick-check-question">How many Yapiri numeral characters are taught here?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">10</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">6</button><button class="quick-check-option" type="button" data-answer="10" data-feedback="Correct. The numeral set covers 0 through 9.">21</button></div><div class="quick-check-feedback" id="check-numerals-0"></div></div><div class="quick-check"><p class="quick-check-question">What is the Kokborok name for the digit 1?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">sa</button><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">nwi</button><button class="quick-check-option" type="button" data-answer="sa" data-feedback="Yes. 1 is sa in Kokborok.">bukcha</button></div><div class="quick-check-feedback" id="check-numerals-1"></div></div><div class="quick-check"><p class="quick-check-question">What is the Kokborok name for the digit 0?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="bukcha" data-feedback="Correct. 0 is bukcha in Kokborok.">bukcha</button><button class="quick-check-option" type="button" data-answer="bukcha" data-feedback="Correct. 0 is bukcha in Kokborok.">tham</button><button class="quick-check-option" type="button" data-answer="bukcha" data-feedback="Correct. 0 is bukcha in Kokborok.">dok</button></div><div class="quick-check-feedback" id="check-numerals-2"></div></div><div class="quick-check"><p class="quick-check-question">Which digit is called nwi?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="2" data-feedback="Correct. The Kokborok name for 2 is nwi.">2</button><button class="quick-check-option" type="button" data-answer="2" data-feedback="Correct. The Kokborok name for 2 is nwi.">3</button><button class="quick-check-option" type="button" data-answer="2" data-feedback="Correct. The Kokborok name for 2 is nwi.">7</button></div><div class="quick-check-feedback" id="check-numerals-3"></div></div><div class="quick-check"><p class="quick-check-question">Which digit is called brwi?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="4" data-feedback="Yes. 4 is brwi in Kokborok.">4</button><button class="quick-check-option" type="button" data-answer="4" data-feedback="Yes. 4 is brwi in Kokborok.">5</button><button class="quick-check-option" type="button" data-answer="4" data-feedback="Yes. 4 is brwi in Kokborok.">8</button></div><div class="quick-check-feedback" id="check-numerals-4"></div></div><div class="quick-check"><p class="quick-check-question">What is the Kokborok name for the digit 6?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="dok" data-feedback="Correct. 6 is dok in Kokborok.">dok</button><button class="quick-check-option" type="button" data-answer="dok" data-feedback="Correct. 6 is dok in Kokborok.">sni</button><button class="quick-check-option" type="button" data-answer="dok" data-feedback="Correct. 6 is dok in Kokborok.">chuku</button></div><div class="quick-check-feedback" id="check-numerals-5"></div></div><div class="quick-check"><p class="quick-check-question">Which sequence correctly names 7-8-9?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="sni, char, chuku" data-feedback="Correct. 7-8-9 are sni, char, chuku.">sni, char, chuku</button><button class="quick-check-option" type="button" data-answer="sni, char, chuku" data-feedback="Correct. 7-8-9 are sni, char, chuku.">sa, nwi, tham</button><button class="quick-check-option" type="button" data-answer="sni, char, chuku" data-feedback="Correct. 7-8-9 are sni, char, chuku.">brwi, ba, dok</button></div><div class="quick-check-feedback" id="check-numerals-6"></div></div></div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
             <button class="lesson-action primary" type="button" data-action="complete">Mark Complete &amp; Continue</button>
-            <button class="lesson-action" type="button" data-action="practice">Practice Lab</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
       <article class="guided-lesson" id="guided-core-words" data-lesson-index="9">
         <div class="guided-lesson-head">
           <p class="lesson-kicker">Lesson 10 &middot; Useful words</p>
-          <h3>Everyday Pronouns and Core Words</h3>
-          <p class="guided-lesson-intro">Everyday Kokborok in 51 words — greetings, food, actions, movement, and descriptors. Use these as your daily anchors while everything from Lessons 01–9 falls into place.</p>
+          <h3>Everyday Kokborok Pronouns and Core Words</h3>
+          <p class="guided-lesson-intro">Everyday Kokborok pronouns and 51 core words — pronouns first, then greetings, food, actions, movement, and descriptors. Use these as your daily anchors while everything from Lessons 01–9 falls into place.</p>
         </div>
         <div class="guided-lesson-body">
           <div class="lesson-focus-grid">
-            <div class="lesson-focus-card"><span>Focus 1</span><p>Use these words in daily situations — greetings first, then actions, then descriptors.</p></div>
+            <div class="lesson-focus-card"><span>Focus 1</span><p>Start with pronouns, then move through greetings, food, actions, movement, and descriptors.</p></div>
             <div class="lesson-focus-card"><span>Focus 2</span><p>Read the Yapiri form, check the Roman spelling, then use it in a sentence.</p></div>
             <div class="lesson-focus-card"><span>Focus 3</span><p>The sentence column shows each word in real Kokborok context.</p></div>
           </div>
           <div>
-            <p class="lesson-section-title">Characters</p>
-            <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱲵</span><span class="roman">ng</span></div><div class="guided-char"><span class="glyph">󱲠</span><span class="roman">a</span></div><div class="guided-char"><span class="glyph">󱲳</span><span class="roman">n</span></div><div class="guided-char"><span class="glyph">󱲪</span><span class="roman">b</span></div><div class="guided-char"><span class="glyph">󱲤</span><span class="roman">o</span></div><div class="guided-char"><span class="glyph">󱲷</span><span class="roman">r</span></div></div>
-          </div>
-          <div>
-            <p class="lesson-section-title">Pronouns &amp; Core Word List</p>
-            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">85 pronouns plus 51 everyday Kokborok words across five groups. Open each group to study.</p>
-            <div class="vocab-reference-stack">
-              <details class="vocab-details" id="vg-pronouns">
+            <p class="lesson-section-title" id="core-word-list-anchor">Pronouns &amp; Core Word List</p>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">85 Kokborok pronouns plus 51 everyday core words across five groups. Pronouns open first so the lesson begins serially.</p>
+            <div class="vocab-reference-stack" id="core-word-list">
+              <details class="vocab-details" id="vg-pronouns" open>
               <summary>Pronouns<span>85 entries</span></summary>
               <div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);">
                 <div class="vocab-table-wrap"><table class="vocab-table">
                   <thead><tr><th>#</th><th>English</th><th>Kokborok</th></tr></thead>
                   <tbody><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">1</td><td class="vocab-roman" style="color:var(--parchment);">All</td><td class="vocab-roman">Jotono</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">2</td><td class="vocab-roman" style="color:var(--parchment);">Another</td><td class="vocab-roman">Tei kaisa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">3</td><td class="vocab-roman" style="color:var(--parchment);">Any</td><td class="vocab-roman">Jesa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">4</td><td class="vocab-roman" style="color:var(--parchment);">Anybody</td><td class="vocab-roman">Jeba Khoroksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">5</td><td class="vocab-roman" style="color:var(--parchment);">Anyone</td><td class="vocab-roman">Jeba Khoroksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">6</td><td class="vocab-roman" style="color:var(--parchment);">Anything</td><td class="vocab-roman">Jesa Phano</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">7</td><td class="vocab-roman" style="color:var(--parchment);">As</td><td class="vocab-roman">Hai</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">8</td><td class="vocab-roman" style="color:var(--parchment);">Both</td><td class="vocab-roman">Mungnwino/Khoroknwino</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">9</td><td class="vocab-roman" style="color:var(--parchment);">Each</td><td class="vocab-roman">Kaisa kaisa/Mungsa Mungsa/Khoroksa Khoroksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">10</td><td class="vocab-roman" style="color:var(--parchment);">Each other</td><td class="vocab-roman">Khoroksa tei Khoroksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">11</td><td class="vocab-roman" style="color:var(--parchment);">Either</td><td class="vocab-roman">Jeba Khoroksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">12</td><td class="vocab-roman" style="color:var(--parchment);">Everybody</td><td class="vocab-roman">Jotono</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">13</td><td class="vocab-roman" style="color:var(--parchment);">Everyone</td><td class="vocab-roman">Jotono</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">14</td><td class="vocab-roman" style="color:var(--parchment);">Everyhting</td><td class="vocab-roman">Jotono</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">15</td><td class="vocab-roman" style="color:var(--parchment);">Few</td><td class="vocab-roman">Kichasa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">16</td><td class="vocab-roman" style="color:var(--parchment);">He</td><td class="vocab-roman">Bo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">17</td><td class="vocab-roman" style="color:var(--parchment);">Her</td><td class="vocab-roman">Bo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">18</td><td class="vocab-roman" style="color:var(--parchment);">Hers</td><td class="vocab-roman">Bini</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">19</td><td class="vocab-roman" style="color:var(--parchment);">Herself</td><td class="vocab-roman">Bo Saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">20</td><td class="vocab-roman" style="color:var(--parchment);">Him</td><td class="vocab-roman">Bono</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">21</td><td class="vocab-roman" style="color:var(--parchment);">Himself</td><td class="vocab-roman">Bo Saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">22</td><td class="vocab-roman" style="color:var(--parchment);">His</td><td class="vocab-roman">Bini</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">23</td><td class="vocab-roman" style="color:var(--parchment);">I</td><td class="vocab-roman">Ang</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">24</td><td class="vocab-roman" style="color:var(--parchment);">It</td><td class="vocab-roman">Ibo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">25</td><td class="vocab-roman" style="color:var(--parchment);">Its</td><td class="vocab-roman">Iboni</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">26</td><td class="vocab-roman" style="color:var(--parchment);">Itself</td><td class="vocab-roman">Ibo saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">27</td><td class="vocab-roman" style="color:var(--parchment);">Many</td><td class="vocab-roman">Gila/kwbangma</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">28</td><td class="vocab-roman" style="color:var(--parchment);">Me</td><td class="vocab-roman">Ang/Ano</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">29</td><td class="vocab-roman" style="color:var(--parchment);">Mine</td><td class="vocab-roman">Ani</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">30</td><td class="vocab-roman" style="color:var(--parchment);">Most</td><td class="vocab-roman">Jotonisai</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">31</td><td class="vocab-roman" style="color:var(--parchment);">My</td><td class="vocab-roman">Ani</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">32</td><td class="vocab-roman" style="color:var(--parchment);">Myself</td><td class="vocab-roman">Ang saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">34</td><td class="vocab-roman" style="color:var(--parchment);">No one</td><td class="vocab-roman">Keboya</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">35</td><td class="vocab-roman" style="color:var(--parchment);">Nobody</td><td class="vocab-roman">Keboya</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">37</td><td class="vocab-roman" style="color:var(--parchment);">Nothing</td><td class="vocab-roman">Mungsaya</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">38</td><td class="vocab-roman" style="color:var(--parchment);">One</td><td class="vocab-roman">Kaisa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">39</td><td class="vocab-roman" style="color:var(--parchment);">One another</td><td class="vocab-roman">Khoroksa tei khoroksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">40</td><td class="vocab-roman" style="color:var(--parchment);">Other</td><td class="vocab-roman">kubuni/bui</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">41</td><td class="vocab-roman" style="color:var(--parchment);">Others</td><td class="vocab-roman">kubunirok/buirok</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">42</td><td class="vocab-roman" style="color:var(--parchment);">Our</td><td class="vocab-roman">chini</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">43</td><td class="vocab-roman" style="color:var(--parchment);">Ours</td><td class="vocab-roman">chinirok</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">44</td><td class="vocab-roman" style="color:var(--parchment);">Ourself</td><td class="vocab-roman">chwng saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">45</td><td class="vocab-roman" style="color:var(--parchment);">Ourselves</td><td class="vocab-roman">chwng saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">46</td><td class="vocab-roman" style="color:var(--parchment);">Several</td><td class="vocab-roman">mungsu</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">47</td><td class="vocab-roman" style="color:var(--parchment);">She</td><td class="vocab-roman">bo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">48</td><td class="vocab-roman" style="color:var(--parchment);">Some</td><td class="vocab-roman">baksa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">49</td><td class="vocab-roman" style="color:var(--parchment);">Somebody</td><td class="vocab-roman">sabobo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">50</td><td class="vocab-roman" style="color:var(--parchment);">Someone</td><td class="vocab-roman">sabobo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">51</td><td class="vocab-roman" style="color:var(--parchment);">Something</td><td class="vocab-roman">tamo mungsa</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">53</td><td class="vocab-roman" style="color:var(--parchment);">Such</td><td class="vocab-roman">ahai</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">54</td><td class="vocab-roman" style="color:var(--parchment);">Suchlike</td><td class="vocab-roman">amtwi hai</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">55</td><td class="vocab-roman" style="color:var(--parchment);">That</td><td class="vocab-roman">abo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">56</td><td class="vocab-roman" style="color:var(--parchment);">Their</td><td class="vocab-roman">bohrokni</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">57</td><td class="vocab-roman" style="color:var(--parchment);">Theirs</td><td class="vocab-roman">bohrokni</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">58</td><td class="vocab-roman" style="color:var(--parchment);">Theirself</td><td class="vocab-roman">Bohrokni saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">59</td><td class="vocab-roman" style="color:var(--parchment);">Theirselves</td><td class="vocab-roman">Bohrokni saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">60</td><td class="vocab-roman" style="color:var(--parchment);">Them</td><td class="vocab-roman">bohrokno</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">61</td><td class="vocab-roman" style="color:var(--parchment);">Themself</td><td class="vocab-roman">bohrok saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">62</td><td class="vocab-roman" style="color:var(--parchment);">Themselves</td><td class="vocab-roman">bohrok saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">63</td><td class="vocab-roman" style="color:var(--parchment);">There</td><td class="vocab-roman">aro</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">64</td><td class="vocab-roman" style="color:var(--parchment);">These</td><td class="vocab-roman">morok</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">65</td><td class="vocab-roman" style="color:var(--parchment);">They</td><td class="vocab-roman">bohrok</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">66</td><td class="vocab-roman" style="color:var(--parchment);">This</td><td class="vocab-roman">omo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">67</td><td class="vocab-roman" style="color:var(--parchment);">Those</td><td class="vocab-roman">aborok</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">68</td><td class="vocab-roman" style="color:var(--parchment);">Us</td><td class="vocab-roman">chwngno</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">69</td><td class="vocab-roman" style="color:var(--parchment);">We</td><td class="vocab-roman">chwng</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">70</td><td class="vocab-roman" style="color:var(--parchment);">What</td><td class="vocab-roman">tamo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">72</td><td class="vocab-roman" style="color:var(--parchment);">Whatnot</td><td class="vocab-roman">tamo tamo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">74</td><td class="vocab-roman" style="color:var(--parchment);">Where</td><td class="vocab-roman">boro</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">75</td><td class="vocab-roman" style="color:var(--parchment);">Whereby</td><td class="vocab-roman">biyango</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">76</td><td class="vocab-roman" style="color:var(--parchment);">Wherefrom</td><td class="vocab-roman">biyangni</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">77</td><td class="vocab-roman" style="color:var(--parchment);">Wherein</td><td class="vocab-roman">biyangtwi</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">78</td><td class="vocab-roman" style="color:var(--parchment);">Whereinto</td><td class="vocab-roman">biyang</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">79</td><td class="vocab-roman" style="color:var(--parchment);">Whereof</td><td class="vocab-roman">biyango</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">81</td><td class="vocab-roman" style="color:var(--parchment);">Whereto</td><td class="vocab-roman">Boro</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">86</td><td class="vocab-roman" style="color:var(--parchment);">Which</td><td class="vocab-roman">bobo, bomo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">87</td><td class="vocab-roman" style="color:var(--parchment);">Whichever</td><td class="vocab-roman">jesa bo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">89</td><td class="vocab-roman" style="color:var(--parchment);">Who</td><td class="vocab-roman">sabo</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">91</td><td class="vocab-roman" style="color:var(--parchment);">Whom</td><td class="vocab-roman">sabono</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">95</td><td class="vocab-roman" style="color:var(--parchment);">Whose</td><td class="vocab-roman">saboni</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">98</td><td class="vocab-roman" style="color:var(--parchment);">You</td><td class="vocab-roman">nwng</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">99</td><td class="vocab-roman" style="color:var(--parchment);">Your</td><td class="vocab-roman">nini</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">100</td><td class="vocab-roman" style="color:var(--parchment);">Yours</td><td class="vocab-roman">nini</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">101</td><td class="vocab-roman" style="color:var(--parchment);">Yourself</td><td class="vocab-roman">nwng saksak</td></tr><tr><td style="color:var(--stone);font-size:0.82rem;font-family:'DM Mono',monospace;">102</td><td class="vocab-roman" style="color:var(--parchment);">Yourselves</td><td class="vocab-roman">norok saksak</td></tr></tbody>
-                </table></div>
+                </table></div><button class="vocab-collapse-btn" type="button" data-action="collapse-vocab">Collapse list</button>
               </div>
             </details>
-              <details class="vocab-details" open><summary>Greetings &amp; Daily Phrases<span>6 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Khulumkha</td><td class="vocab-roman" style="color:var(--parchment);">Hello</td></tr><tr><td class="vocab-roman">Hambai</td><td class="vocab-roman" style="color:var(--parchment);">Thanks</td></tr><tr><td class="vocab-roman">Phung Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good morning</td></tr><tr><td class="vocab-roman">Dibor Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good afternoon</td></tr><tr><td class="vocab-roman">Sairik Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good eveving</td></tr><tr><td class="vocab-roman">Hor Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good night</td></tr></tbody></table></div></div></details>
-<details class="vocab-details"><summary>Food &amp; Everyday Words<span>11 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Mai</td><td class="vocab-roman" style="color:var(--parchment);">Rice</td></tr><tr><td class="vocab-roman">Mairung</td><td class="vocab-roman" style="color:var(--parchment);">Rice grains</td></tr><tr><td class="vocab-roman">Chahdi</td><td class="vocab-roman" style="color:var(--parchment);">Eat</td></tr><tr><td class="vocab-roman">Nungdi</td><td class="vocab-roman" style="color:var(--parchment);">Drink</td></tr><tr><td class="vocab-roman">Khibdi</td><td class="vocab-roman" style="color:var(--parchment);">Throw/Leave</td></tr><tr><td class="vocab-roman">Tisadi</td><td class="vocab-roman" style="color:var(--parchment);">Lift</td></tr><tr><td class="vocab-roman">Tubdi</td><td class="vocab-roman" style="color:var(--parchment);">Bring</td></tr><tr><td class="vocab-roman">Romdi</td><td class="vocab-roman" style="color:var(--parchment);">Hold</td></tr><tr><td class="vocab-roman">Yachakdi</td><td class="vocab-roman" style="color:var(--parchment);">Catch</td></tr><tr><td class="vocab-roman">Kandi</td><td class="vocab-roman" style="color:var(--parchment);">Wear</td></tr><tr><td class="vocab-roman">Richum</td><td class="vocab-roman" style="color:var(--parchment);">Clothes/Wearables</td></tr></tbody></table></div></div></details>
-<details class="vocab-details"><summary>Actions &amp; Movement<span>22 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Risa</td><td class="vocab-roman" style="color:var(--parchment);">Traditional attire</td></tr><tr><td class="vocab-roman">Rignai</td><td class="vocab-roman" style="color:var(--parchment);">Traditional attire</td></tr><tr><td class="vocab-roman">Ri</td><td class="vocab-roman" style="color:var(--parchment);">Cloth</td></tr><tr><td class="vocab-roman">Ridi</td><td class="vocab-roman" style="color:var(--parchment);">Give</td></tr><tr><td class="vocab-roman">Hordi</td><td class="vocab-roman" style="color:var(--parchment);">Send/Pass</td></tr><tr><td class="vocab-roman">Nahardi</td><td class="vocab-roman" style="color:var(--parchment);">Look</td></tr><tr><td class="vocab-roman">Himdi</td><td class="vocab-roman" style="color:var(--parchment);">Walk</td></tr><tr><td class="vocab-roman">Rwchabdi</td><td class="vocab-roman" style="color:var(--parchment);">Sing</td></tr><tr><td class="vocab-roman">Mwsadi</td><td class="vocab-roman" style="color:var(--parchment);">Dance</td></tr><tr><td class="vocab-roman">Mwnwidi</td><td class="vocab-roman" style="color:var(--parchment);">Smile</td></tr><tr><td class="vocab-roman">Kapdi</td><td class="vocab-roman" style="color:var(--parchment);">Cry</td></tr><tr><td class="vocab-roman">Wansukdi</td><td class="vocab-roman" style="color:var(--parchment);">Think</td></tr><tr><td class="vocab-roman">Karidi</td><td class="vocab-roman" style="color:var(--parchment);">Take out</td></tr><tr><td class="vocab-roman">Kaidi</td><td class="vocab-roman" style="color:var(--parchment);">To plant</td></tr><tr><td class="vocab-roman">Tungphlakha</td><td class="vocab-roman" style="color:var(--parchment);">feeling hot</td></tr><tr><td class="vocab-roman">Mai ok khwikha</td><td class="vocab-roman" style="color:var(--parchment);">feeling hungry</td></tr><tr><td class="vocab-roman">Twi Kangkha</td><td class="vocab-roman" style="color:var(--parchment);">feeling thirsty</td></tr><tr><td class="vocab-roman">Bisi Kwtal</td><td class="vocab-roman" style="color:var(--parchment);">new year</td></tr><tr><td class="vocab-roman">Ta Jolidi</td><td class="vocab-roman" style="color:var(--parchment);">don’t be angry</td></tr><tr><td class="vocab-roman">Phaidi</td><td class="vocab-roman" style="color:var(--parchment);">come</td></tr><tr><td class="vocab-roman">Thangdi</td><td class="vocab-roman" style="color:var(--parchment);">go</td></tr><tr><td class="vocab-roman">Thudi</td><td class="vocab-roman" style="color:var(--parchment);">sleep</td></tr></tbody></table></div></div></details>
-<details class="vocab-details"><summary>States &amp; Descriptors<span>12 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Khorang</td><td class="vocab-roman" style="color:var(--parchment);">sound</td></tr><tr><td class="vocab-roman">Mwchang</td><td class="vocab-roman" style="color:var(--parchment);">suit</td></tr><tr><td class="vocab-roman">Kwsrang</td><td class="vocab-roman" style="color:var(--parchment);">energetic</td></tr><tr><td class="vocab-roman">Sal Kwchang</td><td class="vocab-roman" style="color:var(--parchment);">cool weather</td></tr><tr><td class="vocab-roman">Lachio</td><td class="vocab-roman" style="color:var(--parchment);">shy</td></tr><tr><td class="vocab-roman">Kaham</td><td class="vocab-roman" style="color:var(--parchment);">good</td></tr><tr><td class="vocab-roman">Hamya</td><td class="vocab-roman" style="color:var(--parchment);">bad</td></tr><tr><td class="vocab-roman">Chaya</td><td class="vocab-roman" style="color:var(--parchment);">wrong</td></tr><tr><td class="vocab-roman">Chahya</td><td class="vocab-roman" style="color:var(--parchment);">won’t eat</td></tr><tr><td class="vocab-roman">Bwskang</td><td class="vocab-roman" style="color:var(--parchment);">forward</td></tr><tr><td class="vocab-roman">Ukolok</td><td class="vocab-roman" style="color:var(--parchment);">back/behind</td></tr><tr><td class="vocab-roman">Hainohai</td><td class="vocab-roman" style="color:var(--parchment);">again</td></tr></tbody></table></div></div></details>
+              <details class="vocab-details"><summary>Greetings &amp; Daily Phrases<span>6 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Khulumkha</td><td class="vocab-roman" style="color:var(--parchment);">Hello</td></tr><tr><td class="vocab-roman">Hambai</td><td class="vocab-roman" style="color:var(--parchment);">Thanks</td></tr><tr><td class="vocab-roman">Phung Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good morning</td></tr><tr><td class="vocab-roman">Dibor Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good afternoon</td></tr><tr><td class="vocab-roman">Sairik Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good eveving</td></tr><tr><td class="vocab-roman">Hor Kaham</td><td class="vocab-roman" style="color:var(--parchment);">Good night</td></tr></tbody></table></div><button class="vocab-collapse-btn" type="button" data-action="collapse-vocab">Collapse list</button></div></details>
+<details class="vocab-details"><summary>Food &amp; Everyday Words<span>11 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Mai</td><td class="vocab-roman" style="color:var(--parchment);">Rice</td></tr><tr><td class="vocab-roman">Mairung</td><td class="vocab-roman" style="color:var(--parchment);">Rice grains</td></tr><tr><td class="vocab-roman">Chahdi</td><td class="vocab-roman" style="color:var(--parchment);">Eat</td></tr><tr><td class="vocab-roman">Nungdi</td><td class="vocab-roman" style="color:var(--parchment);">Drink</td></tr><tr><td class="vocab-roman">Khibdi</td><td class="vocab-roman" style="color:var(--parchment);">Throw/Leave</td></tr><tr><td class="vocab-roman">Tisadi</td><td class="vocab-roman" style="color:var(--parchment);">Lift</td></tr><tr><td class="vocab-roman">Tubdi</td><td class="vocab-roman" style="color:var(--parchment);">Bring</td></tr><tr><td class="vocab-roman">Romdi</td><td class="vocab-roman" style="color:var(--parchment);">Hold</td></tr><tr><td class="vocab-roman">Yachakdi</td><td class="vocab-roman" style="color:var(--parchment);">Catch</td></tr><tr><td class="vocab-roman">Kandi</td><td class="vocab-roman" style="color:var(--parchment);">Wear</td></tr><tr><td class="vocab-roman">Richum</td><td class="vocab-roman" style="color:var(--parchment);">Clothes/Wearables</td></tr></tbody></table></div><button class="vocab-collapse-btn" type="button" data-action="collapse-vocab">Collapse list</button></div></details>
+<details class="vocab-details"><summary>Actions &amp; Movement<span>22 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Risa</td><td class="vocab-roman" style="color:var(--parchment);">Traditional attire</td></tr><tr><td class="vocab-roman">Rignai</td><td class="vocab-roman" style="color:var(--parchment);">Traditional attire</td></tr><tr><td class="vocab-roman">Ri</td><td class="vocab-roman" style="color:var(--parchment);">Cloth</td></tr><tr><td class="vocab-roman">Ridi</td><td class="vocab-roman" style="color:var(--parchment);">Give</td></tr><tr><td class="vocab-roman">Hordi</td><td class="vocab-roman" style="color:var(--parchment);">Send/Pass</td></tr><tr><td class="vocab-roman">Nahardi</td><td class="vocab-roman" style="color:var(--parchment);">Look</td></tr><tr><td class="vocab-roman">Himdi</td><td class="vocab-roman" style="color:var(--parchment);">Walk</td></tr><tr><td class="vocab-roman">Rwchabdi</td><td class="vocab-roman" style="color:var(--parchment);">Sing</td></tr><tr><td class="vocab-roman">Mwsadi</td><td class="vocab-roman" style="color:var(--parchment);">Dance</td></tr><tr><td class="vocab-roman">Mwnwidi</td><td class="vocab-roman" style="color:var(--parchment);">Smile</td></tr><tr><td class="vocab-roman">Kapdi</td><td class="vocab-roman" style="color:var(--parchment);">Cry</td></tr><tr><td class="vocab-roman">Wansukdi</td><td class="vocab-roman" style="color:var(--parchment);">Think</td></tr><tr><td class="vocab-roman">Karidi</td><td class="vocab-roman" style="color:var(--parchment);">Take out</td></tr><tr><td class="vocab-roman">Kaidi</td><td class="vocab-roman" style="color:var(--parchment);">To plant</td></tr><tr><td class="vocab-roman">Tungphlakha</td><td class="vocab-roman" style="color:var(--parchment);">feeling hot</td></tr><tr><td class="vocab-roman">Mai ok khwikha</td><td class="vocab-roman" style="color:var(--parchment);">feeling hungry</td></tr><tr><td class="vocab-roman">Twi Kangkha</td><td class="vocab-roman" style="color:var(--parchment);">feeling thirsty</td></tr><tr><td class="vocab-roman">Bisi Kwtal</td><td class="vocab-roman" style="color:var(--parchment);">new year</td></tr><tr><td class="vocab-roman">Ta Jolidi</td><td class="vocab-roman" style="color:var(--parchment);">don’t be angry</td></tr><tr><td class="vocab-roman">Phaidi</td><td class="vocab-roman" style="color:var(--parchment);">come</td></tr><tr><td class="vocab-roman">Thangdi</td><td class="vocab-roman" style="color:var(--parchment);">go</td></tr><tr><td class="vocab-roman">Thudi</td><td class="vocab-roman" style="color:var(--parchment);">sleep</td></tr></tbody></table></div><button class="vocab-collapse-btn" type="button" data-action="collapse-vocab">Collapse list</button></div></details>
+<details class="vocab-details"><summary>States &amp; Descriptors<span>12 words</span></summary><div style="padding:0.8rem 1.2rem 1rem;border-top:1px solid rgba(196,180,154,0.1);"><div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Kokborok</th><th>English</th></tr></thead><tbody><tr><td class="vocab-roman">Khorang</td><td class="vocab-roman" style="color:var(--parchment);">sound</td></tr><tr><td class="vocab-roman">Mwchang</td><td class="vocab-roman" style="color:var(--parchment);">suit</td></tr><tr><td class="vocab-roman">Kwsrang</td><td class="vocab-roman" style="color:var(--parchment);">energetic</td></tr><tr><td class="vocab-roman">Sal Kwchang</td><td class="vocab-roman" style="color:var(--parchment);">cool weather</td></tr><tr><td class="vocab-roman">Lachio</td><td class="vocab-roman" style="color:var(--parchment);">shy</td></tr><tr><td class="vocab-roman">Kaham</td><td class="vocab-roman" style="color:var(--parchment);">good</td></tr><tr><td class="vocab-roman">Hamya</td><td class="vocab-roman" style="color:var(--parchment);">bad</td></tr><tr><td class="vocab-roman">Chaya</td><td class="vocab-roman" style="color:var(--parchment);">wrong</td></tr><tr><td class="vocab-roman">Chahya</td><td class="vocab-roman" style="color:var(--parchment);">won’t eat</td></tr><tr><td class="vocab-roman">Bwskang</td><td class="vocab-roman" style="color:var(--parchment);">forward</td></tr><tr><td class="vocab-roman">Ukolok</td><td class="vocab-roman" style="color:var(--parchment);">back/behind</td></tr><tr><td class="vocab-roman">Hainohai</td><td class="vocab-roman" style="color:var(--parchment);">again</td></tr></tbody></table></div><button class="vocab-collapse-btn" type="button" data-action="collapse-vocab">Collapse list</button></div></details>
             </div>
           </div>
                     <div>
@@ -2143,19 +2279,24 @@
                 </div>
               </div>
             </div>
-          </div><div class="lesson-example"><span class="ex-yapiri">󱲰󱲠󱲹󱲫󱲢󱳋 󱲨󱲠 󱲸󱲠󱲰󱲢󱲫󱲢󱳌</span><span class="ex-roman">Chahdi, ta lachidi.</span><span class="ex-meaning">Eat, don’t feel shy.</span></div><div class="lesson-example"><span class="ex-yapiri">󱲪󱲤󱲷󱲤󱲩 󱲩󱲠󱲹󱲠󱲲 󱲳󱲥󱲵󱳌</span><span class="ex-roman">Borok kaham nwng.</span><span class="ex-meaning">You’re a good person.</span></div>
-            </div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
             <div class="guided-checks">
-              <div class="quick-check"><p class="quick-check-question">Which Kokborok word means Thanks?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Hambai</button><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Khulumkha</button><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Kaham</button></div><div class="quick-check-feedback" id="check-core-words-0"></div></div><div class="quick-check"><p class="quick-check-question">What does Kaham mean?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Good</button><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Rice</button><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Go</button></div><div class="quick-check-feedback" id="check-core-words-1"></div></div>
+              <div class="quick-check"><p class="quick-check-question">Which plate should open first in this lesson?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Pronouns" data-feedback="Correct. The pronouns plate opens first so the lesson begins serially.">Pronouns</button><button class="quick-check-option" type="button" data-answer="Pronouns" data-feedback="Correct. The pronouns plate opens first so the lesson begins serially.">Greetings</button><button class="quick-check-option" type="button" data-answer="Pronouns" data-feedback="Correct. The pronouns plate opens first so the lesson begins serially.">States &amp; Descriptors</button></div><div class="quick-check-feedback" id="check-core-words-0"></div></div>
+              <div class="quick-check"><p class="quick-check-question">How many pronoun entries are included in the pronouns plate?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="85" data-feedback="Yes. This lesson includes 85 Kokborok pronoun entries.">51</button><button class="quick-check-option" type="button" data-answer="85" data-feedback="Yes. This lesson includes 85 Kokborok pronoun entries.">85</button><button class="quick-check-option" type="button" data-answer="85" data-feedback="Yes. This lesson includes 85 Kokborok pronoun entries.">10</button></div><div class="quick-check-feedback" id="check-core-words-1"></div></div>
+              <div class="quick-check"><p class="quick-check-question">Which Kokborok word means Thanks?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Hambai</button><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Khulumkha</button><button class="quick-check-option" type="button" data-answer="Hambai" data-feedback="Yes. Hambai is the Kokborok word for thanks.">Kaham</button></div><div class="quick-check-feedback" id="check-core-words-2"></div></div>
+              <div class="quick-check"><p class="quick-check-question">What does Khulumkha mean?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Hello" data-feedback="Correct. Khulumkha means hello.">Hello</button><button class="quick-check-option" type="button" data-answer="Hello" data-feedback="Correct. Khulumkha means hello.">Good night</button><button class="quick-check-option" type="button" data-answer="Hello" data-feedback="Correct. Khulumkha means hello.">Rice</button></div><div class="quick-check-feedback" id="check-core-words-3"></div></div>
+              <div class="quick-check"><p class="quick-check-question">Which Kokborok word means rice?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Mai" data-feedback="Correct. Mai means rice.">Mai</button><button class="quick-check-option" type="button" data-answer="Mai" data-feedback="Correct. Mai means rice.">Mairung</button><button class="quick-check-option" type="button" data-answer="Mai" data-feedback="Correct. Mai means rice.">Risa</button></div><div class="quick-check-feedback" id="check-core-words-4"></div></div>
+              <div class="quick-check"><p class="quick-check-question">What does Kaham mean?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Good</button><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Rice</button><button class="quick-check-option" type="button" data-answer="Good" data-feedback="Correct. Kaham means good in Kokborok.">Go</button></div><div class="quick-check-feedback" id="check-core-words-5"></div></div>
+              <div class="quick-check"><p class="quick-check-question">Which Kokborok word means go?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Thangdi" data-feedback="Yes. Thangdi means go.">Thangdi</button><button class="quick-check-option" type="button" data-answer="Thangdi" data-feedback="Yes. Thangdi means go.">Phaidi</button><button class="quick-check-option" type="button" data-answer="Thangdi" data-feedback="Yes. Thangdi means go.">Thudi</button></div><div class="quick-check-feedback" id="check-core-words-6"></div></div>
+              <div class="quick-check"><p class="quick-check-question">Which Kokborok word means sleep?</p><div class="quick-check-options"><button class="quick-check-option" type="button" data-answer="Thudi" data-feedback="Correct. Thudi means sleep.">Thudi</button><button class="quick-check-option" type="button" data-answer="Thudi" data-feedback="Correct. Thudi means sleep.">Tubdi</button><button class="quick-check-option" type="button" data-answer="Thudi" data-feedback="Correct. Thudi means sleep.">Tisadi</button></div><div class="quick-check-feedback" id="check-core-words-7"></div></div>
             </div>
           </div>
           <div class="lesson-actions">
             <button class="lesson-action" type="button" data-action="prev">Previous</button>
-            <button class="lesson-action primary" type="button" data-action="complete">Complete Path</button>
-            <button class="lesson-action" type="button" data-action="practice">Go to Exercises</button>
+            <button class="lesson-action primary" type="button" data-action="complete">Complete Lesson</button>
+            <button class="lesson-action" type="button" data-action="practice">Practice Hub</button>
           </div>
         </div>
       </article>
@@ -2173,8 +2314,8 @@
     <div class="reveal" style="margin-bottom:2rem">
       <span class="section-label">Section 03</span>
       <div class="gold-line"></div>
-      <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Practice Lab</h2>
-      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:680px;line-height:1.7;">Extra drills layered on top of the original lessons. This section does not replace the alphabet reference, guided lessons, or translation exercises.</p>
+      <h2 style="font-family:'Teko',sans-serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:300;color:var(--parchment);line-height:1.05;margin-bottom:0.5rem;">Practice Hub</h2>
+      <p style="font-size:1.05rem;font-weight:300;font-style:italic;color:var(--stone-light);max-width:680px;line-height:1.7;">Extra drills layered on top of the original lessons. This hub does not replace the alphabet reference, guided lessons, or translation exercises.</p>
     </div>
 
     <div class="pl-grid reveal">
@@ -2206,12 +2347,46 @@
         <div class="pl-controls"><button class="pl-btn" id="pl-build-check">Check</button><button class="pl-btn" id="pl-build-clear">Clear</button><button class="pl-btn" id="pl-build-next">Next</button></div>
       </article>
 
+      <article class="pl-card" id="pl-numeral-card">
+        <h3>Yapiri Numeral Drill</h3>
+        <p>Read the English numeral and type its Yapiri numeral equivalent. Use your number keys or tap the Yapiri digits below.</p>
+        <div class="pl-prompt"><span class="pl-num-target" id="pl-num-target">0</span></div>
+        <label class="visually-hidden" for="pl-num-input">Type the Yapiri numeral equivalent</label>
+        <input class="pl-input pl-num-input" id="pl-num-input" placeholder="Type Yapiri numeral" autocomplete="off" inputmode="numeric" aria-describedby="pl-num-feedback">
+        <div class="pl-num-keypad" id="pl-num-keypad" aria-label="Yapiri numeral keypad"></div>
+        <div class="pl-feedback" id="pl-num-feedback">Type the matching Yapiri numeral.</div>
+        <div class="pl-num-name-prompt" id="pl-num-name-prompt" hidden>
+          <p class="pl-num-name-question" id="pl-num-name-question">Correct. Want to see what this number is called in Kokborok?</p>
+          <div class="pl-controls" style="margin-top:0">
+            <button class="pl-btn" type="button" id="pl-num-show-name">Show Kokborok Name</button>
+            <button class="pl-btn" type="button" id="pl-num-skip-name">Next Number</button>
+          </div>
+        </div>
+        <div class="pl-num-name-panel" id="pl-num-name-panel" aria-live="polite" hidden></div>
+        <div class="pl-controls"><button class="pl-btn" type="button" id="pl-num-check">Check</button><button class="pl-btn" type="button" id="pl-num-clear">Clear</button><button class="pl-btn" type="button" id="pl-num-next">Next Number</button></div>
+      </article>
+
+      <article class="pl-card" id="pl-num-name-card">
+        <h3>Kokborok Numeral Names</h3>
+        <p>This card is the placeholder structure for showing the Kokborok name of the number after the numeral drill. The full 0–100 names can be added here later.</p>
+        <div class="pl-num-name-display" aria-live="polite">
+          <span class="pl-name-label">Selected number</span>
+          <span class="pl-num-name-number" id="pl-num-name-number">—</span>
+          <span class="pl-name-label">Yapiri numeral</span>
+          <span class="pl-num-name-glyph" id="pl-num-name-glyph">—</span>
+          <span class="pl-name-label">Kokborok name</span>
+          <span class="pl-num-name-value pending" id="pl-num-name-value">Name slot ready. Add the verified Kokborok numeral name later.</span>
+        </div>
+        <div class="pl-num-name-meta" id="pl-num-name-meta">Complete the Yapiri Numeral Drill, then choose “Show Kokborok Name” to send the selected number here.</div>
+        <div class="pl-controls"><button class="pl-btn" type="button" id="pl-num-name-back">Back to Numeral Drill</button></div>
+      </article>
+
       <article class="pl-card">
         <h3>Write Your Name in Yapiri</h3>
         <p>Type your name in Roman letters to see a sound-by-sound Yapiri rendering. Nothing is saved or submitted.</p>
-        <input class="pl-input" id="pl-name-input" placeholder="Type your name, e.g. Animesh" autocomplete="name">
         <div class="pl-prompt"><span class="pl-word" id="pl-name-output" aria-live="polite">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2;</span></div>
-        <p class="pl-name-roman" id="pl-name-roman" style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--stone);text-align:center;letter-spacing:.05em;">Example: yapiri</p>
+        <p class="pl-name-roman" id="pl-name-roman">Example: yapiri</p>
+        <input class="pl-input" id="pl-name-input" placeholder="Type your name, e.g. Animesh" autocomplete="name">
         <div class="pl-feedback" id="pl-name-feedback">Your name is converted locally in this page.</div>
         <div class="pl-controls"><button class="pl-btn" type="button" id="pl-name-clear">Clear</button></div>
       </article>
@@ -2563,7 +2738,7 @@ const CONSONANTS = [
 ];
 const LOANWORD = [
   { cp:'F1CBC', roman:'v', ipa:'/v/', name:'Va', desc:'Voiced labiodental fricative. Restricted to loanwords.', audioId:'v', word:['󱲼󱲢󱲷󱲣󱲶','Virus','Virus'], sentence:['󱲼󱲢󱲷󱲣󱲶 󱲳󱲤 󱲼󱲢󱲷󱲣󱲶 󱲹󱲥󱲳󱲥󱲢 󱲳󱲤 󱲶󱲥󱲢󱲫󱲢󱳌','Virus no virus hwnwi no swidi.','Write virus as virus only.'] },
-  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:['󱲽󱲡󱲠 󱲲󱲠󱲺󱲶','Zea Mays','Zea Mays'], sentence:['󱲲󱲤󱲬󱲤󱲫󱲠󱲲󱲳󱲢 󱲶󱲠󱲢󱲳󱲨󱲢󱲭󱲢󱲩 󱲪󱲣󱲲󱲣󱲵 󱲻󱲵󱲯󱲠 󱲽󱲡󱲠 󱲲󱲠󱲺󱲶󱳌','Mogodamni saintiphic bumung wngkha Zea Mays.','The scientific name of corn is Zea Mays.'] },
+  { cp:'F1CBD', roman:'z', ipa:'/z/', name:'Za', desc:'Voiced alveolar fricative. Restricted to loanwords from Bengali and English.', audioId:'z', word:['󱲽󱲡󱲠 󱲲󱲠󱲺󱲶','Zea Mays','Zea Mays'], sentence:['󱲲󱲤󱲬󱲤󱲫󱲠󱲲󱲳󱲢 󱲶󱲠󱲢󱲳󱲨󱲢󱲭󱲢󱲩 󱲪󱲣󱲲󱲣󱲵 󱲻󱲵󱲯󱲠 󱲽󱲡󱲠 󱲲󱲠󱲺󱲶󱳌','Mogodamni saintiphik bumung wngkha Zea Mays.','The scientific name of corn is Zea Mays.'] },
 ];
 // kokname = the Kokborok word for the number itself (confirmed source: Animesh Debbarma).
 const NUMERALS = [
@@ -2782,8 +2957,8 @@ function updateGuidedProgress() {
       const isDone = completedGuidedLessons.has(lessonId);
       const isLast = idx === TOTAL_LESSONS - 1;
       completeBtn.textContent = isDone
-        ? (isLast ? 'Review Complete' : 'Continue')
-        : (isLast ? 'Complete Path' : 'Mark Complete & Continue');
+        ? (isLast ? 'Lesson Complete' : 'Continue')
+        : (isLast ? 'Complete Lesson' : 'Mark Complete & Continue');
     }
   });
 }
@@ -2792,7 +2967,7 @@ function selectGuidedLesson(index) {
   activeGuidedLesson = Math.max(0, Math.min(index, TOTAL_LESSONS - 1));
   saveGuidedProgress();
   updateGuidedProgress();
-  document.getElementById('lessons')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('lesson-workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function answerQuickCheck(btn) {
@@ -2814,6 +2989,36 @@ function answerQuickCheck(btn) {
   }
 }
 
+function showLessonCompleteNote(panel) {
+  const actions = panel.querySelector('.lesson-actions');
+  if (!actions) return;
+  let note = actions.querySelector('.lesson-complete-note');
+  if (!note) {
+    note = document.createElement('p');
+    note.className = 'lesson-complete-note';
+    note.setAttribute('role', 'status');
+    note.setAttribute('aria-live', 'polite');
+    actions.appendChild(note);
+  }
+  note.textContent = 'Lesson complete. Use the Practice Hub button when you are ready for the next section.';
+}
+
+function wireVocabCollapseButtons() {
+  document.querySelectorAll('#guided-core-words .vocab-collapse-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const details = btn.closest('details');
+      if (!details) return;
+      const summary = details.querySelector('summary');
+      const listAnchor = document.getElementById('core-word-list-anchor') || document.getElementById('core-word-list') || summary;
+      details.removeAttribute('open');
+      if (summary) summary.focus({ preventScroll: true });
+      window.requestAnimationFrame(() => {
+        listAnchor?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  });
+}
+
 // Wire up roadmap buttons
 document.querySelectorAll('.roadmap-step').forEach(step => {
   step.addEventListener('click', () => selectGuidedLesson(Number(step.dataset.lesson)));
@@ -2830,17 +3035,17 @@ document.querySelectorAll('.guided-lesson').forEach((panel, idx) => {
     } else {
       saveGuidedProgress();
       updateGuidedProgress();
-      document.getElementById('exercises')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      showLessonCompleteNote(panel);
     }
   });
   panel.querySelector('[data-action="practice"]')?.addEventListener('click', () => {
-    const target = idx === TOTAL_LESSONS - 1 ? 'exercises' : 'practice-lab';
-    document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('practice-lab')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   panel.querySelectorAll('.quick-check-option').forEach(btn => {
     btn.addEventListener('click', () => answerQuickCheck(btn));
   });
 });
+wireVocabCollapseButtons();
 
 // Restore saved lesson position on load (clamp to valid range)
 if (activeGuidedLesson >= TOTAL_LESSONS) activeGuidedLesson = 0;
@@ -3534,6 +3739,147 @@ startLoad();
       }
     }
 
+    // ── YAPIRI NUMERAL DRILL: 0-100 ──
+    const YAPIRI_NUMERAL_GLYPHS = Array.from({ length: 10 }, (_, i) => String.fromCodePoint(0xF1CC0 + i));
+    const KOKBOROK_NUMERAL_NAMES = Object.freeze({
+      // Add verified Kokborok names later, for example:
+      // 0: '...',
+      // 1: '...',
+      // 100: '...'
+    });
+    let numeralTarget = 0;
+
+    function yapiriNumeralFor(num) {
+      return String(num).split('').map(d => YAPIRI_NUMERAL_GLYPHS[Number(d)] || '').join('');
+    }
+
+    function getKokborokNumeralName(num) {
+      return KOKBOROK_NUMERAL_NAMES[Number(num)] || '';
+    }
+
+    function normalizeNumeralInput(value) {
+      const validYapiriDigits = new Set(YAPIRI_NUMERAL_GLYPHS);
+      return [...String(value)].map(ch => {
+        if (/^[0-9]$/.test(ch)) return YAPIRI_NUMERAL_GLYPHS[Number(ch)];
+        return validYapiriDigits.has(ch) ? ch : '';
+      }).join('').slice(0, 3);
+    }
+
+    function resetNumeralNamePrompt() {
+      const prompt = document.getElementById('pl-num-name-prompt');
+      const panel = document.getElementById('pl-num-name-panel');
+      if (prompt) prompt.hidden = true;
+      if (panel) { panel.hidden = true; panel.textContent = ''; }
+    }
+
+    function resetNumeralNameCard() {
+      const numberEl = document.getElementById('pl-num-name-number');
+      const glyphEl = document.getElementById('pl-num-name-glyph');
+      const valueEl = document.getElementById('pl-num-name-value');
+      const metaEl = document.getElementById('pl-num-name-meta');
+      if (numberEl) numberEl.textContent = '—';
+      if (glyphEl) glyphEl.textContent = '—';
+      if (valueEl) {
+        valueEl.textContent = 'Name slot ready. Add the verified Kokborok numeral name later.';
+        valueEl.classList.add('pending');
+      }
+      if (metaEl) metaEl.textContent = 'Complete the Yapiri Numeral Drill, then choose “Show Kokborok Name” to send the selected number here.';
+    }
+
+    function setNumeralDrill() {
+      numeralTarget = Math.floor(Math.random() * 101);
+      const target = document.getElementById('pl-num-target');
+      const input = document.getElementById('pl-num-input');
+      const fb = document.getElementById('pl-num-feedback');
+      if (target) target.textContent = String(numeralTarget);
+      if (input) input.value = '';
+      if (fb) { fb.className = 'pl-feedback'; fb.textContent = 'Type the matching Yapiri numeral.'; }
+      resetNumeralNamePrompt();
+      resetNumeralNameCard();
+    }
+
+    function checkNumeralDrill(revealIfWrong = false) {
+      const input = document.getElementById('pl-num-input');
+      const fb = document.getElementById('pl-num-feedback');
+      const prompt = document.getElementById('pl-num-name-prompt');
+      const question = document.getElementById('pl-num-name-question');
+      if (!input || !fb) return false;
+      const normalized = normalizeNumeralInput(input.value);
+      if (input.value !== normalized) input.value = normalized;
+      const expected = yapiriNumeralFor(numeralTarget);
+      const ok = normalized === expected;
+      if (ok) {
+        fb.className = 'pl-feedback good';
+        fb.textContent = 'Correct.';
+        if (question) question.textContent = 'Correct. Want to see what ' + numeralTarget + ' is called in Kokborok?';
+        if (prompt) prompt.hidden = false;
+      } else {
+        resetNumeralNamePrompt();
+        fb.className = 'pl-feedback' + (revealIfWrong ? ' bad' : '');
+        if (!normalized) fb.textContent = 'Type the matching Yapiri numeral.';
+        else fb.textContent = revealIfWrong ? 'Not quite — check each digit and try again.' : 'Keep going…';
+      }
+      return ok;
+    }
+
+    function clearNumeralDrill() {
+      const input = document.getElementById('pl-num-input');
+      if (input) { input.value = ''; input.focus(); }
+      const fb = document.getElementById('pl-num-feedback');
+      if (fb) { fb.className = 'pl-feedback'; fb.textContent = 'Type the matching Yapiri numeral.'; }
+      resetNumeralNamePrompt();
+    }
+
+    function showNumeralName() {
+      const name = getKokborokNumeralName(numeralTarget);
+      const panel = document.getElementById('pl-num-name-panel');
+      const card = document.getElementById('pl-num-name-card');
+      const numberEl = document.getElementById('pl-num-name-number');
+      const glyphEl = document.getElementById('pl-num-name-glyph');
+      const valueEl = document.getElementById('pl-num-name-value');
+      const metaEl = document.getElementById('pl-num-name-meta');
+
+      if (numberEl) numberEl.textContent = String(numeralTarget);
+      if (glyphEl) glyphEl.textContent = yapiriNumeralFor(numeralTarget);
+      if (valueEl) {
+        valueEl.textContent = name || 'Kokborok name pending. Add the verified name for this number later.';
+        valueEl.classList.toggle('pending', !name);
+      }
+      if (metaEl) {
+        metaEl.textContent = name
+          ? 'This value is coming from KOKBOROK_NUMERAL_NAMES inside the Practice Hub script.'
+          : 'Structure ready: add entry ' + numeralTarget + ' to KOKBOROK_NUMERAL_NAMES when the complete list is available.';
+      }
+      if (panel) {
+        panel.textContent = name
+          ? 'Kokborok name shown in the card below.'
+          : 'Kokborok Numeral Names card opened below. The name slot is ready for the verified list.';
+        panel.hidden = false;
+      }
+      card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function buildNumeralKeypad() {
+      const keypad = document.getElementById('pl-num-keypad');
+      const input = document.getElementById('pl-num-input');
+      if (!keypad || !input) return;
+      keypad.innerHTML = '';
+      YAPIRI_NUMERAL_GLYPHS.forEach((glyphChar, digit) => {
+        const btn = document.createElement('button');
+        btn.className = 'pl-num-key';
+        btn.type = 'button';
+        btn.textContent = glyphChar;
+        btn.title = 'Yapiri digit ' + digit;
+        btn.setAttribute('aria-label', 'Yapiri numeral ' + digit);
+        btn.addEventListener('click', () => {
+          input.value = normalizeNumeralInput(input.value + glyphChar);
+          input.focus();
+          checkNumeralDrill(false);
+        });
+        keypad.appendChild(btn);
+      });
+    }
+
     document.getElementById('pl-rec-next')?.addEventListener('click', setRec);
     document.getElementById('pl-call-check')?.addEventListener('click', checkCall);
     document.getElementById('pl-call-next')?.addEventListener('click', setCall);
@@ -3541,11 +3887,29 @@ startLoad();
     document.getElementById('pl-build-check')?.addEventListener('click', checkBuild);
     document.getElementById('pl-build-clear')?.addEventListener('click', clearBuild);
     document.getElementById('pl-build-next')?.addEventListener('click', setBuild);
+    document.getElementById('pl-num-input')?.addEventListener('keydown', e => {
+      if (/^[0-9]$/.test(e.key)) {
+        e.preventDefault();
+        const input = document.getElementById('pl-num-input');
+        if (input) input.value = normalizeNumeralInput(input.value + e.key);
+        checkNumeralDrill(false);
+      }
+    });
+    document.getElementById('pl-num-input')?.addEventListener('input', () => checkNumeralDrill(false));
+    document.getElementById('pl-num-check')?.addEventListener('click', () => checkNumeralDrill(true));
+    document.getElementById('pl-num-clear')?.addEventListener('click', clearNumeralDrill);
+    document.getElementById('pl-num-next')?.addEventListener('click', setNumeralDrill);
+    document.getElementById('pl-num-show-name')?.addEventListener('click', showNumeralName);
+    document.getElementById('pl-num-skip-name')?.addEventListener('click', setNumeralDrill);
+    document.getElementById('pl-num-name-back')?.addEventListener('click', () => {
+      document.getElementById('pl-numeral-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    buildNumeralKeypad();
     document.getElementById('pl-name-input')?.addEventListener('input', renderName);
     document.getElementById('pl-name-clear')?.addEventListener('click', () => {
       const inp = document.getElementById('pl-name-input'); if (inp) inp.value = ''; renderName();
     });
-    setRec(); setCall(); setBuild(); renderName();
+    setRec(); setCall(); setBuild(); setNumeralDrill(); renderName();
     }
     bootPracticeLab();
   });
