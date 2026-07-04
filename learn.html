@@ -19,7 +19,7 @@
 <meta name="description" content="Learn Yapiri Script interactively — explore all 45 characters of the Kokborok phonemic alphabet, follow guided lessons from vowels to sentences, and practise translating Kokborok. Your submissions help build the language corpus.">
 <meta name="keywords" content="learn Yapiri script, learn Kokborok script, Kokborok alphabet, Yapiri alphabet, Kokborok writing lessons, Tiprasa script lessons, Yapiri characters, Kokborok phonemic alphabet, how to write Kokborok, Yapiri script tutorial, Kokborok language learning, Tiprasa language script">
 <meta name="author" content="Animesh Debbarma">
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://yapiriscript.com/learn.html">
 
 <!-- OPEN GRAPH -->
@@ -1079,7 +1079,7 @@
 
   /* ── QUICK REF FLOATER ── */
   .qr-btn {
-    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 120;
     font-family: 'DM Mono', monospace; font-size: 0.6rem;
     letter-spacing: 0.12em; text-transform: uppercase;
     background: var(--charcoal); color: var(--gold-light);
@@ -1090,7 +1090,7 @@
   }
   .qr-btn:hover { background: rgba(44,36,22,0.98); transform: translateY(-2px); }
   .qr-drawer {
-    position: fixed; bottom: 0; right: 0; z-index: 199;
+    position: fixed; bottom: 0; right: 0; z-index: 119;
     width: min(420px, 100vw);
     max-height: 70vh; overflow-y: auto;
     background: var(--charcoal);
@@ -1393,10 +1393,10 @@
     .ex-sidebar { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .alphabet-layout { grid-template-columns: 1fr; }
     .char-detail { position: static; max-height: none; margin-top: 1.5rem; }
+    #page-intro { padding: 3rem 2rem !important; }
+    #glossary { padding: 0 2rem 2.5rem !important; }
+    #page-intro > div { grid-template-columns: 1fr 1fr !important; }
   }
-  #page-intro { padding: 3rem 2rem !important; }
-  #glossary { padding: 0 2rem 2.5rem !important; }
-  #page-intro > div { grid-template-columns: 1fr 1fr !important; }
   @media (max-width: 600px) {
     #page-intro > div { grid-template-columns: 1fr !important; }
   }
@@ -1577,7 +1577,7 @@
     <li><a href="ucsur.html">UCSUR</a></li>
     <li><span class="nav-badge">v2.0</span></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -1657,7 +1657,7 @@
           <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Contrastive</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">Describes a sound difference that changes word meaning. If swapping one sound for another always changes the word, the two sounds are contrastive — as with k and kh, or a and schwa.</p></div>
           <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Vowel</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A sound produced with an open vocal tract, no obstruction. Yapiri has six vowels: a, e, i, u, o, and schwa (ə).</p></div>
           <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Schwa /ə/</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A mid-central vowel. In Kokborok it is a full phoneme with its own meaning-changing role — not a reduced or unstressed vowel as in English.</p></div>
-          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Diphthong</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A vowel that glides from one position to another within a single syllable. Kokborok has two phonemic diphthongs: ai and əi, written as two separate vowel characters.</p></div>
+          <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Diphthong</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A vowel that glides from one position to another within a single syllable. Kokborok has three primary diphthongs: ai, oi, and ui, written as two separate vowel characters.</p></div>
           <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Stop / plosive</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant made by briefly blocking air completely, then releasing it. Examples: p, t, k, b, d, g. In Kokborok, stops come in plain and aspirated pairs.</p></div>
           <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Aspirated stop</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A stop followed by a puff of air: ph, th, kh. In Kokborok, aspiration is contrastive — <em>p</em> and <em>ph</em> are different sounds that distinguish words.</p></div>
           <div><p style="font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold-light);margin-bottom:0.3rem;letter-spacing:0.06em;">Nasal</p><p style="font-size:0.9rem;line-height:1.6;color:var(--stone-light);font-weight:300;">A consonant where air flows through the nose. Yapiri has m (bilabial), n (dental), and ng (velar nasal), each written with a distinct character.</p></div>
@@ -2332,6 +2332,7 @@
         <h3>Recall Drill</h3>
         <p>Type the Roman value for the Yapiri character shown.</p>
         <div class="pl-prompt"><span class="pl-glyph" id="pl-call-glyph">&#xF1CA9;</span></div>
+        <label class="visually-hidden" for="pl-call-input">Type the Roman value of the displayed character</label>
         <input class="pl-input" id="pl-call-input" placeholder="Type roman value, e.g. a, kh, ng" autocomplete="off">
         <div class="pl-feedback" id="pl-call-feedback"></div>
         <div class="pl-controls"><button class="pl-btn" id="pl-call-check">Check</button><button class="pl-btn" id="pl-call-next">Next</button></div>
@@ -2368,16 +2369,16 @@
 
       <article class="pl-card" id="pl-num-name-card">
         <h3>Kokborok Numeral Names</h3>
-        <p>This card is the placeholder structure for showing the Kokborok name of the number after the numeral drill. The full 0–100 names can be added here later.</p>
+        <p>After correctly entering a digit from 0 to 9, you can view its verified Kokborok name here.</p>
         <div class="pl-num-name-display" aria-live="polite">
           <span class="pl-name-label">Selected number</span>
           <span class="pl-num-name-number" id="pl-num-name-number">—</span>
           <span class="pl-name-label">Yapiri numeral</span>
           <span class="pl-num-name-glyph" id="pl-num-name-glyph">—</span>
           <span class="pl-name-label">Kokborok name</span>
-          <span class="pl-num-name-value pending" id="pl-num-name-value">Name slot ready. Add the verified Kokborok numeral name later.</span>
+          <span class="pl-num-name-value pending" id="pl-num-name-value">Complete a single-digit numeral prompt to view its Kokborok name.</span>
         </div>
-        <div class="pl-num-name-meta" id="pl-num-name-meta">Complete the Yapiri Numeral Drill, then choose “Show Kokborok Name” to send the selected number here.</div>
+        <div class="pl-num-name-meta" id="pl-num-name-meta">Verified names are currently available for digits 0 through 9.</div>
         <div class="pl-controls"><button class="pl-btn" type="button" id="pl-num-name-back">Back to Numeral Drill</button></div>
       </article>
 
@@ -2386,6 +2387,7 @@
         <p>Type your name in Roman letters to see a sound-by-sound Yapiri rendering. Nothing is saved or submitted.</p>
         <div class="pl-prompt"><span class="pl-word" id="pl-name-output" aria-live="polite">&#xF1CBA;&#xF1CA0;&#xF1CA7;&#xF1CA2;&#xF1CB7;&#xF1CA2;</span></div>
         <p class="pl-name-roman" id="pl-name-roman">Example: yapiri</p>
+        <label class="visually-hidden" for="pl-name-input">Type your name for Yapiri transliteration</label>
         <input class="pl-input" id="pl-name-input" placeholder="Type your name, e.g. Animesh" autocomplete="name">
         <div class="pl-feedback" id="pl-name-feedback">Your name is converted locally in this page.</div>
         <div class="pl-controls"><button class="pl-btn" type="button" id="pl-name-clear">Clear</button></div>
@@ -2409,7 +2411,7 @@
       <span class="consent-eyebrow">Yapiri Kokborok Corpus</span>
       <h3 class="consent-heading">Your translation helps preserve Kokborok</h3>
       <p class="consent-body">Every sentence you translate becomes part of the <strong>Yapiri Kokborok Corpus</strong> — a living language archive being built to preserve Kokborok for future generations. Your contributions power the dictionary, translator, and eventually Yapiri AI. This dataset is owned by and held in trust for the <strong>Tiprasa people</strong>.</p>
-      <p class="consent-what">What is collected: <span>your Yapiri translation</span> &nbsp;·&nbsp; <span>auto-generated Roman Kokborok</span> &nbsp;·&nbsp; <span>domain &amp; difficulty tag</span> &nbsp;·&nbsp; <span>anonymous session ID</span><br>What is never collected: <span>your name</span> &nbsp;·&nbsp; <span>email</span> &nbsp;·&nbsp; <span>IP address</span> &nbsp;·&nbsp; <span>any personal data</span></p>
+      <p class="consent-what">What is collected: <span>your Yapiri translation</span> &nbsp;·&nbsp; <span>auto-generated Roman Kokborok</span> &nbsp;·&nbsp; <span>domain &amp; difficulty tag</span> &nbsp;·&nbsp; <span>anonymous session ID</span> &nbsp;·&nbsp; <span>submission time</span> &nbsp;·&nbsp; <span>character and word counts</span> &nbsp;·&nbsp; <span>device category and browser language</span><br>What this page does not intentionally store in the corpus: <span>your name</span> &nbsp;·&nbsp; <span>email</span> &nbsp;·&nbsp; <span>IP address</span></p>
       <div class="consent-btns">
         <button class="btn-consent-accept" id="btn-consent-accept">Contribute Anonymously</button>
         <button class="btn-consent-decline" id="btn-consent-decline">Use Without Contributing</button>
@@ -2669,8 +2671,8 @@
 </footer>
 
 <!-- Quick Reference floater -->
-<button class="qr-btn" id="qr-btn" aria-label="Quick reference chart">Quick Ref ↑</button>
-<div class="qr-drawer" id="qr-drawer" role="dialog" aria-label="Quick reference">
+<button class="qr-btn" id="qr-btn" aria-label="Quick reference chart" aria-controls="qr-drawer" aria-expanded="false">Quick Ref ↑</button>
+<div class="qr-drawer" id="qr-drawer" role="dialog" aria-label="Quick reference" aria-hidden="true" inert>
   <div class="qr-drawer-head">
     <h3>Quick Reference</h3>
     <button class="qr-close" id="qr-close">Close ✕</button>
@@ -2681,10 +2683,6 @@
 
 <!-- Firebase Module Script -->
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs }
-  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-
 const firebaseConfig = {
   apiKey: "AIzaSyDdj5rM3BDDzpDop_UKZgEMMYjgjSbjluA",
   authDomain: "yapiriscript-df55b.firebaseapp.com",
@@ -2695,10 +2693,37 @@ const firebaseConfig = {
   measurementId: "G-QCCXMREP3D"
 };
 
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
-window._db = db;
-window._fs = { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs };
+// Load Firebase independently so the alphabet, lessons, and practice tools still
+// work when the CDN or Firestore is unavailable.
+window._firebaseState = 'loading';
+window._firebaseReady = (async () => {
+  try {
+    const [{ initializeApp }, firestore] = await Promise.all([
+      import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js')
+    ]);
+    const app = initializeApp(firebaseConfig);
+    window._db = firestore.getFirestore(app);
+    window._fs = {
+      collection: firestore.collection,
+      addDoc: firestore.addDoc,
+      serverTimestamp: firestore.serverTimestamp,
+      query: firestore.query,
+      orderBy: firestore.orderBy,
+      limit: firestore.limit,
+      getDocs: firestore.getDocs,
+      doc: firestore.doc,
+      getDoc: firestore.getDoc,
+      runTransaction: firestore.runTransaction
+    };
+    window._firebaseState = 'ready';
+    return true;
+  } catch (error) {
+    window._firebaseState = 'failed';
+    console.warn('Firebase is unavailable; local practice mode will be used.', error);
+    return false;
+  }
+})();
 
 // CHARACTER DATA
 // Word examples use only vocabulary already confirmed elsewhere on this page
@@ -2923,8 +2948,17 @@ function charsByRoman(romans) { return romans.map(byRoman).filter(Boolean); }
 // ── GUIDED LESSON NAVIGATION ──
 // All lesson content is static HTML. JS handles only:
 // roadmap highlighting, progress tracking, prev/next/complete buttons.
-let activeGuidedLesson = Number(localStorage.getItem('yapiri_active_guided_lesson') || '0');
-let completedGuidedLessons = new Set(JSON.parse(localStorage.getItem('yapiri_guided_lessons_complete') || '[]'));
+const storedGuidedLesson = Number(localStorage.getItem('yapiri_active_guided_lesson') || '0');
+let activeGuidedLesson = Number.isInteger(storedGuidedLesson) && storedGuidedLesson >= 0
+  ? storedGuidedLesson
+  : 0;
+let completedGuidedLessons;
+try {
+  const storedCompleted = JSON.parse(localStorage.getItem('yapiri_guided_lessons_complete') || '[]');
+  completedGuidedLessons = new Set(Array.isArray(storedCompleted) ? storedCompleted : []);
+} catch (_) {
+  completedGuidedLessons = new Set();
+}
 const TOTAL_LESSONS = 10;
 
 function saveGuidedProgress() {
@@ -3048,7 +3082,9 @@ document.querySelectorAll('.guided-lesson').forEach((panel, idx) => {
 wireVocabCollapseButtons();
 
 // Restore saved lesson position on load (clamp to valid range)
-if (activeGuidedLesson >= TOTAL_LESSONS) activeGuidedLesson = 0;
+if (!Number.isInteger(activeGuidedLesson) || activeGuidedLesson < 0 || activeGuidedLesson >= TOTAL_LESSONS) {
+  activeGuidedLesson = 0;
+}
 updateGuidedProgress();
 
 // ── LESSON 06: Pairs Recognition drill ──
@@ -3117,8 +3153,27 @@ function buildQR() {
 }
 buildQR();
 
-document.getElementById('qr-btn').addEventListener('click', () => document.getElementById('qr-drawer').classList.toggle('open'));
-document.getElementById('qr-close').addEventListener('click', () => document.getElementById('qr-drawer').classList.remove('open'));
+const qrButton = document.getElementById('qr-btn');
+const qrDrawer = document.getElementById('qr-drawer');
+const qrClose = document.getElementById('qr-close');
+
+function setQuickReferenceOpen(open) {
+  qrDrawer.classList.toggle('open', open);
+  qrDrawer.toggleAttribute('inert', !open);
+  qrDrawer.setAttribute('aria-hidden', String(!open));
+  qrButton.setAttribute('aria-expanded', String(open));
+  if (open) qrClose.focus();
+  else qrButton.focus();
+}
+
+qrButton.addEventListener('click', () => setQuickReferenceOpen(!qrDrawer.classList.contains('open')));
+qrClose.addEventListener('click', () => setQuickReferenceOpen(false));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && qrDrawer.classList.contains('open')) {
+    event.preventDefault();
+    setQuickReferenceOpen(false);
+  }
+});
 </script>
 
 <!-- Global Keyboard Handlers + Exercise Engine -->
@@ -3175,9 +3230,21 @@ function exRender() {
   if (roman) roman.textContent = exGetRoman(exBuffer) || '';
 }
 
+const exerciseSection = document.getElementById('exercises');
+let exerciseKeyboardActive = false;
+document.addEventListener('pointerdown', event => {
+  exerciseKeyboardActive = !!exerciseSection?.contains(event.target);
+});
+document.addEventListener('focusin', event => {
+  exerciseKeyboardActive = !!exerciseSection?.contains(event.target);
+});
+
 document.addEventListener('keydown', e => {
+  if (!exerciseKeyboardActive) return;
   const target = e.target;
   if (target && target.closest && target.closest('input, textarea, select, [contenteditable="true"]')) return;
+  if ((e.key === ' ' || e.key === 'Enter') &&
+      target && target.closest && target.closest('button, a, summary')) return;
   if (e.ctrlKey || e.altKey || e.metaKey) return;
 
   if (e.key === 'Backspace') {
@@ -3222,10 +3289,17 @@ let filteredSentences = [];
 let currentIdx        = 0;
 let submittedCount    = 0;
 let skippedCount      = 0;
-let submittedIds      = new Set();
+const SESSION_SUBMISSIONS_KEY = 'yapiri_session_submissions';
+let sessionSubmissions = [];
+try {
+  const storedSessionSubmissions = JSON.parse(sessionStorage.getItem(SESSION_SUBMISSIONS_KEY) || '[]');
+  sessionSubmissions = Array.isArray(storedSessionSubmissions) ? storedSessionSubmissions : [];
+} catch (_) {}
+let submittedIds      = new Set(sessionSubmissions.map(item => item.sentence_id).filter(Boolean));
 let activeDifficulty  = 'all';
 let activeDomain      = null;
 let usingFallbackSentences = false;
+let submissionInProgress = false;
 let consentGiven = localStorage.getItem('yapiri_learn_consent') === 'accept';
 let sessionId = sessionStorage.getItem('yapiri_learn_session');
 if (!sessionId) {
@@ -3406,14 +3480,71 @@ function queuePendingSubmission(payload) {
   }
 }
 
+function saveSessionSubmission(payload) {
+  try {
+    const record = {
+      ...payload,
+      timestamp: new Date().toISOString(),
+      saved_in_session: true
+    };
+    sessionSubmissions.push(record);
+    sessionSubmissions = sessionSubmissions.slice(-100);
+    sessionStorage.setItem(SESSION_SUBMISSIONS_KEY, JSON.stringify(sessionSubmissions));
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+async function flushPendingSubmissions() {
+  if (!window._fs || !window._db) return;
+  const key = 'yapiri_pending_submissions';
+  let pending;
+  try {
+    pending = JSON.parse(localStorage.getItem(key) || '[]');
+    if (!Array.isArray(pending) || pending.length === 0) return;
+  } catch (_) {
+    return;
+  }
+
+  const remaining = [];
+  for (const record of pending) {
+    try {
+      const payload = {
+        ...record,
+        timestamp: window._fs.serverTimestamp()
+      };
+      delete payload.queued_at;
+      delete payload.server_timestamp_requested;
+      await window._fs.addDoc(window._fs.collection(window._db, 'learner_submissions'), payload);
+      await incrementCorpusCounter(record.sentence_id);
+    } catch (_) {
+      remaining.push(record);
+    }
+  }
+
+  try {
+    if (remaining.length) localStorage.setItem(key, JSON.stringify(remaining.slice(-50)));
+    else localStorage.removeItem(key);
+  } catch (_) {}
+}
+
 async function submitTranslation() {
+  if (submissionInProgress) return;
   const yapiriText = exBuffer.trim();
   if (!yapiriText) { showFeedback('Type your Yapiri translation using the keyboard above.', 'error'); return; }
   const romanText = exGetRoman(yapiriText);
   const s   = filteredSentences[currentIdx];
   if (!s) { showFeedback('No practice sentence is loaded yet. Please refresh and try again.', 'error'); return; }
+  if (submittedIds.has(s.id)) {
+    showFeedback('You already submitted this sentence in this session. Choose another sentence.', 'error');
+    return;
+  }
   const btn = document.getElementById('btn-submit');
-  btn.disabled = true; btn.textContent = 'Saving…';
+  const btnLabel = document.getElementById('btn-submit-label');
+  submissionInProgress = true;
+  btn.disabled = true;
+  if (btnLabel) btnLabel.textContent = 'Saving…';
 
   const payload = {
     sentence_id:  s.id,
@@ -3422,7 +3553,7 @@ async function submitTranslation() {
     difficulty:   s.difficulty || '',
     yapiri_text:  yapiriText,
     roman_text:   romanText,
-    timestamp:    window._fs.serverTimestamp(),
+    timestamp:    window._fs?.serverTimestamp ? window._fs.serverTimestamp() : new Date().toISOString(),
     session_id:   sessionId,
     consent:      consentGiven,
     yapiri_chars: [...yapiriText].length,
@@ -3448,12 +3579,13 @@ async function submitTranslation() {
   }
 
   try {
+    saveSessionSubmission(payload);
     submittedIds.add(s.id);
     submittedCount++;
     updateProgress();
     if (contributed && !sessionStorage.getItem('corpus_sent_' + s.id)) {
       sessionStorage.setItem('corpus_sent_' + s.id, '1');
-      incrementCorpusCounter();
+      await incrementCorpusCounter(s.id);
     }
     showFeedback(
       contributed ? 'Contributed to the Kokborok corpus — thank you. ✓' :
@@ -3462,24 +3594,24 @@ async function submitTranslation() {
       'Saved. Enable contributing to add to the corpus.',
       'success'
     );
-    setTimeout(() => {
-      if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
-      else { showFeedback('Level complete! Try another difficulty or domain.', 'success'); }
-    }, 1200);
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    if (currentIdx < filteredSentences.length - 1) { currentIdx++; loadSentence(currentIdx); }
+    else { showFeedback('Level complete! Try another difficulty or domain.', 'success'); }
   } catch(err) {
     console.error(err);
     showFeedback('Could not save — check your connection and try again.', 'error');
   } finally {
-    btn.disabled = false; btn.textContent = 'Submit Translation';
+    submissionInProgress = false;
+    btn.disabled = false;
+    if (btnLabel) btnLabel.textContent = consentGiven ? 'Submit & Contribute' : 'Submit (Not Contributing)';
   }
 }
 
 // ── CORPUS COUNTER ──
 async function loadCorpusCounter() {
   try {
-    if (!window._db) return;
-    const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
-    const snap = await getDoc(doc(window._db, 'stats', 'corpus'));
+    if (!window._db || !window._fs) return;
+    const snap = await window._fs.getDoc(window._fs.doc(window._db, 'stats', 'corpus'));
     const covered = snap.exists() ? (snap.data().sentences_covered || 0) : 0;
     updateCorpusCounterUI(covered);
   } catch(e) {
@@ -3488,20 +3620,27 @@ async function loadCorpusCounter() {
   }
 }
 
-async function incrementCorpusCounter() {
+async function incrementCorpusCounter(sentenceId) {
   try {
-    if (!window._db) return;
-    const { doc, updateDoc, setDoc, increment, getDoc } =
-      await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
-    const ref = doc(window._db, 'stats', 'corpus');
-    const snap = await getDoc(ref);
-    if (snap.exists()) {
-      await updateDoc(ref, { sentences_covered: increment(1) });
-      updateCorpusCounterUI((snap.data().sentences_covered || 0) + 1);
-    } else {
-      await setDoc(ref, { sentences_covered: 1 });
-      updateCorpusCounterUI(1);
-    }
+    if (!window._db || !window._fs || !sentenceId) return;
+    const ref = window._fs.doc(window._db, 'stats', 'corpus');
+    const result = await window._fs.runTransaction(window._db, async transaction => {
+      const snap = await transaction.get(ref);
+      const data = snap.exists() ? snap.data() : {};
+      const coveredIds = Array.isArray(data.covered_sentence_ids) ? data.covered_sentence_ids : [];
+      const normalizedId = String(sentenceId);
+      if (coveredIds.includes(normalizedId)) {
+        return { count: Number(data.sentences_covered) || coveredIds.length };
+      }
+      const nextIds = [...coveredIds, normalizedId];
+      const nextCount = Math.max(Number(data.sentences_covered) || 0, coveredIds.length) + 1;
+      transaction.set(ref, {
+        covered_sentence_ids: nextIds,
+        sentences_covered: nextCount
+      }, { merge: true });
+      return { count: nextCount };
+    });
+    updateCorpusCounterUI(result.count);
   } catch(e) { console.warn('Corpus counter increment failed:', e); }
 }
 
@@ -3517,9 +3656,25 @@ function updateCorpusCounterUI(covered) {
   if (lbl) lbl.textContent = pct + '% of seed sentences covered';
 }
 
-function startCounterLoad() {
-  if (window._db) loadCorpusCounter();
-  else setTimeout(startCounterLoad, 100);
+async function waitForFirebase(timeoutMs = 8000) {
+  if (!window._firebaseReady) return false;
+  return Promise.race([
+    window._firebaseReady,
+    new Promise(resolve => setTimeout(() => resolve(false), timeoutMs))
+  ]);
+}
+
+async function startCounterLoad() {
+  if (document.readyState === 'loading') {
+    await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+  }
+  await waitForFirebase();
+  if (window._db && window._fs) {
+    await loadCorpusCounter();
+  } else {
+    const lbl = document.getElementById('corpus-pct-label');
+    if (lbl) lbl.textContent = 'Live corpus count unavailable';
+  }
 }
 startCounterLoad();
 
@@ -3589,12 +3744,17 @@ async function loadSentencesFromFirestore() {
   }
 }
 
-// Wait for Firebase module to attach window._fs / window._db before loading
-function startLoad() {
+// Wait once for Firebase, then reliably fall back to the local starter set.
+async function startLoad() {
+  if (document.readyState === 'loading') {
+    await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+  }
+  await waitForFirebase();
   if (window._db && window._fs) {
-    loadSentencesFromFirestore();
+    await loadSentencesFromFirestore();
+    await flushPendingSubmissions();
   } else {
-    setTimeout(startLoad, 60);
+    useFallbackSentences('The live corpus could not be reached, so a starter practice set is loaded.');
   }
 }
 startLoad();
@@ -3742,10 +3902,16 @@ startLoad();
     // ── YAPIRI NUMERAL DRILL: 0-100 ──
     const YAPIRI_NUMERAL_GLYPHS = Array.from({ length: 10 }, (_, i) => String.fromCodePoint(0xF1CC0 + i));
     const KOKBOROK_NUMERAL_NAMES = Object.freeze({
-      // Add verified Kokborok names later, for example:
-      // 0: '...',
-      // 1: '...',
-      // 100: '...'
+      0: 'bukcha',
+      1: 'sa',
+      2: 'nwi',
+      3: 'tham',
+      4: 'brwi',
+      5: 'ba',
+      6: 'dok',
+      7: 'sni',
+      8: 'char',
+      9: 'chuku'
     });
     let numeralTarget = 0;
 
@@ -3780,10 +3946,10 @@ startLoad();
       if (numberEl) numberEl.textContent = '—';
       if (glyphEl) glyphEl.textContent = '—';
       if (valueEl) {
-        valueEl.textContent = 'Name slot ready. Add the verified Kokborok numeral name later.';
+        valueEl.textContent = 'Complete a single-digit numeral prompt to view its Kokborok name.';
         valueEl.classList.add('pending');
       }
-      if (metaEl) metaEl.textContent = 'Complete the Yapiri Numeral Drill, then choose “Show Kokborok Name” to send the selected number here.';
+      if (metaEl) metaEl.textContent = 'Verified names are currently available for digits 0 through 9.';
     }
 
     function setNumeralDrill() {
@@ -3811,8 +3977,9 @@ startLoad();
       if (ok) {
         fb.className = 'pl-feedback good';
         fb.textContent = 'Correct.';
-        if (question) question.textContent = 'Correct. Want to see what ' + numeralTarget + ' is called in Kokborok?';
-        if (prompt) prompt.hidden = false;
+        const hasVerifiedName = !!getKokborokNumeralName(numeralTarget);
+        if (question && hasVerifiedName) question.textContent = 'Correct. Want to see what ' + numeralTarget + ' is called in Kokborok?';
+        if (prompt) prompt.hidden = !hasVerifiedName;
       } else {
         resetNumeralNamePrompt();
         fb.className = 'pl-feedback' + (revealIfWrong ? ' bad' : '');
@@ -3842,18 +4009,18 @@ startLoad();
       if (numberEl) numberEl.textContent = String(numeralTarget);
       if (glyphEl) glyphEl.textContent = yapiriNumeralFor(numeralTarget);
       if (valueEl) {
-        valueEl.textContent = name || 'Kokborok name pending. Add the verified name for this number later.';
+        valueEl.textContent = name || 'A verified Kokborok name is not yet available for this multi-digit number.';
         valueEl.classList.toggle('pending', !name);
       }
       if (metaEl) {
         metaEl.textContent = name
-          ? 'This value is coming from KOKBOROK_NUMERAL_NAMES inside the Practice Hub script.'
-          : 'Structure ready: add entry ' + numeralTarget + ' to KOKBOROK_NUMERAL_NAMES when the complete list is available.';
+          ? 'Verified Kokborok digit name.'
+          : 'Verified names are currently available for digits 0 through 9.';
       }
       if (panel) {
         panel.textContent = name
           ? 'Kokborok name shown in the card below.'
-          : 'Kokborok Numeral Names card opened below. The name slot is ready for the verified list.';
+          : 'No verified name is available for this multi-digit number yet.';
         panel.hidden = false;
       }
       card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -3951,11 +4118,18 @@ function toggleMenu() {
   const burger = document.getElementById('hamburger');
   menu.classList.toggle('open');
   burger.classList.toggle('open');
-  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  const open = menu.classList.contains('open');
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open) menu.querySelector('.mobile-menu-close')?.focus();
 }
 function closeMenu() {
   document.getElementById('mobileMenu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
+  const burger = document.getElementById('hamburger');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-label', 'Open menu');
   document.body.style.overflow = '';
 }
 window.toggleMenu = toggleMenu;
