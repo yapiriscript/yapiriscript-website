@@ -2346,7 +2346,7 @@
         <p>Type the Roman value for the Yapiri character shown. For schwa (ə), type Q.</p>
         <div class="pl-prompt"><span class="pl-glyph" id="pl-call-glyph">&#xF1CA9;</span></div>
         <label class="visually-hidden" for="pl-call-input">Type the Roman value of the displayed character</label>
-        <input class="pl-input" id="pl-call-input" placeholder="Type roman value — Q for schwa" autocomplete="off" aria-describedby="pl-call-feedback">
+        <input class="pl-input" id="pl-call-input" autocomplete="off" aria-describedby="pl-call-feedback">
         <div class="pl-feedback" id="pl-call-feedback"></div>
         <div class="pl-controls"><button class="pl-btn" id="pl-call-check">Check</button><button class="pl-btn" id="pl-call-next">Next</button></div>
       </article>
@@ -3959,6 +3959,18 @@ startLoad();
         .join('');
     }
 
+    function updateUnverifiedNumeralInput(value) {
+      const input = document.getElementById('pl-num-input');
+      const fb = document.getElementById('pl-num-feedback');
+      if (!input) return;
+      input.value = normalizeNumeralInput(value);
+      if (fb) {
+        fb.className = 'pl-feedback';
+        fb.textContent = numeralInputPrompt;
+      }
+      resetNumeralNamePrompt();
+    }
+
     function resetNumeralNamePrompt() {
       const prompt = document.getElementById('pl-num-name-prompt');
       const panel = document.getElementById('pl-num-name-panel');
@@ -4070,9 +4082,8 @@ startLoad();
         btn.title = 'Yapiri digit ' + digit;
         btn.setAttribute('aria-label', 'Yapiri numeral ' + digit);
         btn.addEventListener('click', () => {
-          input.value = normalizeNumeralInput(input.value + glyphChar);
+          updateUnverifiedNumeralInput(input.value + glyphChar);
           if (!tapOnlyNumeralInput) input.focus();
-          checkNumeralDrill(false);
         });
         keypad.appendChild(btn);
       });
@@ -4093,11 +4104,12 @@ startLoad();
       if (/^[0-9]$/.test(e.key)) {
         e.preventDefault();
         const input = document.getElementById('pl-num-input');
-        if (input) input.value = normalizeNumeralInput(input.value + e.key);
-        checkNumeralDrill(false);
+        if (input) updateUnverifiedNumeralInput(input.value + e.key);
       }
     });
-    document.getElementById('pl-num-input')?.addEventListener('input', () => checkNumeralDrill(false));
+    document.getElementById('pl-num-input')?.addEventListener('input', event => {
+      updateUnverifiedNumeralInput(event.currentTarget.value);
+    });
     document.getElementById('pl-num-check')?.addEventListener('click', () => checkNumeralDrill(true));
     document.getElementById('pl-num-clear')?.addEventListener('click', clearNumeralDrill);
     document.getElementById('pl-num-next')?.addEventListener('click', setNumeralDrill);
