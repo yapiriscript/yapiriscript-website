@@ -759,6 +759,29 @@
   .vocab-table td { padding: 0.55rem 1rem; border-bottom: 1px solid rgba(196,180,154,0.07); color: var(--stone-light); font-size: 0.95rem; font-weight: 300; }
   .vocab-table tr:last-child td { border-bottom: none; }
   .vocab-table tr:hover td { background: rgba(201,146,42,0.04); }
+  .numeral-table-wrap { max-height: 34rem; overflow: auto; }
+  .numeral-table-wrap .vocab-table thead {
+    position: sticky; top: 0; z-index: 2;
+    background: #171108;
+  }
+  .numeral-table-wrap .numeral-decade-row td {
+    color: var(--parchment);
+    background: rgba(201,146,42,0.06);
+    border-top: 1px solid rgba(201,146,42,0.18);
+  }
+  .numeral-pattern-note {
+    font-size: 0.9rem; line-height: 1.65; color: var(--stone-light);
+    font-weight: 300; margin-bottom: 0.9rem;
+    padding: 0.75rem 0.9rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(201,146,42,0.04);
+  }
+  .numeral-pattern-note strong { color: var(--gold-light); font-weight: 400; }
+  .numeral-source-note {
+    margin-top: 0.65rem; font-family: 'DM Mono', monospace;
+    font-size: 0.52rem; line-height: 1.55; letter-spacing: 0.06em; color: var(--stone);
+  }
+  .numeral-source-note a { color: var(--stone-light); text-underline-offset: 0.2em; }
   /* Roman/Kokborok text cells — DM Mono, not the Yapiri font */
   .vocab-roman { font-family: 'DM Mono', monospace; color: var(--gold-light); letter-spacing: 0.04em; }
   /* Lesson 10 word-list cells use the page's normal reading font, not the mono helper class. */
@@ -2208,30 +2231,21 @@
           <p class="guided-lesson-intro">Yapiri has its own numeral shapes from 0 to 9, and each digit also has its own Kokborok name. Learn both the written form and the spoken word.</p>
         </div>
         <div class="guided-lesson-body">
-          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Numerals are visually matched to the script.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>0-9 have dedicated Yapiri forms.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Each digit also has its own Kokborok name — not just a written shape.</p></div></div>
+          <div class="lesson-focus-grid"><div class="lesson-focus-card"><span>Focus 1</span><p>Numerals are visually matched to the script.</p></div><div class="lesson-focus-card"><span>Focus 2</span><p>0-9 have dedicated Yapiri forms.</p></div><div class="lesson-focus-card"><span>Focus 3</span><p>Learn the spoken Kokborok names for every number from 0 to 100.</p></div></div>
           <div>
             <p class="lesson-section-title">Characters</p>
             <div class="guided-char-strip"><div class="guided-char"><span class="glyph">󱳀</span><span class="roman">0</span></div><div class="guided-char"><span class="glyph">󱳁</span><span class="roman">1</span></div><div class="guided-char"><span class="glyph">󱳂</span><span class="roman">2</span></div><div class="guided-char"><span class="glyph">󱳃</span><span class="roman">3</span></div><div class="guided-char"><span class="glyph">󱳄</span><span class="roman">4</span></div><div class="guided-char"><span class="glyph">󱳅</span><span class="roman">5</span></div><div class="guided-char"><span class="glyph">󱳆</span><span class="roman">6</span></div><div class="guided-char"><span class="glyph">󱳇</span><span class="roman">7</span></div><div class="guided-char"><span class="glyph">󱳈</span><span class="roman">8</span></div><div class="guided-char"><span class="glyph">󱳉</span><span class="roman">9</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Kokborok Numeral Names</p>
-            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">Each numeral has its own spoken Kokborok name, separate from its written digit shape.</p>
-            <div class="vocab-table-wrap"><table class="vocab-table"><thead><tr><th>Digit</th><th>Yapiri</th><th>Kokborok Name</th></tr></thead><tbody>
-              <tr><td>0</td><td class="vocab-glyph">&#xF1CC0;</td><td>bukcha</td></tr>
-              <tr><td>1</td><td class="vocab-glyph">&#xF1CC1;</td><td>sa</td></tr>
-              <tr><td>2</td><td class="vocab-glyph">&#xF1CC2;</td><td>nwi</td></tr>
-              <tr><td>3</td><td class="vocab-glyph">&#xF1CC3;</td><td>tham</td></tr>
-              <tr><td>4</td><td class="vocab-glyph">&#xF1CC4;</td><td>brwi</td></tr>
-              <tr><td>5</td><td class="vocab-glyph">&#xF1CC5;</td><td>ba</td></tr>
-              <tr><td>6</td><td class="vocab-glyph">&#xF1CC6;</td><td>dok</td></tr>
-              <tr><td>7</td><td class="vocab-glyph">&#xF1CC7;</td><td>sni</td></tr>
-              <tr><td>8</td><td class="vocab-glyph">&#xF1CC8;</td><td>char</td></tr>
-              <tr><td>9</td><td class="vocab-glyph">&#xF1CC9;</td><td>chuku</td></tr>
-            </tbody></table></div>
+            <p style="font-size:0.95rem;line-height:1.65;color:var(--stone-light);font-weight:300;margin-bottom:0.9rem;">The table gives the Yapiri form and spoken Kokborok name for every number from 0 to 100.</p>
+            <p class="numeral-pattern-note"><strong>The pattern:</strong> 11-19 begin with <em>chi</em> (ten), while 20-99 use the multiplier before <em>chi</em>, followed by the unit. For example, <em>tham + chi + dok</em> becomes <em>thamchidok</em> (36).</p>
+            <div class="vocab-table-wrap numeral-table-wrap"><table class="vocab-table"><thead><tr><th>Number</th><th>Yapiri</th><th>Kokborok Name</th></tr></thead><tbody id="kokborok-numeral-names"></tbody></table></div>
+            <p class="numeral-source-note">Spellings follow the counting pattern in the supplied workbook and the <a href="https://tripura.gov.in/sites/default/files/Learn%20Kokborok%20Language%20Tripura%20Tribal%20Area%20Autonomous%20District%20Council.pdf" target="_blank" rel="noopener noreferrer">TTAADC Learn Kokborok Language guide, Lesson XXIV</a>.</p>
           </div>
           <div>
             <p class="lesson-section-title">Worked Examples</p>
-            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱳁󱳂󱳃</span><span class="ex-roman">1-2-3</span><span class="ex-meaning">sa, nwi, tham</span></div><div class="lesson-example"><span class="ex-yapiri">󱳄󱳅󱳆</span><span class="ex-roman">4-5-6</span><span class="ex-meaning">brwi, ba, dok</span></div><div class="lesson-example"><span class="ex-yapiri">󱳇󱳈󱳉</span><span class="ex-roman">7-8-9</span><span class="ex-meaning">sni, char, chuku</span></div></div>
+            <div class="worked-examples-grid"><div class="lesson-example"><span class="ex-yapiri">󱳁󱳀</span><span class="ex-roman">10</span><span class="ex-meaning">chi</span></div><div class="lesson-example"><span class="ex-yapiri">󱳂󱳁</span><span class="ex-roman">21</span><span class="ex-meaning">nwichisa</span></div><div class="lesson-example"><span class="ex-yapiri">󱳃󱳆</span><span class="ex-roman">36</span><span class="ex-meaning">thamchidok</span></div><div class="lesson-example"><span class="ex-yapiri">󱳉󱳉</span><span class="ex-roman">99</span><span class="ex-meaning">chukuchichuku</span></div><div class="lesson-example"><span class="ex-yapiri">󱳁󱳀󱳀</span><span class="ex-roman">100</span><span class="ex-meaning">sara</span></div></div>
           </div>
           <div>
             <p class="lesson-section-title">Quick Checks</p>
@@ -2382,16 +2396,16 @@
 
       <article class="pl-card" id="pl-num-name-card">
         <h3>Kokborok Numeral Names</h3>
-        <p>After correctly entering a digit from 0 to 9, you can view its verified Kokborok name here.</p>
+        <p>After correctly entering any number from 0 to 100, you can view its Kokborok name here.</p>
         <div class="pl-num-name-display" aria-live="polite">
           <span class="pl-name-label">Selected number</span>
           <span class="pl-num-name-number" id="pl-num-name-number">—</span>
           <span class="pl-name-label">Yapiri numeral</span>
           <span class="pl-num-name-glyph" id="pl-num-name-glyph">—</span>
           <span class="pl-name-label">Kokborok name</span>
-          <span class="pl-num-name-value pending" id="pl-num-name-value">Complete a single-digit numeral prompt to view its Kokborok name.</span>
+          <span class="pl-num-name-value pending" id="pl-num-name-value">Complete a numeral prompt to view its Kokborok name.</span>
         </div>
-        <div class="pl-num-name-meta" id="pl-num-name-meta">Verified names are currently available for digits 0 through 9.</div>
+        <div class="pl-num-name-meta" id="pl-num-name-meta">Kokborok names are available for every number from 0 through 100.</div>
         <div class="pl-controls"><button class="pl-btn" type="button" id="pl-num-name-back">Back to Numeral Drill</button></div>
       </article>
 
@@ -3770,6 +3784,50 @@ startLoad();
   function ready(fn){ if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
   ready(function(){
     let attempts = 0;
+
+    const YAPIRI_NUMERAL_GLYPHS = Array.from({ length: 10 }, (_, i) => String.fromCodePoint(0xF1CC0 + i));
+    const KOKBOROK_NUMERAL_ROOTS = Object.freeze([
+      'bukcha', 'sa', 'nwi', 'tham', 'brwi', 'ba', 'dok', 'sni', 'char', 'chuku'
+    ]);
+
+    function yapiriNumeralFor(num) {
+      return String(num).split('').map(d => YAPIRI_NUMERAL_GLYPHS[Number(d)] || '').join('');
+    }
+
+    function getKokborokNumeralName(num) {
+      const value = Number(num);
+      if (!Number.isInteger(value) || value < 0 || value > 100) return '';
+      if (value <= 9) return KOKBOROK_NUMERAL_ROOTS[value];
+      if (value === 10) return 'chi';
+      if (value < 20) return 'chi' + KOKBOROK_NUMERAL_ROOTS[value - 10];
+      if (value === 100) return 'sara';
+      const tens = Math.floor(value / 10);
+      const units = value % 10;
+      return KOKBOROK_NUMERAL_ROOTS[tens] + 'chi' + (units ? KOKBOROK_NUMERAL_ROOTS[units] : '');
+    }
+
+    function populateKokborokNumeralTable() {
+      const tbody = document.getElementById('kokborok-numeral-names');
+      if (!tbody) return;
+      const fragment = document.createDocumentFragment();
+      for (let number = 0; number <= 100; number++) {
+        const row = document.createElement('tr');
+        if (number % 10 === 0) row.className = 'numeral-decade-row';
+        const valueCell = document.createElement('td');
+        const glyphCell = document.createElement('td');
+        const nameCell = document.createElement('td');
+        valueCell.textContent = String(number);
+        glyphCell.className = 'vocab-glyph';
+        glyphCell.textContent = yapiriNumeralFor(number);
+        nameCell.textContent = getKokborokNumeralName(number);
+        row.append(valueCell, glyphCell, nameCell);
+        fragment.appendChild(row);
+      }
+      tbody.replaceChildren(fragment);
+    }
+
+    populateKokborokNumeralTable();
+
     function bootPracticeLab(){
     const chars = (window.CHAR_DATA || []).filter(c => ['vowels','consonants','loanword'].includes(c.group));
     if (!chars.length) {
@@ -3907,19 +3965,6 @@ startLoad();
     }
 
     // ── YAPIRI NUMERAL DRILL: 0-100 ──
-    const YAPIRI_NUMERAL_GLYPHS = Array.from({ length: 10 }, (_, i) => String.fromCodePoint(0xF1CC0 + i));
-    const KOKBOROK_NUMERAL_NAMES = Object.freeze({
-      0: 'bukcha',
-      1: 'sa',
-      2: 'nwi',
-      3: 'tham',
-      4: 'brwi',
-      5: 'ba',
-      6: 'dok',
-      7: 'sni',
-      8: 'char',
-      9: 'chuku'
-    });
     let numeralTarget = 0;
     const numeralInput = document.getElementById('pl-num-input');
     const tapOnlyNumeralInput =
@@ -3937,14 +3982,6 @@ startLoad();
       numeralInput.setAttribute('aria-label', 'Yapiri numeral entered with the keypad below');
       document.getElementById('pl-num-instructions').textContent =
         'Read the English numeral and tap its Yapiri numeral equivalent using the digits below.';
-    }
-
-    function yapiriNumeralFor(num) {
-      return String(num).split('').map(d => YAPIRI_NUMERAL_GLYPHS[Number(d)] || '').join('');
-    }
-
-    function getKokborokNumeralName(num) {
-      return KOKBOROK_NUMERAL_NAMES[Number(num)] || '';
     }
 
     function normalizeNumeralInput(value) {
@@ -3986,10 +4023,10 @@ startLoad();
       if (numberEl) numberEl.textContent = '—';
       if (glyphEl) glyphEl.textContent = '—';
       if (valueEl) {
-        valueEl.textContent = 'Complete a single-digit numeral prompt to view its Kokborok name.';
+        valueEl.textContent = 'Complete a numeral prompt to view its Kokborok name.';
         valueEl.classList.add('pending');
       }
-      if (metaEl) metaEl.textContent = 'Verified names are currently available for digits 0 through 9.';
+      if (metaEl) metaEl.textContent = 'Kokborok names are available for every number from 0 through 100.';
     }
 
     function setNumeralDrill() {
@@ -4057,13 +4094,13 @@ startLoad();
       }
       if (metaEl) {
         metaEl.textContent = name
-          ? 'Verified Kokborok digit name.'
-          : 'Verified names are currently available for digits 0 through 9.';
+          ? 'Kokborok name for this number.'
+          : 'Kokborok names are available for numbers from 0 through 100.';
       }
       if (panel) {
         panel.textContent = name
           ? 'Kokborok name shown in the card below.'
-          : 'No verified name is available for this multi-digit number yet.';
+          : 'No Kokborok name is available for this number.';
         panel.hidden = false;
       }
       card?.scrollIntoView({ behavior: 'smooth', block: 'start' });
