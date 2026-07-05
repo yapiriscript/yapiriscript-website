@@ -2363,7 +2363,7 @@
 
       <article class="pl-card" id="pl-numeral-card">
         <h3>Yapiri Numeral Drill</h3>
-        <p>Read the English numeral and type its Yapiri numeral equivalent. Use your number keys or tap the Yapiri digits below.</p>
+        <p id="pl-num-instructions">Read the English numeral and type its Yapiri numeral equivalent. Use your number keys or tap the Yapiri digits below.</p>
         <div class="pl-prompt"><span class="pl-num-target" id="pl-num-target">0</span></div>
         <label class="visually-hidden" for="pl-num-input">Type the Yapiri numeral equivalent</label>
         <input class="pl-input pl-num-input" id="pl-num-input" placeholder="Type Yapiri numeral" autocomplete="off" inputmode="numeric" aria-describedby="pl-num-feedback">
@@ -3530,7 +3530,7 @@ async function flushPendingSubmissions() {
       delete payload.queued_at;
       delete payload.server_timestamp_requested;
       await window._fs.addDoc(window._fs.collection(window._db, 'learner_submissions'), payload);
-      await incrementCorpusCounter(record.sentence_id);
+      await incrementCorpusCounter();
     } catch (_) {
       remaining.push(record);
     }
@@ -3596,10 +3596,7 @@ async function submitTranslation() {
     submittedIds.add(s.id);
     submittedCount++;
     updateProgress();
-    if (contributed && !sessionStorage.getItem('corpus_sent_' + s.id)) {
-      sessionStorage.setItem('corpus_sent_' + s.id, '1');
-      await incrementCorpusCounter(s.id);
-    }
+    if (contributed) await incrementCorpusCounter();
     showFeedback(
       contributed ? 'Contributed to the Kokborok corpus — thank you. ✓' :
       queued ? 'Saved locally. Corpus contribution will need a retry.' :
@@ -3633,22 +3630,16 @@ async function loadCorpusCounter() {
   }
 }
 
-async function incrementCorpusCounter(sentenceId) {
+async function incrementCorpusCounter() {
   try {
-    if (!window._db || !window._fs || !sentenceId) return;
+    if (!window._db || !window._fs) return;
     const ref = window._fs.doc(window._db, 'stats', 'corpus');
     const result = await window._fs.runTransaction(window._db, async transaction => {
       const snap = await transaction.get(ref);
       const data = snap.exists() ? snap.data() : {};
       const coveredIds = Array.isArray(data.covered_sentence_ids) ? data.covered_sentence_ids : [];
-      const normalizedId = String(sentenceId);
-      if (coveredIds.includes(normalizedId)) {
-        return { count: Number(data.sentences_covered) || coveredIds.length };
-      }
-      const nextIds = [...coveredIds, normalizedId];
       const nextCount = Math.max(Number(data.sentences_covered) || 0, coveredIds.length) + 1;
       transaction.set(ref, {
-        covered_sentence_ids: nextIds,
         sentences_covered: nextCount
       }, { merge: true });
       return { count: nextCount };
@@ -3930,6 +3921,23 @@ startLoad();
       9: 'chuku'
     });
     let numeralTarget = 0;
+    const numeralInput = document.getElementById('pl-num-input');
+    const tapOnlyNumeralInput =
+      window.matchMedia('(max-width: 640px)').matches ||
+      window.matchMedia('(hover: none) and (pointer: coarse)').matches ||
+      /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    const numeralInputPrompt = tapOnlyNumeralInput
+      ? 'Tap the matching Yapiri numeral below.'
+      : 'Type the matching Yapiri numeral.';
+
+    if (numeralInput && tapOnlyNumeralInput) {
+      numeralInput.readOnly = true;
+      numeralInput.inputMode = 'none';
+      numeralInput.placeholder = 'Tap Yapiri digits below';
+      numeralInput.setAttribute('aria-label', 'Yapiri numeral entered with the keypad below');
+      document.getElementById('pl-num-instructions').textContent =
+        'Read the English numeral and tap its Yapiri numeral equivalent using the digits below.';
+    }
 
     function yapiriNumeralFor(num) {
       return String(num).split('').map(d => YAPIRI_NUMERAL_GLYPHS[Number(d)] || '').join('');
@@ -3979,7 +3987,7 @@ startLoad();
       const fb = document.getElementById('pl-num-feedback');
       if (target) target.textContent = String(numeralTarget);
       if (input) input.value = '';
-      if (fb) { fb.className = 'pl-feedback'; fb.textContent = 'Type the matching Yapiri numeral.'; }
+      if (fb) { fb.className = 'pl-feedback'; fb.textContent = numeralInputPrompt; }
       resetNumeralNamePrompt();
       resetNumeralNameCard();
     }
@@ -4003,7 +4011,7 @@ startLoad();
       } else {
         resetNumeralNamePrompt();
         fb.className = 'pl-feedback' + (revealIfWrong ? ' bad' : '');
-        if (!normalized) fb.textContent = 'Type the matching Yapiri numeral.';
+        if (!normalized) fb.textContent = numeralInputPrompt;
         else fb.textContent = revealIfWrong ? 'Not quite — check each digit and try again.' : 'Keep going…';
       }
       return ok;
@@ -4011,9 +4019,12 @@ startLoad();
 
     function clearNumeralDrill() {
       const input = document.getElementById('pl-num-input');
-      if (input) { input.value = ''; input.focus(); }
+      if (input) {
+        input.value = '';
+        if (!tapOnlyNumeralInput) input.focus();
+      }
       const fb = document.getElementById('pl-num-feedback');
-      if (fb) { fb.className = 'pl-feedback'; fb.textContent = 'Type the matching Yapiri numeral.'; }
+      if (fb) { fb.className = 'pl-feedback'; fb.textContent = numeralInputPrompt; }
       resetNumeralNamePrompt();
     }
 
@@ -4060,7 +4071,7 @@ startLoad();
         btn.setAttribute('aria-label', 'Yapiri numeral ' + digit);
         btn.addEventListener('click', () => {
           input.value = normalizeNumeralInput(input.value + glyphChar);
-          input.focus();
+          if (!tapOnlyNumeralInput) input.focus();
           checkNumeralDrill(false);
         });
         keypad.appendChild(btn);
@@ -4075,6 +4086,10 @@ startLoad();
     document.getElementById('pl-build-clear')?.addEventListener('click', clearBuild);
     document.getElementById('pl-build-next')?.addEventListener('click', setBuild);
     document.getElementById('pl-num-input')?.addEventListener('keydown', e => {
+      if (tapOnlyNumeralInput) {
+        e.preventDefault();
+        return;
+      }
       if (/^[0-9]$/.test(e.key)) {
         e.preventDefault();
         const input = document.getElementById('pl-num-input');
