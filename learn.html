@@ -984,7 +984,8 @@
   .ex-output-label { font-family:'DM Mono',monospace; font-size:0.58rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--stone); margin-bottom:0.5rem; display:block; }
   .yapiri-output-wrap { background:#0e0b07; border:1px solid rgba(196,180,154,0.2); border-bottom:none; padding:1.1rem 1.2rem 0.8rem; margin-bottom:0; }
   .yapiri-output-wrap:focus-within { border-color:rgba(201,146,42,0.4); }
-  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); line-height:1.4; height:90px; overflow-y:auto; word-break:break-word; overflow-wrap:break-word; white-space:pre-wrap; padding-right:0.2rem; }
+  .yapiri-display { font-family:'Yapiri',serif; font-size:2rem; color:var(--parchment); caret-color:var(--gold-light); line-height:1.4; height:90px; overflow-y:auto; word-break:break-word; overflow-wrap:break-word; white-space:pre-wrap; padding-right:0.2rem; cursor:text; outline:none; }
+  .yapiri-display:focus { color:var(--warm-white); }
   .yapiri-display:empty::before { content:'Type using the keyboard below'; color:var(--stone); opacity:0.5; font-family:'DM Mono',monospace; font-size:0.85rem; }
   .yapiri-display::-webkit-scrollbar { width:4px; }
   .yapiri-display::-webkit-scrollbar-thumb { background:rgba(201,146,42,0.3); }
@@ -2485,7 +2486,7 @@
         <div class="sticky-output-anchor">
           <span class="ex-output-label reveal">Your Yapiri translation</span>
           <div class="yapiri-output-wrap reveal">
-            <div class="yapiri-display" id="yapiri-display"></div>
+              <div class="yapiri-display" id="yapiri-display" contenteditable="true" role="textbox" aria-label="Your Yapiri translation" aria-multiline="true" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></div>
             <div class="roman-preview" id="roman-preview"></div>
           </div>
         </div>
@@ -3234,27 +3235,126 @@ const EX_ROMAN_MAP = {
   [exCp('F1CCB')]:',',[exCp('F1CCC')]:'.',[exCp('F1CCD')]:'!',[exCp('F1CCE')]:'"',[exCp('F1CCF')]:'?',[exCp('F1CD1')]:'\u0301'
 };
 
+const exDisplay = document.getElementById('yapiri-display');
+let exSelectionStart = 0;
+let exSelectionEnd = 0;
+
+function exCaptureSelection() {
+  const selection = window.getSelection();
+  if (!exDisplay || !selection || !selection.rangeCount) return false;
+  const range = selection.getRangeAt(0);
+  const container = range.commonAncestorContainer.nodeType === Node.TEXT_NODE
+    ? range.commonAncestorContainer.parentNode
+    : range.commonAncestorContainer;
+  if (container !== exDisplay && !exDisplay.contains(container)) return false;
+
+  const startRange = range.cloneRange();
+  startRange.selectNodeContents(exDisplay);
+  startRange.setEnd(range.startContainer, range.startOffset);
+  const endRange = range.cloneRange();
+  endRange.selectNodeContents(exDisplay);
+  endRange.setEnd(range.endContainer, range.endOffset);
+  exSelectionStart = startRange.toString().length;
+  exSelectionEnd = endRange.toString().length;
+  return true;
+}
+
+function exCurrentSelection() {
+  exCaptureSelection();
+  const length = exBuffer.length;
+  return {
+    start: Math.min(exSelectionStart, length),
+    end: Math.min(exSelectionEnd, length)
+  };
+}
+
+function exSetSelection(start, end = start) {
+  if (!exDisplay) return;
+  const textNode = exDisplay.firstChild || exDisplay;
+  const max = textNode === exDisplay ? 0 : textNode.textContent.length;
+  const range = document.createRange();
+  range.setStart(textNode, Math.min(start, max));
+  range.setEnd(textNode, Math.min(end, max));
+  const selection = window.getSelection();
+  selection.removeAllRanges();
+  selection.addRange(range);
+  exDisplay.focus({ preventScroll:true });
+  exSelectionStart = Math.min(start, max);
+  exSelectionEnd = Math.min(end, max);
+}
+
+function exReplaceSelection(text) {
+  const { start, end } = exCurrentSelection();
+  exBuffer = exBuffer.slice(0, start) + text + exBuffer.slice(end);
+  exRender(start + text.length);
+}
+
 window.exType = function(key) {
   const glyph = EX_KEYMAP[key];
-  if (!glyph) return;
-  exBuffer += glyph;
-  exRender();
+  if (glyph) exReplaceSelection(glyph);
 };
-window.exTone  = function()     { exBuffer += exCp('F1CD1'); exRender(); };
-window.exQuote = function()     { exBuffer += exCp('F1CCE'); exRender(); };
-window.exSpace = function()     { exBuffer += ' '; exRender(); };
-window.exBackspace = function() { const a=[...exBuffer]; a.pop(); exBuffer=a.join(''); exRender(); };
-window.exClear = function()     { exBuffer = ''; exRender(); };
+window.exTone  = function() { exReplaceSelection(exCp('F1CD1')); };
+window.exQuote = function() { exReplaceSelection(exCp('F1CCE')); };
+window.exSpace = function() { exReplaceSelection(' '); };
+window.exBackspace = function() {
+  const { start, end } = exCurrentSelection();
+  if (start !== end) {
+    exBuffer = exBuffer.slice(0, start) + exBuffer.slice(end);
+    exRender(start);
+    return;
+  }
+  if (!start) return;
+  const before = exBuffer.slice(0, start);
+  const previousCharacter = Array.from(before).pop();
+  const nextStart = start - previousCharacter.length;
+  exBuffer = exBuffer.slice(0, nextStart) + exBuffer.slice(start);
+  exRender(nextStart);
+};
+window.exDelete = function() {
+  const { start, end } = exCurrentSelection();
+  if (start !== end) {
+    exBuffer = exBuffer.slice(0, start) + exBuffer.slice(end);
+    exRender(start);
+    return;
+  }
+  const nextCharacter = Array.from(exBuffer.slice(end))[0];
+  if (!nextCharacter) return;
+  exBuffer = exBuffer.slice(0, start) + exBuffer.slice(end + nextCharacter.length);
+  exRender(start);
+};
+window.exClear = function() { exBuffer = ''; exRender(0); };
 
 function exGetRoman(text) {
   return [...text].map(ch => EX_ROMAN_MAP[ch] || ch).join('');
 }
 
-function exRender() {
-  const disp   = document.getElementById('yapiri-display');
+function exRender(caretOffset = null) {
+  const disp   = exDisplay;
   const roman  = document.getElementById('roman-preview');
   if (disp)  disp.textContent  = exBuffer;
   if (roman) roman.textContent = exGetRoman(exBuffer) || '';
+  if (caretOffset !== null) {
+    exSetSelection(caretOffset);
+  } else {
+    exSelectionStart = Math.min(exSelectionStart, exBuffer.length);
+    exSelectionEnd = Math.min(exSelectionEnd, exBuffer.length);
+  }
+}
+
+if (exDisplay) {
+  ['focus', 'click', 'keyup', 'select'].forEach(type => {
+    exDisplay.addEventListener(type, exCaptureSelection);
+  });
+  exDisplay.addEventListener('input', () => {
+    exCaptureSelection();
+    const caretOffset = exSelectionStart;
+    exBuffer = exDisplay.textContent.replace(/\r\n?/g, '\n');
+    exRender(caretOffset);
+  });
+  exDisplay.addEventListener('paste', event => {
+    event.preventDefault();
+    exReplaceSelection(event.clipboardData.getData('text/plain'));
+  });
 }
 
 const exerciseSection = document.getElementById('exercises');
@@ -3269,14 +3369,27 @@ document.addEventListener('focusin', event => {
 document.addEventListener('keydown', e => {
   if (!exerciseKeyboardActive) return;
   const target = e.target;
-  if (target && target.closest && target.closest('input, textarea, select, [contenteditable="true"]')) return;
+  const editingExerciseOutput = target === exDisplay || exDisplay?.contains(target);
+  if (!editingExerciseOutput && target && target.closest && target.closest('input, textarea, select, [contenteditable="true"]')) return;
   if ((e.key === ' ' || e.key === 'Enter') &&
       target && target.closest && target.closest('button, a, summary')) return;
   if (e.ctrlKey || e.altKey || e.metaKey) return;
 
+  if (editingExerciseOutput) exCaptureSelection();
+
   if (e.key === 'Backspace') {
     e.preventDefault();
     exBackspace();
+    return;
+  }
+  if (e.key === 'Delete') {
+    e.preventDefault();
+    exDelete();
+    return;
+  }
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    exReplaceSelection('\n');
     return;
   }
   if (e.key === ' ') {
