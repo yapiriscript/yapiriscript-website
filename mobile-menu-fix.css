@@ -1,0 +1,23 @@
+.mobile-menu {
+  justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+
+  padding:
+    calc(5.5rem + env(safe-area-inset-top))
+    0
+    calc(2rem + env(safe-area-inset-bottom));
+}
+
+.mobile-menu a {
+  flex: 0 0 auto;
+}
+
+.mobile-menu-close {
+  position: fixed;
+  top: calc(1.4rem + env(safe-area-inset-top));
+  right: 1.5rem;
+  z-index: 160;
+}
