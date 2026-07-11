@@ -4320,4 +4320,12 @@ const CORE_WORDS_SENTENCES = [
   }
 })();
 
+// Keep the Pronouns table numbering sequential, regardless of source-data gaps.
+(function numberPronounRows() {
+  document.querySelectorAll('#vg-pronouns .vocab-table tbody tr').forEach((row, index) => {
+    const numberCell = row.cells[0];
+    if (numberCell) numberCell.textContent = String(index + 1);
+  });
+})();
+
 </script>
