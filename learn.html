@@ -3278,7 +3278,10 @@ function exSetSelection(start, end = start) {
   const selection = window.getSelection();
   selection.removeAllRanges();
   selection.addRange(range);
-  exDisplay.focus({ preventScroll:true });
+  // Keep the caret position without programmatically focusing the editor.
+  // On mobile, focusing here after an on-page key tap opens the device
+  // keyboard. A deliberate tap on the editable field still focuses it
+  // normally, preserving accessible keyboard entry and typing.
   exSelectionStart = Math.min(start, max);
   exSelectionEnd = Math.min(end, max);
 }
