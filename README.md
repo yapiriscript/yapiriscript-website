@@ -84,7 +84,7 @@ This repository contains the full source code for the Yapiri Script website — 
 This is a static site — no build step required.
 
 ```bash
-git clone https://github.com/yapiriscript/yapiriscript-website.git
+git clone https://github.com/yapiriproject/yapiriscript-website.git
 cd yapiriscript-website
 # Open index.html in a browser, or serve with any static file server
 npx serve .
