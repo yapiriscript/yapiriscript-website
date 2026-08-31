@@ -709,6 +709,7 @@
   .guided-lesson-body {
     padding: 1.7rem 2rem 2rem;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
   }
   .lesson-focus-grid {
@@ -756,7 +757,8 @@
     text-transform: uppercase; color: var(--terracotta);
     text-align: left; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(196,180,154,0.15);
   }
-  .vocab-table td { padding: 0.55rem 1rem; border-bottom: 1px solid rgba(196,180,154,0.07); color: var(--stone-light); font-size: 0.95rem; font-weight: 300; }
+  .vocab-table td { padding: 0.55rem 1rem; border-bottom: 1px solid rgba(196,180,154,0.07); color: var(--stone-light); font-size: 0.95rem; font-weight: 300; overflow-wrap: anywhere;
+  word-break: break-word; }
   .vocab-table tr:last-child td { border-bottom: none; }
   .vocab-table tr:hover td { background: rgba(201,146,42,0.04); }
   .numeral-table-wrap { max-height: 34rem; overflow: auto; }
